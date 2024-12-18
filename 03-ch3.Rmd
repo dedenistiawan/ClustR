@@ -1,0 +1,130 @@
+# Algoritma Fuzzy C-Means {#fcm}
+
+Fuzzy c-means merupakan metode yang dikenal baik dalam mendeteksi klaster [@pimentel2016]. Metode ini menggunakan model pengelompokan fuzzy sehingga data dapat menjadi anggota dari semua kelas atau klaster terbentuk dengan derajat atau tingkat keanggotaan yang berbeda antara 0 hingga 1. Tingkat keberadaan data dalam suatu kelas atau klaster ditentukan oleh derajat keanggotaannya. Kelebihan dari metode ini adalah penempatan pusat klaster yang lebih tepat dibandingkan dengan metode lain. Caranya adalah dengan memperbaiki pusat klaster secara berulang, maka akan dapat dilihat bahwa pusat klaster akan bergerak menuju lokasi yang tepat (Wijaya, 2014). Namun, pada algoritma Fuzzy c-means dibutuhkan waktu komputasi yang lama [@stetco2015].
+
+Klastering dengan algoritma Fuzzy C-Means didasarkan pada teori logika fuzzy yang diperkenalkan oleh Lotfi Zadeh pada tahun 1965 dengan nama himpunan fuzzy (fuzzy set). Fuzzy C-Means Clustering pertama kali diperkenalkan oleh Dun pada (1973) dan diperbaiki oleh Bezdek [@bezdek1984]. Dalam teori fuzzy, keangotaan sebuah data diberikan dengan suatu nilai derajat keanggotaan yang jangkauan nilainya 0 sampai 1. Semakin tinggi nilai derajat keanggotaannya maka semakin tinggi nilai keanggotaan sebuah data dalam suatu kelompok dan semakin kecil nilai derajat keanggotaannya maka semakin rendah nilai keanggotaan sebuah data dalam suatu kelompok.
+
+Asumsikan terdapat sejumlah data dalam dataset $X$ yang berisi $n$ data yang 
+dinotasikan $X={x_1,x_2, …,x_n}$, dimana setiap data mempunyai fitur $r$ dimensi: $x_{i1}, x_{i2}, ..., x_{ir}$, dinotasikan $x_i={x_i1, x_i2, ..., x_ir}$. Ada sejumlah klaster $C$ dengan centroid: $C_1, C_2, ..., C_k$, dimana $k$ adalah jumlah klaster. Setiap data mempunyai derajat keanggotaan pada setiap klaster, dinyatakan dengan $u_{ij}$, dengan nilai diantara 0 dan 1, $i$ menyatakan data $x_i$ dan $j$ menyatakan klaster $c_j$. Jumlah nilai derajat keanggotaan setiap data $x_i$ selalu sama dengan 1, yang diformulasikan pada persamaan berikut:
+
+```{theorem}
+$$\sum_{j=1}^k u_{i j}=1$$
+```
+
+Fuzzy c-means clustering merupakan suatu metode clustering yang hampir mirip seperti k-means clustering. Karena metode clustering ini mirip dengan k-means clustering, ada yang menyebut metode ini fuzzy k-means clustering. Fuzzy c-means merupakan salah satu jenis soft clustering dimana dalam mengelompokan suatu data, setiap data bisa dimiliki lebih dari satu cluster.
+
+Cara kerja dari fuzzy c-means clustering dalam mengelompokkan datanya adalah sebagai berikut :
+
+1.  Menentukan banyak cluster (k) yang akan dibuat.
+
+2.  Menentukan nilai proporsi untuk setiap data poin secara random untuk masuk dalam suatu cluster. Menghitung nilai centroid.
+
+3.  Dalam menghitung nilai centroid, kita menggunakan formula berikut:
+
+```{lemma}
+$$C_j=\frac{\sum{\mu^m_{ij}x}}{\sum{\mu^m_{ij}}}$$
+```
+
+4.  Menghtung kembali nilai proporsi untuk setiap data poin untuk masuk pada setiap cluster. formula yang digunakan yaitu sebagai berikut:
+
+```{lemma}
+$${\mu }^m_{ij}=\frac{1}{\sum{\left(\frac{\left|x_i-c_j\right|}{\left|x_i-c_k\right|}\right)^{\frac{2}{m-1}}}}$$
+```
+
+## Eksperimeen Fuzzy C-Means
+
+### Install dan Load Packagaes
+
+```{r eval=FALSE}
+library(ppclust)
+library(factoextra)
+library(fclust)
+library(cluster)
+```
+
+### Data
+
+```{r Load_data,warning=FALSE, tidy=FALSE}
+library (readr)
+urlfile = "https://raw.githubusercontent.com/dedenistiawan/Dataset/main/Basis%20Data%20Terpadu%20Jateng.csv"
+
+data<-read.csv(url(urlfile), row.names = "Kabupaten")
+```
+
+### Hasil Clustering
+
+```{r}
+library(ppclust)
+res.fcm <- fcm(data, centers=3)
+as.data.frame(res.fcm$u)
+```
+
+```{r}
+# Visualize using corrplot
+library(corrplot)
+corrplot(res.fcm$u, is.corr = FALSE)
+```
+
+```{r}
+res.fcm$v0
+```
+
+```{r}
+res.fcm$v
+```
+
+### Hasil Clustering FCM
+
+```{r}
+summary(res.fcm)
+```
+
+### Run FCM with Multiple Starts
+
+```{r}
+res.fcm <- fcm(data, centers=3, nstart=5)
+```
+
+```{r}
+res.fcm <- fcm(data, centers=3, nstart=5, fixmemb=TRUE)
+```
+
+### Display the best solution
+
+```{r}
+res.fcm$func.val
+```
+
+```{r}
+res.fcm$iter
+```
+
+```{r}
+res.fcm$best.start
+```
+
+### Display the summary of clustering results
+
+```{r}
+summary(res.fcm)
+```
+
+### Cluster Plot with fviz_cluster
+
+```{r}
+res.fcm2 <- ppclust2(res.fcm, "kmeans")
+factoextra::fviz_cluster(res.fcm2, data = data, 
+  ellipse.type = "convex",
+  palette = "jco",
+  repel = TRUE)
+```
+
+### Cluster Plot with clusplot
+
+```{r}
+res.fcm3 <- ppclust2(res.fcm, "fanny")
+
+cluster::clusplot(scale(data), res.fcm3$cluster,  
+  main = "Cluster plot of Iris data set",
+  color=TRUE, labels = 2, lines = 2, cex=1)
+```

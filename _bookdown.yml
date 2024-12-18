@@ -1,0 +1,14 @@
+book_filename: "CLUSTR"
+output_dir: docs
+delete_merged_file: true
+language:
+  label:
+    fig: "Gambar "
+    tab: "Tabel "
+    
+rmd_files: ["index.Rmd",
+            "01-ch1.Rmd",
+            "02-ch2.Rmd",
+            "03-ch3.Rmd",
+            "04-ch4.Rmd", 
+            "references.Rmd"]

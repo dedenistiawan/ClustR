@@ -1,0 +1,176 @@
+# Pendahuluan {#pd}
+```{r, child="_setup.Rmd"}
+```
+
+Minat terhadap bahasa pemrograman statistik dan lingkungan perangkat lunak `r ttcode("R")`[@R-base] yang tersedia secara gratis terus meningkat pesat. Pada saat kami mulai menyusun draf awal untuk proyek ini, lebih dari 11.000 add-on (banyak di antaranya menyediakan metode terkini) telah tersedia di Comprehensive `r ttcode("R")` Archive Network ([CRAN](https://cran.r-project.org/)), sebuah jaringan luas server FTP di seluruh dunia yang menyimpan versi kode `r ttcode("R")` dan dokumentasinya yang identik serta terkini. Dalam banyak bidang penelitian statistik terapan, `r ttcode("R")` mendominasi dibandingkan perangkat lunak statistik lainnya, termasuk yang bersifat komersial. Keunggulan `r ttcode("R")` sebagai perangkat lunak sumber terbuka yang tersedia secara gratis, ditambah dengan komunitas pengguna yang besar dan terus berkembang yang berkontribusi pada CRAN, membuat `r ttcode("R")` semakin menarik bagi peneliti di berbagai disiplin ilmu, termasuk statistik, ekonomi, dan teknik.
+
+Salah satu keuntungan utama menggunakan `r ttcode("R")` dalam analisis data adalah kemampuannya untuk mendokumentasikan setiap langkah analisis secara eksplisit sehingga mudah untuk diperbarui dan diperluas. Hal ini memungkinkan pengguna untuk menggunakan kembali kode untuk aplikasi serupa dengan data yang berbeda. Selain itu, program `r ttcode("R")`sepenuhnya dapat direproduksi, yang membuat hasil analisis mudah dipahami dan divalidasi oleh pihak lain.
+
+Selama beberapa tahun terakhir, `r ttcode("R")` telah menjadi bagian integral dari kurikulum mata kuliah analisis data dan statistika yang kami ajarkan di berbagai universitas. Dalam konteks pembelajaran, mempelajari pemrograman `r ttcode("R")` sering kali dianggap sebanding dengan mempelajari bahasa asing, di mana praktik yang berkelanjutan sangat penting untuk keberhasilan belajar. Namun, hanya menampilkan kode R mentah pada slide presentasi tidak cukup untuk mendorong mahasiswa berinteraksi langsung dengan materi pembelajaran. Oleh karena itu, `r ttcode("R")` sangat penting untuk memberikan pengalaman belajar yang lebih mendalam dan interaktif.
+
+
+Dalam hal referensi literatur, sudah ada beberapa buku luar biasa yang membahas penggunaan `r ttcode("R")` dan penerapannya, seperti *An Introduction to Statistical Learning* (James et al., 2013). Namun, banyak sumber tersebut mungkin terlalu kompleks untuk mahasiswa pemula yang baru memulai belajar statistik atau memiliki sedikit pengalaman pemrograman. Untuk menjawab tantangan ini, kami mulai menyusun koleksi panduan yang dapat direproduksi untuk digunakan dalam kelas. Panduan ini memberikan arahan tentang bagaimana menerapkan berbagai metode analisis klaster yang diambil dari literatur statistik dengan menggunakan `r ttcode("R")` sebagai alat utama. Proses ini sangat terbantu oleh paket-paket R seperti `knitr` dan `rmarkdown` yang memungkinkan pembuatan laporan dinamis dengan mengintegrasikan teks, kode `r ttcode("R")`, dan hasil output dalam berbagai format, termasuk PDF dan HTML.
+
+Selain itu, paket `bookdown` telah menjadi alat utama kami dalam proyek ini. Paket ini dibangun di atas `rmarkdown` dan memungkinkan kami untuk membuat dokumen yang menarik secara visual, seperti halaman web interaktif. Dengan dukungan perangkat ini, kami menyusun sebuah buku berjudul *Analisis Cluster dengan R: Panduan Lengkap untuk Pemula*. Buku ini dirancang sebagai skrip interaktif dalam gaya laporan penelitian yang dapat direproduksi, dengan tujuan menyediakan pengaturan pembelajaran elektronik yang platform-independen dengan mengintegrasikan pengetahuan teoretis dan keterampilan empiris dalam analisis data.
+
+Proyek ini bukanlah buku teks analisis klaster yang komprehensif atau pengenalan umum tentang `r ttcode("R")`. Fokus kami adalah memberikan panduan praktis tentang bagaimana metode analisis klaster dapat diterapkan menggunakan `r ttcode("R")`, tanpa terlalu banyak membahas derivasi matematis atau bukti formal. Tujuan kami adalah memungkinkan pembaca tidak hanya mereplikasi hasil analisis kasus menggunakan `r ttcode("R")` tetapi juga memperkuat kemampuan mereka untuk menerapkan keterampilan baru tersebut pada aplikasi empiris lainnya.
+
+Setiap bab dalam buku ini mencakup latihan pemrograman `r ttcode("R")` interaktif. Latihan ini dirancang sebagai pelengkap potongan kode yang menampilkan implementasi teknik-teknik yang telah dibahas. Latihan-latihan ini dibuat menggunakan [DataCamp light widget](https://github.com/datacamp/datacamp-light) yang terhubung dengan sesi `r ttcode("R")` yang dikelola di server [DataCamp](https://www.datacamp.com/home). Dengan pendekatan ini, pembaca dapat langsung mencoba dan bereksperimen dengan latihan yang disediakan untuk memperdalam pemahaman mereka terhadap metode yang dipelajari. Dengan cara ini, kami berharap dapat memberikan pengalaman belajar yang menyeluruh dan menarik bagi pembaca yang ingin mendalami analisis klaster menggunakan `r ttcode("R")`.
+
+<iframe src="DCL/intro_1.html" frameborder="0" scrolling="no" style="width:100%;height:360px">
+
+</iframe>
+
+Widget ini terdiri dari dua tab. Tab `r ttcode("script.R")` menyerupai file dengan format `r ttcode(".R")`, format file yang umum digunakan untuk menyimpan kode `r ttcode("R")`. Baris yang diawali dengan tanda \# adalah komentar, yang tidak dianggap sebagai kode oleh `r ttcode("R")`. Selain itu, tab script.R bekerja seperti lembar latihan di mana Anda dapat menuliskan solusi yang Anda buat. Jika Anda menekan tombol *Run*, kode akan dijalankan, pengujian kebenaran solusi dilakukan, dan Anda akan diberi tahu apakah pendekatan Anda benar. Jika tidak benar, Anda akan menerima umpan balik yang memberikan saran perbaikan atau petunjuk. Tab lainnya, `r ttcode("R Console")`, adalah konsol `r ttcode("R")` yang sepenuhnya berfungsi yang dapat digunakan untuk mencoba solusi sebelum mengirimkannya. Tentu saja, Anda dapat mengirimkan hampir semua kode `r ttcode("R")` dan menggunakan konsol untuk bereksperimen dan mengeksplorasi. Cukup ketikkan perintah dan tekan tombol *Enter* pada keyboard Anda.
+
+Pada konsol, Anda akan melihat simbol <tt>\></tt> di panel kanan (konsol). Simbol ini disebut "prompt" dan menunjukkan bahwa pengguna dapat memasukkan kode yang akan dijalankan. Untuk menghindari kebingungan, kami tidak akan menampilkan simbol ini di buku ini. Output yang dihasilkan oleh kode R dikomentari dengan <tt>#\></tt>.
+
+Biasanya, kami menampilkan kode `r ttcode("R")` bersama dengan output yang dihasilkan dalam potongan kode. Sebagai contoh, perhatikan baris kode berikut yang ditampilkan dalam potongan di bawah ini. Kode ini memberi tahu `r ttcode("R")` untuk menghitung jumlah paket yang tersedia di `r ttcode("CRAN")`. Potongan kode diikuti oleh output yang dihasilkan.
+
+
+```{r}
+# check the number of R packages available on CRAN
+nrow(available.packages(repos = "http://cran.us.r-project.org"))
+```
+
+Setiap potongan kode dilengkapi dengan tombol di sisi kanan luar yang memungkinkan Anda menyalin kode ke clipboard Anda. Ini membuat pekerjaan dengan segmen kode yang lebih besar menjadi lebih nyaman, baik di versi <tt>R</tt>/*RStudio* Anda maupun di widget-widget yang disajikan di sepanjang buku ini. Pada widget di atas, Anda dapat mengklik tab `r ttcode("R Console")` Console dan mengetikkan `nrow(available.packages(repos = "http://cran.us.r-project.org"))` (perintah dari potongan kode di atas) dan menjalankannya dengan menekan tombol *Enter* pada keyboard Anda. [^index-1]
+
+[^index-1]: The `r ttcode("R")` session is initialized by clicking into
+    the widget. This might take a few seconds. Just wait for the
+    indicator next to the button *Run* to turn green.
+
+Perhatikan bahwa beberapa baris dalam widget tersebut dikomentari, yang meminta Anda untuk menetapkan nilai numerik pada sebuah variabel dan kemudian mencetak isi variabel tersebut ke konsol. Anda dapat memasukkan pendekatan solusi Anda ke dalam `r ttcode("script.R")` dan menekan tombol *Run* untuk mendapatkan umpan balik seperti yang dijelaskan di atas. Jika Anda tidak tahu bagaimana menyelesaikan latihan ini (jangan panik, itu mungkin alasan mengapa Anda membaca ini), klik *Hint* untuk mendapatkan saran. Jika Anda masih belum menemukan solusi, klik *Solution* untuk membuka tab lain, `r ttcode("Solution.R")`, yang berisi kode solusi sampel. Seringkali, latihan dapat diselesaikan dengan berbagai cara, dan `r ttcode("Solution.R")` akan menyajikan solusi yang kami anggap sebagai solusi yang mudah dipahami dan idiomatik.
+
+## Kolofon
+
+Buku ini disusun dengan:
+
+```{r, echo = FALSE}
+sessioninfo::session_info("itewrpkg")
+```
+
+## Pengenalan Singkat R and RStudio
+
+```{r, fig.align='center', echo=FALSE, fig.cap="RStudio: the four panes"}
+knitr::include_graphics('images/rstudio.jpg')
+```
+
+#### Dasar-Dasar R {-}
+
+Berikut adalah versi terjemahan dalam bahasa Indonesia untuk bagian tersebut:
+
+---
+
+Seperti disebutkan sebelumnya, buku ini bukan dimaksudkan sebagai pengantar `r ttcode("R")`, melainkan panduan tentang cara memanfaatkan kemampuannya untuk aplikasi yang umum dijumpai dalam ekonometrika tingkat sarjana. Pembaca yang memiliki pengetahuan dasar tentang pemrograman `r ttcode("R")` mungkin akan merasa nyaman untuk langsung memulai dari Bab \@ref(pt). Namun, bagian ini ditujukan bagi mereka yang belum pernah bekerja dengan `r ttcode("R")` atau *RStudio* sebelumnya. Jika Anda setidaknya sudah tahu cara membuat objek dan memanggil fungsi, Anda bisa melewati bagian ini. Namun, jika Anda ingin menyegarkan keterampilan Anda atau mendapatkan gambaran tentang cara bekerja dengan *RStudio*, lanjutkan membaca. 
+
+As mentioned before, this book is not intended to be an introduction to
+`r ttcode("R")` but a guide on how to use its capabilities for
+applications commonly encountered in undergraduate econometrics. Those
+having basic knowledge in `r ttcode("R")` programming may feel
+comfortable starting with Chapter \@ref(pt). This section, however, is
+meant for those who have not worked with `r ttcode("R")` or *RStudio*
+before. If you at least know how to create objects and call functions,
+you can skip it. If you would like to refresh your skills or get a
+feeling for how to work with *RStudio*, keep reading.
+
+First of all, start *RStudio* and open a new `r ttcode("R")` script by
+selecting *File*, *New File*, *R Script*. In the editor pane, type
+
+```{r, eval = F}
+1 + 1
+```
+
+and click on the button labeled *Run* in the top right corner of the
+editor. By doing so, your line of code is sent to the console and the
+result of this operation should be displayed right underneath it. As you
+can see, `r ttcode("R")` works just like a calculator. You can do all
+arithmetic calculations by using the corresponding operator
+(`r ttcode("+")`, `r ttcode("-")`, `r ttcode("*")`, `r ttcode("/")` or
+`r ttcode("^")`). If you are not sure what the last operator does, try
+it out and check the results.
+
+#### Vectors {-}
+
+In `r ttcode("R")`, you can work with variables or more generally,
+objects. To define an object, you use the assignment operator
+`r ttcode("<-")`, for example, to create a variable named
+`r ttcode("x")` with the value `r ttcode("10")`, you can type `x <- 10`
+and then click the *Run* button. The new variable should appear in the
+environment pane on the top right. However, the console won't display
+any results because this line of code doesn't produce any visible
+output. If you want to see the value of `x`, you can simply type `x` in
+the console and press *Enter*, and `r ttcode("R")` will display the
+corresponding value in the console.
+
+`r ttcode("x")` is a scalar, a vector of length $1$. You can easily
+create longer vectors by using the function `r ttcode("c()")` (*c* is
+for "concatenate" or "combine"). To create a vector `r ttcode("y")`
+containing the numbers $1$ to $5$ and print it, do the following.
+
+```{r, eval = T}
+y <- c(1, 2, 3, 4, 5)
+y
+```
+
+You can also create a vector of letters or words. For now just remember
+that characters have to be surrounded by quotes, else they will be
+parsed as object names.
+
+```{r, eval = F}
+hello <- c("Hello", "World")
+```
+
+Here we have created a vector of length 2 containing the words
+`r ttcode("Hello")` and `r ttcode("World")`.
+
+Do not forget to save your script! To do so, select *File* and then
+*Save*.
+
+#### Functions {-}
+
+You have seen that the function `r ttcode("c()")` can be used to combine
+objects. In general, all function calls look the same: a function name
+is always followed by round parentheses. Often the parentheses include
+arguments.
+
+Here are two simple examples.
+
+```{r, eval = T}
+# generate the vector `z`
+z <- seq(from = 1, to = 5, by = 1)
+
+# compute the mean of the entries in `z`
+mean(z)
+```
+
+In the first line we use a function called `r ttcode("seq()")` to create
+the exact same vector as we did in the previous section, calling it
+`r ttcode("z")`. The function takes on the arguments `r ttcode("from")`,
+`r ttcode("to")` and `r ttcode("by")` which should be self-explanatory.
+The function `r ttcode("mean()")` computes the arithmetic mean of its
+argument `r ttcode("x")`. Since we pass the vector `r ttcode("z")` as
+the argument `r ttcode("x")`, the result is `r ttcode("3")`!
+
+If you are not sure which arguments a function expects, you may consult
+the function's documentation. Let's say we are not sure how the
+arguments required for `r ttcode("seq()")` work. We then type `?seq` in
+the console. By hitting return, the documentation page for that function
+pops up in the lower right pane of *RStudio*. In there, the section
+*Arguments* holds the information we seek. On the bottom of almost every
+help page you find examples on how to use the corresponding functions.
+This is very helpful for beginners and we recommend to have a look.
+
+Of course, all of the commands presented above also work in interactive
+widgets throughout the book. You may try them below.
+
+```{r, echo=FALSE, results='asis'}
+write_html(playground = T)
+```
+
+```{r, eval = my_output == "latex", results='asis', echo=FALSE, purl=FALSE}
+cat('\\begin{center}
+\\textit{This interactive application is only available in the HTML version.}
+\\end{center}
+')
+```
+
