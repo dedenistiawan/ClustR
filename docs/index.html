@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Analisis Cluster dengan R: Panduan Lengkap untuk Pemula</title>
+  <meta name="description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Analisis Cluster dengan R: Panduan Lengkap untuk Pemula" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://github.com/dedenistiawan/ClustR/images/cover.png" />
+  <meta property="og:description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
+  <meta name="github-repo" content="dedenistiawan/Analisis_Cluster_R" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Analisis Cluster dengan R: Panduan Lengkap untuk Pemula" />
+  
+  <meta name="twitter:description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
+  <meta name="twitter:image" content="https://github.com/dedenistiawan/ClustR/images/cover.png" />
+
+<meta name="author" content="Deden Istiawan" />
+
+
+<meta name="date" content="2024-12-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="1-pd.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- font families -->
+
+<link href="https://fonts.googleapis.com/css?family=PT+Sans|Pacifico|Source+Sans+Pro" rel="stylesheet">
+
+<script src="js/hideOutput.js"></script>
+
+<!-- Mathjax -->
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/mml-chtml.min.js"></script>
+
+ <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        extensions: ["tex2jax.js", "TeX/AMSmath.js"],
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        jax: ["input/TeX","output/CommonHTML"]
+      });
+      MathJax.Hub.processSectionDelay = 0;
+  </script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110299877-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110299877-1');
+</script>
+
+<!-- open review block -->
+
+<script type="application/json" class="js-hypothesis-config">
+{
+"showHighlights": false
+}
+</script>
+<script async defer src="https://hypothes.is/embed.js"></script>
+
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="toc.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><center><img src="images/logo.png" alt="logo" width="50%" height="50%"style="margin: 15px 0 0 0"></center></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Kata Pengantar</a></li>
+<li class="chapter" data-level="1" data-path="1-pd.html"><a href="1-pd.html"><i class="fa fa-check"></i><b>1</b> Pendahuluan</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-kolofon.html"><a href="1.1-kolofon.html"><i class="fa fa-check"></i><b>1.1</b> Kolofon</a></li>
+<li class="chapter" data-level="1.2" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> Pengenalan Singkat R and RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-km.html"><a href="2-km.html"><i class="fa fa-check"></i><b>2</b> Algoritma K-Means</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html"><i class="fa fa-check"></i><b>2.1</b> Eksperimen Algoritma K-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html#memeriksa-missing-value"><i class="fa fa-check"></i>Memeriksa Missing Value</a></li>
+<li class="chapter" data-level="" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html#visualisasi-matriks-jarak"><i class="fa fa-check"></i>Visualisasi Matriks jarak</a></li>
+<li class="chapter" data-level="" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html#estimasi-jumlah-cluster-optimal"><i class="fa fa-check"></i>Estimasi Jumlah <em>Cluster</em> Optimal</a></li>
+<li class="chapter" data-level="" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html#membuat-plot-cluster"><i class="fa fa-check"></i>Membuat Plot <em>Cluster</em></a></li>
+<li class="chapter" data-level="" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html#metode-elbow"><i class="fa fa-check"></i>Metode Elbow</a></li>
+<li class="chapter" data-level="" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html#metode-silhouette"><i class="fa fa-check"></i>Metode Silhouette</a></li>
+<li class="chapter" data-level="" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html#eksperimen-k-means-clustering"><i class="fa fa-check"></i>Eksperimen K-Means Clustering</a></li>
+<li class="chapter" data-level="" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html#visualisasi-hasil-clustering"><i class="fa fa-check"></i>Visualisasi Hasil <em>clustering</em></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-fcm.html"><a href="3-fcm.html"><i class="fa fa-check"></i><b>3</b> Algoritma Fuzzy C-Means</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html"><i class="fa fa-check"></i><b>3.1</b> Eksperimeen Fuzzy C-Means</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html#install-dan-load-packagaes"><i class="fa fa-check"></i><b>3.1.1</b> Install dan Load Packagaes</a></li>
+<li class="chapter" data-level="3.1.2" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html#data-1"><i class="fa fa-check"></i><b>3.1.2</b> Data</a></li>
+<li class="chapter" data-level="3.1.3" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html#hasil-clustering"><i class="fa fa-check"></i><b>3.1.3</b> Hasil Clustering</a></li>
+<li class="chapter" data-level="3.1.4" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html#hasil-clustering-fcm"><i class="fa fa-check"></i><b>3.1.4</b> Hasil Clustering FCM</a></li>
+<li class="chapter" data-level="3.1.5" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html#run-fcm-with-multiple-starts"><i class="fa fa-check"></i><b>3.1.5</b> Run FCM with Multiple Starts</a></li>
+<li class="chapter" data-level="3.1.6" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html#display-the-best-solution"><i class="fa fa-check"></i><b>3.1.6</b> Display the best solution</a></li>
+<li class="chapter" data-level="3.1.7" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html#display-the-summary-of-clustering-results"><i class="fa fa-check"></i><b>3.1.7</b> Display the summary of clustering results</a></li>
+<li class="chapter" data-level="3.1.8" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html#cluster-plot-with-fviz_cluster"><i class="fa fa-check"></i><b>3.1.8</b> Cluster Plot with fviz_cluster</a></li>
+<li class="chapter" data-level="3.1.9" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html#cluster-plot-with-clusplot"><i class="fa fa-check"></i><b>3.1.9</b> Cluster Plot with clusplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-HC.html"><a href="4-HC.html"><i class="fa fa-check"></i><b>4</b> Metode Cluster Hirarki</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4.1-comparing-dendrograms.html"><a href="4.1-comparing-dendrograms.html"><i class="fa fa-check"></i><b>4.1</b> Comparing dendrograms</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analisis Cluster dengan R: Panduan Lengkap untuk Pemula</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div class = rmdreview>
+Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda untuk membuat buku ini lebih baik bagi. Anda dapat memberikan anotasi pada beberapa teks dengan <span style="background-color: #3297FD; color: white">memilihnya menggunakan kursor</span> dan kemudian klik “Beri Anotasi” pada menu pop-up. Anda juga dapat melihat anotasi orang lain: klik tanda panah di sudut kanan atas halaman <i class="fa fa-arrow-circle-right  fa-rotate-315" aria-hidden="true"></i>
+</div>
+<div id="header">
+<h1 class="title">Analisis Cluster dengan R: Panduan Lengkap untuk Pemula</h1>
+<p class="author"><em>Deden Istiawan</em></p>
+<p class="date"><em>2024-12-18</em></p>
+</div>
+<div id="kata-pengantar" class="section level1 unnumbered hasAnchor">
+<h1>Kata Pengantar<a href="index.html#kata-pengantar" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<hr style="background-color:#3C6690;height:2px">
+<center>
+<img src="images/cover.png" style="width:60%;"/>
+</center>
+<p><br> Rekayasa Perangkat Lunak
+<img src="images/itesa.png" style="float: right; margin: 0px 100px 0px 0px; width:35%"/>
+<br> Fakultas Sains dan Teknologi <br> Institut Teknologi Statistika dan
+Bisnis Muhammadiyah <br> Semarang, Indonesia <br>
+<a href=\"mailto:deden.istiawan@itesa.ac.id?subject=Clustering%20with%20R\"><a href="mailto:deden.istiawan@itesa.ac.id" class="email">deden.istiawan@itesa.ac.id</a>.</a>
+<br><br>
+Last updated on Wednesday, December 18, 2024.
+<br> <br>
+<iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FEconometricsWithR%2F&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId" width="400" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" align="left"></iframe>
+<br> <br> <br></p>
+<hr style="background-color:#3C6690;height:2px">
+<p>Analisis cluster merupakan teknik yang sangat penting dalam bidang data
+science, karena kemampuannya untuk mengelompokkan data berdasarkan
+kesamaan karakteristik. Dengan mengelompokkan objek atau data, analisis
+cluster membantu mengidentifikasi pola yang mungkin tidak terlihat
+secara langsung dalam data mentah. Hal ini sangat berguna di berbagai
+bidang, seperti pemasaran, biologi, dan pengenalan pola, di mana
+pemahaman yang lebih dalam tentang struktur data dapat memberikan
+wawasan yang berharga <span class="citation">(<a href="#ref-kaufman:clustering1990">Kaufman and Rousseeuw 1990</a>)</span>.</p>
+<p>Salah satu manfaat utama dari analisis cluster adalah segmentasi pasar.
+Dalam dunia bisnis, perusahaan dapat menggunakan teknik ini untuk
+mengelompokkan pelanggan berdasarkan perilaku atau karakteristik
+tertentu. Dengan memahami segmen-segmen ini, perusahaan dapat merancang
+strategi pemasaran yang lebih efektif dan personalisasi produk untuk
+memenuhi kebutuhan spesifik dari setiap kelompok. Selain itu, analisis
+cluster juga memungkinkan pengelompokan data yang besar menjadi lebih
+mudah dipahami dan diinterpretasikan, sehingga memfasilitasi pengambilan
+keputusan yang lebih baik <span class="citation">(<a href="#ref-han2012mining">Han, Kamber, and Pei 2012</a>)</span>.</p>
+<p>Dalam konteks machine learning, analisis cluster sering digunakan
+sebagai metode unsupervised learning. Ini berarti bahwa algoritma
+clustering dapat menemukan struktur dalam data tanpa memerlukan label
+atau kategori sebelumnya. Hal ini sangat berguna ketika menghadapi
+dataset yang tidak terstruktur dan kompleks, di mana tujuan utamanya
+adalah untuk mengeksplorasi dan mendapatkan wawasan awal tentang data
+tersebut <span class="citation">(<a href="#ref-jain2010">Jain 2010</a>)</span>.</p>
+<p>Secara keseluruhan, analisis cluster tidak hanya membantu dalam
+pengelompokan data tetapi juga berfungsi sebagai alat eksplorasi yang
+kuat dalam memahami hubungan dan pola dalam dataset. Dengan demikian,
+penerapan analisis cluster dapat meningkatkan kualitas analisis data dan
+mendukung pengambilan keputusan berbasis data yang lebih baik di
+berbagai sektor industri .</p>
+<div id="acknowledgement" class="section level4 unnumbered hasAnchor">
+<h4>Acknowledgement<a href="index.html#acknowledgement" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Saya ingin mengucapkan terima kasih kepada keluarga, teman, dan rekan kerja yang telah mendukung saya dalam menyelesaikan buku ini. Terima kasih atas cinta, dukungan, dan motivasi yang telah Anda berikan</p>
+<p><br>
+<img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-nc-sa.eu.svg" alt="Creative Commons License" /></p>
+<p>This book is licensed under the <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+<hr style="background-color:#3C6690;height:2px">
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-han2012mining" class="csl-entry">
+Han, Jiawei, Micheline Kamber, and Jian Pei. 2012. <span>“Data Mining Concepts and Techniques, Third Edition.”</span> Waltham, Mass.: Morgan Kaufmann Publishers. 2012. <a href="http://www.amazon.de/Data-Mining-Concepts-Techniques-Management/dp/0123814790/ref=tmm_hrd_title_0?ie=UTF8&amp;qid=1366039033&amp;sr=1-1">http://www.amazon.de/Data-Mining-Concepts-Techniques-Management/dp/0123814790/ref=tmm_hrd_title_0?ie=UTF8&amp;qid=1366039033&amp;sr=1-1</a>.
+</div>
+<div id="ref-jain2010" class="csl-entry">
+Jain, Anil K. 2010. <span>“Data Clustering: 50 Years Beyond K-Means.”</span> <em>Pattern Recognition Letters</em> 31 (8): 651–66. <a href="https://doi.org/10.1016/j.patrec.2009.09.011">https://doi.org/10.1016/j.patrec.2009.09.011</a>.
+</div>
+<div id="ref-kaufman:clustering1990" class="csl-entry">
+Kaufman, L., and P. J. Rousseeuw. 1990. <em>Finding Groups in Data: An Introduction to Cluster Analysis</em>. Wiley.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="1-pd.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": true,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mca91/ClustR/edit/master/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>
