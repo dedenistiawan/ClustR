@@ -53,6 +53,7 @@ cat('
 
 $$C_j=\frac{\\sum{\\mu^m_{ij}x}}{\\sum{\\mu^m_{ij}}}$$
 
+
 </p> 
 </div>')
 ```
@@ -67,9 +68,6 @@ cat('
 
 <p> 
 
-$$
-\mu_{ij}^m = \frac{1}{\sum \left( \frac{|x_i - c_j|}{|x_i - c_k|} \right)^{\frac{2}{m-1}}}
-$$
 
 </p> 
 </div>')
@@ -99,7 +97,6 @@ library(cluster)
 ```{r Load_data_fcm,warning=FALSE, tidy=FALSE}
 library (readr)
 urlfile = "https://raw.githubusercontent.com/dedenistiawan/Dataset/main/Basis%20Data%20Terpadu%20Jateng.csv"
-
 data<-read.csv(url(urlfile), row.names = "Kabupaten")
 ```
 
