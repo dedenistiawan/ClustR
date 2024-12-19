@@ -28,3 +28,13 @@ thm:unnamed-chunk-3
 lem:unnamed-chunk-4
 lem:unnamed-chunk-5
 tab:nice-tab-2
+tahapan-algoritma-k-means
+inisialisasi-centroid
+penugasan-cluster
+perbarui-centroid
+ulangi-langkah-2-dan-3
+hasil-akhir
+ringkasan
+fig:unnamed-chunk-3
+fig:unnamed-chunk-8
+fig:unnamed-chunk-13
