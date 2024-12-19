@@ -1,5 +1,12 @@
 # Algoritma K-Means {#km}
 
+```{=html}
+<style>
+body{
+text-align: justify}
+</style>
+```
+
 K-means merupakan salah satu metode hard partition yang banyak digunakan untuk pengelompokan data. Algoritma K-means adalah dasar pengelompokan metode partisi yang dipublikasikan oleh Lloyd dari Bell Telephone Laboratories pada tahun 1957. Penelitian pada K-means dapat ditelusuri kembali ke pertengahan abad yang lalu, yang dilakukan oleh berbagai peneliti diseluruh disiplin ilmu yang berbeda terutama oleh Lloyd (1957), Forgey (1965), Friedman dan Robin (1967) dan MacQueen (1967). K-means dapat didefinisikan sebagai algoritma klastering yang mengelompokan data ke dalam k klaster berdasarkan jarak terdekat data dengan pusat klaster. Algoritma K-means sangat efisien untuk mengelompokan dataset yang besar, kemudahan dalam pengaplikasiannya dan metode yang efisien dalam hal komputasi, menjadi alasan utama popularitas K-means, meskipun telah diusulkan lebih dari 50 tahun yang lalu [@han2012mining].
 
 Algoritma K-means mengelompokan objek ke dalam kelompok sehingga objek dalam satu klaster memiliki kemiripan yang tinggi dibandingkan dengan objek di dalam klaster yang berbeda. K-means dimulai dengan menentukan jumlah klaster sebanyak k, kemudian membangkitkan k pusat klaster secara acak. Selanjutnya setiap objek akan dikelompokan berdasarkan jarak terdekat dengan pusat klaster, pusat klaster diperbaharui berdasarkan titik data dalam setiap klaster. Proses ini diulangi sampai kriteria konvergen terpenuhi. Berikut ini adalah tahapan dari algoritma K-means:
@@ -18,32 +25,33 @@ Algoritma K-means mengelompokan objek ke dalam kelompok sehingga objek dalam sat
 
 Pada eksprimen ini algoritma K-Means akan digunakan untuk mengelompokan data kemiskinan di Jawa Tengah yang diambil dari website Tim Percepatan Penanggulangan Kemiskinan [(TNP2K)](https://www.tnp2k.go.id/)
 
-### Data {-}
+### Data {.unnumbered}
 
 Package `reader` menyiapkan fungsi [`read_csv()`](https://readr.tidyverse.org/reference/read_delim.html) untuk import data dari file CSV. Pada kasus ini digunakan data [Data 40% Kemiskinan di jawa Tengah](https://github.com/dedenistiawan/Dataset/blob/main/BDT.csv).
 
-```{r Load_data,warning=FALSE, tidy=FALSE}
+```{r Load_data_km,warning=FALSE, tidy=FALSE}
 library (readr)
 urlfile = "https://raw.githubusercontent.com/dedenistiawan/Dataset/main/Basis%20Data%20Terpadu%20Jateng.csv"
 
 data<-read.csv(url(urlfile), row.names = "Kabupaten")
 ```
 
-```{r nice-tab, tidy=FALSE}
+
+```{r nice-tab-1, tidy=FALSE, echo=FALSE}
 knitr::kable(
   head(data, 10), caption = 'Basis Data Terpadu Jawa Tengah',
   booktabs = TRUE)
 ```
 
-### Memeriksa Missing Value {-}
+### Memeriksa Missing Value {.unnumbered}
 
-```{r}
+```{r echo=FALSE}
 colSums(is.na(data))
 ```
 
 Hasil output di atas menunjukan bahwa tidak *missing value* di semua variabel
 
-### Visualisasi Matriks jarak {-}
+### Visualisasi Matriks jarak {.unnumbered}
 
 ```{r warning=FALSE, message=FALSE, fig.cap='Matrik Jarak', out.width='80%', fig.asp=.75, fig.align='center'}
 #Plot Disatance
@@ -55,11 +63,11 @@ fviz_dist(distance, gradient = list(low = "#00AFBB", mid = "white", high = "#FC4
 
 Matriks jarak ini berfungsi untuk mengukur jarak antar variabel, semakin merah warnanya maka semakin jauh jarak antar variabel dan semakin biru semakin dekat jarak antar variabel.
 
-### Estimasi Jumlah *Cluster* Optimal {-}
+### Estimasi Jumlah *Cluster* Optimal {.unnumbered}
 
 Dalam metode k-means banyaknya klaster ditentukan sendiri oleh pengguna. Maka dari itu perlu dicari jumlah klaster yang optimum yang dapat mengelompokkan objek dengan baik (Perlu diketahui bahwa metode ini relatif subjektif). Salah satu metode yang digunakan adalah Elbow Plot. Elbow Plot merupakan plot antara banyak klaster dengan total within-cluster variation (total dari simpangan per kluster). Banyak klaster yang dipilih adalah bagian “siku” atau titik dimana terdapat penurunan yang tajam sebelum titik tersebut dan disusul penurunan yang tidak tajam setelah titik tersebut. Hal ini karena penambahan jumlah klaster tidak membawa pengaruh banyak atas variasi yang ada di dalam klaster tersebut.
 
-### Membuat Plot *Cluster* {-}
+### Membuat Plot *Cluster* {.unnumbered}
 
 Jumlah klaster yang dibentuk mulai dari 2 sampai 5, untuk melihat sebaran data pada masing-masing *cluster*
 
@@ -84,7 +92,7 @@ library(gridExtra)
 grid.arrange(p1, p2, p3, p4, nrow = 2)
 ```
 
-### Metode Elbow {-}
+### Metode Elbow {.unnumbered}
 
 Metode Elbow merupakan suatu metode yang digunakan untuk menghasilkan informasi dalam menentukan jumlah cluster terbaik dengan cara melihat persentase hasil perbandingan antara jumlah cluster yang akan membentuk siku pada suatu titik. Metode ini memberikan ide/gagasan dengan cara memilih nilai cluster dan kemudian menambah nilai cluster tersebut untuk dijadikan model data dalam penentuan cluster terbaik. Dan selain itu persentase perhitungan yang dihasilkan menjadi pembanding antara jumlah cluster yang ditambah. Hasil persentase yang berbeda dari setiap nilai cluster dapat ditunjukan dengan menggunakan grafik sebagai sumber informasinya. Jika nilai cluster pertama dengan nilai cluster kedua memberikan sudut dalam grafik atau nilainya mengalami penurunan paling besar maka nilai cluster tersebut yang terbaik.
 
@@ -99,7 +107,7 @@ fviz_nbclust(data, kmeans, method = "wss") +
 
 Metode elbow menggunakan nilai total wss (whitin sum square) sebagai penentu 𝐾 optimalnya. Dari gambar di atas terlihat garis mengalami patahan yang membentuk elbow atau siku pada saat 𝐾 = 2. Maka dengan menggunakan metode ini diperoleh 𝐾 optimal pada saat berada di 𝐾 = 2.
 
-### Metode Silhouette {-}
+### Metode Silhouette {.unnumbered}
 
 Silhouette Coefficient digunakan untuk melihat kualitas dan kekuatan cluster, seberapa baik suatu objek ditempatkan dalam suatu cluster. Metode ini merupakan gabungan dari metode cohesion dan separation.
 
@@ -108,11 +116,12 @@ Silhouette Coefficient digunakan untuk melihat kualitas dan kekuatan cluster, se
 fviz_nbclust(data, kmeans, method = "silhouette")
 ```
 
-Pendekatan rata-rata nilai metode silhouette untuk menduga kualitas dari klaster yang terbentuk. Semakin tinggi nilai rata-ratanya maka akan semakin baik. Berdasarkan grafik pada gambar di atas banyak klaster optimal yang terbentuk pada  𝐾 = 2.
+Pendekatan rata-rata nilai metode silhouette untuk menduga kualitas dari klaster yang terbentuk. Semakin tinggi nilai rata-ratanya maka akan semakin baik. Berdasarkan grafik pada gambar di atas banyak klaster optimal yang terbentuk pada 𝐾 = 2.
 
-### Eksperimen K-Means Clustering {-}
+### Eksperimen K-Means Clustering {.unnumbered}
 
 Dari pendekatan metode elbow dan metode Silhouette di dapatkan jumlah *cluster* optimal adalah K=2. setelah ini dilakukan eksperimen jumlah K=2
+
 ```{r}
 #Computing k-means clustering
 #Compute k-means with k = 2
@@ -123,18 +132,20 @@ print(km.res)
 ```
 
 Melihat hasil *cluster* akhir pada setiap kabupaten
+
 ```{r}
 # Cluster number for each of the observations
 km.res$cluster
 ```
 
 Melihat jumlah anggota *cluster*
+
 ```{r}
 # Cluster size
 km.res$size
 ```
 
-### Visualisasi Hasil *clustering* {-}
+### Visualisasi Hasil *clustering* {.unnumbered}
 
 ```{r warning=FALSE, fig.cap='Plot Hasil Cluster', out.width='80%', fig.asp=.75, fig.align='center'}
 # Cluster means
@@ -150,4 +161,3 @@ fviz_cluster(km.res, data = data,
              repel = TRUE, # Avoid label overplotting (slow)
              ggtheme = theme_minimal())
 ```
-

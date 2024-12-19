@@ -1,13 +1,13 @@
 # Metode Cluster Hirarki {#HC}
 
-```{r Load_data,warning=FALSE, tidy=FALSE}
+```{r Load_data_hc,warning=FALSE, tidy=FALSE}
 library (readr)
 urlfile = "https://raw.githubusercontent.com/dedenistiawan/Dataset/main/Basis%20Data%20Terpadu%20Jateng.csv"
 
 data<-read.csv(url(urlfile), row.names = "Kabupaten")
 ```
 
-```{r nice-tab, tidy=FALSE}
+```{r nice-tab-2, tidy=FALSE}
 knitr::kable(
   head(data, 10), caption = 'Basis Data Terpadu Jawa Tengah',
   booktabs = TRUE)

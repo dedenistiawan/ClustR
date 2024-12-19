@@ -1,5 +1,15 @@
 # Algoritma Fuzzy C-Means {#fcm}
 
+```{=html}
+<style>
+body{
+text-align: justify}
+</style>
+```
+
+```{r, child="_setup.Rmd"}
+```
+
 Fuzzy c-means merupakan metode yang dikenal baik dalam mendeteksi klaster [@pimentel2016]. Metode ini menggunakan model pengelompokan fuzzy sehingga data dapat menjadi anggota dari semua kelas atau klaster terbentuk dengan derajat atau tingkat keanggotaan yang berbeda antara 0 hingga 1. Tingkat keberadaan data dalam suatu kelas atau klaster ditentukan oleh derajat keanggotaannya. Kelebihan dari metode ini adalah penempatan pusat klaster yang lebih tepat dibandingkan dengan metode lain. Caranya adalah dengan memperbaiki pusat klaster secara berulang, maka akan dapat dilihat bahwa pusat klaster akan bergerak menuju lokasi yang tepat (Wijaya, 2014). Namun, pada algoritma Fuzzy c-means dibutuhkan waktu komputasi yang lama [@stetco2015].
 
 Klastering dengan algoritma Fuzzy C-Means didasarkan pada teori logika fuzzy yang diperkenalkan oleh Lotfi Zadeh pada tahun 1965 dengan nama himpunan fuzzy (fuzzy set). Fuzzy C-Means Clustering pertama kali diperkenalkan oleh Dun pada (1973) dan diperbaiki oleh Bezdek [@bezdek1984]. Dalam teori fuzzy, keangotaan sebuah data diberikan dengan suatu nilai derajat keanggotaan yang jangkauan nilainya 0 sampai 1. Semakin tinggi nilai derajat keanggotaannya maka semakin tinggi nilai keanggotaan sebuah data dalam suatu kelompok dan semakin kecil nilai derajat keanggotaannya maka semakin rendah nilai keanggotaan sebuah data dalam suatu kelompok.
@@ -7,9 +17,21 @@ Klastering dengan algoritma Fuzzy C-Means didasarkan pada teori logika fuzzy yan
 Asumsikan terdapat sejumlah data dalam dataset $X$ yang berisi $n$ data yang 
 dinotasikan $X={x_1,x_2, …,x_n}$, dimana setiap data mempunyai fitur $r$ dimensi: $x_{i1}, x_{i2}, ..., x_{ir}$, dinotasikan $x_i={x_i1, x_i2, ..., x_ir}$. Ada sejumlah klaster $C$ dengan centroid: $C_1, C_2, ..., C_k$, dimana $k$ adalah jumlah klaster. Setiap data mempunyai derajat keanggotaan pada setiap klaster, dinyatakan dengan $u_{ij}$, dengan nilai diantara 0 dan 1, $i$ menyatakan data $x_i$ dan $j$ menyatakan klaster $c_j$. Jumlah nilai derajat keanggotaan setiap data $x_i$ selalu sama dengan 1, yang diformulasikan pada persamaan berikut:
 
-```{theorem}
-$$\sum_{j=1}^k u_{i j}=1$$
+```{r, eval = my_output == "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "keyconcept" <div class = "keyconcept" id="KC2.1"> 
+<h3 class = "right"> Persamaan 3.1 </h3> 
+<h3 class= "left"> Derajat Keanggotaan </h3> 
+
+<p> Asumsikan terdapat sejumlah data dalam dataset $X$ yang berisi $n$ data yang 
+dinotasikan $X={x_1,x_2, …,x_n}$, dimana setiap data mempunyai fitur $r$ dimensi: $x_{i1}, x_{i2}, ..., x_{ir}$, dinotasikan $x_i={x_i1, x_i2, ..., x_ir}$. Ada sejumlah klaster $C$ dengan centroid: $C_1, C_2, ..., C_k$, dimana $k$ adalah jumlah klaster. Setiap data mempunyai derajat keanggotaan pada setiap klaster, dinyatakan dengan $u_{ij}$, dengan nilai diantara 0 dan 1, $i$ menyatakan data $x_i$ dan $j$ menyatakan klaster $c_j$. Jumlah nilai derajat keanggotaan setiap data $x_i$ selalu sama dengan 1, yang diformulasikan pada persamaan berikut:
+
+$$\\sum_{j=1}^k u_{i j}=1$$
+
+</p> 
+</div>')
 ```
+
 
 Fuzzy c-means clustering merupakan suatu metode clustering yang hampir mirip seperti k-means clustering. Karena metode clustering ini mirip dengan k-means clustering, ada yang menyebut metode ini fuzzy k-means clustering. Fuzzy c-means merupakan salah satu jenis soft clustering dimana dalam mengelompokan suatu data, setiap data bisa dimiliki lebih dari satu cluster.
 
@@ -21,14 +43,44 @@ Cara kerja dari fuzzy c-means clustering dalam mengelompokkan datanya adalah seb
 
 3.  Dalam menghitung nilai centroid, kita menggunakan formula berikut:
 
-```{lemma}
-$$C_j=\frac{\sum{\mu^m_{ij}x}}{\sum{\mu^m_{ij}}}$$
+```{r, eval = my_output == "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "keyconcept" <div class = "keyconcept" id="KC2.1"> 
+<h3 class = "right"> Persamaan 3.2 </h3> 
+<h3 class= "left"> Centroid </h3> 
+
+<p> 
+
+$$C_j=\frac{\\sum{\\mu^m_{ij}x}}{\\sum{\\mu^m_{ij}}}$$
+
+</p> 
+</div>')
 ```
 
-4.  Menghtung kembali nilai proporsi untuk setiap data poin untuk masuk pada setiap cluster. formula yang digunakan yaitu sebagai berikut:
+4. Menghtung kembali nilai proporsi untuk setiap data poin untuk masuk pada setiap cluster. formula yang digunakan yaitu sebagai berikut:
+
+```{r, eval = my_output == "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "keyconcept" <div class = "keyconcept" id="KC2.1"> 
+<h3 class = "right"> Persamaan 3.2 </h3> 
+<h3 class= "left"> Centroid </h3> 
+
+<p> 
+
+$$
+\mu_{ij}^m = \frac{1}{\sum \left( \frac{|x_i - c_j|}{|x_i - c_k|} \right)^{\frac{2}{m-1}}}
+$$
+
+</p> 
+</div>')
+```
+
 
 ```{lemma}
-$${\mu }^m_{ij}=\frac{1}{\sum{\left(\frac{\left|x_i-c_j\right|}{\left|x_i-c_k\right|}\right)^{\frac{2}{m-1}}}}$$
+$$
+\mu_{ij}^m = \frac{1}{\sum \left( \frac{|x_i - c_j|}{|x_i - c_k|} \right)^{\frac{2}{m-1}}}
+$$
+
 ```
 
 ## Eksperimeen Fuzzy C-Means
@@ -44,7 +96,7 @@ library(cluster)
 
 ### Data
 
-```{r Load_data,warning=FALSE, tidy=FALSE}
+```{r Load_data_fcm,warning=FALSE, tidy=FALSE}
 library (readr)
 urlfile = "https://raw.githubusercontent.com/dedenistiawan/Dataset/main/Basis%20Data%20Terpadu%20Jateng.csv"
 

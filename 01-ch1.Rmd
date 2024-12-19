@@ -1,8 +1,20 @@
 # Pendahuluan {#pd}
+
+```{=html}
+<style>
+body{
+text-align: justify}
+</style>
+```
+
 ```{r, child="_setup.Rmd"}
 ```
 
-Minat terhadap bahasa pemrograman statistik dan lingkungan perangkat lunak `r ttcode("R")`[@R-base] yang tersedia secara gratis terus meningkat pesat. Pada saat kami mulai menyusun draf awal untuk proyek ini, lebih dari 11.000 add-on (banyak di antaranya menyediakan metode terkini) telah tersedia di Comprehensive `r ttcode("R")` Archive Network ([CRAN](https://cran.r-project.org/)), sebuah jaringan luas server FTP di seluruh dunia yang menyimpan versi kode `r ttcode("R")` dan dokumentasinya yang identik serta terkini. Dalam banyak bidang penelitian statistik terapan, `r ttcode("R")` mendominasi dibandingkan perangkat lunak statistik lainnya, termasuk yang bersifat komersial. Keunggulan `r ttcode("R")` sebagai perangkat lunak sumber terbuka yang tersedia secara gratis, ditambah dengan komunitas pengguna yang besar dan terus berkembang yang berkontribusi pada CRAN, membuat `r ttcode("R")` semakin menarik bagi peneliti di berbagai disiplin ilmu, termasuk statistik, ekonomi, dan teknik.
+> "Why is that when one man builds a wall, the next needs to to know what's on the other side?"
+>
+> --- Tyrion Lannister-Game of Thrones
+
+Minat terhadap bahasa pemrograman statistik dan lingkungan perangkat lunak `r ttcode("R")` [@R-base] yang tersedia secara gratis terus meningkat pesat. Pada saat kami mulai menyusun draf awal untuk proyek ini, lebih dari 11.000 add-on (banyak di antaranya menyediakan metode terkini) telah tersedia di Comprehensive `r ttcode("R")` Archive Network ([CRAN](https://cran.r-project.org/)), sebuah jaringan luas server FTP di seluruh dunia yang menyimpan versi kode `r ttcode("R")` dan dokumentasinya yang identik serta terkini. Dalam banyak bidang penelitian statistik terapan, `r ttcode("R")` mendominasi dibandingkan perangkat lunak statistik lainnya, termasuk yang bersifat komersial. Keunggulan `r ttcode("R")` sebagai perangkat lunak sumber terbuka yang tersedia secara gratis, ditambah dengan komunitas pengguna yang besar dan terus berkembang yang berkontribusi pada CRAN, membuat `r ttcode("R")` semakin menarik bagi peneliti di berbagai disiplin ilmu, termasuk statistik, ekonomi, dan teknik.
 
 Salah satu keuntungan utama menggunakan `r ttcode("R")` dalam analisis data adalah kemampuannya untuk mendokumentasikan setiap langkah analisis secara eksplisit sehingga mudah untuk diperbarui dan diperluas. Hal ini memungkinkan pengguna untuk menggunakan kembali kode untuk aplikasi serupa dengan data yang berbeda. Selain itu, program `r ttcode("R")`sepenuhnya dapat direproduksi, yang membuat hasil analisis mudah dipahami dan divalidasi oleh pihak lain.
 
@@ -27,9 +39,8 @@ Pada konsol, Anda akan melihat simbol <tt>\></tt> di panel kanan (konsol). Simbo
 
 Biasanya, kami menampilkan kode `r ttcode("R")` bersama dengan output yang dihasilkan dalam potongan kode. Sebagai contoh, perhatikan baris kode berikut yang ditampilkan dalam potongan di bawah ini. Kode ini memberi tahu `r ttcode("R")` untuk menghitung jumlah paket yang tersedia di `r ttcode("CRAN")`. Potongan kode diikuti oleh output yang dihasilkan.
 
-
 ```{r}
-# check the number of R packages available on CRAN
+# Cek jumlah paket R yang tersedia di CRAN
 nrow(available.packages(repos = "http://cran.us.r-project.org"))
 ```
 
@@ -46,122 +57,75 @@ Perhatikan bahwa beberapa baris dalam widget tersebut dikomentari, yang meminta 
 Buku ini disusun dengan:
 
 ```{r, echo = FALSE}
-sessioninfo::session_info("itewrpkg")
+sessioninfo::session_info()
 ```
 
 ## Pengenalan Singkat R and RStudio
 
-```{r, fig.align='center', echo=FALSE, fig.cap="RStudio: the four panes"}
+```{=html}
+<style>
+body{
+text-align: justify}
+</style>
+```
+
+```{r, fig.align='center', echo=FALSE, fig.cap="RStudio: empat panel"}
 knitr::include_graphics('images/rstudio.jpg')
 ```
 
 #### Dasar-Dasar R {-}
 
-Berikut adalah versi terjemahan dalam bahasa Indonesia untuk bagian tersebut:
-
----
-
 Seperti disebutkan sebelumnya, buku ini bukan dimaksudkan sebagai pengantar `r ttcode("R")`, melainkan panduan tentang cara memanfaatkan kemampuannya untuk aplikasi yang umum dijumpai dalam ekonometrika tingkat sarjana. Pembaca yang memiliki pengetahuan dasar tentang pemrograman `r ttcode("R")` mungkin akan merasa nyaman untuk langsung memulai dari Bab \@ref(pt). Namun, bagian ini ditujukan bagi mereka yang belum pernah bekerja dengan `r ttcode("R")` atau *RStudio* sebelumnya. Jika Anda setidaknya sudah tahu cara membuat objek dan memanggil fungsi, Anda bisa melewati bagian ini. Namun, jika Anda ingin menyegarkan keterampilan Anda atau mendapatkan gambaran tentang cara bekerja dengan *RStudio*, lanjutkan membaca. 
 
-As mentioned before, this book is not intended to be an introduction to
-`r ttcode("R")` but a guide on how to use its capabilities for
-applications commonly encountered in undergraduate econometrics. Those
-having basic knowledge in `r ttcode("R")` programming may feel
-comfortable starting with Chapter \@ref(pt). This section, however, is
-meant for those who have not worked with `r ttcode("R")` or *RStudio*
-before. If you at least know how to create objects and call functions,
-you can skip it. If you would like to refresh your skills or get a
-feeling for how to work with *RStudio*, keep reading.
-
-First of all, start *RStudio* and open a new `r ttcode("R")` script by
-selecting *File*, *New File*, *R Script*. In the editor pane, type
+Pertama-tama, buka *RStudio* dan buat skrip `R` baru dengan memilih *File*, *New File*, *R Script*. Di panel editor, ketikkan
 
 ```{r, eval = F}
 1 + 1
 ```
 
-and click on the button labeled *Run* in the top right corner of the
-editor. By doing so, your line of code is sent to the console and the
-result of this operation should be displayed right underneath it. As you
-can see, `r ttcode("R")` works just like a calculator. You can do all
-arithmetic calculations by using the corresponding operator
-(`r ttcode("+")`, `r ttcode("-")`, `r ttcode("*")`, `r ttcode("/")` or
-`r ttcode("^")`). If you are not sure what the last operator does, try
-it out and check the results.
+dan klik tombol berlabel *Run* di pojok kanan atas editor. Dengan melakukan ini, baris kode Anda akan dikirim ke konsol, dan hasil operasi tersebut akan ditampilkan tepat di bawahnya. Seperti yang Anda lihat, `r ttcode("R")` berfungsi layaknya kalkulator. Anda dapat melakukan semua perhitungan aritmatika menggunakan operator yang sesuai (`r ttcode("+")`, `r ttcode("-")`, `r ttcode("*")`, `r ttcode("/")` or
+`r ttcode("^")`). Jika Anda tidak yakin apa fungsi operator terakhir, coba gunakan dan periksa hasilnya.
 
-#### Vectors {-}
+#### Vektor {-}
 
-In `r ttcode("R")`, you can work with variables or more generally,
-objects. To define an object, you use the assignment operator
-`r ttcode("<-")`, for example, to create a variable named
-`r ttcode("x")` with the value `r ttcode("10")`, you can type `x <- 10`
-and then click the *Run* button. The new variable should appear in the
-environment pane on the top right. However, the console won't display
-any results because this line of code doesn't produce any visible
-output. If you want to see the value of `x`, you can simply type `x` in
-the console and press *Enter*, and `r ttcode("R")` will display the
-corresponding value in the console.
+Dalam `r ttcode("R")`, Anda dapat menggunakan variabel atau objek. Untuk membuat objek, gunakan operator penugasan `r ttcode("<-")`. Misalnya, untuk mendefinisikan variabel bernama `r ttcode("x")` dengan nilai `r ttcode("10")`, ketik `x <- 10` dan tekan tombol *Run*. Variabel tersebut akan muncul di panel environment di kanan atas. Namun, konsol tidak akan menunjukkan output karena kode ini tidak menghasilkan tampilan apa pun. Untuk melihat nilai `x`, cukup ketik `x` di konsol dan tekan *Enter*, lalu `r ttcode("R")` akan menampilkan nilainya di konsol.
 
-`r ttcode("x")` is a scalar, a vector of length $1$. You can easily
-create longer vectors by using the function `r ttcode("c()")` (*c* is
-for "concatenate" or "combine"). To create a vector `r ttcode("y")`
-containing the numbers $1$ to $5$ and print it, do the following.
+`r ttcode("x")` merupakan skalar, yaitu vektor dengan panjang $1$. Untuk membuat vektor yang lebih panjang, Anda bisa menggunakan fungsi `r ttcode("c()")` (*c* berarti "gabungkan" atau "kombinasikan"). Misalnya, untuk membuat vektor `r ttcode("y")` yang berisi angka $1$ hingga $5$ dan menampilkannya, ikuti langkah berikut.
 
 ```{r, eval = T}
 y <- c(1, 2, 3, 4, 5)
 y
 ```
 
-You can also create a vector of letters or words. For now just remember
-that characters have to be surrounded by quotes, else they will be
-parsed as object names.
+Anda juga dapat membuat vektor yang berisi huruf atau kata. Perlu diingat bahwa karakter harus diberi tanda kutip, jika tidak, mereka akan diartikan sebagai nama objek.
 
 ```{r, eval = F}
 hello <- c("Hello", "World")
 ```
 
-Here we have created a vector of length 2 containing the words
-`r ttcode("Hello")` and `r ttcode("World")`.
+Di sini, kita telah membuat vektor yang terdiri dari dua elemen, yaitu kata `r ttcode("Hello")` dan `r ttcode("World")`.
 
-Do not forget to save your script! To do so, select *File* and then
-*Save*.
+Jangan lupa untuk menyimpan skrip Anda! Caranya, pilih *File* dan kemudian *Save*.
 
-#### Functions {-}
+#### Funsi {-}
 
-You have seen that the function `r ttcode("c()")` can be used to combine
-objects. In general, all function calls look the same: a function name
-is always followed by round parentheses. Often the parentheses include
-arguments.
+Anda telah melihat bahwa fungsi `r ttcode("c()")` digunakan untuk menggabungkan objek. Secara umum, setiap pemanggilan fungsi memiliki format yang serupa: nama fungsi diikuti oleh tanda kurung bulat. Biasanya, tanda kurung tersebut berisi argumen.
 
-Here are two simple examples.
+Berikut dua contoh sederhana.
 
 ```{r, eval = T}
-# generate the vector `z`
+# membuat vektor `z`
 z <- seq(from = 1, to = 5, by = 1)
 
-# compute the mean of the entries in `z`
+# menghitung rata-rata dari entri dalam `z`
 mean(z)
 ```
 
-In the first line we use a function called `r ttcode("seq()")` to create
-the exact same vector as we did in the previous section, calling it
-`r ttcode("z")`. The function takes on the arguments `r ttcode("from")`,
-`r ttcode("to")` and `r ttcode("by")` which should be self-explanatory.
-The function `r ttcode("mean()")` computes the arithmetic mean of its
-argument `r ttcode("x")`. Since we pass the vector `r ttcode("z")` as
-the argument `r ttcode("x")`, the result is `r ttcode("3")`!
+Pada baris pertama, kita menggunakan fungsi `r ttcode("seq()")` untuk menghasilkan vektor yang sama persis seperti yang dibuat pada bagian sebelumnya, dan menamakannya `r ttcode("seq()")`. Fungsi ini menerima argumen `r ttcode("from")`,`r ttcode("to")` dan `r ttcode("by")`, yang sudah cukup jelas. Fungsi `r ttcode("mean()")` menghitung nilai rata-rata dari argumennya, yaitu `r ttcode("x")`. Karena vektor `r ttcode("z")` diberikan sebagai argumen `r ttcode("x")`, hasilnya adalah `r ttcode("3")`!
 
-If you are not sure which arguments a function expects, you may consult
-the function's documentation. Let's say we are not sure how the
-arguments required for `r ttcode("seq()")` work. We then type `?seq` in
-the console. By hitting return, the documentation page for that function
-pops up in the lower right pane of *RStudio*. In there, the section
-*Arguments* holds the information we seek. On the bottom of almost every
-help page you find examples on how to use the corresponding functions.
-This is very helpful for beginners and we recommend to have a look.
+Jika Anda tidak yakin tentang argumen apa yang dibutuhkan oleh suatu fungsi, Anda dapat memeriksa dokumentasinya. Misalnya, jika kita ragu mengenai cara kerja argumen di `r ttcode("seq()")`, ketik `?seq` di konsol. Setelah menekan *Enter*, halaman dokumentasi fungsi tersebut akan muncul di panel kanan bawah *RStudio*. Di bagian *Arguments*, Anda akan menemukan informasi yang dibutuhkan. Di bagian bawah hampir setiap halaman dokumentasi, terdapat contoh penggunaan fungsi tersebut. Ini sangat bermanfaat bagi pemula, dan kami sarankan untuk melihatnya.
 
-Of course, all of the commands presented above also work in interactive
-widgets throughout the book. You may try them below.
+Tentu saja, semua perintah yang telah dijelaskan di atas juga dapat digunakan pada widget interaktif di seluruh buku ini. Anda dapat mencobanya di bawah ini.
 
 ```{r, echo=FALSE, results='asis'}
 write_html(playground = T)

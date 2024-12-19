@@ -202,7 +202,11 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Kata Pengantar</a></li>
-<li class="chapter" data-level="1" data-path="1-pd.html"><a href="1-pd.html"><i class="fa fa-check"></i><b>1</b> Pendahuluan</a></li>
+<li class="chapter" data-level="1" data-path="1-pd.html"><a href="1-pd.html"><i class="fa fa-check"></i><b>1</b> Pendahuluan</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-kolofon.html"><a href="1.1-kolofon.html"><i class="fa fa-check"></i><b>1.1</b> Kolofon</a></li>
+<li class="chapter" data-level="1.2" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> Pengenalan Singkat R and RStudio</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="2-km.html"><a href="2-km.html"><i class="fa fa-check"></i><b>2</b> Algoritma K-Means</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html"><i class="fa fa-check"></i><b>2.1</b> Eksperimen Algoritma K-Means</a>
@@ -270,11 +274,8 @@ Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda
 <span id="cb1-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb1-2" tabindex="-1"></a>urlfile <span class="ot">=</span> <span class="st">&quot;https://raw.githubusercontent.com/dedenistiawan/Dataset/main/Basis%20Data%20Terpadu%20Jateng.csv&quot;</span></span>
 <span id="cb1-3"><a href="2.1-eksperimen-algoritma-k-means.html#cb1-3" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="2.1-eksperimen-algoritma-k-means.html#cb1-4" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="fu">url</span>(urlfile), <span class="at">row.names =</span> <span class="st">&quot;Kabupaten&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb2-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
-<span id="cb2-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb2-2" tabindex="-1"></a>  <span class="fu">head</span>(data, <span class="dv">10</span>), <span class="at">caption =</span> <span class="st">&#39;Basis Data Terpadu Jawa Tengah&#39;</span>,</span>
-<span id="cb2-3"><a href="2.1-eksperimen-algoritma-k-means.html#cb2-3" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <table>
-<caption><span id="tab:nice-tab">Tabel 2.1: </span>Basis Data Terpadu Jawa Tengah</caption>
+<caption><span id="tab:nice-tab-1">Tabel 2.1: </span>Basis Data Terpadu Jawa Tengah</caption>
 <colgroup>
 <col width="20%" />
 <col width="7%" />
@@ -439,18 +440,17 @@ Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda
 </div>
 <div id="memeriksa-missing-value" class="section level3 unnumbered hasAnchor">
 <h3>Memeriksa Missing Value<a href="2.1-eksperimen-algoritma-k-means.html#memeriksa-missing-value" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb3-1" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(data))</span></code></pre></div>
 <pre><code>##  X1  X2  X3  X4  X5  X6  X7  X8  X9 X10 
 ##   0   0   0   0   0   0   0   0   0   0</code></pre>
 <p>Hasil output di atas menunjukan bahwa tidak <em>missing value</em> di semua variabel</p>
 </div>
 <div id="visualisasi-matriks-jarak" class="section level3 unnumbered hasAnchor">
 <h3>Visualisasi Matriks jarak<a href="2.1-eksperimen-algoritma-k-means.html#visualisasi-matriks-jarak" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb5-1" tabindex="-1"></a><span class="co">#Plot Disatance</span></span>
-<span id="cb5-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb5-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb5-3"><a href="2.1-eksperimen-algoritma-k-means.html#cb5-3" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
-<span id="cb5-4"><a href="2.1-eksperimen-algoritma-k-means.html#cb5-4" tabindex="-1"></a>distance <span class="ot">&lt;-</span> <span class="fu">get_dist</span>(data)</span>
-<span id="cb5-5"><a href="2.1-eksperimen-algoritma-k-means.html#cb5-5" tabindex="-1"></a><span class="fu">fviz_dist</span>(distance, <span class="at">gradient =</span> <span class="fu">list</span>(<span class="at">low =</span> <span class="st">&quot;#00AFBB&quot;</span>, <span class="at">mid =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;#FC4E07&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb3-1" tabindex="-1"></a><span class="co">#Plot Disatance</span></span>
+<span id="cb3-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb3-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-3"><a href="2.1-eksperimen-algoritma-k-means.html#cb3-3" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb3-4"><a href="2.1-eksperimen-algoritma-k-means.html#cb3-4" tabindex="-1"></a>distance <span class="ot">&lt;-</span> <span class="fu">get_dist</span>(data)</span>
+<span id="cb3-5"><a href="2.1-eksperimen-algoritma-k-means.html#cb3-5" tabindex="-1"></a><span class="fu">fviz_dist</span>(distance, <span class="at">gradient =</span> <span class="fu">list</span>(<span class="at">low =</span> <span class="st">&quot;#00AFBB&quot;</span>, <span class="at">mid =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;#FC4E07&quot;</span>))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
 <img src="CLUSTR_files/figure-html/unnamed-chunk-2-1.png" alt="Matrik Jarak" width="80%" />
 <p class="caption">
@@ -466,18 +466,18 @@ Gambar 2.1: Matrik Jarak
 <div id="membuat-plot-cluster" class="section level3 unnumbered hasAnchor">
 <h3>Membuat Plot <em>Cluster</em><a href="2.1-eksperimen-algoritma-k-means.html#membuat-plot-cluster" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Jumlah klaster yang dibentuk mulai dari 2 sampai 5, untuk melihat sebaran data pada masing-masing <em>cluster</em></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb6-1" tabindex="-1"></a><span class="co">#use several different values of k</span></span>
-<span id="cb6-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb6-2" tabindex="-1"></a>k2 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> <span class="dv">2</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb6-3"><a href="2.1-eksperimen-algoritma-k-means.html#cb6-3" tabindex="-1"></a>k3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb6-4"><a href="2.1-eksperimen-algoritma-k-means.html#cb6-4" tabindex="-1"></a>k4 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb6-5"><a href="2.1-eksperimen-algoritma-k-means.html#cb6-5" tabindex="-1"></a>k5 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> <span class="dv">5</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb7-1" tabindex="-1"></a><span class="co"># plots to compare</span></span>
-<span id="cb7-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb7-2" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k2, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">data =</span> data) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;k = 2&quot;</span>)</span>
-<span id="cb7-3"><a href="2.1-eksperimen-algoritma-k-means.html#cb7-3" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k3, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>,  <span class="at">data =</span> data) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;k = 3&quot;</span>)</span>
-<span id="cb7-4"><a href="2.1-eksperimen-algoritma-k-means.html#cb7-4" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k4, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>,  <span class="at">data =</span> data) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;k = 4&quot;</span>)</span>
-<span id="cb7-5"><a href="2.1-eksperimen-algoritma-k-means.html#cb7-5" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k5, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>,  <span class="at">data =</span> data) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;k = 5&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb8-1" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
-<span id="cb8-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb8-2" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, p3, p4, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb4-1" tabindex="-1"></a><span class="co">#use several different values of k</span></span>
+<span id="cb4-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb4-2" tabindex="-1"></a>k2 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> <span class="dv">2</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb4-3"><a href="2.1-eksperimen-algoritma-k-means.html#cb4-3" tabindex="-1"></a>k3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb4-4"><a href="2.1-eksperimen-algoritma-k-means.html#cb4-4" tabindex="-1"></a>k4 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb4-5"><a href="2.1-eksperimen-algoritma-k-means.html#cb4-5" tabindex="-1"></a>k5 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> <span class="dv">5</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb5-1" tabindex="-1"></a><span class="co"># plots to compare</span></span>
+<span id="cb5-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb5-2" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k2, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">data =</span> data) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;k = 2&quot;</span>)</span>
+<span id="cb5-3"><a href="2.1-eksperimen-algoritma-k-means.html#cb5-3" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k3, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>,  <span class="at">data =</span> data) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;k = 3&quot;</span>)</span>
+<span id="cb5-4"><a href="2.1-eksperimen-algoritma-k-means.html#cb5-4" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k4, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>,  <span class="at">data =</span> data) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;k = 4&quot;</span>)</span>
+<span id="cb5-5"><a href="2.1-eksperimen-algoritma-k-means.html#cb5-5" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k5, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>,  <span class="at">data =</span> data) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;k = 5&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb6-1" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb6-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb6-2" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, p3, p4, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
 <img src="CLUSTR_files/figure-html/unnamed-chunk-5-1.png" alt="Plot Jumlah Cluster" width="80%" />
 <p class="caption">
@@ -488,12 +488,12 @@ Gambar 2.2: Plot Jumlah Cluster
 <div id="metode-elbow" class="section level3 unnumbered hasAnchor">
 <h3>Metode Elbow<a href="2.1-eksperimen-algoritma-k-means.html#metode-elbow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Metode Elbow merupakan suatu metode yang digunakan untuk menghasilkan informasi dalam menentukan jumlah cluster terbaik dengan cara melihat persentase hasil perbandingan antara jumlah cluster yang akan membentuk siku pada suatu titik. Metode ini memberikan ide/gagasan dengan cara memilih nilai cluster dan kemudian menambah nilai cluster tersebut untuk dijadikan model data dalam penentuan cluster terbaik. Dan selain itu persentase perhitungan yang dihasilkan menjadi pembanding antara jumlah cluster yang ditambah. Hasil persentase yang berbeda dari setiap nilai cluster dapat ditunjukan dengan menggunakan grafik sebagai sumber informasinya. Jika nilai cluster pertama dengan nilai cluster kedua memberikan sudut dalam grafik atau nilainya mengalami penurunan paling besar maka nilai cluster tersebut yang terbaik.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb9-1" tabindex="-1"></a><span class="co">#Determining number Optimal Clusters</span></span>
-<span id="cb9-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb9-2" tabindex="-1"></a><span class="do">##Elbow Method</span></span>
-<span id="cb9-3"><a href="2.1-eksperimen-algoritma-k-means.html#cb9-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb9-4"><a href="2.1-eksperimen-algoritma-k-means.html#cb9-4" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
-<span id="cb9-5"><a href="2.1-eksperimen-algoritma-k-means.html#cb9-5" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(data, kmeans, <span class="at">method =</span> <span class="st">&quot;wss&quot;</span>) <span class="sc">+</span></span>
-<span id="cb9-6"><a href="2.1-eksperimen-algoritma-k-means.html#cb9-6" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">2</span>, <span class="at">linetype =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb7-1" tabindex="-1"></a><span class="co">#Determining number Optimal Clusters</span></span>
+<span id="cb7-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb7-2" tabindex="-1"></a><span class="do">##Elbow Method</span></span>
+<span id="cb7-3"><a href="2.1-eksperimen-algoritma-k-means.html#cb7-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-4"><a href="2.1-eksperimen-algoritma-k-means.html#cb7-4" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb7-5"><a href="2.1-eksperimen-algoritma-k-means.html#cb7-5" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(data, kmeans, <span class="at">method =</span> <span class="st">&quot;wss&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="2.1-eksperimen-algoritma-k-means.html#cb7-6" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">2</span>, <span class="at">linetype =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
 <img src="CLUSTR_files/figure-html/unnamed-chunk-6-1.png" alt="Plot Jumlah Cluster Metode Elbow" width="80%" />
 <p class="caption">
@@ -505,8 +505,8 @@ Gambar 2.3: Plot Jumlah Cluster Metode Elbow
 <div id="metode-silhouette" class="section level3 unnumbered hasAnchor">
 <h3>Metode Silhouette<a href="2.1-eksperimen-algoritma-k-means.html#metode-silhouette" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Silhouette Coefficient digunakan untuk melihat kualitas dan kekuatan cluster, seberapa baik suatu objek ditempatkan dalam suatu cluster. Metode ini merupakan gabungan dari metode cohesion dan separation.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb10-1" tabindex="-1"></a><span class="do">##Average Silhouette Method</span></span>
-<span id="cb10-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb10-2" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(data, kmeans, <span class="at">method =</span> <span class="st">&quot;silhouette&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb8-1" tabindex="-1"></a><span class="do">##Average Silhouette Method</span></span>
+<span id="cb8-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb8-2" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(data, kmeans, <span class="at">method =</span> <span class="st">&quot;silhouette&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
 <img src="CLUSTR_files/figure-html/unnamed-chunk-7-1.png" alt="Plot Jumlah Cluster Metode silhouette" width="80%" />
 <p class="caption">
@@ -518,12 +518,12 @@ Gambar 2.4: Plot Jumlah Cluster Metode silhouette
 <div id="eksperimen-k-means-clustering" class="section level3 unnumbered hasAnchor">
 <h3>Eksperimen K-Means Clustering<a href="2.1-eksperimen-algoritma-k-means.html#eksperimen-k-means-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Dari pendekatan metode elbow dan metode Silhouette di dapatkan jumlah <em>cluster</em> optimal adalah K=2. setelah ini dilakukan eksperimen jumlah K=2</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb11-1" tabindex="-1"></a><span class="co">#Computing k-means clustering</span></span>
-<span id="cb11-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb11-2" tabindex="-1"></a><span class="co">#Compute k-means with k = 2</span></span>
-<span id="cb11-3"><a href="2.1-eksperimen-algoritma-k-means.html#cb11-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb11-4"><a href="2.1-eksperimen-algoritma-k-means.html#cb11-4" tabindex="-1"></a>km.res <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="dv">2</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb11-5"><a href="2.1-eksperimen-algoritma-k-means.html#cb11-5" tabindex="-1"></a><span class="co"># Print the results</span></span>
-<span id="cb11-6"><a href="2.1-eksperimen-algoritma-k-means.html#cb11-6" tabindex="-1"></a><span class="fu">print</span>(km.res)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb9-1" tabindex="-1"></a><span class="co">#Computing k-means clustering</span></span>
+<span id="cb9-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb9-2" tabindex="-1"></a><span class="co">#Compute k-means with k = 2</span></span>
+<span id="cb9-3"><a href="2.1-eksperimen-algoritma-k-means.html#cb9-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb9-4"><a href="2.1-eksperimen-algoritma-k-means.html#cb9-4" tabindex="-1"></a>km.res <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="dv">2</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb9-5"><a href="2.1-eksperimen-algoritma-k-means.html#cb9-5" tabindex="-1"></a><span class="co"># Print the results</span></span>
+<span id="cb9-6"><a href="2.1-eksperimen-algoritma-k-means.html#cb9-6" tabindex="-1"></a><span class="fu">print</span>(km.res)</span></code></pre></div>
 <pre><code>## K-means clustering with 2 clusters of sizes 22, 13
 ## 
 ## Cluster means:
@@ -559,8 +559,8 @@ Gambar 2.4: Plot Jumlah Cluster Metode silhouette
 ## [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;     &quot;tot.withinss&quot;
 ## [6] &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;         &quot;ifault&quot;</code></pre>
 <p>Melihat hasil <em>cluster</em> akhir pada setiap kabupaten</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb13-1" tabindex="-1"></a><span class="co"># Cluster number for each of the observations</span></span>
-<span id="cb13-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb13-2" tabindex="-1"></a>km.res<span class="sc">$</span>cluster</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb11-1" tabindex="-1"></a><span class="co"># Cluster number for each of the observations</span></span>
+<span id="cb11-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb11-2" tabindex="-1"></a>km.res<span class="sc">$</span>cluster</span></code></pre></div>
 <pre><code>##         CILACAP        BANYUMAS     PURBALINGGA    BANJARNEGARA         KEBUMEN 
 ##               2               2               2               2               2 
 ##       PURWOREJO        WONOSOBO        MAGELANG        BOYOLALI          KLATEN 
@@ -576,33 +576,33 @@ Gambar 2.4: Plot Jumlah Cluster Metode silhouette
 ##  KOTA SURAKARTA   KOTA SALATIGA   KOTA SEMARANG KOTA PEKALONGAN      KOTA TEGAL 
 ##               1               1               1               1               1</code></pre>
 <p>Melihat jumlah anggota <em>cluster</em></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb15-1" tabindex="-1"></a><span class="co"># Cluster size</span></span>
-<span id="cb15-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb15-2" tabindex="-1"></a>km.res<span class="sc">$</span>size</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb13-1" tabindex="-1"></a><span class="co"># Cluster size</span></span>
+<span id="cb13-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb13-2" tabindex="-1"></a>km.res<span class="sc">$</span>size</span></code></pre></div>
 <pre><code>## [1] 22 13</code></pre>
 </div>
 <div id="visualisasi-hasil-clustering" class="section level3 unnumbered hasAnchor">
 <h3>Visualisasi Hasil <em>clustering</em><a href="2.1-eksperimen-algoritma-k-means.html#visualisasi-hasil-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb17-1" tabindex="-1"></a><span class="co"># Cluster means</span></span>
-<span id="cb17-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb17-2" tabindex="-1"></a>km.res<span class="sc">$</span>centers</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb15-1" tabindex="-1"></a><span class="co"># Cluster means</span></span>
+<span id="cb15-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb15-2" tabindex="-1"></a>km.res<span class="sc">$</span>centers</span></code></pre></div>
 <pre><code>##         X1       X2       X3       X4       X5       X6       X7       X8
 ## 1 1.918182 2.017273 1.675000 1.949091 1.890455 1.728182 1.557273 1.286818
 ## 2 4.446923 4.276923 4.854615 4.394615 4.494615 4.769231 5.056154 5.515385
 ##         X9      X10
 ## 1 1.952727 1.455455
 ## 2 4.389231 5.230000</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb19-1" tabindex="-1"></a><span class="fu">fviz_cluster</span>(km.res, <span class="at">data =</span> data)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb17-1" tabindex="-1"></a><span class="fu">fviz_cluster</span>(km.res, <span class="at">data =</span> data)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
 <img src="CLUSTR_files/figure-html/unnamed-chunk-11-1.png" alt="Plot Hasil Cluster" width="80%" />
 <p class="caption">
 Gambar 2.5: Plot Hasil Cluster
 </p>
 </div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb20-1" tabindex="-1"></a><span class="fu">fviz_cluster</span>(km.res, <span class="at">data =</span> data,</span>
-<span id="cb20-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb20-2" tabindex="-1"></a>             <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#FC4E07&quot;</span>, <span class="st">&quot;#00AFBB&quot;</span>),</span>
-<span id="cb20-3"><a href="2.1-eksperimen-algoritma-k-means.html#cb20-3" tabindex="-1"></a>             <span class="at">ellipse.type =</span> <span class="st">&quot;euclid&quot;</span>, <span class="co"># Concentration ellipse</span></span>
-<span id="cb20-4"><a href="2.1-eksperimen-algoritma-k-means.html#cb20-4" tabindex="-1"></a>             <span class="at">star.plot =</span> <span class="cn">TRUE</span>, <span class="co"># Add segments from centroids to items</span></span>
-<span id="cb20-5"><a href="2.1-eksperimen-algoritma-k-means.html#cb20-5" tabindex="-1"></a>             <span class="at">repel =</span> <span class="cn">TRUE</span>, <span class="co"># Avoid label overplotting (slow)</span></span>
-<span id="cb20-6"><a href="2.1-eksperimen-algoritma-k-means.html#cb20-6" tabindex="-1"></a>             <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="2.1-eksperimen-algoritma-k-means.html#cb18-1" tabindex="-1"></a><span class="fu">fviz_cluster</span>(km.res, <span class="at">data =</span> data,</span>
+<span id="cb18-2"><a href="2.1-eksperimen-algoritma-k-means.html#cb18-2" tabindex="-1"></a>             <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#FC4E07&quot;</span>, <span class="st">&quot;#00AFBB&quot;</span>),</span>
+<span id="cb18-3"><a href="2.1-eksperimen-algoritma-k-means.html#cb18-3" tabindex="-1"></a>             <span class="at">ellipse.type =</span> <span class="st">&quot;euclid&quot;</span>, <span class="co"># Concentration ellipse</span></span>
+<span id="cb18-4"><a href="2.1-eksperimen-algoritma-k-means.html#cb18-4" tabindex="-1"></a>             <span class="at">star.plot =</span> <span class="cn">TRUE</span>, <span class="co"># Add segments from centroids to items</span></span>
+<span id="cb18-5"><a href="2.1-eksperimen-algoritma-k-means.html#cb18-5" tabindex="-1"></a>             <span class="at">repel =</span> <span class="cn">TRUE</span>, <span class="co"># Avoid label overplotting (slow)</span></span>
+<span id="cb18-6"><a href="2.1-eksperimen-algoritma-k-means.html#cb18-6" tabindex="-1"></a>             <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
 <img src="CLUSTR_files/figure-html/unnamed-chunk-12-1.png" alt="Plot Hasil Cluster" width="80%" />
 <p class="caption">

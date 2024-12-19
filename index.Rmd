@@ -45,6 +45,13 @@ editor_options:
 
 # Kata Pengantar {.unnumbered}
 
+```{=html}
+<style>
+body{
+text-align: justify}
+</style>
+```
+
 ```{r, child="_setup.Rmd"}
 ```
 
@@ -54,8 +61,8 @@ cat('<hr style="background-color:#3C6690;height:2px">')
 
 <center><img src="images/cover.png" style="width:60%;"/></center>
 
+<br><img src="images/itesa.png" style="float: left; margin: 0px 100px 0px 0px; width:35%"/><br>
 <br> Rekayasa Perangkat Lunak
-<img src="images/itesa.png" style="float: right; margin: 0px 100px 0px 0px; width:35%"/>
 <br> Fakultas Sains dan Teknologi <br> Institut Teknologi Statistika dan
 Bisnis Muhammadiyah <br> Semarang, Indonesia <br>
 <a href=\"mailto:deden.istiawan@itesa.ac.id?subject=Clustering%20with%20R\">[deden.istiawan\@itesa.ac.id](mailto:deden.istiawan@itesa.ac.id){.email}.</a>

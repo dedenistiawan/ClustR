@@ -266,96 +266,49 @@ Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda
 </div>
 <div id="pengenalan-singkat-r-and-rstudio" class="section level2 hasAnchor" number="1.2">
 <h2><span class="header-section-number">1.2</span> Pengenalan Singkat R and RStudio<a href="1.2-pengenalan-singkat-r-and-rstudio.html#pengenalan-singkat-r-and-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<style>
+body{
+text-align: justify}
+</style>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
-<img src="images/rstudio.jpg" alt="RStudio: the four panes" width="80%" />
+<img src="images/rstudio.jpg" alt="RStudio: empat panel" width="80%" />
 <p class="caption">
-Gambar 1.1: RStudio: the four panes
+Gambar 1.1: RStudio: empat panel
 </p>
 </div>
 <div id="dasar-dasar-r" class="section level4 unnumbered hasAnchor">
 <h4>Dasar-Dasar R<a href="1.2-pengenalan-singkat-r-and-rstudio.html#dasar-dasar-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Berikut adalah versi terjemahan dalam bahasa Indonesia untuk bagian tersebut:</p>
-<hr />
 <p>Seperti disebutkan sebelumnya, buku ini bukan dimaksudkan sebagai pengantar <tt>R</tt>, melainkan panduan tentang cara memanfaatkan kemampuannya untuk aplikasi yang umum dijumpai dalam ekonometrika tingkat sarjana. Pembaca yang memiliki pengetahuan dasar tentang pemrograman <tt>R</tt> mungkin akan merasa nyaman untuk langsung memulai dari Bab <a href="#pt"><strong>??</strong></a>. Namun, bagian ini ditujukan bagi mereka yang belum pernah bekerja dengan <tt>R</tt> atau <em>RStudio</em> sebelumnya. Jika Anda setidaknya sudah tahu cara membuat objek dan memanggil fungsi, Anda bisa melewati bagian ini. Namun, jika Anda ingin menyegarkan keterampilan Anda atau mendapatkan gambaran tentang cara bekerja dengan <em>RStudio</em>, lanjutkan membaca.</p>
-<p>As mentioned before, this book is not intended to be an introduction to
-<tt>R</tt> but a guide on how to use its capabilities for
-applications commonly encountered in undergraduate econometrics. Those
-having basic knowledge in <tt>R</tt> programming may feel
-comfortable starting with Chapter <a href="#pt"><strong>??</strong></a>. This section, however, is
-meant for those who have not worked with <tt>R</tt> or <em>RStudio</em>
-before. If you at least know how to create objects and call functions,
-you can skip it. If you would like to refresh your skills or get a
-feeling for how to work with <em>RStudio</em>, keep reading.</p>
-<p>First of all, start <em>RStudio</em> and open a new <tt>R</tt> script by
-selecting <em>File</em>, <em>New File</em>, <em>R Script</em>. In the editor pane, type</p>
+<p>Pertama-tama, buka <em>RStudio</em> dan buat skrip <code>R</code> baru dengan memilih <em>File</em>, <em>New File</em>, <em>R Script</em>. Di panel editor, ketikkan</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb3-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
-<p>and click on the button labeled <em>Run</em> in the top right corner of the
-editor. By doing so, your line of code is sent to the console and the
-result of this operation should be displayed right underneath it. As you
-can see, <tt>R</tt> works just like a calculator. You can do all
-arithmetic calculations by using the corresponding operator
-(<tt>+</tt>, <tt>-</tt>, <tt>*</tt>, <tt>/</tt> or
-<tt>^</tt>). If you are not sure what the last operator does, try
-it out and check the results.</p>
+<p>dan klik tombol berlabel <em>Run</em> di pojok kanan atas editor. Dengan melakukan ini, baris kode Anda akan dikirim ke konsol, dan hasil operasi tersebut akan ditampilkan tepat di bawahnya. Seperti yang Anda lihat, <tt>R</tt> berfungsi layaknya kalkulator. Anda dapat melakukan semua perhitungan aritmatika menggunakan operator yang sesuai (<tt>+</tt>, <tt>-</tt>, <tt>*</tt>, <tt>/</tt> or
+<tt>^</tt>). Jika Anda tidak yakin apa fungsi operator terakhir, coba gunakan dan periksa hasilnya.</p>
 </div>
-<div id="vectors" class="section level4 unnumbered hasAnchor">
-<h4>Vectors<a href="1.2-pengenalan-singkat-r-and-rstudio.html#vectors" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>In <tt>R</tt>, you can work with variables or more generally,
-objects. To define an object, you use the assignment operator
-<tt>&lt;-</tt>, for example, to create a variable named
-<tt>x</tt> with the value <tt>10</tt>, you can type <code>x &lt;- 10</code>
-and then click the <em>Run</em> button. The new variable should appear in the
-environment pane on the top right. However, the console won’t display
-any results because this line of code doesn’t produce any visible
-output. If you want to see the value of <code>x</code>, you can simply type <code>x</code> in
-the console and press <em>Enter</em>, and <tt>R</tt> will display the
-corresponding value in the console.</p>
-<p><tt>x</tt> is a scalar, a vector of length <span class="math inline">\(1\)</span>. You can easily
-create longer vectors by using the function <tt>c()</tt> (<em>c</em> is
-for “concatenate” or “combine”). To create a vector <tt>y</tt>
-containing the numbers <span class="math inline">\(1\)</span> to <span class="math inline">\(5\)</span> and print it, do the following.</p>
+<div id="vektor" class="section level4 unnumbered hasAnchor">
+<h4>Vektor<a href="1.2-pengenalan-singkat-r-and-rstudio.html#vektor" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Dalam <tt>R</tt>, Anda dapat menggunakan variabel atau objek. Untuk membuat objek, gunakan operator penugasan <tt>&lt;-</tt>. Misalnya, untuk mendefinisikan variabel bernama <tt>x</tt> dengan nilai <tt>10</tt>, ketik <code>x &lt;- 10</code> dan tekan tombol <em>Run</em>. Variabel tersebut akan muncul di panel environment di kanan atas. Namun, konsol tidak akan menunjukkan output karena kode ini tidak menghasilkan tampilan apa pun. Untuk melihat nilai <code>x</code>, cukup ketik <code>x</code> di konsol dan tekan <em>Enter</em>, lalu <tt>R</tt> akan menampilkan nilainya di konsol.</p>
+<p><tt>x</tt> merupakan skalar, yaitu vektor dengan panjang <span class="math inline">\(1\)</span>. Untuk membuat vektor yang lebih panjang, Anda bisa menggunakan fungsi <tt>c()</tt> (<em>c</em> berarti “gabungkan” atau “kombinasikan”). Misalnya, untuk membuat vektor <tt>y</tt> yang berisi angka <span class="math inline">\(1\)</span> hingga <span class="math inline">\(5\)</span> dan menampilkannya, ikuti langkah berikut.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb4-1" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
 <span id="cb4-2"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb4-2" tabindex="-1"></a>y</span>
 <span id="cb4-3"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb4-3" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span></code></pre></div>
-<p>You can also create a vector of letters or words. For now just remember
-that characters have to be surrounded by quotes, else they will be
-parsed as object names.</p>
+<p>Anda juga dapat membuat vektor yang berisi huruf atau kata. Perlu diingat bahwa karakter harus diberi tanda kutip, jika tidak, mereka akan diartikan sebagai nama objek.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb5-1" tabindex="-1"></a>hello <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;World&quot;</span>)</span></code></pre></div>
-<p>Here we have created a vector of length 2 containing the words
-<tt>Hello</tt> and <tt>World</tt>.</p>
-<p>Do not forget to save your script! To do so, select <em>File</em> and then
-<em>Save</em>.</p>
+<p>Di sini, kita telah membuat vektor yang terdiri dari dua elemen, yaitu kata <tt>Hello</tt> dan <tt>World</tt>.</p>
+<p>Jangan lupa untuk menyimpan skrip Anda! Caranya, pilih <em>File</em> dan kemudian <em>Save</em>.</p>
 </div>
-<div id="functions" class="section level4 unnumbered hasAnchor">
-<h4>Functions<a href="1.2-pengenalan-singkat-r-and-rstudio.html#functions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>You have seen that the function <tt>c()</tt> can be used to combine
-objects. In general, all function calls look the same: a function name
-is always followed by round parentheses. Often the parentheses include
-arguments.</p>
-<p>Here are two simple examples.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb6-1" tabindex="-1"></a><span class="co"># generate the vector `z`</span></span>
+<div id="funsi" class="section level4 unnumbered hasAnchor">
+<h4>Funsi<a href="1.2-pengenalan-singkat-r-and-rstudio.html#funsi" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Anda telah melihat bahwa fungsi <tt>c()</tt> digunakan untuk menggabungkan objek. Secara umum, setiap pemanggilan fungsi memiliki format yang serupa: nama fungsi diikuti oleh tanda kurung bulat. Biasanya, tanda kurung tersebut berisi argumen.</p>
+<p>Berikut dua contoh sederhana.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb6-1" tabindex="-1"></a><span class="co"># membuat vektor `z`</span></span>
 <span id="cb6-2"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb6-2" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
 <span id="cb6-3"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb6-3" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb6-4" tabindex="-1"></a><span class="co"># compute the mean of the entries in `z`</span></span>
+<span id="cb6-4"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb6-4" tabindex="-1"></a><span class="co"># menghitung rata-rata dari entri dalam `z`</span></span>
 <span id="cb6-5"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb6-5" tabindex="-1"></a><span class="fu">mean</span>(z)</span>
 <span id="cb6-6"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb6-6" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span></code></pre></div>
-<p>In the first line we use a function called <tt>seq()</tt> to create
-the exact same vector as we did in the previous section, calling it
-<tt>z</tt>. The function takes on the arguments <tt>from</tt>,
-<tt>to</tt> and <tt>by</tt> which should be self-explanatory.
-The function <tt>mean()</tt> computes the arithmetic mean of its
-argument <tt>x</tt>. Since we pass the vector <tt>z</tt> as
-the argument <tt>x</tt>, the result is <tt>3</tt>!</p>
-<p>If you are not sure which arguments a function expects, you may consult
-the function’s documentation. Let’s say we are not sure how the
-arguments required for <tt>seq()</tt> work. We then type <code>?seq</code> in
-the console. By hitting return, the documentation page for that function
-pops up in the lower right pane of <em>RStudio</em>. In there, the section
-<em>Arguments</em> holds the information we seek. On the bottom of almost every
-help page you find examples on how to use the corresponding functions.
-This is very helpful for beginners and we recommend to have a look.</p>
-<p>Of course, all of the commands presented above also work in interactive
-widgets throughout the book. You may try them below.</p>
+<p>Pada baris pertama, kita menggunakan fungsi <tt>seq()</tt> untuk menghasilkan vektor yang sama persis seperti yang dibuat pada bagian sebelumnya, dan menamakannya <tt>seq()</tt>. Fungsi ini menerima argumen <tt>from</tt>,<tt>to</tt> dan <tt>by</tt>, yang sudah cukup jelas. Fungsi <tt>mean()</tt> menghitung nilai rata-rata dari argumennya, yaitu <tt>x</tt>. Karena vektor <tt>z</tt> diberikan sebagai argumen <tt>x</tt>, hasilnya adalah <tt>3</tt>!</p>
+<p>Jika Anda tidak yakin tentang argumen apa yang dibutuhkan oleh suatu fungsi, Anda dapat memeriksa dokumentasinya. Misalnya, jika kita ragu mengenai cara kerja argumen di <tt>seq()</tt>, ketik <code>?seq</code> di konsol. Setelah menekan <em>Enter</em>, halaman dokumentasi fungsi tersebut akan muncul di panel kanan bawah <em>RStudio</em>. Di bagian <em>Arguments</em>, Anda akan menemukan informasi yang dibutuhkan. Di bagian bawah hampir setiap halaman dokumentasi, terdapat contoh penggunaan fungsi tersebut. Ini sangat bermanfaat bagi pemula, dan kami sarankan untuk melihatnya.</p>
+<p>Tentu saja, semua perintah yang telah dijelaskan di atas juga dapat digunakan pada widget interaktif di seluruh buku ini. Anda dapat mencobanya di bawah ini.</p>
 <iframe src="DCL/playground.html" frameborder="0" scrolling="no" style="width:100%;height:340px">
 </iframe>
 
