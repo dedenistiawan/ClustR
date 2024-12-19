@@ -23,7 +23,7 @@
 <meta name="author" content="Deden Istiawan" />
 
 
-<meta name="date" content="2024-12-18" />
+<meta name="date" content="2024-12-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -288,7 +288,7 @@ text-align: justify}
 <p>Biasanya, kami menampilkan kode <tt>R</tt> bersama dengan output yang dihasilkan dalam potongan kode. Sebagai contoh, perhatikan baris kode berikut yang ditampilkan dalam potongan di bawah ini. Kode ini memberi tahu <tt>R</tt> untuk menghitung jumlah paket yang tersedia di <tt>CRAN</tt>. Potongan kode diikuti oleh output yang dihasilkan.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="1-pd.html#cb1-1" tabindex="-1"></a><span class="co"># Cek jumlah paket R yang tersedia di CRAN</span></span>
 <span id="cb1-2"><a href="1-pd.html#cb1-2" tabindex="-1"></a><span class="fu">nrow</span>(<span class="fu">available.packages</span>(<span class="at">repos =</span> <span class="st">&quot;http://cran.us.r-project.org&quot;</span>))</span>
-<span id="cb1-3"><a href="1-pd.html#cb1-3" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span></code></pre></div>
+<span id="cb1-3"><a href="1-pd.html#cb1-3" tabindex="-1"></a><span class="co">#&gt; [1] 21806</span></span></code></pre></div>
 <p>Setiap potongan kode dilengkapi dengan tombol di sisi kanan luar yang memungkinkan Anda menyalin kode ke clipboard Anda. Ini membuat pekerjaan dengan segmen kode yang lebih besar menjadi lebih nyaman, baik di versi <tt>R</tt>/<em>RStudio</em> Anda maupun di widget-widget yang disajikan di sepanjang buku ini. Pada widget di atas, Anda dapat mengklik tab <tt>R Console</tt> Console dan mengetikkan <code>nrow(available.packages(repos = "http://cran.us.r-project.org"))</code> (perintah dari potongan kode di atas) dan menjalankannya dengan menekan tombol <em>Enter</em> pada keyboard Anda. <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 <p>Perhatikan bahwa beberapa baris dalam widget tersebut dikomentari, yang meminta Anda untuk menetapkan nilai numerik pada sebuah variabel dan kemudian mencetak isi variabel tersebut ke konsol. Anda dapat memasukkan pendekatan solusi Anda ke dalam <tt>script.R</tt> dan menekan tombol <em>Run</em> untuk mendapatkan umpan balik seperti yang dijelaskan di atas. Jika Anda tidak tahu bagaimana menyelesaikan latihan ini (jangan panik, itu mungkin alasan mengapa Anda membaca ini), klik <em>Hint</em> untuk mendapatkan saran. Jika Anda masih belum menemukan solusi, klik <em>Solution</em> untuk membuka tab lain, <tt>Solution.R</tt>, yang berisi kode solusi sampel. Seringkali, latihan dapat diselesaikan dengan berbagai cara, dan <tt>Solution.R</tt> akan menyajikan solusi yang kami anggap sebagai solusi yang mudah dipahami dan idiomatik.</p>
 </div>

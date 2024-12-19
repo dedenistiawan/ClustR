@@ -262,58 +262,58 @@ Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda
 <span id="cb3-2"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-2" tabindex="-1"></a>res.fcm <span class="ot">&lt;-</span> <span class="fu">fcm</span>(data, <span class="at">centers=</span><span class="dv">3</span>)</span>
 <span id="cb3-3"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-3" tabindex="-1"></a><span class="fu">as.data.frame</span>(res.fcm<span class="sc">$</span>u)</span>
 <span id="cb3-4"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-4" tabindex="-1"></a><span class="co">#&gt;                  Cluster 1  Cluster 2  Cluster 3</span></span>
-<span id="cb3-5"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-5" tabindex="-1"></a><span class="co">#&gt; CILACAP         0.09432155 0.70608174 0.19959671</span></span>
-<span id="cb3-6"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-6" tabindex="-1"></a><span class="co">#&gt; BANYUMAS        0.03242738 0.87685700 0.09071562</span></span>
-<span id="cb3-7"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-7" tabindex="-1"></a><span class="co">#&gt; PURBALINGGA     0.12503329 0.58855259 0.28641412</span></span>
-<span id="cb3-8"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-8" tabindex="-1"></a><span class="co">#&gt; BANJARNEGARA    0.15770912 0.27431153 0.56797934</span></span>
-<span id="cb3-9"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-9" tabindex="-1"></a><span class="co">#&gt; KEBUMEN         0.12183017 0.55326811 0.32490172</span></span>
-<span id="cb3-10"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-10" tabindex="-1"></a><span class="co">#&gt; PURWOREJO       0.37665821 0.15508384 0.46825795</span></span>
-<span id="cb3-11"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-11" tabindex="-1"></a><span class="co">#&gt; WONOSOBO        0.73997169 0.04794255 0.21208577</span></span>
-<span id="cb3-12"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-12" tabindex="-1"></a><span class="co">#&gt; MAGELANG        0.12565978 0.11864932 0.75569090</span></span>
-<span id="cb3-13"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-13" tabindex="-1"></a><span class="co">#&gt; BOYOLALI        0.65917928 0.04746322 0.29335751</span></span>
-<span id="cb3-14"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-14" tabindex="-1"></a><span class="co">#&gt; KLATEN          0.15366683 0.40625017 0.44008300</span></span>
-<span id="cb3-15"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-15" tabindex="-1"></a><span class="co">#&gt; SUKOHARJO       0.90659203 0.01812578 0.07528219</span></span>
-<span id="cb3-16"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-16" tabindex="-1"></a><span class="co">#&gt; WONOGIRI        0.62649398 0.05984340 0.31366262</span></span>
-<span id="cb3-17"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-17" tabindex="-1"></a><span class="co">#&gt; KARANGANYAR     0.83280963 0.03151333 0.13567704</span></span>
-<span id="cb3-18"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-18" tabindex="-1"></a><span class="co">#&gt; SRAGEN          0.92987167 0.01369224 0.05643609</span></span>
-<span id="cb3-19"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-19" tabindex="-1"></a><span class="co">#&gt; GROBOGAN        0.10906165 0.20509357 0.68584478</span></span>
-<span id="cb3-20"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-20" tabindex="-1"></a><span class="co">#&gt; BLORA           0.42364979 0.06584083 0.51050938</span></span>
-<span id="cb3-21"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-21" tabindex="-1"></a><span class="co">#&gt; REMBANG         0.77496097 0.03515460 0.18988443</span></span>
-<span id="cb3-22"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-22" tabindex="-1"></a><span class="co">#&gt; PATI            0.18226626 0.18018760 0.63754615</span></span>
-<span id="cb3-23"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-23" tabindex="-1"></a><span class="co">#&gt; KUDUS           0.93999864 0.01358093 0.04642043</span></span>
-<span id="cb3-24"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-24" tabindex="-1"></a><span class="co">#&gt; JEPARA          0.13357477 0.17434136 0.69208387</span></span>
-<span id="cb3-25"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-25" tabindex="-1"></a><span class="co">#&gt; DEMAK           0.22405973 0.12077163 0.65516864</span></span>
-<span id="cb3-26"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-26" tabindex="-1"></a><span class="co">#&gt; SEMARANG        0.92443899 0.01375558 0.06180543</span></span>
-<span id="cb3-27"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-27" tabindex="-1"></a><span class="co">#&gt; TEMANGGUNG      0.92181846 0.01515432 0.06302723</span></span>
-<span id="cb3-28"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-28" tabindex="-1"></a><span class="co">#&gt; KENDAL          0.30783534 0.07103512 0.62112953</span></span>
-<span id="cb3-29"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-29" tabindex="-1"></a><span class="co">#&gt; BATANG          0.74568211 0.05146780 0.20285008</span></span>
-<span id="cb3-30"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-30" tabindex="-1"></a><span class="co">#&gt; PEKALONGAN      0.33879435 0.11753007 0.54367557</span></span>
-<span id="cb3-31"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-31" tabindex="-1"></a><span class="co">#&gt; PEMALANG        0.13508254 0.47108349 0.39383397</span></span>
-<span id="cb3-32"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-32" tabindex="-1"></a><span class="co">#&gt; TEGAL           0.08391671 0.61445746 0.30162583</span></span>
-<span id="cb3-33"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-33" tabindex="-1"></a><span class="co">#&gt; BREBES          0.11958050 0.64100931 0.23941019</span></span>
-<span id="cb3-34"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-34" tabindex="-1"></a><span class="co">#&gt; KOTA MAGELANG   0.82227544 0.05127744 0.12644712</span></span>
-<span id="cb3-35"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-35" tabindex="-1"></a><span class="co">#&gt; KOTA SURAKARTA  0.88284897 0.03051218 0.08663885</span></span>
-<span id="cb3-36"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-36" tabindex="-1"></a><span class="co">#&gt; KOTA SALATIGA   0.82356236 0.05093432 0.12550332</span></span>
-<span id="cb3-37"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-37" tabindex="-1"></a><span class="co">#&gt; KOTA SEMARANG   0.81177689 0.04152177 0.14670134</span></span>
-<span id="cb3-38"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-38" tabindex="-1"></a><span class="co">#&gt; KOTA PEKALONGAN 0.87988142 0.03226874 0.08784985</span></span>
-<span id="cb3-39"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-39" tabindex="-1"></a><span class="co">#&gt; KOTA TEGAL      0.88100104 0.03188749 0.08711147</span></span></code></pre></div>
+<span id="cb3-5"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-5" tabindex="-1"></a><span class="co">#&gt; CILACAP         0.70608174 0.09432155 0.19959671</span></span>
+<span id="cb3-6"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-6" tabindex="-1"></a><span class="co">#&gt; BANYUMAS        0.87685700 0.03242738 0.09071562</span></span>
+<span id="cb3-7"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-7" tabindex="-1"></a><span class="co">#&gt; PURBALINGGA     0.58855259 0.12503329 0.28641412</span></span>
+<span id="cb3-8"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-8" tabindex="-1"></a><span class="co">#&gt; BANJARNEGARA    0.27431153 0.15770912 0.56797934</span></span>
+<span id="cb3-9"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-9" tabindex="-1"></a><span class="co">#&gt; KEBUMEN         0.55326811 0.12183017 0.32490172</span></span>
+<span id="cb3-10"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-10" tabindex="-1"></a><span class="co">#&gt; PURWOREJO       0.15508384 0.37665821 0.46825795</span></span>
+<span id="cb3-11"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-11" tabindex="-1"></a><span class="co">#&gt; WONOSOBO        0.04794255 0.73997169 0.21208577</span></span>
+<span id="cb3-12"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-12" tabindex="-1"></a><span class="co">#&gt; MAGELANG        0.11864932 0.12565978 0.75569090</span></span>
+<span id="cb3-13"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-13" tabindex="-1"></a><span class="co">#&gt; BOYOLALI        0.04746322 0.65917928 0.29335751</span></span>
+<span id="cb3-14"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-14" tabindex="-1"></a><span class="co">#&gt; KLATEN          0.40625017 0.15366683 0.44008300</span></span>
+<span id="cb3-15"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-15" tabindex="-1"></a><span class="co">#&gt; SUKOHARJO       0.01812578 0.90659203 0.07528219</span></span>
+<span id="cb3-16"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-16" tabindex="-1"></a><span class="co">#&gt; WONOGIRI        0.05984340 0.62649398 0.31366262</span></span>
+<span id="cb3-17"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-17" tabindex="-1"></a><span class="co">#&gt; KARANGANYAR     0.03151333 0.83280963 0.13567704</span></span>
+<span id="cb3-18"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-18" tabindex="-1"></a><span class="co">#&gt; SRAGEN          0.01369224 0.92987167 0.05643609</span></span>
+<span id="cb3-19"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-19" tabindex="-1"></a><span class="co">#&gt; GROBOGAN        0.20509357 0.10906165 0.68584478</span></span>
+<span id="cb3-20"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-20" tabindex="-1"></a><span class="co">#&gt; BLORA           0.06584083 0.42364979 0.51050938</span></span>
+<span id="cb3-21"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-21" tabindex="-1"></a><span class="co">#&gt; REMBANG         0.03515460 0.77496097 0.18988443</span></span>
+<span id="cb3-22"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-22" tabindex="-1"></a><span class="co">#&gt; PATI            0.18018760 0.18226626 0.63754615</span></span>
+<span id="cb3-23"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-23" tabindex="-1"></a><span class="co">#&gt; KUDUS           0.01358093 0.93999864 0.04642043</span></span>
+<span id="cb3-24"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-24" tabindex="-1"></a><span class="co">#&gt; JEPARA          0.17434136 0.13357477 0.69208387</span></span>
+<span id="cb3-25"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-25" tabindex="-1"></a><span class="co">#&gt; DEMAK           0.12077163 0.22405973 0.65516864</span></span>
+<span id="cb3-26"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-26" tabindex="-1"></a><span class="co">#&gt; SEMARANG        0.01375558 0.92443899 0.06180543</span></span>
+<span id="cb3-27"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-27" tabindex="-1"></a><span class="co">#&gt; TEMANGGUNG      0.01515432 0.92181846 0.06302723</span></span>
+<span id="cb3-28"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-28" tabindex="-1"></a><span class="co">#&gt; KENDAL          0.07103512 0.30783534 0.62112953</span></span>
+<span id="cb3-29"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-29" tabindex="-1"></a><span class="co">#&gt; BATANG          0.05146780 0.74568211 0.20285008</span></span>
+<span id="cb3-30"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-30" tabindex="-1"></a><span class="co">#&gt; PEKALONGAN      0.11753007 0.33879435 0.54367557</span></span>
+<span id="cb3-31"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-31" tabindex="-1"></a><span class="co">#&gt; PEMALANG        0.47108349 0.13508254 0.39383397</span></span>
+<span id="cb3-32"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-32" tabindex="-1"></a><span class="co">#&gt; TEGAL           0.61445746 0.08391671 0.30162583</span></span>
+<span id="cb3-33"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-33" tabindex="-1"></a><span class="co">#&gt; BREBES          0.64100931 0.11958050 0.23941019</span></span>
+<span id="cb3-34"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-34" tabindex="-1"></a><span class="co">#&gt; KOTA MAGELANG   0.05127744 0.82227544 0.12644712</span></span>
+<span id="cb3-35"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-35" tabindex="-1"></a><span class="co">#&gt; KOTA SURAKARTA  0.03051218 0.88284897 0.08663885</span></span>
+<span id="cb3-36"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-36" tabindex="-1"></a><span class="co">#&gt; KOTA SALATIGA   0.05093432 0.82356236 0.12550332</span></span>
+<span id="cb3-37"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-37" tabindex="-1"></a><span class="co">#&gt; KOTA SEMARANG   0.04152177 0.81177689 0.14670134</span></span>
+<span id="cb3-38"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-38" tabindex="-1"></a><span class="co">#&gt; KOTA PEKALONGAN 0.03226874 0.87988142 0.08784985</span></span>
+<span id="cb3-39"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb3-39" tabindex="-1"></a><span class="co">#&gt; KOTA TEGAL      0.03188749 0.88100104 0.08711147</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb4-1" tabindex="-1"></a><span class="co"># Visualize using corrplot</span></span>
 <span id="cb4-2"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb4-2" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
 <span id="cb4-3"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb4-3" tabindex="-1"></a><span class="fu">corrplot</span>(res.fcm<span class="sc">$</span>u, <span class="at">is.corr =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="CLUSTR_files/figure-html/unnamed-chunk-8-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb5-1" tabindex="-1"></a>res.fcm<span class="sc">$</span>v0</span>
 <span id="cb5-2"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb5-2" tabindex="-1"></a><span class="co">#&gt;             X1   X2   X3   X4   X5   X6   X7   X8   X9  X10</span></span>
-<span id="cb5-3"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb5-3" tabindex="-1"></a><span class="co">#&gt; Cluster 1 1.76 2.19 1.61 2.33 1.88 1.61 0.92 0.49 2.67 1.56</span></span>
-<span id="cb5-4"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb5-4" tabindex="-1"></a><span class="co">#&gt; Cluster 2 4.78 3.91 6.70 4.84 6.35 5.82 3.00 5.99 2.98 5.98</span></span>
-<span id="cb5-5"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb5-5" tabindex="-1"></a><span class="co">#&gt; Cluster 3 3.84 5.15 1.93 4.64 4.04 3.78 8.71 4.45 3.99 3.09</span></span></code></pre></div>
+<span id="cb5-3"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb5-3" tabindex="-1"></a><span class="co">#&gt; Cluster 1 3.30 2.19 3.80 3.13 3.73 3.34 8.71 7.41 3.21 4.65</span></span>
+<span id="cb5-4"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb5-4" tabindex="-1"></a><span class="co">#&gt; Cluster 2 0.59 0.65 0.75 0.63 1.21 0.71 1.15 0.36 0.12 0.27</span></span>
+<span id="cb5-5"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb5-5" tabindex="-1"></a><span class="co">#&gt; Cluster 3 2.29 3.52 2.32 3.03 3.25 2.53 1.68 1.50 2.74 4.25</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb6-1" tabindex="-1"></a>res.fcm<span class="sc">$</span>v</span>
 <span id="cb6-2"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb6-2" tabindex="-1"></a><span class="co">#&gt;                 X1       X2       X3       X4       X5       X6       X7</span></span>
-<span id="cb6-3"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb6-3" tabindex="-1"></a><span class="co">#&gt; Cluster 1 1.724771 1.743303 1.432408 1.706002 1.626688 1.504833 1.335312</span></span>
-<span id="cb6-4"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb6-4" tabindex="-1"></a><span class="co">#&gt; Cluster 2 5.001721 4.041093 5.531054 4.669414 4.638562 5.500335 6.458007</span></span>
+<span id="cb6-3"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb6-3" tabindex="-1"></a><span class="co">#&gt; Cluster 1 5.001721 4.041093 5.531054 4.669414 4.638562 5.500335 6.458007</span></span>
+<span id="cb6-4"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb6-4" tabindex="-1"></a><span class="co">#&gt; Cluster 2 1.724771 1.743303 1.432408 1.706002 1.626688 1.504833 1.335312</span></span>
 <span id="cb6-5"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb6-5" tabindex="-1"></a><span class="co">#&gt; Cluster 3 3.418238 4.025821 3.497306 3.657048 3.843888 3.477061 3.074419</span></span>
 <span id="cb6-6"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb6-6" tabindex="-1"></a><span class="co">#&gt;                 X8       X9      X10</span></span>
-<span id="cb6-7"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb6-7" tabindex="-1"></a><span class="co">#&gt; Cluster 1 1.021470 1.697120 1.056498</span></span>
-<span id="cb6-8"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb6-8" tabindex="-1"></a><span class="co">#&gt; Cluster 2 7.009924 4.458629 6.474407</span></span>
+<span id="cb6-7"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb6-7" tabindex="-1"></a><span class="co">#&gt; Cluster 1 7.009924 4.458629 6.474407</span></span>
+<span id="cb6-8"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb6-8" tabindex="-1"></a><span class="co">#&gt; Cluster 2 1.021470 1.697120 1.056498</span></span>
 <span id="cb6-9"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb6-9" tabindex="-1"></a><span class="co">#&gt; Cluster 3 3.057133 3.802309 3.529256</span></span></code></pre></div>
 </div>
 <div id="hasil-clustering-fcm" class="section level3 hasAnchor" number="3.1.4">
@@ -326,61 +326,61 @@ Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda
 <span id="cb7-6"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-6" tabindex="-1"></a><span class="co">#&gt; Number of clusters:  3 </span></span>
 <span id="cb7-7"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb7-8"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-8" tabindex="-1"></a><span class="co">#&gt; Crisp clustering vector:</span></span>
-<span id="cb7-9"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-9" tabindex="-1"></a><span class="co">#&gt;  [1] 2 2 2 3 2 3 1 3 1 3 1 1 1 1 3 3 1 3 1 3 3 1 1 3 1 3 2 2 2 1 1 1 1 1 1</span></span>
+<span id="cb7-9"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-9" tabindex="-1"></a><span class="co">#&gt;  [1] 1 1 1 3 1 3 2 3 2 3 2 2 2 2 3 3 2 3 2 3 3 2 2 3 2 3 1 1 1 2 2 2 2 2 2</span></span>
 <span id="cb7-10"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb7-11"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-11" tabindex="-1"></a><span class="co">#&gt; Initial cluster prototypes:</span></span>
 <span id="cb7-12"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-12" tabindex="-1"></a><span class="co">#&gt;             X1   X2   X3   X4   X5   X6   X7   X8   X9  X10</span></span>
-<span id="cb7-13"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-13" tabindex="-1"></a><span class="co">#&gt; Cluster 1 1.76 2.19 1.61 2.33 1.88 1.61 0.92 0.49 2.67 1.56</span></span>
-<span id="cb7-14"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-14" tabindex="-1"></a><span class="co">#&gt; Cluster 2 4.78 3.91 6.70 4.84 6.35 5.82 3.00 5.99 2.98 5.98</span></span>
-<span id="cb7-15"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-15" tabindex="-1"></a><span class="co">#&gt; Cluster 3 3.84 5.15 1.93 4.64 4.04 3.78 8.71 4.45 3.99 3.09</span></span>
+<span id="cb7-13"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-13" tabindex="-1"></a><span class="co">#&gt; Cluster 1 3.30 2.19 3.80 3.13 3.73 3.34 8.71 7.41 3.21 4.65</span></span>
+<span id="cb7-14"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-14" tabindex="-1"></a><span class="co">#&gt; Cluster 2 0.59 0.65 0.75 0.63 1.21 0.71 1.15 0.36 0.12 0.27</span></span>
+<span id="cb7-15"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-15" tabindex="-1"></a><span class="co">#&gt; Cluster 3 2.29 3.52 2.32 3.03 3.25 2.53 1.68 1.50 2.74 4.25</span></span>
 <span id="cb7-16"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb7-17"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-17" tabindex="-1"></a><span class="co">#&gt; Final cluster prototypes:</span></span>
 <span id="cb7-18"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-18" tabindex="-1"></a><span class="co">#&gt;                 X1       X2       X3       X4       X5       X6       X7</span></span>
-<span id="cb7-19"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-19" tabindex="-1"></a><span class="co">#&gt; Cluster 1 1.724771 1.743303 1.432408 1.706002 1.626688 1.504833 1.335312</span></span>
-<span id="cb7-20"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-20" tabindex="-1"></a><span class="co">#&gt; Cluster 2 5.001721 4.041093 5.531054 4.669414 4.638562 5.500335 6.458007</span></span>
+<span id="cb7-19"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-19" tabindex="-1"></a><span class="co">#&gt; Cluster 1 5.001721 4.041093 5.531054 4.669414 4.638562 5.500335 6.458007</span></span>
+<span id="cb7-20"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-20" tabindex="-1"></a><span class="co">#&gt; Cluster 2 1.724771 1.743303 1.432408 1.706002 1.626688 1.504833 1.335312</span></span>
 <span id="cb7-21"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-21" tabindex="-1"></a><span class="co">#&gt; Cluster 3 3.418238 4.025821 3.497306 3.657048 3.843888 3.477061 3.074419</span></span>
 <span id="cb7-22"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-22" tabindex="-1"></a><span class="co">#&gt;                 X8       X9      X10</span></span>
-<span id="cb7-23"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-23" tabindex="-1"></a><span class="co">#&gt; Cluster 1 1.021470 1.697120 1.056498</span></span>
-<span id="cb7-24"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-24" tabindex="-1"></a><span class="co">#&gt; Cluster 2 7.009924 4.458629 6.474407</span></span>
+<span id="cb7-23"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-23" tabindex="-1"></a><span class="co">#&gt; Cluster 1 7.009924 4.458629 6.474407</span></span>
+<span id="cb7-24"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-24" tabindex="-1"></a><span class="co">#&gt; Cluster 2 1.021470 1.697120 1.056498</span></span>
 <span id="cb7-25"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-25" tabindex="-1"></a><span class="co">#&gt; Cluster 3 3.057133 3.802309 3.529256</span></span>
 <span id="cb7-26"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-26" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb7-27"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-27" tabindex="-1"></a><span class="co">#&gt; Distance between the final cluster prototypes</span></span>
 <span id="cb7-28"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-28" tabindex="-1"></a><span class="co">#&gt;           Cluster 1 Cluster 2</span></span>
 <span id="cb7-29"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-29" tabindex="-1"></a><span class="co">#&gt; Cluster 2 165.71763          </span></span>
-<span id="cb7-30"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-30" tabindex="-1"></a><span class="co">#&gt; Cluster 3  42.66853  48.57171</span></span>
+<span id="cb7-30"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-30" tabindex="-1"></a><span class="co">#&gt; Cluster 3  48.57171  42.66853</span></span>
 <span id="cb7-31"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-31" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb7-32"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-32" tabindex="-1"></a><span class="co">#&gt; Difference between the initial and final cluster prototypes</span></span>
-<span id="cb7-33"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-33" tabindex="-1"></a><span class="co">#&gt;                    X1         X2         X3         X4         X5         X6</span></span>
-<span id="cb7-34"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-34" tabindex="-1"></a><span class="co">#&gt; Cluster 1 -0.03522938 -0.4466973 -0.1775916 -0.6239977 -0.2533119 -0.1051670</span></span>
-<span id="cb7-35"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-35" tabindex="-1"></a><span class="co">#&gt; Cluster 2  0.22172142  0.1310934 -1.1689460 -0.1705855 -1.7114383 -0.3196647</span></span>
-<span id="cb7-36"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-36" tabindex="-1"></a><span class="co">#&gt; Cluster 3 -0.42176178 -1.1241790  1.5673058 -0.9829516 -0.1961115 -0.3029386</span></span>
-<span id="cb7-37"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-37" tabindex="-1"></a><span class="co">#&gt;                  X7         X8         X9        X10</span></span>
-<span id="cb7-38"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-38" tabindex="-1"></a><span class="co">#&gt; Cluster 1  0.415312  0.5314704 -0.9728795 -0.5035021</span></span>
-<span id="cb7-39"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-39" tabindex="-1"></a><span class="co">#&gt; Cluster 2  3.458007  1.0199240  1.4786289  0.4944068</span></span>
-<span id="cb7-40"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-40" tabindex="-1"></a><span class="co">#&gt; Cluster 3 -5.635581 -1.3928674 -0.1876907  0.4392557</span></span>
+<span id="cb7-33"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-33" tabindex="-1"></a><span class="co">#&gt;                 X1       X2        X3        X4        X5        X6        X7</span></span>
+<span id="cb7-34"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-34" tabindex="-1"></a><span class="co">#&gt; Cluster 1 1.701721 1.851093 1.7310540 1.5394145 0.9085617 2.1603353 -2.251993</span></span>
+<span id="cb7-35"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-35" tabindex="-1"></a><span class="co">#&gt; Cluster 2 1.134771 1.093303 0.6824084 1.0760023 0.4166881 0.7948330  0.185312</span></span>
+<span id="cb7-36"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-36" tabindex="-1"></a><span class="co">#&gt; Cluster 3 1.128238 0.505821 1.1773058 0.6270484 0.5938885 0.9470614  1.394419</span></span>
+<span id="cb7-37"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-37" tabindex="-1"></a><span class="co">#&gt;                   X8       X9        X10</span></span>
+<span id="cb7-38"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-38" tabindex="-1"></a><span class="co">#&gt; Cluster 1 -0.4000760 1.248629  1.8244068</span></span>
+<span id="cb7-39"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-39" tabindex="-1"></a><span class="co">#&gt; Cluster 2  0.6614704 1.577120  0.7864979</span></span>
+<span id="cb7-40"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-40" tabindex="-1"></a><span class="co">#&gt; Cluster 3  1.5571326 1.062309 -0.7207443</span></span>
 <span id="cb7-41"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-41" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-42"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-42" tabindex="-1"></a><span class="co">#&gt; Root Mean Squared Deviations (RMSD): 4.516502 </span></span>
-<span id="cb7-43"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-43" tabindex="-1"></a><span class="co">#&gt; Mean Absolute Deviation (MAD): 88.30073 </span></span>
+<span id="cb7-42"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-42" tabindex="-1"></a><span class="co">#&gt; Root Mean Squared Deviations (RMSD): 3.931271 </span></span>
+<span id="cb7-43"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-43" tabindex="-1"></a><span class="co">#&gt; Mean Absolute Deviation (MAD): 112.4655 </span></span>
 <span id="cb7-44"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-44" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb7-45"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-45" tabindex="-1"></a><span class="co">#&gt; Membership degrees matrix (top and bottom 5 rows): </span></span>
-<span id="cb7-46"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-46" tabindex="-1"></a><span class="co">#&gt;               Cluster 1 Cluster 2  Cluster 3</span></span>
-<span id="cb7-47"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-47" tabindex="-1"></a><span class="co">#&gt; CILACAP      0.09432155 0.7060817 0.19959671</span></span>
-<span id="cb7-48"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-48" tabindex="-1"></a><span class="co">#&gt; BANYUMAS     0.03242738 0.8768570 0.09071562</span></span>
-<span id="cb7-49"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-49" tabindex="-1"></a><span class="co">#&gt; PURBALINGGA  0.12503329 0.5885526 0.28641412</span></span>
-<span id="cb7-50"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-50" tabindex="-1"></a><span class="co">#&gt; BANJARNEGARA 0.15770912 0.2743115 0.56797934</span></span>
-<span id="cb7-51"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-51" tabindex="-1"></a><span class="co">#&gt; KEBUMEN      0.12183017 0.5532681 0.32490172</span></span>
+<span id="cb7-46"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-46" tabindex="-1"></a><span class="co">#&gt;              Cluster 1  Cluster 2  Cluster 3</span></span>
+<span id="cb7-47"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-47" tabindex="-1"></a><span class="co">#&gt; CILACAP      0.7060817 0.09432155 0.19959671</span></span>
+<span id="cb7-48"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-48" tabindex="-1"></a><span class="co">#&gt; BANYUMAS     0.8768570 0.03242738 0.09071562</span></span>
+<span id="cb7-49"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-49" tabindex="-1"></a><span class="co">#&gt; PURBALINGGA  0.5885526 0.12503329 0.28641412</span></span>
+<span id="cb7-50"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-50" tabindex="-1"></a><span class="co">#&gt; BANJARNEGARA 0.2743115 0.15770912 0.56797934</span></span>
+<span id="cb7-51"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-51" tabindex="-1"></a><span class="co">#&gt; KEBUMEN      0.5532681 0.12183017 0.32490172</span></span>
 <span id="cb7-52"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-52" tabindex="-1"></a><span class="co">#&gt; ...</span></span>
-<span id="cb7-53"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-53" tabindex="-1"></a><span class="co">#&gt;                 Cluster 1  Cluster 2  Cluster 3</span></span>
-<span id="cb7-54"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-54" tabindex="-1"></a><span class="co">#&gt; KOTA SURAKARTA  0.8828490 0.03051218 0.08663885</span></span>
-<span id="cb7-55"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-55" tabindex="-1"></a><span class="co">#&gt; KOTA SALATIGA   0.8235624 0.05093432 0.12550332</span></span>
-<span id="cb7-56"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-56" tabindex="-1"></a><span class="co">#&gt; KOTA SEMARANG   0.8117769 0.04152177 0.14670134</span></span>
-<span id="cb7-57"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-57" tabindex="-1"></a><span class="co">#&gt; KOTA PEKALONGAN 0.8798814 0.03226873 0.08784985</span></span>
-<span id="cb7-58"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-58" tabindex="-1"></a><span class="co">#&gt; KOTA TEGAL      0.8810010 0.03188749 0.08711147</span></span>
+<span id="cb7-53"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-53" tabindex="-1"></a><span class="co">#&gt;                  Cluster 1 Cluster 2  Cluster 3</span></span>
+<span id="cb7-54"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-54" tabindex="-1"></a><span class="co">#&gt; KOTA SURAKARTA  0.03051218 0.8828490 0.08663885</span></span>
+<span id="cb7-55"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-55" tabindex="-1"></a><span class="co">#&gt; KOTA SALATIGA   0.05093432 0.8235624 0.12550332</span></span>
+<span id="cb7-56"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-56" tabindex="-1"></a><span class="co">#&gt; KOTA SEMARANG   0.04152177 0.8117769 0.14670134</span></span>
+<span id="cb7-57"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-57" tabindex="-1"></a><span class="co">#&gt; KOTA PEKALONGAN 0.03226873 0.8798814 0.08784985</span></span>
+<span id="cb7-58"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-58" tabindex="-1"></a><span class="co">#&gt; KOTA TEGAL      0.03188749 0.8810010 0.08711147</span></span>
 <span id="cb7-59"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-59" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb7-60"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-60" tabindex="-1"></a><span class="co">#&gt; Descriptive statistics for the membership degrees by clusters</span></span>
 <span id="cb7-61"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-61" tabindex="-1"></a><span class="co">#&gt;           Size       Min        Q1      Mean    Median        Q3       Max</span></span>
-<span id="cb7-62"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-62" tabindex="-1"></a><span class="co">#&gt; Cluster 1   17 0.6264940 0.7749610 0.8295979 0.8328096 0.9065920 0.9399986</span></span>
-<span id="cb7-63"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-63" tabindex="-1"></a><span class="co">#&gt; Cluster 2    7 0.4710835 0.5709104 0.6359014 0.6144575 0.6735455 0.8768570</span></span>
+<span id="cb7-62"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-62" tabindex="-1"></a><span class="co">#&gt; Cluster 1    7 0.4710835 0.5709104 0.6359014 0.6144575 0.6735455 0.8768570</span></span>
+<span id="cb7-63"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-63" tabindex="-1"></a><span class="co">#&gt; Cluster 2   17 0.6264940 0.7749610 0.8295979 0.8328096 0.9065920 0.9399986</span></span>
 <span id="cb7-64"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-64" tabindex="-1"></a><span class="co">#&gt; Cluster 3   11 0.4400830 0.5270925 0.5979972 0.6211295 0.6705067 0.7556909</span></span>
 <span id="cb7-65"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-65" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb7-66"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-66" tabindex="-1"></a><span class="co">#&gt; Dunn&#39;s Fuzziness Coefficients:</span></span>
@@ -389,7 +389,7 @@ Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda
 <span id="cb7-69"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-69" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb7-70"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-70" tabindex="-1"></a><span class="co">#&gt; Within cluster sum of squares by cluster:</span></span>
 <span id="cb7-71"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-71" tabindex="-1"></a><span class="co">#&gt;        1        2        3 </span></span>
-<span id="cb7-72"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-72" tabindex="-1"></a><span class="co">#&gt; 130.5953 220.3251 200.0818 </span></span>
+<span id="cb7-72"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-72" tabindex="-1"></a><span class="co">#&gt; 220.3251 130.5953 200.0818 </span></span>
 <span id="cb7-73"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-73" tabindex="-1"></a><span class="co">#&gt; (between_SS / total_SS =  61.98%) </span></span>
 <span id="cb7-74"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-74" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb7-75"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb7-75" tabindex="-1"></a><span class="co">#&gt; Available components: </span></span>
@@ -408,7 +408,7 @@ Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb10-1" tabindex="-1"></a>res.fcm<span class="sc">$</span>func.val</span>
 <span id="cb10-2"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb10-2" tabindex="-1"></a><span class="co">#&gt; [1] 360.931 360.931 360.931 360.931 360.931</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb11-1" tabindex="-1"></a>res.fcm<span class="sc">$</span>iter</span>
-<span id="cb11-2"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb11-2" tabindex="-1"></a><span class="co">#&gt; [1] 74 74 75 75 84</span></span></code></pre></div>
+<span id="cb11-2"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb11-2" tabindex="-1"></a><span class="co">#&gt; [1] 81 76 77 76 78</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb12-1" tabindex="-1"></a>res.fcm<span class="sc">$</span>best.start</span>
 <span id="cb12-2"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb12-2" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
 </div>
@@ -422,61 +422,61 @@ Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda
 <span id="cb13-6"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-6" tabindex="-1"></a><span class="co">#&gt; Number of clusters:  3 </span></span>
 <span id="cb13-7"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb13-8"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-8" tabindex="-1"></a><span class="co">#&gt; Crisp clustering vector:</span></span>
-<span id="cb13-9"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-9" tabindex="-1"></a><span class="co">#&gt;  [1] 3 3 3 2 3 2 1 2 1 2 1 1 1 1 2 2 1 2 1 2 2 1 1 2 1 2 3 3 3 1 1 1 1 1 1</span></span>
+<span id="cb13-9"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-9" tabindex="-1"></a><span class="co">#&gt;  [1] 3 3 3 1 3 1 2 1 2 1 2 2 2 2 1 1 2 1 2 1 1 2 2 1 2 1 3 3 3 2 2 2 2 2 2</span></span>
 <span id="cb13-10"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb13-11"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-11" tabindex="-1"></a><span class="co">#&gt; Initial cluster prototypes:</span></span>
 <span id="cb13-12"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-12" tabindex="-1"></a><span class="co">#&gt;             X1   X2   X3   X4   X5   X6   X7   X8   X9  X10</span></span>
-<span id="cb13-13"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-13" tabindex="-1"></a><span class="co">#&gt; Cluster 1 2.24 2.36 1.94 2.18 2.21 2.33 1.32 0.55 2.56 2.74</span></span>
-<span id="cb13-14"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-14" tabindex="-1"></a><span class="co">#&gt; Cluster 2 3.29 1.36 4.27 2.11 2.40 3.06 2.97 2.65 1.90 3.66</span></span>
-<span id="cb13-15"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-15" tabindex="-1"></a><span class="co">#&gt; Cluster 3 0.59 0.65 0.75 0.63 1.21 0.71 1.15 0.36 0.12 0.27</span></span>
+<span id="cb13-13"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-13" tabindex="-1"></a><span class="co">#&gt; Cluster 1 2.13 1.95 3.00 1.78 1.62 2.06 0.45 2.32 3.57 0.84</span></span>
+<span id="cb13-14"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-14" tabindex="-1"></a><span class="co">#&gt; Cluster 2 3.84 5.15 1.93 4.64 4.04 3.78 8.71 4.45 3.99 3.09</span></span>
+<span id="cb13-15"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-15" tabindex="-1"></a><span class="co">#&gt; Cluster 3 4.17 2.55 3.26 4.16 3.15 4.15 4.30 9.29 4.61 4.34</span></span>
 <span id="cb13-16"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb13-17"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-17" tabindex="-1"></a><span class="co">#&gt; Final cluster prototypes:</span></span>
 <span id="cb13-18"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-18" tabindex="-1"></a><span class="co">#&gt;                 X1       X2       X3       X4       X5       X6       X7</span></span>
-<span id="cb13-19"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-19" tabindex="-1"></a><span class="co">#&gt; Cluster 1 1.724771 1.743303 1.432408 1.706002 1.626688 1.504833 1.335312</span></span>
-<span id="cb13-20"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-20" tabindex="-1"></a><span class="co">#&gt; Cluster 2 3.418238 4.025821 3.497306 3.657048 3.843888 3.477061 3.074419</span></span>
+<span id="cb13-19"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-19" tabindex="-1"></a><span class="co">#&gt; Cluster 1 3.418238 4.025821 3.497306 3.657048 3.843888 3.477061 3.074419</span></span>
+<span id="cb13-20"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-20" tabindex="-1"></a><span class="co">#&gt; Cluster 2 1.724771 1.743303 1.432408 1.706002 1.626688 1.504833 1.335312</span></span>
 <span id="cb13-21"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-21" tabindex="-1"></a><span class="co">#&gt; Cluster 3 5.001721 4.041093 5.531054 4.669414 4.638562 5.500335 6.458007</span></span>
 <span id="cb13-22"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-22" tabindex="-1"></a><span class="co">#&gt;                 X8       X9      X10</span></span>
-<span id="cb13-23"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-23" tabindex="-1"></a><span class="co">#&gt; Cluster 1 1.021470 1.697120 1.056498</span></span>
-<span id="cb13-24"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-24" tabindex="-1"></a><span class="co">#&gt; Cluster 2 3.057133 3.802309 3.529256</span></span>
+<span id="cb13-23"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-23" tabindex="-1"></a><span class="co">#&gt; Cluster 1 3.057133 3.802309 3.529256</span></span>
+<span id="cb13-24"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-24" tabindex="-1"></a><span class="co">#&gt; Cluster 2 1.021470 1.697120 1.056498</span></span>
 <span id="cb13-25"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-25" tabindex="-1"></a><span class="co">#&gt; Cluster 3 7.009924 4.458629 6.474407</span></span>
 <span id="cb13-26"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-26" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb13-27"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-27" tabindex="-1"></a><span class="co">#&gt; Distance between the final cluster prototypes</span></span>
 <span id="cb13-28"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-28" tabindex="-1"></a><span class="co">#&gt;           Cluster 1 Cluster 2</span></span>
 <span id="cb13-29"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-29" tabindex="-1"></a><span class="co">#&gt; Cluster 2  42.66853          </span></span>
-<span id="cb13-30"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-30" tabindex="-1"></a><span class="co">#&gt; Cluster 3 165.71763  48.57171</span></span>
+<span id="cb13-30"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-30" tabindex="-1"></a><span class="co">#&gt; Cluster 3  48.57171 165.71763</span></span>
 <span id="cb13-31"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-31" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb13-32"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-32" tabindex="-1"></a><span class="co">#&gt; Difference between the initial and final cluster prototypes</span></span>
-<span id="cb13-33"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-33" tabindex="-1"></a><span class="co">#&gt;                   X1         X2         X3         X4         X5         X6</span></span>
-<span id="cb13-34"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-34" tabindex="-1"></a><span class="co">#&gt; Cluster 1 -0.5152294 -0.6166973 -0.5075916 -0.4739977 -0.5833119 -0.8251670</span></span>
-<span id="cb13-35"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-35" tabindex="-1"></a><span class="co">#&gt; Cluster 2  0.1282382  2.6658210 -0.7726942  1.5470484  1.4438885  0.4170614</span></span>
-<span id="cb13-36"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-36" tabindex="-1"></a><span class="co">#&gt; Cluster 3  4.4117214  3.3910934  4.7810540  4.0394145  3.4285617  4.7903353</span></span>
-<span id="cb13-37"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-37" tabindex="-1"></a><span class="co">#&gt;                   X7        X8         X9        X10</span></span>
-<span id="cb13-38"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-38" tabindex="-1"></a><span class="co">#&gt; Cluster 1 0.01531199 0.4714704 -0.8628795 -1.6835021</span></span>
-<span id="cb13-39"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-39" tabindex="-1"></a><span class="co">#&gt; Cluster 2 0.10441915 0.4071326  1.9023093 -0.1307443</span></span>
-<span id="cb13-40"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-40" tabindex="-1"></a><span class="co">#&gt; Cluster 3 5.30800717 6.6499240  4.3386289  6.2044068</span></span>
+<span id="cb13-33"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-33" tabindex="-1"></a><span class="co">#&gt;                   X1        X2         X3         X4        X5        X6</span></span>
+<span id="cb13-34"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-34" tabindex="-1"></a><span class="co">#&gt; Cluster 1  1.2882382  2.075821  0.4973058  1.8770484  2.223888  1.417061</span></span>
+<span id="cb13-35"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-35" tabindex="-1"></a><span class="co">#&gt; Cluster 2 -2.1152294 -3.406697 -0.4975916 -2.9339977 -2.413312 -2.275167</span></span>
+<span id="cb13-36"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-36" tabindex="-1"></a><span class="co">#&gt; Cluster 3  0.8317214  1.491093  2.2710540  0.5094145  1.488562  1.350335</span></span>
+<span id="cb13-37"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-37" tabindex="-1"></a><span class="co">#&gt;                  X7         X8         X9       X10</span></span>
+<span id="cb13-38"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-38" tabindex="-1"></a><span class="co">#&gt; Cluster 1  2.624419  0.7371326  0.2323093  2.689256</span></span>
+<span id="cb13-39"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-39" tabindex="-1"></a><span class="co">#&gt; Cluster 2 -7.374688 -3.4285296 -2.2928795 -2.033502</span></span>
+<span id="cb13-40"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-40" tabindex="-1"></a><span class="co">#&gt; Cluster 3  2.158007 -2.2800760 -0.1513711  2.134407</span></span>
 <span id="cb13-41"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-41" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb13-42"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-42" tabindex="-1"></a><span class="co">#&gt; Root Mean Squared Deviations (RMSD): 9.250055 </span></span>
-<span id="cb13-43"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-43" tabindex="-1"></a><span class="co">#&gt; Mean Absolute Deviation (MAD): 211.3922 </span></span>
+<span id="cb13-42"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-42" tabindex="-1"></a><span class="co">#&gt; Root Mean Squared Deviations (RMSD): 7.520755 </span></span>
+<span id="cb13-43"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-43" tabindex="-1"></a><span class="co">#&gt; Mean Absolute Deviation (MAD): 197.0004 </span></span>
 <span id="cb13-44"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-44" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb13-45"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-45" tabindex="-1"></a><span class="co">#&gt; Membership degrees matrix (top and bottom 5 rows): </span></span>
 <span id="cb13-46"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-46" tabindex="-1"></a><span class="co">#&gt;               Cluster 1  Cluster 2 Cluster 3</span></span>
-<span id="cb13-47"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-47" tabindex="-1"></a><span class="co">#&gt; CILACAP      0.09432155 0.19959671 0.7060817</span></span>
-<span id="cb13-48"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-48" tabindex="-1"></a><span class="co">#&gt; BANYUMAS     0.03242738 0.09071562 0.8768570</span></span>
-<span id="cb13-49"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-49" tabindex="-1"></a><span class="co">#&gt; PURBALINGGA  0.12503329 0.28641412 0.5885526</span></span>
-<span id="cb13-50"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-50" tabindex="-1"></a><span class="co">#&gt; BANJARNEGARA 0.15770912 0.56797934 0.2743115</span></span>
-<span id="cb13-51"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-51" tabindex="-1"></a><span class="co">#&gt; KEBUMEN      0.12183017 0.32490172 0.5532681</span></span>
+<span id="cb13-47"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-47" tabindex="-1"></a><span class="co">#&gt; CILACAP      0.19959671 0.09432155 0.7060817</span></span>
+<span id="cb13-48"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-48" tabindex="-1"></a><span class="co">#&gt; BANYUMAS     0.09071562 0.03242738 0.8768570</span></span>
+<span id="cb13-49"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-49" tabindex="-1"></a><span class="co">#&gt; PURBALINGGA  0.28641412 0.12503329 0.5885526</span></span>
+<span id="cb13-50"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-50" tabindex="-1"></a><span class="co">#&gt; BANJARNEGARA 0.56797934 0.15770912 0.2743115</span></span>
+<span id="cb13-51"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-51" tabindex="-1"></a><span class="co">#&gt; KEBUMEN      0.32490172 0.12183017 0.5532681</span></span>
 <span id="cb13-52"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-52" tabindex="-1"></a><span class="co">#&gt; ...</span></span>
-<span id="cb13-53"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-53" tabindex="-1"></a><span class="co">#&gt;                 Cluster 1  Cluster 2  Cluster 3</span></span>
-<span id="cb13-54"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-54" tabindex="-1"></a><span class="co">#&gt; KOTA SURAKARTA  0.8828490 0.08663885 0.03051218</span></span>
-<span id="cb13-55"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-55" tabindex="-1"></a><span class="co">#&gt; KOTA SALATIGA   0.8235624 0.12550332 0.05093432</span></span>
-<span id="cb13-56"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-56" tabindex="-1"></a><span class="co">#&gt; KOTA SEMARANG   0.8117769 0.14670134 0.04152177</span></span>
-<span id="cb13-57"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-57" tabindex="-1"></a><span class="co">#&gt; KOTA PEKALONGAN 0.8798814 0.08784985 0.03226873</span></span>
-<span id="cb13-58"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-58" tabindex="-1"></a><span class="co">#&gt; KOTA TEGAL      0.8810010 0.08711147 0.03188749</span></span>
+<span id="cb13-53"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-53" tabindex="-1"></a><span class="co">#&gt;                  Cluster 1 Cluster 2  Cluster 3</span></span>
+<span id="cb13-54"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-54" tabindex="-1"></a><span class="co">#&gt; KOTA SURAKARTA  0.08663885 0.8828490 0.03051218</span></span>
+<span id="cb13-55"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-55" tabindex="-1"></a><span class="co">#&gt; KOTA SALATIGA   0.12550332 0.8235624 0.05093432</span></span>
+<span id="cb13-56"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-56" tabindex="-1"></a><span class="co">#&gt; KOTA SEMARANG   0.14670134 0.8117769 0.04152177</span></span>
+<span id="cb13-57"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-57" tabindex="-1"></a><span class="co">#&gt; KOTA PEKALONGAN 0.08784985 0.8798814 0.03226873</span></span>
+<span id="cb13-58"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-58" tabindex="-1"></a><span class="co">#&gt; KOTA TEGAL      0.08711147 0.8810010 0.03188749</span></span>
 <span id="cb13-59"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-59" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb13-60"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-60" tabindex="-1"></a><span class="co">#&gt; Descriptive statistics for the membership degrees by clusters</span></span>
 <span id="cb13-61"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-61" tabindex="-1"></a><span class="co">#&gt;           Size       Min        Q1      Mean    Median        Q3       Max</span></span>
-<span id="cb13-62"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-62" tabindex="-1"></a><span class="co">#&gt; Cluster 1   17 0.6264940 0.7749610 0.8295979 0.8328096 0.9065920 0.9399986</span></span>
-<span id="cb13-63"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-63" tabindex="-1"></a><span class="co">#&gt; Cluster 2   11 0.4400830 0.5270925 0.5979972 0.6211295 0.6705067 0.7556909</span></span>
+<span id="cb13-62"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-62" tabindex="-1"></a><span class="co">#&gt; Cluster 1   11 0.4400830 0.5270925 0.5979972 0.6211295 0.6705067 0.7556909</span></span>
+<span id="cb13-63"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-63" tabindex="-1"></a><span class="co">#&gt; Cluster 2   17 0.6264940 0.7749610 0.8295979 0.8328096 0.9065920 0.9399986</span></span>
 <span id="cb13-64"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-64" tabindex="-1"></a><span class="co">#&gt; Cluster 3    7 0.4710835 0.5709104 0.6359014 0.6144575 0.6735455 0.8768570</span></span>
 <span id="cb13-65"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-65" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb13-66"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-66" tabindex="-1"></a><span class="co">#&gt; Dunn&#39;s Fuzziness Coefficients:</span></span>
@@ -485,7 +485,7 @@ Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda
 <span id="cb13-69"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-69" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb13-70"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-70" tabindex="-1"></a><span class="co">#&gt; Within cluster sum of squares by cluster:</span></span>
 <span id="cb13-71"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-71" tabindex="-1"></a><span class="co">#&gt;        1        2        3 </span></span>
-<span id="cb13-72"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-72" tabindex="-1"></a><span class="co">#&gt; 130.5953 200.0818 220.3251 </span></span>
+<span id="cb13-72"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-72" tabindex="-1"></a><span class="co">#&gt; 200.0818 130.5953 220.3251 </span></span>
 <span id="cb13-73"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-73" tabindex="-1"></a><span class="co">#&gt; (between_SS / total_SS =  61.98%) </span></span>
 <span id="cb13-74"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-74" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb13-75"><a href="3.1-eksperimeen-fuzzy-c-means.html#cb13-75" tabindex="-1"></a><span class="co">#&gt; Available components: </span></span>

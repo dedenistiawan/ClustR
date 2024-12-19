@@ -27,3 +27,4 @@ fig:unnamed-chunk-12
 thm:unnamed-chunk-3
 lem:unnamed-chunk-4
 lem:unnamed-chunk-5
+tab:nice-tab-2
