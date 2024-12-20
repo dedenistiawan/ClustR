@@ -23,15 +23,15 @@
 <meta name="author" content="Deden Istiawan" />
 
 
-<meta name="date" content="2024-12-19" />
+<meta name="date" content="2024-12-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="2.1-eksperimen-algoritma-k-means.html"/>
-<link rel="next" href="3.1-eksperimeen-fuzzy-c-means.html"/>
+<link rel="prev" href="2.2-eksperimen-algoritma-k-means.html"/>
+<link rel="next" href="3.1-tahapan-algoritma-fuzzy-c-means.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -160,6 +160,29 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="stylesheet" href="toc.css" type="text/css" />
@@ -186,32 +209,49 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-km.html"><a href="2-km.html"><i class="fa fa-check"></i><b>2</b> Algoritma K-Means</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html"><i class="fa fa-check"></i><b>2.1</b> Eksperimen Algoritma K-Means</a>
+<li class="chapter" data-level="2.1" data-path="2.1-tahapan-algoritma-k-means.html"><a href="2.1-tahapan-algoritma-k-means.html"><i class="fa fa-check"></i><b>2.1</b> Tahapan Algoritma K-Means</a>
 <ul>
-<li class="chapter" data-level="" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html#data"><i class="fa fa-check"></i>Data</a></li>
-<li class="chapter" data-level="" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html#memeriksa-missing-value"><i class="fa fa-check"></i>Memeriksa Missing Value</a></li>
-<li class="chapter" data-level="" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html#visualisasi-matriks-jarak"><i class="fa fa-check"></i>Visualisasi Matriks jarak</a></li>
-<li class="chapter" data-level="" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html#estimasi-jumlah-cluster-optimal"><i class="fa fa-check"></i>Estimasi Jumlah <em>Cluster</em> Optimal</a></li>
-<li class="chapter" data-level="" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html#membuat-plot-cluster"><i class="fa fa-check"></i>Membuat Plot <em>Cluster</em></a></li>
-<li class="chapter" data-level="" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html#metode-elbow"><i class="fa fa-check"></i>Metode Elbow</a></li>
-<li class="chapter" data-level="" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html#metode-silhouette"><i class="fa fa-check"></i>Metode Silhouette</a></li>
-<li class="chapter" data-level="" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html#eksperimen-k-means-clustering"><i class="fa fa-check"></i>Eksperimen K-Means Clustering</a></li>
-<li class="chapter" data-level="" data-path="2.1-eksperimen-algoritma-k-means.html"><a href="2.1-eksperimen-algoritma-k-means.html#visualisasi-hasil-clustering"><i class="fa fa-check"></i>Visualisasi Hasil <em>clustering</em></a></li>
+<li class="chapter" data-level="" data-path="2.1-tahapan-algoritma-k-means.html"><a href="2.1-tahapan-algoritma-k-means.html#inisialisasi-centroid"><i class="fa fa-check"></i>1. Inisialisasi Centroid</a></li>
+<li class="chapter" data-level="" data-path="2.1-tahapan-algoritma-k-means.html"><a href="2.1-tahapan-algoritma-k-means.html#penugasan-cluster"><i class="fa fa-check"></i>2. Penugasan Cluster</a></li>
+<li class="chapter" data-level="" data-path="2.1-tahapan-algoritma-k-means.html"><a href="2.1-tahapan-algoritma-k-means.html#perbaharui-centroid"><i class="fa fa-check"></i>3. Perbaharui Centroid</a></li>
+<li class="chapter" data-level="" data-path="2.1-tahapan-algoritma-k-means.html"><a href="2.1-tahapan-algoritma-k-means.html#ulangi-langkah-2-dan-3"><i class="fa fa-check"></i>4. Ulangi Langkah 2 dan 3</a></li>
+<li class="chapter" data-level="" data-path="2.1-tahapan-algoritma-k-means.html"><a href="2.1-tahapan-algoritma-k-means.html#hasil-akhir"><i class="fa fa-check"></i>5. Hasil Akhir</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2.2-eksperimen-algoritma-k-means.html"><a href="2.2-eksperimen-algoritma-k-means.html"><i class="fa fa-check"></i><b>2.2</b> Eksperimen Algoritma K-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path="2.2-eksperimen-algoritma-k-means.html"><a href="2.2-eksperimen-algoritma-k-means.html#deskripsi-data"><i class="fa fa-check"></i>Deskripsi Data</a></li>
+<li class="chapter" data-level="" data-path="2.2-eksperimen-algoritma-k-means.html"><a href="2.2-eksperimen-algoritma-k-means.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="2.2-eksperimen-algoritma-k-means.html"><a href="2.2-eksperimen-algoritma-k-means.html#memeriksa-missing-value"><i class="fa fa-check"></i>Memeriksa <em>Missing Value</em></a></li>
+<li class="chapter" data-level="" data-path="2.2-eksperimen-algoritma-k-means.html"><a href="2.2-eksperimen-algoritma-k-means.html#visualisasi-matriks-jarak"><i class="fa fa-check"></i>Visualisasi Matriks jarak</a></li>
+<li class="chapter" data-level="" data-path="2.2-eksperimen-algoritma-k-means.html"><a href="2.2-eksperimen-algoritma-k-means.html#estimasi-jumlah-cluster-optimal"><i class="fa fa-check"></i>Estimasi Jumlah <em>Cluster</em> Optimal</a></li>
+<li class="chapter" data-level="" data-path="2.2-eksperimen-algoritma-k-means.html"><a href="2.2-eksperimen-algoritma-k-means.html#metode-elbow"><i class="fa fa-check"></i>Metode Elbow</a></li>
+<li class="chapter" data-level="" data-path="2.2-eksperimen-algoritma-k-means.html"><a href="2.2-eksperimen-algoritma-k-means.html#metode-silhouette"><i class="fa fa-check"></i>Metode Silhouette</a></li>
+<li class="chapter" data-level="" data-path="2.2-eksperimen-algoritma-k-means.html"><a href="2.2-eksperimen-algoritma-k-means.html#membuat-plot-cluster"><i class="fa fa-check"></i>Membuat Plot <em>Cluster</em></a></li>
+<li class="chapter" data-level="" data-path="2.2-eksperimen-algoritma-k-means.html"><a href="2.2-eksperimen-algoritma-k-means.html#eksperimen-k-means-clustering"><i class="fa fa-check"></i>Eksperimen K-Means Clustering</a></li>
+<li class="chapter" data-level="" data-path="2.2-eksperimen-algoritma-k-means.html"><a href="2.2-eksperimen-algoritma-k-means.html#visualisasi-hasil-clustering"><i class="fa fa-check"></i>Visualisasi Hasil <em>clustering</em></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="3-fcm.html"><a href="3-fcm.html"><i class="fa fa-check"></i><b>3</b> Algoritma Fuzzy C-Means</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html"><i class="fa fa-check"></i><b>3.1</b> Eksperimeen Fuzzy C-Means</a>
+<li class="chapter" data-level="3.1" data-path="3.1-tahapan-algoritma-fuzzy-c-means.html"><a href="3.1-tahapan-algoritma-fuzzy-c-means.html"><i class="fa fa-check"></i><b>3.1</b> Tahapan Algoritma Fuzzy C-Means</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html#install-dan-load-packagaes"><i class="fa fa-check"></i><b>3.1.1</b> Install dan Load Packagaes</a></li>
-<li class="chapter" data-level="3.1.2" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html#data-1"><i class="fa fa-check"></i><b>3.1.2</b> Data</a></li>
-<li class="chapter" data-level="3.1.3" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html#hasil-clustering"><i class="fa fa-check"></i><b>3.1.3</b> Hasil Clustering</a></li>
-<li class="chapter" data-level="3.1.4" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html#hasil-clustering-fcm"><i class="fa fa-check"></i><b>3.1.4</b> Hasil Clustering FCM</a></li>
-<li class="chapter" data-level="3.1.5" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html#run-fcm-with-multiple-starts"><i class="fa fa-check"></i><b>3.1.5</b> Run FCM with Multiple Starts</a></li>
-<li class="chapter" data-level="3.1.6" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html#display-the-best-solution"><i class="fa fa-check"></i><b>3.1.6</b> Display the best solution</a></li>
-<li class="chapter" data-level="3.1.7" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html#display-the-summary-of-clustering-results"><i class="fa fa-check"></i><b>3.1.7</b> Display the summary of clustering results</a></li>
-<li class="chapter" data-level="3.1.8" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html#cluster-plot-with-fviz_cluster"><i class="fa fa-check"></i><b>3.1.8</b> Cluster Plot with fviz_cluster</a></li>
-<li class="chapter" data-level="3.1.9" data-path="3.1-eksperimeen-fuzzy-c-means.html"><a href="3.1-eksperimeen-fuzzy-c-means.html#cluster-plot-with-clusplot"><i class="fa fa-check"></i><b>3.1.9</b> Cluster Plot with clusplot</a></li>
+<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-fuzzy-c-means.html"><a href="3.1-tahapan-algoritma-fuzzy-c-means.html#inisialisasi-parameter"><i class="fa fa-check"></i>1. Inisialisasi Parameter</a></li>
+<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-fuzzy-c-means.html"><a href="3.1-tahapan-algoritma-fuzzy-c-means.html#hitung-pusat-cluster"><i class="fa fa-check"></i>2. Hitung Pusat Cluster</a></li>
+<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-fuzzy-c-means.html"><a href="3.1-tahapan-algoritma-fuzzy-c-means.html#perbarui-derajat-keanggotaan"><i class="fa fa-check"></i>3. Perbarui Derajat Keanggotaan</a></li>
+<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-fuzzy-c-means.html"><a href="3.1-tahapan-algoritma-fuzzy-c-means.html#periksa-konvergensi"><i class="fa fa-check"></i>4. Periksa Konvergensi</a></li>
+<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-fuzzy-c-means.html"><a href="3.1-tahapan-algoritma-fuzzy-c-means.html#output-hasil-clustering"><i class="fa fa-check"></i>5. Output Hasil Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="3.2-eksperimeen-fuzzy-c-means.html"><a href="3.2-eksperimeen-fuzzy-c-means.html"><i class="fa fa-check"></i><b>3.2</b> Eksperimeen Fuzzy C-Means</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="3.2-eksperimeen-fuzzy-c-means.html"><a href="3.2-eksperimeen-fuzzy-c-means.html#install-dan-load-packagaes"><i class="fa fa-check"></i><b>3.2.1</b> Install dan Load Packagaes</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3.2-eksperimeen-fuzzy-c-means.html"><a href="3.2-eksperimeen-fuzzy-c-means.html#data-1"><i class="fa fa-check"></i><b>3.2.2</b> Data</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3.2-eksperimeen-fuzzy-c-means.html"><a href="3.2-eksperimeen-fuzzy-c-means.html#hasil-clustering"><i class="fa fa-check"></i><b>3.2.3</b> Hasil Clustering</a></li>
+<li class="chapter" data-level="3.2.4" data-path="3.2-eksperimeen-fuzzy-c-means.html"><a href="3.2-eksperimeen-fuzzy-c-means.html#hasil-clustering-fcm"><i class="fa fa-check"></i><b>3.2.4</b> Hasil Clustering FCM</a></li>
+<li class="chapter" data-level="3.2.5" data-path="3.2-eksperimeen-fuzzy-c-means.html"><a href="3.2-eksperimeen-fuzzy-c-means.html#run-fcm-with-multiple-starts"><i class="fa fa-check"></i><b>3.2.5</b> Run FCM with Multiple Starts</a></li>
+<li class="chapter" data-level="3.2.6" data-path="3.2-eksperimeen-fuzzy-c-means.html"><a href="3.2-eksperimeen-fuzzy-c-means.html#display-the-best-solution"><i class="fa fa-check"></i><b>3.2.6</b> Display the best solution</a></li>
+<li class="chapter" data-level="3.2.7" data-path="3.2-eksperimeen-fuzzy-c-means.html"><a href="3.2-eksperimeen-fuzzy-c-means.html#display-the-summary-of-clustering-results"><i class="fa fa-check"></i><b>3.2.7</b> Display the summary of clustering results</a></li>
+<li class="chapter" data-level="3.2.8" data-path="3.2-eksperimeen-fuzzy-c-means.html"><a href="3.2-eksperimeen-fuzzy-c-means.html#cluster-plot-with-fviz_cluster"><i class="fa fa-check"></i><b>3.2.8</b> Cluster Plot with fviz_cluster</a></li>
+<li class="chapter" data-level="3.2.9" data-path="3.2-eksperimeen-fuzzy-c-means.html"><a href="3.2-eksperimeen-fuzzy-c-means.html#cluster-plot-with-clusplot"><i class="fa fa-check"></i><b>3.2.9</b> Cluster Plot with clusplot</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="4-HC.html"><a href="4-HC.html"><i class="fa fa-check"></i><b>4</b> Metode Cluster Hirarki</a>
@@ -247,10 +287,12 @@ Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda
 body{
 text-align: justify}
 </style>
-<p>Fuzzy c-means merupakan metode yang dikenal baik dalam mendeteksi klaster <span class="citation">(<a href="#ref-pimentel2016"><strong>pimentel2016?</strong></a>)</span>. Metode ini menggunakan model pengelompokan fuzzy sehingga data dapat menjadi anggota dari semua kelas atau klaster terbentuk dengan derajat atau tingkat keanggotaan yang berbeda antara 0 hingga 1. Tingkat keberadaan data dalam suatu kelas atau klaster ditentukan oleh derajat keanggotaannya. Kelebihan dari metode ini adalah penempatan pusat klaster yang lebih tepat dibandingkan dengan metode lain. Caranya adalah dengan memperbaiki pusat klaster secara berulang, maka akan dapat dilihat bahwa pusat klaster akan bergerak menuju lokasi yang tepat (Wijaya, 2014). Namun, pada algoritma Fuzzy c-means dibutuhkan waktu komputasi yang lama <span class="citation">(<a href="#ref-stetco2015"><strong>stetco2015?</strong></a>)</span>.</p>
-<p>Klastering dengan algoritma Fuzzy C-Means didasarkan pada teori logika fuzzy yang diperkenalkan oleh Lotfi Zadeh pada tahun 1965 dengan nama himpunan fuzzy (fuzzy set). Fuzzy C-Means Clustering pertama kali diperkenalkan oleh Dun pada (1973) dan diperbaiki oleh Bezdek <span class="citation">(<a href="#ref-bezdek1984"><strong>bezdek1984?</strong></a>)</span>. Dalam teori fuzzy, keangotaan sebuah data diberikan dengan suatu nilai derajat keanggotaan yang jangkauan nilainya 0 sampai 1. Semakin tinggi nilai derajat keanggotaannya maka semakin tinggi nilai keanggotaan sebuah data dalam suatu kelompok dan semakin kecil nilai derajat keanggotaannya maka semakin rendah nilai keanggotaan sebuah data dalam suatu kelompok.</p>
-<p>Asumsikan terdapat sejumlah data dalam dataset <span class="math inline">\(X\)</span> yang berisi <span class="math inline">\(n\)</span> data yang
-dinotasikan <span class="math inline">\(X={x_1,x_2, …,x_n}\)</span>, dimana setiap data mempunyai fitur <span class="math inline">\(r\)</span> dimensi: <span class="math inline">\(x_{i1}, x_{i2}, ..., x_{ir}\)</span>, dinotasikan <span class="math inline">\(x_i={x_i1, x_i2, ..., x_ir}\)</span>. Ada sejumlah klaster <span class="math inline">\(C\)</span> dengan centroid: <span class="math inline">\(C_1, C_2, ..., C_k\)</span>, dimana <span class="math inline">\(k\)</span> adalah jumlah klaster. Setiap data mempunyai derajat keanggotaan pada setiap klaster, dinyatakan dengan <span class="math inline">\(u_{ij}\)</span>, dengan nilai diantara 0 dan 1, <span class="math inline">\(i\)</span> menyatakan data <span class="math inline">\(x_i\)</span> dan <span class="math inline">\(j\)</span> menyatakan klaster <span class="math inline">\(c_j\)</span>. Jumlah nilai derajat keanggotaan setiap data <span class="math inline">\(x_i\)</span> selalu sama dengan 1, yang diformulasikan pada persamaan berikut:</p>
+<p>Algoritma fuzzy c-means (FCM) merupakan salah satu metode clustering yang banyak digunakan dalam analisis data dan pengolahan citra. Berbeda dengan algoritma clustering tradisional seperti k-means, yang mengelompokkan data ke dalam cluster yang jelas dan tegas, FCM memberikan fleksibilitas dengan memungkinkan setiap data untuk memiliki derajat keanggotaan pada lebih dari satu cluster. Hal ini menjadikan FCM sangat berguna dalam situasi di mana batasan antara cluster tidak dapat ditentukan dengan jelas <span class="citation">(<a href="#ref-bezdek1981pattern">Bezdek 1981</a>)</span>.</p>
+<p>FCM pertama kali diperkenalkan oleh Bezdek pada tahun 1981 dan sejak saat itu telah banyak diterapkan dalam berbagai bidang, termasuk pengolahan citra, pengenalan pola, dan analisis data multidimensi. Metode ini bekerja dengan meminimalkan fungsi objektif yang mengukur kesalahan antara data dan pusat cluster, dengan mempertimbangkan derajat keanggotaan setiap data terhadap cluster yang ada. Proses ini dilakukan secara iteratif hingga konvergensi tercapai, di mana perubahan pusat cluster dan derajat keanggotaan menjadi sangat kecil <span class="citation">(<a href="#ref-dunn1973fuzzy">Dunn 1973</a>)</span>.</p>
+<p>Salah satu keunggulan FCM adalah kemampuannya untuk menangani data yang memiliki noise atau outlier. Dalam banyak aplikasi dunia nyata, data sering kali tidak bersih dan mengandung kesalahan pengukuran. Dengan menggunakan derajat keanggotaan, FCM dapat mengurangi pengaruh data yang tidak representatif terhadap hasil clustering, sehingga menghasilkan model yang lebih robust dan akurat <span class="citation">(<a href="#ref-pal1995cluster">Pal and Bezdek 1995</a>)</span>.</p>
+<p>Namun, meskipun FCM memiliki banyak kelebihan, algoritma ini juga memiliki beberapa kelemahan. Salah satunya adalah ketergantungan pada pemilihan jumlah cluster yang tepat, yang dapat mempengaruhi hasil akhir. Selain itu, FCM juga dapat menjadi sensitif terhadap inisialisasi pusat cluster, yang dapat menyebabkan hasil yang berbeda pada setiap iterasi <span class="citation">(<a href="#ref-huang1998extensions">Huang 1998</a>)</span>. Oleh karena itu, penelitian lebih lanjut diperlukan untuk mengembangkan metode yang dapat mengatasi masalah ini.</p>
+<p>Dalam konteks perkembangan teknologi dan kebutuhan analisis data yang semakin kompleks, FCM tetap menjadi salah satu metode yang relevan dan banyak digunakan. Penelitian dan pengembangan lebih lanjut dalam algoritma ini diharapkan dapat meningkatkan kinerjanya dan memperluas aplikasinya di berbagai bidang, termasuk kecerdasan buatan dan analisis big data. Dengan demikian, pemahaman yang mendalam tentang FCM dan aplikasinya sangat penting bagi para peneliti dan praktisi di bidang ini.</p>
+<p>Klastering dengan algoritma Fuzzy C-Means didasarkan pada teori logika fuzzy yang diperkenalkan oleh Lotfi Zadeh pada tahun 1965 dengan nama himpunan fuzzy (fuzzy set). Fuzzy C-Means Clustering pertama kali diperkenalkan oleh Dun pada (1973) dan diperbaiki oleh Bezdek <span class="citation">(<a href="#ref-bezdek1981pattern">Bezdek 1981</a>)</span> . Dalam teori fuzzy, keangotaan sebuah data diberikan dengan suatu nilai derajat keanggotaan yang jangkauan nilainya 0 sampai 1. Semakin tinggi nilai derajat keanggotaannya maka semakin tinggi nilai keanggotaan sebuah data dalam suatu kelompok dan semakin kecil nilai derajat keanggotaannya maka semakin rendah nilai keanggotaan sebuah data dalam suatu kelompok.</p>
 <div class = "keyconcept" <div class = "keyconcept" id="KC2.1"> 
 <h3 class = "right"> Persamaan 3.1 </h3> 
 <h3 class= "left"> Derajat Keanggotaan </h3> 
@@ -262,40 +304,20 @@ $$\sum_{j=1}^k u_{i j}=1$$
 
 </p> 
 </div>
-<p>Fuzzy c-means clustering merupakan suatu metode clustering yang hampir mirip seperti k-means clustering. Karena metode clustering ini mirip dengan k-means clustering, ada yang menyebut metode ini fuzzy k-means clustering. Fuzzy c-means merupakan salah satu jenis soft clustering dimana dalam mengelompokan suatu data, setiap data bisa dimiliki lebih dari satu cluster.</p>
-<p>Cara kerja dari fuzzy c-means clustering dalam mengelompokkan datanya adalah sebagai berikut :</p>
-<ol style="list-style-type: decimal">
-<li><p>Menentukan banyak cluster (k) yang akan dibuat.</p></li>
-<li><p>Menentukan nilai proporsi untuk setiap data poin secara random untuk masuk dalam suatu cluster. Menghitung nilai centroid.</p></li>
-<li><p>Dalam menghitung nilai centroid, kita menggunakan formula berikut:</p></li>
-</ol>
-<div class = "keyconcept" <div class = "keyconcept" id="KC2.1"> 
-<h3 class = "right"> Persamaan 3.2 </h3> 
-<h3 class= "left"> Centroid </h3> 
-
-<p> 
-
-$$C_j=rac{\sum{\mu^m_{ij}x}}{\sum{\mu^m_{ij}}}$$
-
-
-</p> 
 </div>
-<ol start="4" style="list-style-type: decimal">
-<li>Menghtung kembali nilai proporsi untuk setiap data poin untuk masuk pada setiap cluster. formula yang digunakan yaitu sebagai berikut:</li>
-</ol>
-<div class = "keyconcept" <div class = "keyconcept" id="KC2.1"> 
-<h3 class = "right"> Persamaan 3.2 </h3> 
-<h3 class= "left"> Centroid </h3> 
-
-<p> 
-
-
-</p> 
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-bezdek1981pattern" class="csl-entry">
+Bezdek, James C. 1981. <em>Pattern Recognition with Fuzzy Objective Function Algorithms</em>. New York: Plenum Press.
 </div>
-<div class="lemma">
-<p><span id="lem:unnamed-chunk-5" class="lemma"><strong>Lemma 3.1  </strong></span><span class="math display">\[
-\mu_{ij}^m = \frac{1}{\sum \left( \frac{|x_i - c_j|}{|x_i - c_k|} \right)^{\frac{2}{m-1}}}
-\]</span></p>
+<div id="ref-dunn1973fuzzy" class="csl-entry">
+Dunn, J. C. 1973. <span>“A Fuzzy Relative of the ISODATA Process and Its Use in Detecting Compact Well-Separated Clusters.”</span> <em>Journal of Cybernetics</em> 3 (3): 32–57.
+</div>
+<div id="ref-huang1998extensions" class="csl-entry">
+Huang, Z. 1998. <span>“Extensions to the k-Means Algorithm for Clustering Large Data Sets.”</span> <em>Data Mining and Knowledge Discovery</em> 2 (3): 283–304.
+</div>
+<div id="ref-pal1995cluster" class="csl-entry">
+Pal, N. R., and J. C. Bezdek. 1995. <span>“On Cluster Validity for the Fuzzy c-Means Model.”</span> <em>IEEE Transactions on Fuzzy Systems</em> 3 (3): 370–79.
 </div>
 </div>
             </section>
@@ -303,8 +325,8 @@ $$C_j=rac{\sum{\mu^m_{ij}x}}{\sum{\mu^m_{ij}}}$$
           </div>
         </div>
       </div>
-<a href="2.1-eksperimen-algoritma-k-means.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="3.1-eksperimeen-fuzzy-c-means.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="2.2-eksperimen-algoritma-k-means.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="3.1-tahapan-algoritma-fuzzy-c-means.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
