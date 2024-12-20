@@ -66,8 +66,17 @@ di mana $\epsilon$ adalah ambang batas kecil yang ditentukan sebelumnya.
 ### 5. Hasil Akhir {-}
 Setelah konvergensi tercapai, hasil akhir adalah centroid dari setiap cluster dan pengelompokan titik data ke dalam cluster yang sesuai.
 
-### Ringkasan {-}
-Algoritma K-Means adalah metode iteratif yang mengelompokkan data ke dalam $K$ cluster berdasarkan kesamaan fitur. Proses ini melibatkan inisialisasi centroid, penugasan titik data ke cluster terdekat, dan pembaruan centroid hingga konvergensi tercapai. Dengan menggunakan rumus jarak Euclidean dan rata-rata, algoritma ini dapat dengan efektif mengelompokkan data dalam berbagai aplikasi analisis data.
+```{r, eval = my_output == "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "keyconcept" <div class = "keyconcept" id="KC2.1"> 
+<h3 class = "right"> </h3> 
+<h3 class= "left"> Ringkasan </h3> 
+
+<p> Algoritma K-Means adalah metode iteratif yang mengelompokkan data ke dalam $K$ cluster berdasarkan kesamaan fitur. Proses ini melibatkan inisialisasi centroid, penugasan titik data ke cluster terdekat, dan pembaruan centroid hingga konvergensi tercapai. Dengan menggunakan rumus jarak Euclidean dan rata-rata, algoritma ini dapat dengan efektif mengelompokkan data dalam berbagai aplikasi analisis data.
+
+</p> 
+</div>')
+```
 
 ## Eksperimen Algoritma K-Means
 
@@ -220,7 +229,6 @@ km.res$size
 ### Visualisasi Hasil *clustering* {.unnumbered}
 
 ```{r warning=FALSE, fig.cap='Plot Hasil Cluster', out.width='80%', fig.asp=.75, fig.align='center'}
-# Cluster means
 km.res$centers
 fviz_cluster(km.res, data = data)
 ```
@@ -228,9 +236,9 @@ fviz_cluster(km.res, data = data)
 ```{r fig.cap='Plot Hasil Cluster', out.width='80%', fig.asp=.75, fig.align='center'}
 fviz_cluster(km.res, data = data,
              palette = c("#FC4E07", "#00AFBB"),
-             ellipse.type = "euclid", # Concentration ellipse
-             star.plot = TRUE, # Add segments from centroids to items
-             repel = TRUE, # Avoid label overplotting (slow)
+             ellipse.type = "euclid", 
+             star.plot = TRUE, 
+             repel = TRUE, 
              ggtheme = theme_minimal())
 ```
 

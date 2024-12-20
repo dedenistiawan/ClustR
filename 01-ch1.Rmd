@@ -53,7 +53,7 @@ Perhatikan bahwa beberapa baris dalam widget tersebut dikomentari, yang meminta 
 
 ## Kolofon
 
-Buku ini disusun dengan:
+Buku ini didukung oleh `Bookdown`, yang memudahkan penulisan buku yang menggabungkan teks dan kode yang dapat dieksekusi.
 
 ```{r, echo = FALSE}
 sessioninfo::session_info()
@@ -74,7 +74,7 @@ knitr::include_graphics('images/rstudio.jpg')
 
 #### Dasar-Dasar R {-}
 
-Seperti disebutkan sebelumnya, buku ini bukan dimaksudkan sebagai pengantar `r ttcode("R")`, melainkan panduan tentang cara memanfaatkan kemampuannya untuk aplikasi yang umum dijumpai dalam ekonometrika tingkat sarjana. Pembaca yang memiliki pengetahuan dasar tentang pemrograman `r ttcode("R")` mungkin akan merasa nyaman untuk langsung memulai dari Bab \@ref(pt). Namun, bagian ini ditujukan bagi mereka yang belum pernah bekerja dengan `r ttcode("R")` atau *RStudio* sebelumnya. Jika Anda setidaknya sudah tahu cara membuat objek dan memanggil fungsi, Anda bisa melewati bagian ini. Namun, jika Anda ingin menyegarkan keterampilan Anda atau mendapatkan gambaran tentang cara bekerja dengan *RStudio*, lanjutkan membaca. 
+Seperti disebutkan sebelumnya, buku ini bukan dimaksudkan sebagai pengantar `r ttcode("R")`, melainkan panduan tentang cara memanfaatkan kemampuannya untuk aplikasi yang umum analisis *cluster* dengan `r ttcode("R")`. Pembaca yang memiliki pengetahuan dasar tentang pemrograman `r ttcode("R")` mungkin akan merasa nyaman untuk langsung memulai dari **Bab \@ref(km)**. Namun, bagian ini ditujukan bagi mereka yang belum pernah bekerja dengan `r ttcode("R")` atau *RStudio* sebelumnya. Jika Anda setidaknya sudah tahu cara membuat objek dan memanggil fungsi, Anda bisa melewati bagian ini. Namun, jika Anda ingin menyegarkan keterampilan Anda atau mendapatkan gambaran tentang cara bekerja dengan *RStudio*, lanjutkan membaca. 
 
 Pertama-tama, buka *RStudio* dan buat skrip `R` baru dengan memilih *File*, *New File*, *R Script*. Di panel editor, ketikkan
 

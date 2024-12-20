@@ -38,3 +38,5 @@ ringkasan
 fig:unnamed-chunk-3
 fig:unnamed-chunk-8
 fig:unnamed-chunk-13
+fig:unnamed-chunk-9
+fig:unnamed-chunk-14
