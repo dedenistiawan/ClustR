@@ -5,10 +5,18 @@ language:
   label:
     fig: "Gambar "
     tab: "Tabel "
+    thm: "Persamaan "
+    
+new_session: yes
+before_chapter_script: _common.R
     
 rmd_files: ["index.Rmd",
             "01-ch1.Rmd",
             "02-ch2.Rmd",
             "03-ch3.Rmd",
-            "04-ch4.Rmd", 
+            "04-ch4.Rmd",
+            "05-ch5.Rmd", 
+            "06-ch6.Rmd", 
+            "07-ch7.Rmd",
+            "08-ch8.Rmd", 
             "references.Rmd"]

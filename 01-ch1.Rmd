@@ -53,7 +53,7 @@ Perhatikan bahwa beberapa baris dalam widget tersebut dikomentari, yang meminta 
 
 ## Kolofon
 
-Buku ini didukung oleh `Bookdown`, yang memudahkan penulisan buku yang menggabungkan teks dan kode yang dapat dieksekusi.
+Buku ini ditulis menggunakan [bookdown](http://bookdown.org/) di dalam [RStudio](http://www.rstudio.com/ide/). Seluruh kode sumbernya dapat diakses di [GitHub](https://github.com/dedenistiawan/ClustR).
 
 ```{r, echo = FALSE}
 sessioninfo::session_info()

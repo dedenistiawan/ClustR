@@ -61,6 +61,7 @@ Ulangi langkah penugasan cluster dan pembaruan centroid hingga tidak ada perubah
 $$
 \text{Jika } \| C_k^{(t)} - C_k^{(t-1)} \| < \epsilon \quad \text{atau tidak ada perubahan cluster}
 $$
+
 di mana $\epsilon$ adalah ambang batas kecil yang ditentukan sebelumnya.
 
 ### 5. Hasil Akhir {-}
@@ -96,13 +97,13 @@ Data yang digunakan dalam eksperimen k-means ini berasal dari Tim Percepatan Pen
 Dengan menggunakan fungsi `read.csv()` dari R, kami dapat mengimpor data langsung dari URL tersebut ke dalam lingkungan kerja R. Berikut adalah kode yang digunakan untuk membaca data:
 Package `reader` menyiapkan fungsi [`read_csv()`](https://readr.tidyverse.org/reference/read_delim.html) untuk import data dari file CSV. Pada kasus ini digunakan data [Data 40% Kemiskinan di jawa Tengah](https://github.com/dedenistiawan/Dataset/blob/main/BDT.csv).
 
-```{r Load_data_km,warning=FALSE, tidy=FALSE}
+```{r Load_data_km, warning=FALSE, tidy=FALSE}
 library (readr)
 urlfile = "https://bit.ly/3VO3kRE"
 data<-read.csv(url(urlfile), row.names = "Kabupaten")
 ```
 
-```{r nice-tab-1, tidy=FALSE, echo=FALSE}
+```{r nice-tab-km, tidy=FALSE, echo=FALSE}
 knitr::kable(
   head(data, 10), caption = 'Basis Data Terpadu Jawa Tengah',
   booktabs = TRUE)
@@ -123,8 +124,7 @@ Setelah melakukan pemeriksaan terhadap dataset, tidak ada nilai yang hilang (*mi
 
 Setelah mempersiapkan data dan memastikan tidak ada nilai yang hilang, langkah selanjutnya adalah membuat visualisasi matriks jarak. Visualisasi ini penting untuk memahami seberapa dekat atau jauh objek-objek dalam dataset berdasarkan variabel yang ada. Dengan menggunakan matriks jarak, kita dapat melihat pola dan hubungan antar data yang akan membantu dalam analisis *cluster*. Kami akan menggunakan library `factoextra` untuk menghitung dan memvisualisasikan matriks jarak. Fungsi `get_dist()` akan digunakan untuk menghitung jarak antar objek, dan `fviz_dist()` dari `factoextra` akan digunakan untuk membuat visualisasi. Berikut adalah kode untuk membuat visualisasi matriks jarak:
 
-```{r warning=FALSE, message=FALSE, fig.cap='Matrik Jarak', out.width='80%', fig.asp=.75, fig.align='center'}
-#Plot Disatance
+```{r, fig.align='center', echo=FALSE, fig.cap="Matrik Jarak"}
 library(ggplot2)
 library(factoextra)
 distance <- get_dist(data)
@@ -154,7 +154,7 @@ Dalam metode k-means banyaknya klaster ditentukan sendiri oleh pengguna. Maka da
 
 Metode Elbow merupakan suatu metode yang digunakan untuk menghasilkan informasi dalam menentukan jumlah cluster terbaik dengan cara melihat persentase hasil perbandingan antara jumlah cluster yang akan membentuk siku pada suatu titik. Metode ini memberikan ide/gagasan dengan cara memilih nilai cluster dan kemudian menambah nilai cluster tersebut untuk dijadikan model data dalam penentuan cluster terbaik. Dan selain itu persentase perhitungan yang dihasilkan menjadi pembanding antara jumlah cluster yang ditambah. Hasil persentase yang berbeda dari setiap nilai cluster dapat ditunjukan dengan menggunakan grafik sebagai sumber informasinya. Jika nilai cluster pertama dengan nilai cluster kedua memberikan sudut dalam grafik atau nilainya mengalami penurunan paling besar maka nilai cluster tersebut yang terbaik.
 
-```{r fig.cap='Plot Jumlah Cluster Metode Elbow', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r, fig.align='center', echo=FALSE, fig.cap="Plot Jumlah Cluster Metode Elbow"}
 #penentuan jumlah cluster optimal
 library(ggplot2)
 library(factoextra)
@@ -168,7 +168,7 @@ Metode elbow menggunakan nilai total wss (whitin sum square) sebagai penentu ğ
 
 Silhouette Coefficient digunakan untuk melihat kualitas dan kekuatan cluster, seberapa baik suatu objek ditempatkan dalam suatu cluster. Metode ini merupakan gabungan dari metode cohesion dan separation.
 
-```{r fig.cap='Plot Jumlah Cluster Metode silhouette', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r, fig.align='center', echo=FALSE, fig.cap="Plot Jumlah Cluster Metode silhouette"}
 ##Average Silhouette Method
 fviz_nbclust(data, kmeans, method = "silhouette")
 ```
@@ -177,7 +177,7 @@ Pendekatan rata-rata nilai metode silhouette untuk menduga kualitas dari klaster
 
 ### Membuat Plot *Cluster* {.unnumbered}
 
-Jumlah klaster yang dibentuk mulai dari 2 sampai 5, untuk melihat sebaran data pada masing-masing *cluster*
+Pada eksperimen ini, algoritma K-Means diterapkan pada dataset dengan jumlah cluster yang bervariasi dari 2 hingga 5 untuk menganalisis bagaimana sebaran data berubah dengan jumlah cluster yang berbeda. Fungsi `kmeans()` digunakan untuk melakukan clustering, dengan parameter `centers` yang menentukan jumlah cluster yang diinginkan. Pada setiap percobaan, parameter `nstart = 25` digunakan untuk menjalankan algoritma K-Means sebanyak 25 kali dengan inisialisasi pusat cluster yang berbeda, untuk meningkatkan kemungkinan mendapatkan hasil yang lebih baik dan menghindari solusi lokal yang tidak optimal. Hasil clustering dengan 2, 3, 4, dan 5 cluster ini memberikan gambaran mengenai pemisahan data dalam ruang fitur dan memungkinkan kita untuk mengevaluasi sebaran data pada setiap cluster serta menentukan jumlah cluster yang paling sesuai untuk analisis lebih lanjut.
 
 ```{r}
 #gunakan beberapa nilai K
@@ -187,7 +187,9 @@ k4 <- kmeans(data, centers = 4, nstart = 25)
 k5 <- kmeans(data, centers = 5, nstart = 25)
 ```
 
-```{r}
+Kode ini digunakan untuk membandingkan hasil clustering dengan jumlah cluster yang berbeda, mulai dari 2 hingga 5, dengan memvisualisasikan setiap hasil clustering menggunakan fungsi `fviz_cluster()` dari paket `factoextra`. Setiap plot menggambarkan hasil clustering untuk jumlah cluster yang berbeda, di mana parameter `geom = "point"` memastikan bahwa titik data diplot sebagai titik pada grafik. Judul setiap plot, seperti `"k = 2"`, `"k = 3"`, `"k = 4"`, dan `"k = 5"`, menunjukkan jumlah cluster yang digunakan dalam setiap eksperimen clustering. Dengan menghasilkan empat plot ini, kita dapat membandingkan sebaran data dalam setiap cluster dan menganalisis bagaimana pemisahan data berubah dengan jumlah cluster yang berbeda. Visualisasi ini sangat berguna untuk membantu menentukan jumlah cluster yang optimal berdasarkan struktur data yang terlihat dalam plot.
+
+```{r, fig.align='center', echo=FALSE, fig.cap="Komparasi Plot Jumlah Cluster"}
 # komparasi plot
 p1 <- fviz_cluster(k2, geom = "point", data = data) + ggtitle("k = 2")
 p2 <- fviz_cluster(k3, geom = "point",  data = data) + ggtitle("k = 3")
@@ -195,14 +197,16 @@ p3 <- fviz_cluster(k4, geom = "point",  data = data) + ggtitle("k = 4")
 p4 <- fviz_cluster(k5, geom = "point",  data = data) + ggtitle("k = 5")
 ```
 
-```{r warning=FALSE, fig.cap='Plot Jumlah Cluster', out.width='80%', fig.asp=.75, fig.align='center'}
+Kode ini digunakan untuk menampilkan empat plot hasil clustering dalam satu tampilan teratur dengan menggunakan fungsi `grid.arrange()` dari paket `gridExtra`. Setiap plot yang mewakili jumlah cluster yang berbeda (2, 3, 4, dan 5) disusun dalam dua baris, masing-masing berisi dua plot, sehingga memudahkan perbandingan antar hasil clustering.
+
+```{r, fig.align='center', echo=FALSE, fig.cap="Plot Jumlah Cluster"}
 library(gridExtra)
 grid.arrange(p1, p2, p3, p4, nrow = 2)
 ```
 
 ### Eksperimen K-Means Clustering {.unnumbered}
 
-Dari pendekatan metode elbow dan metode Silhouette di dapatkan jumlah *cluster* optimal adalah K=2. setelah ini dilakukan eksperimen jumlah K=2
+Berdasarkan pendekatan metode elbow dan metode Silhouette, jumlah cluster optimal yang diperoleh adalah K=2. Metode elbow digunakan untuk menentukan jumlah cluster yang meminimalkan total within-cluster sum of squares (WSS), sementara metode Silhouette mengukur seberapa baik titik data dikelompokkan dalam cluster yang benar. Hasil dari kedua metode ini menunjukkan bahwa dua cluster adalah jumlah yang paling optimal untuk dataset ini. Oleh karena itu, eksperimen selanjutnya dilakukan dengan menggunakan K=2 untuk melakukan clustering, dengan tujuan untuk memverifikasi apakah pembagian data ke dalam dua cluster menghasilkan pemisahan yang jelas dan bermakna berdasarkan karakteristik data yang ada.
 
 ```{r}
 #jalankan k-means dengan k = 2
@@ -212,14 +216,14 @@ km.res <- kmeans(data, 2, nstart = 25)
 print(km.res)
 ```
 
-Melihat hasil *cluster* akhir pada setiap kabupaten
+Untuk melihat hasil akhir clustering K-Means pada setiap kabupaten dalam dataset. Dengan menggunakan `km.res$cluster`, kita dapat memperoleh informasi mengenai anggota setiap cluster yang terbentuk setelah algoritma K-Means dijalankan. Hasil ini akan menunjukkan cluster mana yang menjadi bagian dari setiap kabupaten berdasarkan hasil eksperimen dengan K=2, yang sebelumnya ditentukan sebagai jumlah cluster optimal. Setiap nilai dalam `km.res$cluster` mengindikasikan nomor cluster (misalnya, 1 atau 2) yang sesuai dengan kabupaten tertentu, yang memungkinkan kita untuk menganalisis distribusi dan pemisahan kabupaten berdasarkan karakteristik yang relevan dalam dataset.
 
 ```{r}
 # Jumlah anggota cluster
 km.res$cluster
 ```
 
-Melihat jumlah anggota *cluster*
+Kode ini digunakan untuk melihat ukuran masing-masing cluster setelah algoritma K-Means dijalankan. Dengan menggunakan `km.res$size`, kita dapat memperoleh jumlah anggota atau titik data yang termasuk dalam setiap cluster. Hasil dari `km.res$size` akan memberikan informasi mengenai berapa banyak kabupaten yang tergolong dalam setiap cluster yang terbentuk, baik itu cluster 1 atau cluster 2, berdasarkan hasil eksperimen dengan K=2. Informasi ini sangat berguna untuk memahami distribusi data dan sebaran anggota di setiap cluster yang dihasilkan oleh proses clustering.
 
 ```{r}
 # ukuran cluster
@@ -228,12 +232,16 @@ km.res$size
 
 ### Visualisasi Hasil *clustering* {.unnumbered}
 
-```{r warning=FALSE, fig.cap='Plot Hasil Cluster', out.width='80%', fig.asp=.75, fig.align='center'}
+Kode ini digunakan untuk memvisualisasikan hasil clustering K-Means pada dataset. Pertama, `km.res$centers` digunakan untuk menampilkan pusat cluster yang ditemukan oleh algoritma K-Means, yang mewakili rata-rata dari titik-titik data yang tergolong dalam setiap cluster. Pusat cluster ini memberikan gambaran tentang karakteristik masing-masing cluster. Selanjutnya, fungsi `fviz_cluster(km.res, data = data)` digunakan untuk memvisualisasikan hasil clustering dalam bentuk plot. Titik-titik data diplot dengan warna yang berbeda untuk masing-masing cluster, memudahkan kita untuk melihat pemisahan antar cluster serta sebaran data dalam ruang fitur. Visualisasi ini sangat berguna untuk memahami seberapa baik pemisahan antara cluster dan memberikan wawasan mengenai struktur data setelah dilakukan clustering.
+
+```{r, fig.align='center', echo=FALSE, fig.cap="Plot Hasil Cluster"}
 km.res$centers
 fviz_cluster(km.res, data = data)
 ```
 
-```{r fig.cap='Plot Hasil Cluster', out.width='80%', fig.asp=.75, fig.align='center'}
+Kode ini digunakan untuk memvisualisasikan hasil clustering K-Means dengan tampilan yang lebih informatif dan menarik. Fungsi `fviz_cluster()` digunakan untuk menggambarkan hasil clustering, di mana setiap cluster diberi warna yang berbedaâ€”oranye untuk cluster pertama dan biru kehijauan untuk cluster kedua. Penambahan ellips dengan tipe Euclidean memperjelas batasan area setiap cluster, menunjukkan sebaran titik data di dalamnya. Selain itu, fitur star plot diaktifkan untuk menggambarkan titik pusat setiap cluster, dengan garis yang menghubungkannya ke titik data dalam cluster tersebut, memberikan gambaran visual yang jelas tentang posisi pusat dan distribusi data. Untuk meningkatkan keterbacaan, fitur `repel` digunakan agar label titik data tidak tumpang tindih, dan tema minimal dari `ggplot2` (`theme_minimal()`) diterapkan untuk menghasilkan tampilan plot yang lebih bersih dan sederhana. Dengan pengaturan ini, visualisasi hasil clustering menjadi lebih mudah dipahami dan lebih menarik secara visual.
+
+```{r, fig.align='center', echo=FALSE, fig.cap="Plot Hasil Cluster"}
 fviz_cluster(km.res, data = data,
              palette = c("#FC4E07", "#00AFBB"),
              ellipse.type = "euclid", 

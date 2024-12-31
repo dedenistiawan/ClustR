@@ -1,173 +1,193 @@
-# Metode Cluster Hirarki {#HC}
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
 
-```{r Load_data_hc,warning=FALSE, tidy=FALSE}
-library (readr)
-urlfile = "https://raw.githubusercontent.com/dedenistiawan/Dataset/main/Basis%20Data%20Terpadu%20Jateng.csv"
+# CLARA - Clustering Large Applications {#clra}
 
-data<-read.csv(url(urlfile), row.names = "Kabupaten")
+```{=html}
+<style>
+body{
+text-align: justify}
+</style>
 ```
 
-```{r nice-tab-2, tidy=FALSE}
-knitr::kable(
-  head(data, 10), caption = 'Basis Data Terpadu Jawa Tengah',
-  booktabs = TRUE)
+```{r, child="_setup.Rmd"}
 ```
+
+Analisis clustering adalah teknik statistik yang digunakan untuk
+mengelompokkan objek-objek ke dalam kelompok atau kluster berdasarkan
+kesamaan karakteristik. Tujuan utama dari clustering adalah untuk
+memaksimalkan kesamaan dalam satu kluster dan meminimalkan kesamaan
+antar kluster. Dalam konteks data besar, metode clustering tradisional
+sering kali tidak efisien, sehingga diperlukan algoritma yang lebih
+canggih seperti CLARA (Clustering Large Applications). CLARA dirancang
+untuk menangani dataset besar dengan cara yang lebih efisien
+dibandingkan dengan algoritma clustering lainnya seperti K-Means atau
+K-Medoids [@kaufman1990finding].
+
+CLARA mengadopsi pendekatan sampling untuk mengatasi masalah komputasi
+yang muncul saat bekerja dengan dataset besar. Algoritma ini
+pertama-tama mengambil sampel dari dataset dan kemudian menerapkan
+algoritma K-Medoids pada sampel tersebut untuk menemukan medoid. Setelah
+itu, CLARA menghitung jarak antara setiap objek dalam dataset asli
+dengan medoid yang ditemukan, dan mengelompokkan objek berdasarkan
+kedekatannya dengan medoid tersebut. Proses ini diulang beberapa kali
+untuk meningkatkan akurasi hasil clustering [@kaufman1990finding].
+
+Salah satu keunggulan utama dari CLARA adalah kemampuannya untuk
+mengurangi waktu komputasi yang diperlukan untuk clustering dataset
+besar. Dengan menggunakan teknik sampling, CLARA dapat memberikan hasil
+yang representatif tanpa harus memproses seluruh dataset secara
+langsung. Hal ini sangat berguna dalam aplikasi dunia nyata di mana data
+sering kali sangat besar dan kompleks, seperti dalam analisis data
+pelanggan, pengolahan citra, dan bioinformatika [@halkidi2001cluster].
+
+CLARA telah diterapkan dalam berbagai bidang, termasuk pemasaran,
+analisis sosial, dan ilmu kesehatan. Misalnya, dalam pemasaran, CLARA
+dapat digunakan untuk mengelompokkan pelanggan berdasarkan perilaku
+pembelian mereka, sehingga perusahaan dapat menyesuaikan strategi
+pemasaran mereka dengan lebih efektif. Di bidang kesehatan, CLARA dapat
+membantu dalam pengelompokan pasien berdasarkan gejala atau respons
+terhadap pengobatan, yang dapat meningkatkan perawatan pasien
+
+Dengan meningkatnya volume data yang dihasilkan setiap hari, metode
+clustering yang efisien seperti CLARA menjadi semakin penting. Algoritma
+ini tidak hanya menawarkan solusi untuk masalah komputasi yang dihadapi
+oleh metode clustering tradisional, tetapi juga memberikan hasil yang
+dapat diandalkan dalam konteks data besar. Di masa depan, pengembangan
+lebih lanjut dari algoritma ini dan integrasinya dengan teknik
+pembelajaran mesin lainnya dapat membuka jalan bagi analisis data yang
+lebih mendalam dan akurat (Halkidi et al., 2001).
+
+## Tahapan Algoritma CLARA
+
+```{=html}
+<style>
+body{
+text-align: justify}
+</style>
+```
+
+Algoritma CLARA (*Clustering Large Applications*) adalah metode clustering berbasis partisi yang efisien untuk dataset besar. Berikut adalah tahapan-tahapannya:
+
+### 1. Inisialisasi {-}
+Tentukan jumlah cluster $k$. Tentukan jumlah sampel (*subsets*) yang akan diambil ($s$).
+
+### 2. Pengambilan Sampel Subset Data {-}
+CLARA mengambil $s$ subset data secara acak, di mana ukuran subset data adalah $m$. Nilai $m$ biasanya cukup besar untuk mencakup representasi seluruh dataset.
+
+### 3. Penerapan Algoritma PAM pada Subset Data {-}
+Untuk setiap subset, algoritma PAM (*Partitioning Around Medoids*), Pilih $k$ medoid awal secara acak. Tetapkan setiap data $x_i$ ke medoid terdekat berdasarkan fungsi jarak $d(x_i, m_j)$, di mana:
+     \[
+     d(x_i, m_j) = \sqrt{\sum_{p=1}^P (x_{ip} - m_{jp})^2}
+     \]
+dengan $P$ adalah jumlah atribut. Hitung *total cost* untuk setiap medoid:
+     \[
+     \text{Cost} = \sum_{i=1}^n \min_{j=1}^k d(x_i, m_j)
+     \]
+Tukar medoid dengan non-medoid secara iteratif untuk mengurangi *total cost* hingga konvergen.
+
+### 4. Pemilihan Medoid Terbaik {-}
+Evaluasi semua medoid yang diperoleh dari $s$ subset menggunakan seluruh dataset. Medoid terbaik adalah yang memiliki nilai *total cost* terkecil.
+
+### 5. Penugasan Data ke Cluster {-}
+Tetapkan seluruh data ke medoid terdekat yang dipilih pada langkah sebelumnya.
+
+### 6. Evaluasi Kualitas Cluster {-}
+Gunakan metrik evaluasi seperti *silhouette coefficient*:
+  \[
+  S(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))}
+  \]
+di mana: $a(i)$ adalah rata-rata jarak data $i$ ke data lain dalam cluster yang sama. $b(i)$ adalah rata-rata jarak data $i$ ke data dalam cluster terdekat.
+
+## Eksperimen Algoritma CLARA
+
+```{=html}
+<style>
+body{
+text-align: justify}
+</style>
+```
+
+Dalam eksperimen ini, kita akan menerapkan algoritma CLARA pada dataset yang terdiri dari dua variabel acak. Kita akan membangkitkan 500 sampel dari dua distribusi normal yang berbeda.
+
+### 1. Memuat library yang diperlukan {-}
+Library pertama adalah `cluster`, yang digunakan untuk melakukan analisis clustering dengan berbagai algoritma, seperti PAM (*Partitioning Around Medoids*) dan CLARA (*Clustering Large Applications*). Dalam kasus ini, CLARA digunakan untuk mengelompokkan data besar secara efisien. Library kedua adalah `ggplot2`, yang digunakan untuk membuat visualisasi data secara estetis dan informatif. Dengan pendekatan *layered grammar of graphics*, `ggplot2` memungkinkan pembuatan grafik kompleks, seperti visualisasi hasil clustering berdasarkan dua variabel dalam dataset.
 
 ```{r}
-# Standardize the data
-df <- scale(data)
-```
-
-
-```{r}
-# Compute the dissimilarity matrix
-# df = the standardized data
-res.dist <- dist(df, method = "euclidean")
-```
-
-```{r}
-as.matrix(res.dist)[1:5, 1:5]
-```
-
-```{r}
-res.hc <- hclust(d =res.dist, method = "ward.D2")
-```
-
-```{r warning=FALSE}
-# cex: label size
-library("factoextra")
+library(cluster)
 library(ggplot2)
-fviz_dend(res.hc, cex = 0.5)
-```
-
-
-```{r}
-# Cut tree into 2 groups
-grp <- cutree(res.hc, k =2)
-head(grp, n =2)
-```
-```{r}
-# Number of members in each cluster
-table(grp)
-```
-```{r}
-# Cut in 2 groups and color by groups
-fviz_dend(res.hc, k =2, # Cut in four groups
-          cex = 0.5, # label size
-          k_colors = c("#E7B800", "#FC4E07"),
-          color_labels_by_k = TRUE, # color labels by groups
-          rect = TRUE # Add rectangle around groups)
-          )
-```
-
-```{r}
-fviz_cluster(list(data = df, cluster = grp),
-palette = c("#E7B800", "#FC4E07"),
-ellipse.type = "convex", # Concentration ellipse
-repel = TRUE, # Avoid label overplotting (slow)
-show.clust.cent = FALSE, ggtheme = theme_minimal())
-```
-
-## Comparing dendrograms
-```{r warning=FALSE}
-library(dendextend)
-# Compute distance matrix
-res.dist <- dist(df, method = "euclidean")
-
-# Compute 2 hierarchical clusterings
-hc1 <- hclust(res.dist, method = "average")
-hc2 <- hclust(res.dist, method = "ward.D2")
-
-# Create two dendrograms
-dend1 <- as.dendrogram (hc1)
-dend2 <- as.dendrogram (hc2)
-
-# Create a list to hold dendrograms
-dend_list <- dendlist(dend1, dend2)
-```
-
-```{r}
-tanglegram(dend1, dend2)
-```
-```{r}
-tanglegram(dend1, dend2,
-highlight_distinct_edges = FALSE, # Turn-off dashed lines
-common_subtrees_color_lines = FALSE, # Turn-off line colors
-common_subtrees_color_branches = TRUE, # Color common branches
-main = paste("entanglement =", round(entanglement(dend_list), 2))
-)
-```
-```{r}
-# Create multiple dendrograms by chaining
-dend1 <- df %>% dist %>% hclust("complete") %>%as.dendrogram
-dend2 <- df %>% dist %>% hclust("single") %>%as.dendrogram
-dend3 <- df %>% dist %>% hclust("average") %>%as.dendrogram
-dend4 <- df %>% dist %>% hclust("centroid") %>%as.dendrogram
-# Compute correlation matrix
-dend_list <- dendlist("Complete" = dend1, "Single" = dend2,
-"Average" = dend3, "Centroid" = dend4)
-cors <- cor.dendlist(dend_list)
-# Print correlation matrix
-round(cors, 2)
-```
-```{r}
-# Visualize the correlation matrix using corrplot package
-library(corrplot)
-corrplot(cors, "pie", "lower")
-```
-```{r}
-# Compute distances and hierarchical clustering
-dd <- dist(scale(data), method = "euclidean")
-hc <- hclust(dd, method = "ward.D2")
-```
-
-```{r}
 library(factoextra)
-fviz_dend(hc, cex = 0.5)
-```
-```{r}
-fviz_dend(hc, cex = 0.5,
-main = "Dendrogram - ward.D2",
-xlab = "Objects", ylab = "Distance", sub = "")
 ```
 
-```{r}
-fviz_dend(hc, cex = 0.5, horiz = TRUE)
-```
+### 2. Membangkitkan data acak {-}
+Data acak dibangkitkan menggunakan fungsi `rnorm()` dalam bahasa pemrograman `r ttcode("R")`. Fungsi `rnorm()` digunakan untuk menghasilkan angka acak yang terdistribusi normal, dengan parameter pertama menunjukkan jumlah data yang ingin dibangkitkan, parameter kedua adalah rata-rata (mean), dan parameter ketiga adalah simpangan baku (standard deviation). Pada bagian pertama, dua set data acak dengan jumlah 200 titik data untuk setiap variabel `x` dan `y` dihasilkan, yang masing-masing memiliki distribusi normal dengan rata-rata 0 dan simpangan baku 8. Data ini kemudian digabungkan menggunakan fungsi `rbind()`. Pada bagian kedua, dua set data tambahan dengan jumlah 300 titik data masing-masing untuk variabel `x` dan `y` dihasilkan, dengan rata-rata 50 dan simpangan baku 8. Akhirnya, nama kolom untuk data acak tersebut ditentukan dengan fungsi `colnames()`, yaitu `x` untuk variabel pertama dan `y` untuk variabel kedua. Hasilnya adalah sebuah matriks data dua kolom yang berisi dua grup data acak dengan distribusi normal berbeda.
 
 ```{r}
-fviz_dend(hc, k =2,
-# Cut in four groups
-cex = 0.5,
-# label size
-k_colors = c("#E7B800", "#FC4E07"),
-color_labels_by_k = TRUE, # color labels by groups
-ggtheme = theme_gray()
-# Change theme
+set.seed(1234)
+data <- rbind(
+  cbind(rnorm(200, 0, 8), rnorm(200, 0, 8)),
+  cbind(rnorm(300, 50, 8), rnorm(300, 50, 8)))
+colnames(data) <- c("x", "y")
+```
+
+### 3. Visualisasi data acak {-}
+Visualisasi data acak di atas dilakukan menggunakan paket `ggplot2` di R. Fungsi `ggplot()` digunakan untuk memulai pembuatan plot, dengan parameter `data` berisi data yang ingin divisualisasikan, dan `aes()` untuk menentukan hubungan antara variabel-variabel yang akan diplot, yaitu `x` dan `y`. Selanjutnya, fungsi `geom_point()` digunakan untuk membuat grafik titik (scatter plot), dengan argumen `alpha = 0.5` untuk memberikan tingkat transparansi pada titik-titik, sehingga memungkinkan visualisasi yang lebih jelas ketika titik-titik saling tumpang tindih. Judul plot diatur menggunakan `labs()` dengan parameter `title`, `x`, dan `y` untuk memberikan label pada plot dan sumbu X serta Y. Terakhir, `theme_minimal()` diterapkan untuk memberikan tampilan plot yang bersih dan sederhana. Hasil dari kode ini adalah visualisasi data acak dalam bentuk scatter plot dengan dua variabel, menunjukkan dua kelompok data dengan distribusi normal yang berbeda.
+
+```{r, fig.align='center', echo=FALSE, fig.cap="Visualisasi Data"}
+ggplot(data, aes(x = x, y = y)) +
+  geom_point(alpha = 0.5) +
+  labs(
+       x = "Variabel 1",
+       y = "Variabel 2") +
+  theme_minimal()
+```
+
+### 4. Mencari Jumlah CLluster Optimal {-}
+Visualisasi jumlah klaster yang optimal dilakukan menggunakan metode silhouette dengan paket `cluster` dan `factoextra` di R. Fungsi `fviz_nbclust()` digunakan untuk menilai jumlah klaster terbaik berdasarkan metode yang dipilih, dalam hal ini menggunakan algoritma `clara` (Clustering Large Applications). Metode silhouette mengukur seberapa baik setiap objek dipisahkan dari klaster lain, dengan nilai yang lebih tinggi menunjukkan pemisahan yang lebih baik. Parameter `method = "silhouette"` mengindikasikan bahwa visualisasi menggunakan metode tersebut. Hasilnya akan memperlihatkan grafik yang menggambarkan nilai rata-rata silhouette untuk berbagai jumlah klaster. Terakhir, fungsi `theme_classic()` diterapkan untuk memberikan tampilan plot yang bersih dan sederhana. Grafik ini dapat membantu dalam menentukan jumlah klaster yang paling sesuai dengan data berdasarkan evaluasi kualitas pemisahan antar klaster.
+
+```{r warning=FALSE, message=FALSE, fig.cap='Jumlah Cluster Optimal', out.width='80%', fig.asp=.75, fig.align='center'}
+fviz_nbclust(data, clara, method = "silhouette")+
+theme_classic()
+```
+
+### 5. Menjalankan CLARA {-}
+
+Algoritma CLARA (Clustering Large Applications) digunakan untuk melakukan klasterisasi data dengan jumlah klaster yang ditentukan sebanyak 2, yang ditetapkan melalui parameter `k = 2`. Fungsi `clara()` dari paket `cluster` di R dirancang untuk melakukan klasterisasi pada dataset besar dengan cara mengacak sampel data untuk mempercepat proses klasterisasi. Parameter `samples = 5` menunjukkan bahwa lima sampel data acak akan diambil untuk setiap iterasi klasterisasi. Hasil dari klasterisasi ini disimpan dalam objek `clara_result`, yang berisi informasi tentang klaster yang terbentuk, termasuk elemen-elemen data yang termasuk dalam setiap klaster dan pusat klaster.
+
+```{r}
+clara_result <- clara(data, k = 2, samples = 5)
+```
+
+### 6. Evaluasi hasil {-}
+
+`print(clara_result)` digunakan untuk menampilkan hasil dari proses klasterisasi yang dilakukan dengan algoritma CLARA. Setelah data dikelompokkan menjadi dua klaster menggunakan parameter `k = 2`, hasil ini memberikan informasi tentang bagaimana data dibagi. Secara spesifik, hasil tersebut akan menunjukkan anggota klaster, yaitu data mana yang tergabung dalam setiap klaster, serta pusat klaster, yang menggambarkan titik tengah dari masing-masing klaster. Selain itu, hasil ini juga dapat mencakup ukuran atau indeks kualitas klaster, yang digunakan untuk mengevaluasi sejauh mana klaster-klaster tersebut terpisah dengan baik satu sama lain. Dengan demikian, fungsi `print(clara_result)` memberikan gambaran yang jelas tentang hasil klasterisasi dan seberapa baik data dapat dikelompokkan dalam dua klaster.
+
+```{r}
+print(clara_result)
+```
+
+### 7. Visualisasi Hasil Cluster {-}
+
+Visualisasi silhouette digunakan untuk mengevaluasi kualitas klaster yang dihasilkan oleh algoritma CLARA. Fungsi `silhouette()` menghitung nilai silhouette untuk setiap titik data berdasarkan klaster yang telah ditetapkan (`clara_result$clustering`) dan jarak antar data (`dist(data)`). Nilai silhouette mengukur sejauh mana setiap titik data berada dalam klaster yang benar, dengan nilai mendekati +1 menunjukkan bahwa titik data tersebut sangat cocok dengan klasternya, sedangkan nilai mendekati -1 menunjukkan bahwa titik tersebut lebih cocok dengan klaster lain.
+
+Selanjutnya, fungsi `plot(sil, border = NA)` digunakan untuk menghasilkan plot visualisasi dari hasil silhouette. Parameter `border = NA` menghilangkan batas pada setiap segmen plot untuk memberikan tampilan yang lebih bersih. Hasil visualisasi ini memberikan gambaran tentang kualitas pemisahan antar klaster, dengan tinggi nilai silhouette menunjukkan klasterisasi yang baik.
+
+```{r warning=FALSE, message=FALSE, fig.cap='Visualisasi silhouette', out.width='80%', fig.asp=.75, fig.align='center'}
+sil <- silhouette(clara_result$clustering, dist(data))
+plot(sil, border = NA)
+```
+
+Kode ini menggunakan fungsi `fviz_cluster()` untuk memvisualisasikan hasil klasterisasi yang dilakukan dengan algoritma CLARA. Visualisasi ini menampilkan titik-titik data yang dikelompokkan berdasarkan klaster yang telah ditentukan, dengan dua klaster yang masing-masing diberi warna berbeda menggunakan palet warna `#00AFBB` dan `#FC4E07`. Elips konsentrasi (`ellipse.type = "t"`) ditambahkan di sekitar setiap klaster, yang menunjukkan area distribusi data dalam klaster tersebut, memberikan gambaran tentang seberapa padat atau tersebarnya data. Dengan parameter `geom = "point"`, visualisasi ini menampilkan titik-titik data, dan ukuran titik diatur menggunakan `pointsize = 1`. Tema klasik (`theme_classic()`) diterapkan untuk memberikan tampilan plot yang bersih dan sederhana. Hasil dari kode ini adalah visualisasi yang jelas tentang pembagian data ke dalam dua klaster dengan warna yang berbeda, serta gambaran tentang penyebaran data di dalam setiap klaster.
+
+```{r warning=FALSE, message=FALSE, fig.cap='Visualisasi Hasil Cluster', out.width='80%', fig.asp=.75, fig.align='center'}
+fviz_cluster(clara_result,
+palette = c("#00AFBB", "#FC4E07"), # color palette
+ellipse.type = "t", # Concentration ellipse
+geom = "point", pointsize = 1,
+ggtheme = theme_classic()
 )
-```
-```{r}
-fviz_dend(hc, cex = 0.5, k =2, # Cut in four groups
-k_colors = "jco")
-```
-```{r}
-fviz_dend(hc, k =2, cex = 0.4, horiz = TRUE, k_colors = "jco",
-rect = TRUE, rect_border = "jco", rect_fill = TRUE)
-```
-```{r}
-fviz_dend(hc, cex = 0.5, k =2,
-k_colors = "jco", type = "circular")
-```
-```{r}
-require("igraph")
-fviz_dend(hc, k =2, k_colors = "jco",
-type = "phylogenic", repel = TRUE)
-```
-```{r}
-require("igraph")
-fviz_dend(hc, k =2, # Cut in four groups
-k_colors = "jco",
-type = "phylogenic", repel = TRUE,
-phylo_layout = "layout.gem")
 ```
 

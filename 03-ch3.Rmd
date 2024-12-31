@@ -1,4 +1,4 @@
-# Algoritma Fuzzy C-Means {#fcm}
+# Algoritma K-Medoids {#kmed}
 
 ```{=html}
 <style>
@@ -10,34 +10,17 @@ text-align: justify}
 ```{r, child="_setup.Rmd"}
 ```
 
-Algoritma fuzzy c-means (FCM) merupakan salah satu metode clustering yang banyak digunakan dalam analisis data dan pengolahan citra. Berbeda dengan algoritma clustering tradisional seperti k-means, yang mengelompokkan data ke dalam cluster yang jelas dan tegas, FCM memberikan fleksibilitas dengan memungkinkan setiap data untuk memiliki derajat keanggotaan pada lebih dari satu cluster. Hal ini menjadikan FCM sangat berguna dalam situasi di mana batasan antara cluster tidak dapat ditentukan dengan jelas [@bezdek1981pattern].
+K-Medoids adalah salah satu metode pengelompokan yang termasuk dalam kategori analisis cluster non-hierarki. Metode ini merupakan varian dari K-Means, yang dirancang untuk mengatasi kelemahan K-Means dalam menghadapi data yang mengandung outlier. Dalam K-Medoids, objek yang mewakili setiap cluster disebut medoid, yang merupakan titik pusat dari cluster tersebut. Berbeda dengan K-Means yang menggunakan rata-rata (centroid) sebagai pusat cluster, K-Medoids lebih robust terhadap outlier karena menggunakan objek yang sebenarnya dari dataset sebagai medoid [@jiawei2006data].
 
-FCM pertama kali diperkenalkan oleh Bezdek pada tahun 1981 dan sejak saat itu telah banyak diterapkan dalam berbagai bidang, termasuk pengolahan citra, pengenalan pola, dan analisis data multidimensi. Metode ini bekerja dengan meminimalkan fungsi objektif yang mengukur kesalahan antara data dan pusat cluster, dengan mempertimbangkan derajat keanggotaan setiap data terhadap cluster yang ada. Proses ini dilakukan secara iteratif hingga konvergensi tercapai, di mana perubahan pusat cluster dan derajat keanggotaan menjadi sangat kecil [@dunn1973fuzzy].
+Proses kerja K-Medoids dimulai dengan menentukan jumlah cluster (k) yang diinginkan. Setelah itu, algoritma akan memilih secara acak medoid awal dari dataset. Selanjutnya, setiap objek dalam dataset akan dialokasikan ke cluster terdekat berdasarkan jarak ke medoid. Jarak yang umum digunakan dalam K-Medoids adalah jarak Euclidean. Proses ini diulang hingga tidak ada perubahan dalam pemilihan medoid, yang menunjukkan bahwa algoritma telah konvergen [@setyawati2017analisis].
 
-Salah satu keunggulan FCM adalah kemampuannya untuk menangani data yang memiliki noise atau outlier. Dalam banyak aplikasi dunia nyata, data sering kali tidak bersih dan mengandung kesalahan pengukuran. Dengan menggunakan derajat keanggotaan, FCM dapat mengurangi pengaruh data yang tidak representatif terhadap hasil clustering, sehingga menghasilkan model yang lebih robust dan akurat [@pal1995cluster].
+Salah satu keunggulan K-Medoids adalah kemampuannya untuk memberikan hasil yang lebih stabil dan representatif ketika data mengandung outlier. Hal ini menjadikan K-Medoids pilihan yang lebih baik dibandingkan K-Means dalam situasi di mana data tidak terdistribusi secara normal atau terdapat nilai ekstrim yang dapat mempengaruhi hasil clustering [@vercellis2009sistem]. Dengan demikian, K-Medoids sangat cocok untuk analisis data yang kompleks dan beragam.
 
-Namun, meskipun FCM memiliki banyak kelebihan, algoritma ini juga memiliki beberapa kelemahan. Salah satunya adalah ketergantungan pada pemilihan jumlah cluster yang tepat, yang dapat mempengaruhi hasil akhir. Selain itu, FCM juga dapat menjadi sensitif terhadap inisialisasi pusat cluster, yang dapat menyebabkan hasil yang berbeda pada setiap iterasi [@huang1998extensions]. Oleh karena itu, penelitian lebih lanjut diperlukan untuk mengembangkan metode yang dapat mengatasi masalah ini.
+Dalam implementasinya, K-Medoids dapat dilakukan dengan menggunakan berbagai perangkat lunak statistik, termasuk R. R menyediakan paket-paket yang memudahkan pengguna untuk melakukan analisis clustering, termasuk K-Medoids. Dengan menggunakan fungsi-fungsi yang tersedia, pengguna dapat dengan mudah melakukan standarisasi data, menentukan jumlah cluster optimal, dan memvisualisasikan hasil clustering [@santoso2012aplikasi].
 
-Dalam konteks perkembangan teknologi dan kebutuhan analisis data yang semakin kompleks, FCM tetap menjadi salah satu metode yang relevan dan banyak digunakan. Penelitian dan pengembangan lebih lanjut dalam algoritma ini diharapkan dapat meningkatkan kinerjanya dan memperluas aplikasinya di berbagai bidang, termasuk kecerdasan buatan dan analisis big data. Dengan demikian, pemahaman yang mendalam tentang FCM dan aplikasinya sangat penting bagi para peneliti dan praktisi di bidang ini.
+Secara keseluruhan, K-Medoids merupakan metode yang efektif untuk analisis cluster, terutama dalam konteks data yang mengandung outlier. Dengan pemahaman yang baik tentang cara kerja dan implementasinya, pengguna dapat memanfaatkan K-Medoids untuk mendapatkan wawasan yang lebih dalam dari data yang dianalisis.
 
-Klastering dengan algoritma Fuzzy C-Means didasarkan pada teori logika fuzzy yang diperkenalkan oleh Lotfi Zadeh pada tahun 1965 dengan nama himpunan fuzzy (fuzzy set). Fuzzy C-Means Clustering pertama kali diperkenalkan oleh Dun pada (1973) dan diperbaiki oleh Bezdek [@bezdek1981pattern] . Dalam teori fuzzy, keangotaan sebuah data diberikan dengan suatu nilai derajat keanggotaan yang jangkauan nilainya 0 sampai 1. Semakin tinggi nilai derajat keanggotaannya maka semakin tinggi nilai keanggotaan sebuah data dalam suatu kelompok dan semakin kecil nilai derajat keanggotaannya maka semakin rendah nilai keanggotaan sebuah data dalam suatu kelompok.
-
-```{r, eval = my_output == "html", results='asis', echo=FALSE, purl=FALSE}
-cat('
-<div class = "keyconcept" <div class = "keyconcept" id="KC2.1"> 
-<h3 class = "right"> Persamaan 3.1 </h3> 
-<h3 class= "left"> Derajat Keanggotaan </h3> 
-
-<p> Asumsikan terdapat sejumlah data dalam dataset $X$ yang berisi $n$ data yang 
-dinotasikan $X={x_1,x_2, …,x_n}$, dimana setiap data mempunyai fitur $r$ dimensi: $x_{i1}, x_{i2}, ..., x_{ir}$, dinotasikan $x_i={x_i1, x_i2, ..., x_ir}$. Ada sejumlah klaster $C$ dengan centroid: $C_1, C_2, ..., C_k$, dimana $k$ adalah jumlah klaster. Setiap data mempunyai derajat keanggotaan pada setiap klaster, dinyatakan dengan $u_{ij}$, dengan nilai diantara 0 dan 1, $i$ menyatakan data $x_i$ dan $j$ menyatakan klaster $c_j$. Jumlah nilai derajat keanggotaan setiap data $x_i$ selalu sama dengan 1, yang diformulasikan pada persamaan berikut:
-
-$$\\sum_{j=1}^k u_{i j}=1$$
-
-</p> 
-</div>')
-```
-
-## Tahapan Algoritma Fuzzy C-Means
+## Tahapan Algoritma K-Means
 
 ```{=html}
 <style>
@@ -46,122 +29,126 @@ text-align: justify}
 </style>
 ```
 
-### 1. Inisialisasi Parameter {-}
-Tentukan jumlah cluster \( c \) yang diinginkan. Inisialisasi pusat cluster \( V \) secara acak atau menggunakan metode tertentu (misalnya, memilih titik acak dari dataset). Tentukan parameter fuzziness \( m \) (biasanya \( m > 1 \), sering kali diambil nilai 2). Inisialisasi derajat keanggotaan \( U \) (matriks keanggotaan) dengan nilai acak antara 0 dan 1, dengan syarat bahwa jumlah keanggotaan untuk setiap data harus sama dengan 1.
+### 1. Inisialisasi Centroid {-}
+Tentukan jumlah cluster \( K \) yang diinginkan. Pilih secara acak \( K \) titik data dari dataset sebagai medoid awal untuk setiap cluster.
 
-### 2. Hitung Pusat Cluster{-}
-Hitung pusat cluster baru \( V_j \) untuk setiap cluster \( j \) menggunakan rumus:
-  \[
-  V_j = \frac{\sum_{i=1}^{N} (u_{ij}^m \cdot x_i)}{\sum_{i=1}^{N} u_{ij}^m}
-  \]
-di mana \( u_{ij} \) adalah derajat keanggotaan data \( i \) terhadap cluster \( j \), \( x_i \) adalah data ke-i, dan \( N \) adalah jumlah total data.
+### 2. Penugasan Anggota Cluster {-}
+Setiap titik data \( x_i \) dalam dataset dialokasikan ke cluster yang memiliki medoid terdekat. Penugasan dilakukan berdasarkan jarak antara titik data dan medoid menggunakan rumus jarak (misalnya, jarak Euclidean).
+   $$
+   \text{Jarak}(x_i, m_k) = \sqrt{\sum_{j=1}^n (x_{ij} - m_{kj})^2}
+   $$
+   Di mana:
+   \( x_i \) adalah titik data ke-i, \( m_k \) adalah medoid untuk cluster k, \( x_{ij} \) adalah nilai fitur ke-j dari titik data \( x_i \), \( m_{kj} \) adalah nilai fitur ke-j dari medoid \( m_k \), \( n \) adalah jumlah fitur.
 
-### 3. Perbarui Derajat Keanggotaan {-}
-Hitung derajat keanggotaan \( u_{ij} \) untuk setiap data \( i \) dan cluster \( j \) menggunakan rumus:
-  \[
-  u_{ij} = \frac{1}{\sum_{k=1}^{c} \left( \frac{d_{ij}}{d_{ik}} \right)^{\frac{2}{m-1}}}
-  \]
-di mana \( d_{ij} \) adalah jarak antara data \( i \) dan pusat cluster \( j \).
+Titik data \( x_i \) akan dimasukkan ke dalam cluster \( C_k \) yang memiliki medoid dengan jarak terkecil:
+   $$
+   C_k = \{ x_i \mid \text{Jarak}(x_i, m_k) \leq \text{Jarak}(x_i, m_j) \, \text{untuk semua} \, j \neq k \}
+   $$
 
-### 4. Periksa Konvergensi {-}
-Hitung perubahan pusat cluster dan derajat keanggotaan. Jika perubahan tersebut lebih kecil dari ambang batas yang telah ditentukan (misalnya, \( \epsilon \)), maka algoritma dianggap konvergen dan dapat dihentikan. Jika tidak, kembali ke langkah 2.
+### 3. Pembaruan Medoid {-}
+Setelah anggota cluster ditugaskan, tentukan medoid baru untuk setiap cluster. Medoid baru adalah titik data yang meminimalkan jumlah jarak ke semua titik dalam cluster tersebut.
+   $$
+   m_k = \arg\min_{x_j \in C_k} \sum_{x_i \in C_k} \text{Jarak}(x_i, x_j)
+   $$
+   Di mana: \( m_k \) adalah medoid baru untuk cluster \( C_k \), \( x_j \) adalah kandidat medoid di dalam cluster \( C_k \), \( \text{Jarak}(x_i, x_j) \) adalah jarak antara titik data \( x_i \) dan kandidat medoid \( x_j \).
 
-### 5. Output Hasil Clustering {-}
-Setelah konvergensi tercapai, hasil akhir dari algoritma adalah pusat cluster \( V \) dan matriks keanggotaan \( U \). Setiap data dapat dikategorikan ke dalam cluster dengan derajat keanggotaan tertinggi.
+Medoid baru adalah titik data \( x_j \) yang meminimalkan jumlah total jarak ke titik-titik lainnya dalam cluster \( C_k \).
 
-## Eksperimeen Fuzzy C-Means
+### 4. Iterasi {-}
+Langkah 2 dan 3 diulang hingga tidak ada perubahan pada medoid atau hingga perubahan medoid sangat kecil, menandakan konvergensi.
 
-### Install dan Load Packagaes
+### 5. Hasil Akhir {-}
+Setelah konvergensi tercapai, algoritma berhenti, dan hasil akhir adalah pembagian dataset ke dalam \( K \) cluster dengan medoid yang mewakili setiap cluster. Titik data yang tergabung dalam cluster \( C_k \) lebih dekat ke medoid \( m_k \) dibandingkan medoid lainnya.
 
-```{r eval=FALSE}
-library(ppclust)
-library(factoextra)
-library(fclust)
-library(cluster)
+## Eksperimen Algoritma K-Medoids
+
+```{=html}
+<style>
+body{
+text-align: justify}
+</style>
 ```
 
-### Data
+### Data {.unnumbered}
 
-```{r Load_data_fcm,warning=FALSE, tidy=FALSE}
+Dengan menggunakan fungsi `read.csv()` dari R, kami dapat mengimpor data langsung dari URL tersebut ke dalam lingkungan kerja R. Berikut adalah kode yang digunakan untuk membaca data: Package `reader` menyiapkan fungsi [`read_csv()`](https://readr.tidyverse.org/reference/read_delim.html) untuk import data dari file CSV. Pada kasus ini digunakan data [Data 40% Kemiskinan di jawa Tengah](https://github.com/dedenistiawan/Dataset/blob/main/BDT.csv).
+
+```{r Load_data_km,warning=FALSE, tidy=FALSE}
 library (readr)
-urlfile = "https://raw.githubusercontent.com/dedenistiawan/Dataset/main/Basis%20Data%20Terpadu%20Jateng.csv"
+urlfile = "https://bit.ly/3VO3kRE"
 data<-read.csv(url(urlfile), row.names = "Kabupaten")
 ```
 
-### Hasil Clustering
-
-```{r}
-library(ppclust)
-res.fcm <- fcm(data, centers=3)
-as.data.frame(res.fcm$u)
+```{r nice-tab-1, tidy=FALSE, echo=FALSE}
+knitr::kable(
+  head(data, 10), caption = 'Basis Data Terpadu Jawa Tengah',
+  booktabs = TRUE)
 ```
 
-```{r}
-# Visualize using corrplot
-library(corrplot)
-corrplot(res.fcm$u, is.corr = FALSE)
-```
+### R packages dan fungsi yang dibutuhkan {.unnumbered}
+
+Untuk melakukan analisis cluster dengan metode k-medoids di R, diperlukan beberapa paket dan fungsi utama. Paket yang wajib digunakan adalah **`cluster`**, yang menyediakan fungsi `pam()` (Partitioning Around Medoids) sebagai implementasi utama algoritma k-medoids. Selain itu, paket **`factoextra`** berguna untuk visualisasi hasil clustering dengan fungsi `fviz_cluster()`. Untuk mengevaluasi kualitas clustering, paket **`fpc`** dan **`clusterCrit`** dapat digunakan sebagai opsi tambahan dengan fungsi seperti `cluster.stats()` untuk evaluasi statistik dan `intCriteria()` untuk menghitung indeks validasi clustering. Dalam proses analisis, fungsi `silhouette()` dapat digunakan untuk mengevaluasi kualitas clustering dengan Silhouette Width, sementara `dist()` diperlukan untuk membuat matriks jarak yang digunakan oleh algoritma. Sebagai langkah awal, data biasanya diskalakan menggunakan fungsi seperti `scale()` sebelum diterapkan algoritma k-medoids untuk memastikan hasil yang optimal. Kombinasi paket dan fungsi ini memungkinkan analisis cluster yang efektif, mulai dari pembentukan cluster hingga evaluasi hasil.
 
 ```{r}
-res.fcm$v0
+library(cluster)
+library(factoextra)
 ```
+
+
+### Estimasi Jumlah *Cluster* Optimal {.unnumbered}
+
+Untuk menentukan jumlah cluster yang optimal, metode average silhouette dapat digunakan. Konsepnya adalah menjalankan algoritma PAM dengan berbagai jumlah cluster \(k\). Kemudian, rata-rata silhouette dari masing-masing cluster dihitung dan diplot berdasarkan jumlah cluster. Average silhouette digunakan untuk menilai kualitas clustering, di mana nilai yang tinggi menunjukkan clustering yang baik. Jumlah cluster \(k\) yang optimal adalah yang menghasilkan rata-rata silhouette tertinggi dalam rentang nilai \(k\) yang dipertimbangkan.
+
+Fungsi `fviz_nbclust()` dari paket `factoextra` menyediakan cara praktis untuk memperkirakan jumlah cluster yang optimal. Dengan memanfaatkan metode average silhouette, fungsi ini dapat membantu menentukan jumlah cluster yang menghasilkan hasil clustering terbaik. Contoh implementasinya adalah sebagai berikut:
+
+```{r fig.cap='Plot Jumlah Cluster Metode silhouette', out.width='80%', fig.asp=.75, fig.align='center'}
+fviz_nbclust(data, pam, method = "silhouette") +
+  theme_classic()
+```
+
+Hasilnya adalah grafik yang menampilkan nilai rata-rata silhouette untuk setiap jumlah cluster. Jumlah cluster optimal ditentukan oleh nilai silhouette tertinggi, yang menunjukkan pembagian cluster terbaik dalam data.Berdasarkan plot, jumlah cluster yang disarankan adalah 2. Pada langkah berikutnya, kita akan mengelompokkan observasi ke dalam 2 cluster.
+
+### Eksperimen K-Medoids Clustering {.unnumbered}
+
+Berdasarkan plot hasil analisis dengan metode average silhouette, jumlah cluster optimal yang disarankan adalah 2. Oleh karena itu, dalam analisis cluster menggunakan algoritma k-medoids, kita akan menggunakan jumlah cluster \(k = 2\). Langkah ini diharapkan dapat menghasilkan pembagian cluster yang optimal dan berkualitas tinggi sesuai dengan data yang dianalisis. Berikut adalah kode untuk menjalankan algoritma k-medoids dengan \(k = 2\) menggunakan fungsi pam() dan mencetak hasilnya:
 
 ```{r}
-res.fcm$v
+## Menjalankan k-medoids clustering dengan k = 2
+pam.res <- pam(data, 2)
 ```
 
-### Hasil Clustering FCM
+Kode ini akan menampilkan detail hasil clustering, termasuk informasi tentang medoid, anggota cluster, dan ukuran setiap cluster.
 
 ```{r}
-summary(res.fcm)
+# Mencetak hasil clustering
+print(pam.res)
 ```
 
-### Run FCM with Multiple Starts
+Hasil analisis k-medoids dengan \(k = 2\) menunjukkan bahwa data berhasil dikelompokkan ke dalam dua cluster. Medoid yang terpilih sebagai representasi masing-masing cluster adalah TEGAL untuk Cluster 1 dan SEMARANG untuk Cluster 2, dengan nilai atribut masing-masing ditampilkan dalam tabel. Observasi lainnya dikelompokkan berdasarkan kedekatan mereka dengan medoid, misalnya CILACAP, BANYUMAS, dan PURBALINGGA masuk ke Cluster 1, sementara PURWOREJO, WONOSOBO, dan MAGELANG masuk ke Cluster 2. Secara keseluruhan, clustering ini memberikan pembagian yang optimal dengan dua cluster yang masing-masing diwakili oleh medoid terpilih.
+
+Untuk menambahkan klasifikasi titik (cluster) ke data asli, Anda dapat menggunakan kode berikut. Kode ini akan menggabungkan hasil klasifikasi (cluster) dari analisis k-medoids ke dalam `data` dan menampilkan 3 baris pertama dari data yang telah diperbarui:
 
 ```{r}
-res.fcm <- fcm(data, centers=3, nstart=5)
+# Menambahkan klasifikasi cluster ke data asli
+hasil_cluster <- cbind(data, cluster = pam.res$cluster)
+
+# Menampilkan 3 baris pertama
+head(hasil_cluster, n = 3)
+
 ```
 
-```{r}
-res.fcm <- fcm(data, centers=3, nstart=5, fixmemb=TRUE)
+Hasil dari kode ini akan menampilkan tiga baris pertama dari `data`, dengan kolom tambahan yang menunjukkan cluster tempat setiap observasi dikelompokkan. Kolom baru cluster berisi angka 1 atau 2 yang mewakili dua cluster yang terbentuk.
+
+### Visualisasi K-Medoids Clustering {.unnumbered}
+
+Untuk memvisualisasikan hasil pengelompokan dengan k-medoids, kita akan menggunakan fungsi **`fviz_cluster()`** dari paket **`factoextra`**. Fungsi ini akan menghasilkan plot sebar titik data yang diwarnai sesuai dengan nomor cluster. Dalam kode ini, palet warna yang digunakan adalah `#00AFBB` untuk cluster pertama dan `#FC4E07` untuk cluster kedua. Elips konsentrasi ditambahkan dengan parameter ellipse.type = "t", yang menunjukkan distribusi data di setiap cluster. Selain itu, untuk menghindari tumpang tindih label, parameter repel = TRUE digunakan, meskipun ini dapat sedikit memperlambat proses visualisasi. Terakhir, tema plot yang klasik diterapkan dengan ggtheme = theme_classic(), memberikan tampilan yang bersih dan sederhana pada grafik.
+
+```{r fig.cap='Visualisasi Cluster K-Medoids', out.width='80%', fig.asp=.75, fig.align='center'}
+fviz_cluster(pam.res,
+  palette = c("#00AFBB", "#FC4E07"), # Palet warna
+  ellipse.type = "t", # Elips konsentrasi
+  repel = TRUE, # Menghindari label bertumpuk (proses ini dapat sedikit lebih lambat)
+  ggtheme = theme_classic() # Tema plot klasik
+)
 ```
 
-### Display the best solution
-
-```{r}
-res.fcm$func.val
-```
-
-```{r}
-res.fcm$iter
-```
-
-```{r}
-res.fcm$best.start
-```
-
-### Display the summary of clustering results
-
-```{r}
-summary(res.fcm)
-```
-
-### Cluster Plot with fviz_cluster
-
-```{r}
-res.fcm2 <- ppclust2(res.fcm, "kmeans")
-factoextra::fviz_cluster(res.fcm2, data = data, 
-  ellipse.type = "convex",
-  palette = "jco",
-  repel = TRUE)
-```
-
-### Cluster Plot with clusplot
-
-```{r}
-res.fcm3 <- ppclust2(res.fcm, "fanny")
-
-cluster::clusplot(scale(data), res.fcm3$cluster,  
-  main = "Cluster plot of Iris data set",
-  color=TRUE, labels = 2, lines = 2, cex=1)
-```
