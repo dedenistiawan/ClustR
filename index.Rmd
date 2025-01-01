@@ -4,7 +4,17 @@ cover-image: "images/cover.png"
 author: "Deden Istiawan"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-output: 
+output:
+  bookdown::word_document2:
+    toc: true
+    number_sections: true
+  bookdown::pdf_book:
+    latex_engine: xelatex
+    pandoc_args: [ "--csl", "apa-old-doi-prefix.csl"]
+    includes:
+      in_header: preamble.tex
+    citation_package: natbib
+    keep_tex: yes
   bookdown::gitbook:
     config:
       toc:
@@ -19,12 +29,6 @@ output:
     includes:
       in_header: [header_include.html]
       before_body: open_review_block.html
-  bookdown::pdf_book:
-    pandoc_args: [ "--csl", "apa-old-doi-prefix.csl"]
-    includes:
-      in_header: preamble.tex
-    citation_package: natbib
-    keep_tex: yes
 always_allow_html: yes
 documentclass: book
 classoption: oneside
@@ -111,7 +115,7 @@ mendukung pengambilan keputusan berbasis data yang lebih baik di
 berbagai sektor industri .
 
 
-#### Acknowledgement {.unnumbered}
+#### Ucapan Terimakasih {.unnumbered}
 
 Saya ingin mengucapkan terima kasih kepada keluarga, teman, dan rekan kerja yang telah mendukung saya dalam menyelesaikan buku ini. Terima kasih atas cinta, dukungan, dan motivasi yang telah Anda berikan
 

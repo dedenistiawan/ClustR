@@ -23,7 +23,7 @@
 <meta name="author" content="Deden Istiawan" />
 
 
-<meta name="date" content="2024-12-31" />
+<meta name="date" content="2025-01-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -142,7 +142,13 @@ div.csl-indent {
 <li class="chapter" data-level="1" data-path="1-pd.html"><a href="1-pd.html"><i class="fa fa-check"></i><b>1</b> Pendahuluan</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="1.1-kolofon.html"><a href="1.1-kolofon.html"><i class="fa fa-check"></i><b>1.1</b> Kolofon</a></li>
-<li class="chapter" data-level="1.2" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> Pengenalan Singkat R and RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> Pengenalan Singkat R and RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#instalasi-r-dan-rstudio"><i class="fa fa-check"></i>Instalasi R dan RStudio</a></li>
+<li class="chapter" data-level="" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#dasar-dasar-r"><i class="fa fa-check"></i>Dasar-Dasar R</a></li>
+<li class="chapter" data-level="" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#struktur-data-pada-r"><i class="fa fa-check"></i>Struktur Data pada R</a></li>
+<li class="chapter" data-level="" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#fungsi-dan-pemrograman-di-r"><i class="fa fa-check"></i>Fungsi dan Pemrograman di R</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-km.html"><a href="2-km.html"><i class="fa fa-check"></i><b>2</b> Algoritma K-Means</a>
 <ul>
@@ -315,7 +321,7 @@ Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda
 <div id="header">
 <h1 class="title">Analisis Cluster dengan R: Panduan Lengkap untuk Pemula</h1>
 <p class="author"><em>Deden Istiawan</em></p>
-<p class="date"><em>2024-12-31</em></p>
+<p class="date"><em>2025-01-01</em></p>
 </div>
 <div id="kata-pengantar" class="section level1 unnumbered hasAnchor">
 <h1>Kata Pengantar<a href="index.html#kata-pengantar" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -333,7 +339,7 @@ text-align: justify}
 Bisnis Muhammadiyah <br> Semarang, Indonesia <br>
 <a href=\"mailto:deden.istiawan@itesa.ac.id?subject=Clustering%20with%20R\"><a href="mailto:deden.istiawan@itesa.ac.id" class="email">deden.istiawan@itesa.ac.id</a>.</a>
 <br><br>
-Last updated on Tuesday, December 31, 2024.
+Last updated on Wednesday, January 01, 2025.
 <br> <br>
 <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FEconometricsWithR%2F&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId" width="400" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" align="left"></iframe>
 <br> <br> <br></p>
@@ -368,8 +374,8 @@ kuat dalam memahami hubungan dan pola dalam dataset. Dengan demikian,
 penerapan analisis cluster dapat meningkatkan kualitas analisis data dan
 mendukung pengambilan keputusan berbasis data yang lebih baik di
 berbagai sektor industri .</p>
-<div id="acknowledgement" class="section level4 unnumbered hasAnchor">
-<h4>Acknowledgement<a href="index.html#acknowledgement" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="ucapan-terimakasih" class="section level4 unnumbered hasAnchor">
+<h4>Ucapan Terimakasih<a href="index.html#ucapan-terimakasih" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Saya ingin mengucapkan terima kasih kepada keluarga, teman, dan rekan kerja yang telah mendukung saya dalam menyelesaikan buku ini. Terima kasih atas cinta, dukungan, dan motivasi yang telah Anda berikan</p>
 <p><br>
 <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-nc-sa.eu.svg" alt="Creative Commons License" /></p>
@@ -438,7 +444,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["CLUSTR.pdf"],
 "search": {
 "engine": "fuse",
 "options": null

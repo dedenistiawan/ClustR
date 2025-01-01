@@ -2,9 +2,19 @@
 title: "Analisis Cluster dengan R: Panduan Lengkap untuk Pemula"
 cover-image: "images/cover.png"
 author: "Deden Istiawan"
-date: "2024-12-31"
+date: "2025-01-01"
 site: bookdown::bookdown_site
-output: 
+output:
+  bookdown::word_document2:
+    toc: true
+    number_sections: true
+  bookdown::pdf_book:
+    latex_engine: xelatex
+    pandoc_args: [ "--csl", "apa-old-doi-prefix.csl"]
+    includes:
+      in_header: preamble.tex
+    citation_package: natbib
+    keep_tex: yes
   bookdown::gitbook:
     config:
       toc:
@@ -19,12 +29,6 @@ output:
     includes:
       in_header: [header_include.html]
       before_body: open_review_block.html
-  bookdown::pdf_book:
-    pandoc_args: [ "--csl", "apa-old-doi-prefix.csl"]
-    includes:
-      in_header: preamble.tex
-    citation_package: natbib
-    keep_tex: yes
 always_allow_html: yes
 documentclass: book
 classoption: oneside
@@ -73,7 +77,7 @@ text-align: justify}
 Bisnis Muhammadiyah <br> Semarang, Indonesia <br>
 <a href=\"mailto:deden.istiawan@itesa.ac.id?subject=Clustering%20with%20R\">[deden.istiawan\@itesa.ac.id](mailto:deden.istiawan@itesa.ac.id){.email}.</a>
 <br><br>
-Last updated on Tuesday, December 31, 2024.
+Last updated on Wednesday, January 01, 2025.
 <br> <br>
 <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FEconometricsWithR%2F&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId" width="400" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" align="left"></iframe>
 <br> <br> <br>
@@ -115,7 +119,7 @@ mendukung pengambilan keputusan berbasis data yang lebih baik di
 berbagai sektor industri .
 
 
-#### Acknowledgement {.unnumbered}
+#### Ucapan Terimakasih {.unnumbered}
 
 Saya ingin mengucapkan terima kasih kepada keluarga, teman, dan rekan kerja yang telah mendukung saya dalam menyelesaikan buku ini. Terima kasih atas cinta, dukungan, dan motivasi yang telah Anda berikan
 
