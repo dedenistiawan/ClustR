@@ -67,7 +67,7 @@ text-align: justify}
 
 
 
-<hr style="background-color:#3C6690;height:2px">
+
 
 <center><img src="images/cover.png" style="width:60%;"/></center>
 
@@ -82,7 +82,7 @@ Last updated on Wednesday, January 01, 2025.
 <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FEconometricsWithR%2F&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId" width="400" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" align="left"></iframe>
 <br> <br> <br>
 
-<hr style="background-color:#3C6690;height:2px">
+
 
 Analisis *cluster* merupakan teknik yang sangat penting dalam bidang data
 science, karena kemampuannya untuk mengelompokkan data berdasarkan
@@ -123,10 +123,7 @@ berbagai sektor industri .
 
 Saya ingin mengucapkan terima kasih kepada keluarga, teman, dan rekan kerja yang telah mendukung saya dalam menyelesaikan buku ini. Terima kasih atas cinta, dukungan, dan motivasi yang telah Anda berikan
 
-<br>
-![Creative Commons License](https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-nc-sa.eu.svg)
 
-This book is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-<hr style="background-color:#3C6690;height:2px">
+
 
