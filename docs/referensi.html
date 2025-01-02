@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Analisis Cluster dengan R: Panduan Lengkap untuk Pemula</title>
+  <title>Referensi | Analisis Cluster dengan R: Panduan Lengkap untuk Pemula</title>
   <meta name="description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Analisis Cluster dengan R: Panduan Lengkap untuk Pemula" />
+  <meta property="og:title" content="Referensi | Analisis Cluster dengan R: Panduan Lengkap untuk Pemula" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://github.com/dedenistiawan/ClustR/images/cover.png" />
   <meta property="og:description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
   <meta name="github-repo" content="dedenistiawan/Analisis_Cluster_R" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Analisis Cluster dengan R: Panduan Lengkap untuk Pemula" />
+  <meta name="twitter:title" content="Referensi | Analisis Cluster dengan R: Panduan Lengkap untuk Pemula" />
   
   <meta name="twitter:description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
   <meta name="twitter:image" content="https://github.com/dedenistiawan/ClustR/images/cover.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="8.2-eksperimeen-fuzzy-c-means.html"/>
 
-<link rel="next" href="1-pd.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -96,29 +96,6 @@
 <style type="text/css">
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -318,91 +295,17 @@ div.csl-indent {
 <div class = rmdreview>
 Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda untuk membuat buku ini lebih baik bagi. Anda dapat memberikan anotasi pada beberapa teks dengan <span style="background-color: #3297FD; color: white">memilihnya menggunakan kursor</span> dan kemudian klik “Beri Anotasi” pada menu pop-up. Anda juga dapat melihat anotasi orang lain: klik tanda panah di sudut kanan atas halaman <i class="fa fa-arrow-circle-right  fa-rotate-315" aria-hidden="true"></i>
 </div>
-<div id="header">
-<h1 class="title">Analisis Cluster dengan R: Panduan Lengkap untuk Pemula</h1>
-<p class="author"><em>Deden Istiawan</em></p>
-<p class="date"><em>2025-01-02</em></p>
-</div>
-<div id="kata-pengantar" class="section level1 unnumbered hasAnchor">
-<h1>Kata Pengantar<a href="index.html#kata-pengantar" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<style>
-body{
-text-align: justify}
-</style>
-<hr style="background-color:#3C6690;height:2px">
-<center>
-<img src="images/cover.png" style="width:60%;"/>
-</center>
-<p><br><img src="images/itesa.png" style="float: left; margin: 0px 100px 0px 0px; width:35%"/><br>
-<br> Rekayasa Perangkat Lunak
-<br> Fakultas Sains dan Teknologi <br> Institut Teknologi Statistika dan
-Bisnis Muhammadiyah <br> Semarang, Indonesia <br>
-<a href=\"mailto:deden.istiawan@itesa.ac.id?subject=Clustering%20with%20R\"><a href="mailto:deden.istiawan@itesa.ac.id" class="email">deden.istiawan@itesa.ac.id</a>.</a>
-<br><br>
-Last updated on Thursday, January 02, 2025.
-<br> <br>
-<iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FEconometricsWithR%2F&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId" width="400" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" align="left"></iframe>
-<br> <br> <br></p>
-<hr style="background-color:#3C6690;height:2px">
-<p>Analisis <em>cluster</em> merupakan teknik yang sangat penting dalam bidang data
-science, karena kemampuannya untuk mengelompokkan data berdasarkan
-kesamaan karakteristik. Dengan mengelompokkan objek atau data, analisis
-cluster membantu mengidentifikasi pola yang mungkin tidak terlihat
-secara langsung dalam data mentah. Hal ini sangat berguna di berbagai
-bidang, seperti pemasaran, biologi, dan pengenalan pola, di mana
-pemahaman yang lebih dalam tentang struktur data dapat memberikan
-wawasan yang berharga <span class="citation">(<a href="#ref-kaufman:clustering1990">Kaufman and Rousseeuw 1990</a>)</span>.</p>
-<p>Salah satu manfaat utama dari analisis cluster adalah segmentasi pasar.
-Dalam dunia bisnis, perusahaan dapat menggunakan teknik ini untuk
-mengelompokkan pelanggan berdasarkan perilaku atau karakteristik
-tertentu. Dengan memahami segmen-segmen ini, perusahaan dapat merancang
-strategi pemasaran yang lebih efektif dan personalisasi produk untuk
-memenuhi kebutuhan spesifik dari setiap kelompok. Selain itu, analisis
-cluster juga memungkinkan pengelompokan data yang besar menjadi lebih
-mudah dipahami dan diinterpretasikan, sehingga memfasilitasi pengambilan
-keputusan yang lebih baik <span class="citation">(<a href="#ref-han2012mining">Han, Kamber, and Pei 2012</a>)</span>.</p>
-<p>Dalam konteks machine learning, analisis cluster sering digunakan
-sebagai metode unsupervised learning. Ini berarti bahwa algoritma
-clustering dapat menemukan struktur dalam data tanpa memerlukan label
-atau kategori sebelumnya. Hal ini sangat berguna ketika menghadapi
-dataset yang tidak terstruktur dan kompleks, di mana tujuan utamanya
-adalah untuk mengeksplorasi dan mendapatkan wawasan awal tentang data
-tersebut <span class="citation">(<a href="#ref-jain2010">Jain 2010</a>)</span>.</p>
-<p>Secara keseluruhan, analisis cluster tidak hanya membantu dalam
-pengelompokan data tetapi juga berfungsi sebagai alat eksplorasi yang
-kuat dalam memahami hubungan dan pola dalam dataset. Dengan demikian,
-penerapan analisis cluster dapat meningkatkan kualitas analisis data dan
-mendukung pengambilan keputusan berbasis data yang lebih baik di
-berbagai sektor industri .</p>
-<div id="ucapan-terimakasih" class="section level4 unnumbered hasAnchor">
-<h4>Ucapan Terimakasih<a href="index.html#ucapan-terimakasih" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Saya ingin mengucapkan terima kasih kepada keluarga, teman, dan rekan kerja yang telah mendukung saya dalam menyelesaikan buku ini. Terima kasih atas cinta, dukungan, dan motivasi yang telah Anda berikan</p>
-<p><br>
-<img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-nc-sa.eu.svg" alt="Creative Commons License" /></p>
-<p>This book is licensed under the <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
-<hr style="background-color:#3C6690;height:2px">
+<div id="referensi" class="section level1 unnumbered hasAnchor">
+<h1>Referensi<a href="referensi.html#referensi" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 
-</div>
-</div>
-<h3>Referensi<a href="referensi.html#referensi" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div id="ref-han2012mining" class="csl-entry">
-Han, Jiawei, Micheline Kamber, and Jian Pei. 2012. <span>“Data Mining Concepts and Techniques, Third Edition.”</span> Waltham, Mass.: Morgan Kaufmann Publishers. 2012.
-</div>
-<div id="ref-jain2010" class="csl-entry">
-Jain, Anil K. 2010. <span>“Data Clustering: 50 Years Beyond K-Means.”</span> <em>Pattern Recognition Letters</em> 31 (8): 651–66. <a href="https://doi.org/10.1016/j.patrec.2009.09.011">https://doi.org/10.1016/j.patrec.2009.09.011</a>.
-</div>
-<div id="ref-kaufman:clustering1990" class="csl-entry">
-Kaufman, L., and P. J. Rousseeuw. 1990. <em>Finding Groups in Data: An Introduction to Cluster Analysis</em>. Wiley.
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
+<a href="8.2-eksperimeen-fuzzy-c-means.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="1-pd.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -433,7 +336,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mca91/ClustR/edit/master/index.Rmd",
+"link": "https://github.com/mca91/ClustR/edit/master/references.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -10,6 +10,10 @@ text-align: justify}
 ```{r, child="_setup.Rmd"}
 ```
 
+> "It’s not the data that’s important, it’s the story the data tells"
+>
+> -- Moneyball
+
 Algoritma K-Means merupakan salah satu metode yang paling populer dalam analisis *cluster*, yang digunakan untuk mengelompokkan data ke dalam beberapa kelompok berdasarkan kesamaan fitur [@jain2010] . Metode ini bekerja dengan cara membagi data ke dalam $K$ cluster, di mana $K$ adalah jumlah *cluster* yang ditentukan sebelumnya oleh pengguna [@macqueen1967some]. Proses pengelompokan ini dilakukan dengan meminimalkan jarak antara data dalam satu *cluster* dan pusat *cluster* (centroid) yang dihasilkan. Langkah pertama dalam algoritma K-Means adalah inisialisasi centroid untuk setiap *cluster*, yang dapat dilakukan secara acak atau menggunakan metode tertentu seperti K-Means++ [@arthur2007kmeans]. Setelah centroid diinisialisasi, algoritma kemudian mengelompokkan setiap data ke dalam *cluster* terdekat berdasarkan jarak Euclidean[@hastie2009elements]. Proses ini diulang hingga tidak ada perubahan signifikan dalam posisi *centroid* atau tidak ada perubahan dalam pengelompokan data.
 
 Salah satu keunggulan dari algoritma K-Means adalah kesederhanaannya, yang membuatnya mudah dipahami dan diimplementasikan, bahkan oleh pemula [@han2011data]. Namun, algoritma ini juga memiliki beberapa kelemahan, seperti ketergantungan pada pemilihan jumlah *cluster* $K$ yang tepat dan sensitivitas terhadap *outlier*. Oleh karena itu, pemilihan $K$ yang optimal sering kali menjadi tantangan tersendiri dalam penerapan algoritma ini [@elbow1975outline]. Dalam praktiknya, algorima K-Means banyak digunakan dalam berbagai bidang, termasuk pemasaran, pengenalan pola, dan analisis citra [@xu2005survey]. Misalnya, dalam pemasaran, K-Means dapat digunakan untuk segmentasi pelanggan berdasarkan perilaku pembelian mereka, sehingga perusahaan dapat menargetkan strategi pemasaran yang lebih efektif [@kumar2016creating]. Dengan demikian, pemahaman yang baik tentang algoritma K-Means sangat penting bagi para peneliti dan praktisi yang ingin menerapkan analisis *cluster* dalam pekerjaan mereka.

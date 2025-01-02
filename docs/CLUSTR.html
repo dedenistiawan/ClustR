@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Analisis Cluster dengan R: Panduan Lengkap untuk Pemula</title>
+  <meta name="description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Analisis Cluster dengan R: Panduan Lengkap untuk Pemula" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://github.com/dedenistiawan/ClustR/images/cover.png" />
+  <meta property="og:description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
+  <meta name="github-repo" content="dedenistiawan/Analisis_Cluster_R" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Analisis Cluster dengan R: Panduan Lengkap untuk Pemula" />
+  
+  <meta name="twitter:description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
+  <meta name="twitter:image" content="https://github.com/dedenistiawan/ClustR/images/cover.png" />
+
+<meta name="author" content="Deden Istiawan" />
+
+
+<meta name="date" content="2025-01-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- font families -->
+
+<link href="https://fonts.googleapis.com/css?family=PT+Sans|Pacifico|Source+Sans+Pro" rel="stylesheet">
+
+<script src="js/hideOutput.js"></script>
+
+<!-- Mathjax -->
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/mml-chtml.min.js"></script>
+
+ <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        extensions: ["tex2jax.js", "TeX/AMSmath.js"],
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        jax: ["input/TeX","output/CommonHTML"]
+      });
+      MathJax.Hub.processSectionDelay = 0;
+  </script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110299877-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110299877-1');
+</script>
+
+<!-- open review block -->
+
+<script type="application/json" class="js-hypothesis-config">
+{
+"showHighlights": false
+}
+</script>
+<script async defer src="https://hypothes.is/embed.js"></script>
+
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="toc.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><center><img src="images/logo.png" alt="logo" width="50%" height="50%"style="margin: 15px 0 0 0"></center></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path=""><a href="#kata-pengantar"><i class="fa fa-check"></i>Kata Pengantar</a></li>
+<li class="chapter" data-level="1" data-path=""><a href="#pd"><i class="fa fa-check"></i><b>1</b> Pendahuluan</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path=""><a href="#kolofon"><i class="fa fa-check"></i><b>1.1</b> Kolofon</a></li>
+<li class="chapter" data-level="1.2" data-path=""><a href="#pengenalan-singkat-r-and-rstudio"><i class="fa fa-check"></i><b>1.2</b> Pengenalan Singkat R and RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#instalasi-r-dan-rstudio"><i class="fa fa-check"></i>Instalasi R dan RStudio</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#dasar-dasar-r"><i class="fa fa-check"></i>Dasar-Dasar R</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#struktur-data-pada-r"><i class="fa fa-check"></i>Struktur Data pada R</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fungsi-dan-pemrograman-di-r"><i class="fa fa-check"></i>Fungsi dan Pemrograman di R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path=""><a href="#km"><i class="fa fa-check"></i><b>2</b> Algoritma K-Means</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path=""><a href="#tahapan-algoritma-k-means"><i class="fa fa-check"></i><b>2.1</b> Tahapan Algoritma K-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#inisialisasi-centroid"><i class="fa fa-check"></i>1. Inisialisasi Centroid</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#penugasan-cluster"><i class="fa fa-check"></i>2. Penugasan Cluster</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#perbaharui-centroid"><i class="fa fa-check"></i>3. Perbaharui Centroid</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#ulangi-langkah-2-dan-3"><i class="fa fa-check"></i>4. Ulangi Langkah 2 dan 3</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hasil-akhir"><i class="fa fa-check"></i>5. Hasil Akhir</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path=""><a href="#eksperimen-algoritma-k-means"><i class="fa fa-check"></i><b>2.2</b> Eksperimen Algoritma K-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#deskripsi-data"><i class="fa fa-check"></i>Deskripsi Data</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#memeriksa-missing-value"><i class="fa fa-check"></i>Memeriksa <em>Missing Value</em></a></li>
+<li class="chapter" data-level="" data-path=""><a href="#visualisasi-matriks-jarak"><i class="fa fa-check"></i>Visualisasi Matriks jarak</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#estimasi-jumlah-cluster-optimal"><i class="fa fa-check"></i>Estimasi Jumlah <em>Cluster</em> Optimal</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#metode-elbow"><i class="fa fa-check"></i>Metode Elbow</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#metode-silhouette"><i class="fa fa-check"></i>Metode Silhouette</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#membuat-plot-cluster"><i class="fa fa-check"></i>Membuat Plot <em>Cluster</em></a></li>
+<li class="chapter" data-level="" data-path=""><a href="#eksperimen-k-means-clustering"><i class="fa fa-check"></i>Eksperimen K-Means Clustering</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#visualisasi-hasil-clustering"><i class="fa fa-check"></i>Visualisasi Hasil <em>clustering</em></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path=""><a href="#kmed"><i class="fa fa-check"></i><b>3</b> Algoritma K-Medoids</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path=""><a href="#tahapan-algoritma-k-means-1"><i class="fa fa-check"></i><b>3.1</b> Tahapan Algoritma K-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#inisialisasi-centroid-1"><i class="fa fa-check"></i>1. Inisialisasi Centroid</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#penugasan-anggota-cluster"><i class="fa fa-check"></i>2. Penugasan Anggota Cluster</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#pembaruan-medoid"><i class="fa fa-check"></i>3. Pembaruan Medoid</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#iterasi"><i class="fa fa-check"></i>4. Iterasi</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hasil-akhir-1"><i class="fa fa-check"></i>5. Hasil Akhir</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path=""><a href="#eksperimen-algoritma-k-medoids"><i class="fa fa-check"></i><b>3.2</b> Eksperimen Algoritma K-Medoids</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#data-1"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#r-packages-dan-fungsi-yang-dibutuhkan"><i class="fa fa-check"></i>R packages dan fungsi yang dibutuhkan</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#estimasi-jumlah-cluster-optimal-1"><i class="fa fa-check"></i>Estimasi Jumlah <em>Cluster</em> Optimal</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#eksperimen-k-medoids-clustering"><i class="fa fa-check"></i>Eksperimen K-Medoids Clustering</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#visualisasi-k-medoids-clustering"><i class="fa fa-check"></i>Visualisasi K-Medoids Clustering</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path=""><a href="#clra"><i class="fa fa-check"></i><b>4</b> CLARA - Clustering Large Applications</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path=""><a href="#tahapan-algoritma-clara"><i class="fa fa-check"></i><b>4.1</b> Tahapan Algoritma CLARA</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#inisialisasi"><i class="fa fa-check"></i>1. Inisialisasi</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#pengambilan-sampel-subset-data"><i class="fa fa-check"></i>2. Pengambilan Sampel Subset Data</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#penerapan-algoritma-pam-pada-subset-data"><i class="fa fa-check"></i>3. Penerapan Algoritma PAM pada Subset Data</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#pemilihan-medoid-terbaik"><i class="fa fa-check"></i>4. Pemilihan Medoid Terbaik</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#penugasan-data-ke-cluster"><i class="fa fa-check"></i>5. Penugasan Data ke Cluster</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#evaluasi-kualitas-cluster"><i class="fa fa-check"></i>6. Evaluasi Kualitas Cluster</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path=""><a href="#eksperimen-algoritma-clara"><i class="fa fa-check"></i><b>4.2</b> Eksperimen Algoritma CLARA</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#memuat-library-yang-diperlukan"><i class="fa fa-check"></i>1. Memuat library yang diperlukan</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#membangkitkan-data-acak"><i class="fa fa-check"></i>2. Membangkitkan data acak</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#visualisasi-data-acak"><i class="fa fa-check"></i>3. Visualisasi data acak</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#mencari-jumlah-clluster-optimal"><i class="fa fa-check"></i>4. Mencari Jumlah CLluster Optimal</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#menjalankan-clara"><i class="fa fa-check"></i>5. Menjalankan CLARA</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#evaluasi-hasil"><i class="fa fa-check"></i>6. Evaluasi hasil</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#visualisasi-hasil-cluster"><i class="fa fa-check"></i>7. Visualisasi Hasil Cluster</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path=""><a href="#kmods"><i class="fa fa-check"></i><b>5</b> Algoritma K-Modes</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path=""><a href="#tahapan-algoritma-k-modes"><i class="fa fa-check"></i><b>5.1</b> Tahapan Algoritma K-Modes</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#inisialisasi-1"><i class="fa fa-check"></i>1. Inisialisasi</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#pengelompokan"><i class="fa fa-check"></i>2. Pengelompokan</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#penugasan-cluster-1"><i class="fa fa-check"></i>3. Penugasan Cluster</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#update-centroid"><i class="fa fa-check"></i>4. Update Centroid</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#kondisi-berhenti"><i class="fa fa-check"></i>5. Kondisi Berhenti</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#penjelasan-tambahan"><i class="fa fa-check"></i>Penjelasan Tambahan</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path=""><a href="#eksperimen-algoritma-k-modes"><i class="fa fa-check"></i><b>5.2</b> Eksperimen Algoritma K-Modes</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#memuat-library-yang-diperlukan-1"><i class="fa fa-check"></i>1. Memuat library yang diperlukan</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#persiapan-dataset"><i class="fa fa-check"></i>2. Persiapan Dataset</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#memeriksa-missing-value-1"><i class="fa fa-check"></i>3. Memeriksa Missing value</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#menjalankan-k-modes"><i class="fa fa-check"></i>3. Menjalankan K-Modes</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#menyimpan-hasil-cluster"><i class="fa fa-check"></i>4. Menyimpan Hasil Cluster</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path=""><a href="#HC"><i class="fa fa-check"></i><b>6</b> Metode Cluster Hirarki</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path=""><a href="#tahapan-agglomerative-clustering"><i class="fa fa-check"></i><b>6.1</b> Tahapan Agglomerative Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#inisialisasi-2"><i class="fa fa-check"></i>1. Inisialisasi</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#menghitung-jarak"><i class="fa fa-check"></i>2. Menghitung Jarak</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#menggabungkan-cluster"><i class="fa fa-check"></i>3. Menggabungkan Cluster</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#memperbarui-jarak"><i class="fa fa-check"></i>4. Memperbarui Jarak</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#ulangi-proses"><i class="fa fa-check"></i>5. Ulangi Proses</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#membuat-dendrogram"><i class="fa fa-check"></i>6. Membuat Dendrogram</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#kesimpulan"><i class="fa fa-check"></i>Kesimpulan</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path=""><a href="#eksperimen-agglomerative-clustering"><i class="fa fa-check"></i><b>6.2</b> Eksperimen Agglomerative Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#standarisasi-data"><i class="fa fa-check"></i>Standarisasi Data</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#ukuran-similarity-dan-dissimilarity"><i class="fa fa-check"></i>Ukuran Similarity dan Dissimilarity</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#melakukan-pengelompokan-hierarkis"><i class="fa fa-check"></i>Melakukan Pengelompokan Hierarkis</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#visualisasi-dengan-dendrogram"><i class="fa fa-check"></i>Visualisasi dengan Dendrogram</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#visualisasi-dengan-dendrogram-1"><i class="fa fa-check"></i>Visualisasi dengan Dendrogram</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#jumlah-anggota-dalam-setiap-cluster"><i class="fa fa-check"></i>Jumlah Anggota dalam Setiap Cluster</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#visualisasi-dendrogram"><i class="fa fa-check"></i>Visualisasi Dendrogram</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#visualisasi-hasil-clustering-1"><i class="fa fa-check"></i>Visualisasi Hasil Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path=""><a href="#perbandingan-dendogram"><i class="fa fa-check"></i><b>6.3</b> Perbandingan Dendogram</a></li>
+<li class="chapter" data-level="6.4" data-path=""><a href="#tahapan-divisive-clustering"><i class="fa fa-check"></i><b>6.4</b> Tahapan Divisive Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#inisialisasi-3"><i class="fa fa-check"></i>1. Inisialisasi</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#menghitung-dissimilarity"><i class="fa fa-check"></i>2. Menghitung Dissimilarity</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#memilih-cluster-untuk-dibagi"><i class="fa fa-check"></i>3. Memilih Cluster untuk Dibagi</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#membagi-cluster"><i class="fa fa-check"></i>4. Membagi Cluster</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#menghitung-dissimilarity-untuk-sub-cluster"><i class="fa fa-check"></i>5. Menghitung Dissimilarity untuk Sub-Cluster</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#ulangi-proses-1"><i class="fa fa-check"></i>6. Ulangi Proses</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#membuat-dendrogram-1"><i class="fa fa-check"></i>7. Membuat Dendrogram</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path=""><a href="#eksperimen-divisive-clustering"><i class="fa fa-check"></i><b>6.5</b> Eksperimen Divisive Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path=""><a href="#vizhc"><i class="fa fa-check"></i><b>7</b> Visualisasi Dendogram</a></li>
+<li class="chapter" data-level="8" data-path=""><a href="#fcm"><i class="fa fa-check"></i><b>8</b> Algoritma Fuzzy C-Means</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path=""><a href="#tahapan-algoritma-fuzzy-c-means"><i class="fa fa-check"></i><b>8.1</b> Tahapan Algoritma Fuzzy C-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#inisialisasi-parameter"><i class="fa fa-check"></i>1. Inisialisasi Parameter</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#inisialisasi-matriks-keanggotaan"><i class="fa fa-check"></i>2. Inisialisasi Matriks Keanggotaan</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#perhitungan-pusat-cluster"><i class="fa fa-check"></i>3. Perhitungan Pusat Cluster</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#perbarui-matriks-keanggotaan"><i class="fa fa-check"></i>4. Perbarui Matriks Keanggotaan</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#evaluasi-konvergensi"><i class="fa fa-check"></i>5. Evaluasi Konvergensi</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hasil-akhir-2"><i class="fa fa-check"></i>6. Hasil Akhir</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path=""><a href="#eksperimeen-fuzzy-c-means"><i class="fa fa-check"></i><b>8.2</b> Eksperimeen Fuzzy C-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#install-dan-load-packagaes"><i class="fa fa-check"></i>Install dan Load Packagaes</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#data-2"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hasil-clustering"><i class="fa fa-check"></i>Hasil Clustering</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#visualisasi-matrik-keanggotaan"><i class="fa fa-check"></i>Visualisasi Matrik Keanggotaan</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#ringkasan-hasil-clustering-fcm"><i class="fa fa-check"></i>Ringkasan Hasil Clustering FCM</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#visualisasi-hasil-cluster-1"><i class="fa fa-check"></i>Visualisasi Hasil Cluster</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#visualisasi-hasil-cluster-dengan-clusplot"><i class="fa fa-check"></i>Visualisasi Hasil Cluster dengan clusplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#referensi"><i class="fa fa-check"></i>Referensi</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analisis Cluster dengan R: Panduan Lengkap untuk Pemula</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div class = rmdreview>
+Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda untuk membuat buku ini lebih baik bagi. Anda dapat memberikan anotasi pada beberapa teks dengan <span style="background-color: #3297FD; color: white">memilihnya menggunakan kursor</span> dan kemudian klik “Beri Anotasi” pada menu pop-up. Anda juga dapat melihat anotasi orang lain: klik tanda panah di sudut kanan atas halaman <i class="fa fa-arrow-circle-right  fa-rotate-315" aria-hidden="true"></i>
+</div>
+<div id="header">
+<h1 class="title">Analisis Cluster dengan R: Panduan Lengkap untuk Pemula</h1>
+<p class="author"><em>Deden Istiawan</em></p>
+<p class="date"><em>2025-01-02</em></p>
+</div>
+<div id="kata-pengantar" class="section level1 unnumbered hasAnchor">
+<h1>Kata Pengantar<a href="#kata-pengantar" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<style>
+body{
+text-align: justify}
+</style>
+<hr style="background-color:#3C6690;height:2px">
+<center>
+<img src="images/cover.png" style="width:60%;"/>
+</center>
+<p><br><img src="images/itesa.png" style="float: left; margin: 0px 100px 0px 0px; width:35%"/><br>
+<br> Rekayasa Perangkat Lunak
+<br> Fakultas Sains dan Teknologi <br> Institut Teknologi Statistika dan
+Bisnis Muhammadiyah <br> Semarang, Indonesia <br>
+<a href=\"mailto:deden.istiawan@itesa.ac.id?subject=Clustering%20with%20R\"><a href="mailto:deden.istiawan@itesa.ac.id" class="email">deden.istiawan@itesa.ac.id</a>.</a>
+<br><br>
+Last updated on Thursday, January 02, 2025.
+<br> <br>
+<iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FEconometricsWithR%2F&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId" width="400" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" align="left"></iframe>
+<br> <br> <br></p>
+<hr style="background-color:#3C6690;height:2px">
+<p>Analisis <em>cluster</em> merupakan teknik yang sangat penting dalam bidang data
+science, karena kemampuannya untuk mengelompokkan data berdasarkan
+kesamaan karakteristik. Dengan mengelompokkan objek atau data, analisis
+cluster membantu mengidentifikasi pola yang mungkin tidak terlihat
+secara langsung dalam data mentah. Hal ini sangat berguna di berbagai
+bidang, seperti pemasaran, biologi, dan pengenalan pola, di mana
+pemahaman yang lebih dalam tentang struktur data dapat memberikan
+wawasan yang berharga <span class="citation">(<a href="#ref-kaufman:clustering1990">Kaufman and Rousseeuw 1990</a>)</span>.</p>
+<p>Salah satu manfaat utama dari analisis cluster adalah segmentasi pasar.
+Dalam dunia bisnis, perusahaan dapat menggunakan teknik ini untuk
+mengelompokkan pelanggan berdasarkan perilaku atau karakteristik
+tertentu. Dengan memahami segmen-segmen ini, perusahaan dapat merancang
+strategi pemasaran yang lebih efektif dan personalisasi produk untuk
+memenuhi kebutuhan spesifik dari setiap kelompok. Selain itu, analisis
+cluster juga memungkinkan pengelompokan data yang besar menjadi lebih
+mudah dipahami dan diinterpretasikan, sehingga memfasilitasi pengambilan
+keputusan yang lebih baik <span class="citation">(<a href="#ref-han2012mining">Han, Kamber, and Pei 2012</a>)</span>.</p>
+<p>Dalam konteks machine learning, analisis cluster sering digunakan
+sebagai metode unsupervised learning. Ini berarti bahwa algoritma
+clustering dapat menemukan struktur dalam data tanpa memerlukan label
+atau kategori sebelumnya. Hal ini sangat berguna ketika menghadapi
+dataset yang tidak terstruktur dan kompleks, di mana tujuan utamanya
+adalah untuk mengeksplorasi dan mendapatkan wawasan awal tentang data
+tersebut <span class="citation">(<a href="#ref-jain2010">Jain 2010</a>)</span>.</p>
+<p>Secara keseluruhan, analisis cluster tidak hanya membantu dalam
+pengelompokan data tetapi juga berfungsi sebagai alat eksplorasi yang
+kuat dalam memahami hubungan dan pola dalam dataset. Dengan demikian,
+penerapan analisis cluster dapat meningkatkan kualitas analisis data dan
+mendukung pengambilan keputusan berbasis data yang lebih baik di
+berbagai sektor industri .</p>
+<div id="ucapan-terimakasih" class="section level4 unnumbered hasAnchor">
+<h4>Ucapan Terimakasih<a href="#ucapan-terimakasih" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Saya ingin mengucapkan terima kasih kepada keluarga, teman, dan rekan kerja yang telah mendukung saya dalam menyelesaikan buku ini. Terima kasih atas cinta, dukungan, dan motivasi yang telah Anda berikan</p>
+<p><br>
+<img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-nc-sa.eu.svg" alt="Creative Commons License" /></p>
+<p>This book is licensed under the <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+<hr style="background-color:#3C6690;height:2px">
+
+</div>
+</div>
+<div id="pd" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> Pendahuluan<a href="#pd" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Placeholder</p>
+<div id="kolofon" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Kolofon<a href="#kolofon" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="pengenalan-singkat-r-and-rstudio" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Pengenalan Singkat R and RStudio<a href="#pengenalan-singkat-r-and-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="instalasi-r-dan-rstudio" class="section level3 unnumbered hasAnchor">
+<h3>Instalasi R dan RStudio<a href="#instalasi-r-dan-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="dasar-dasar-r" class="section level3 unnumbered hasAnchor">
+<h3>Dasar-Dasar R<a href="#dasar-dasar-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="tipe-data-dalam-variabel" class="section level4 unnumbered hasAnchor">
+<h4>Tipe Data dalam Variabel<a href="#tipe-data-dalam-variabel" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="operasi-dengan-variabel" class="section level4 unnumbered hasAnchor">
+<h4>Operasi dengan Variabel<a href="#operasi-dengan-variabel" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="menimpa-dan-mengubah-nilai-variabel" class="section level4 unnumbered hasAnchor">
+<h4>Menimpa dan Mengubah Nilai Variabel<a href="#menimpa-dan-mengubah-nilai-variabel" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+</div>
+<div id="struktur-data-pada-r" class="section level3 unnumbered hasAnchor">
+<h3>Struktur Data pada R<a href="#struktur-data-pada-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="vektor" class="section level4 unnumbered hasAnchor">
+<h4>Vektor<a href="#vektor" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="matriks" class="section level4 unnumbered hasAnchor">
+<h4>Matriks<a href="#matriks" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="data-frame" class="section level4 unnumbered hasAnchor">
+<h4>Data Frame<a href="#data-frame" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="list" class="section level4 unnumbered hasAnchor">
+<h4>List<a href="#list" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="vektor-1" class="section level4 unnumbered hasAnchor">
+<h4>Vektor<a href="#vektor-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+</div>
+<div id="fungsi-dan-pemrograman-di-r" class="section level3 unnumbered hasAnchor">
+<h3>Fungsi dan Pemrograman di R<a href="#fungsi-dan-pemrograman-di-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="definisi-fungsi" class="section level4 unnumbered hasAnchor">
+<h4>Definisi Fungsi<a href="#definisi-fungsi" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="pemanggilan-fungsi" class="section level4 unnumbered hasAnchor">
+<h4>Pemanggilan fungsi<a href="#pemanggilan-fungsi" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="argumen-fungsi" class="section level4 unnumbered hasAnchor">
+<h4>Argumen fungsi<a href="#argumen-fungsi" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="fungsi-dengan-beberapa-nilai-kembalian" class="section level4 unnumbered hasAnchor">
+<h4>Fungsi dengan Beberapa Nilai Kembalian<a href="#fungsi-dengan-beberapa-nilai-kembalian" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="fungsi-bawaan-di-r" class="section level4 unnumbered hasAnchor">
+<h4>Fungsi Bawaan di R<a href="#fungsi-bawaan-di-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="fungsi-anonim" class="section level4 unnumbered hasAnchor">
+<h4>Fungsi Anonim<a href="#fungsi-anonim" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+
+</div>
+</div>
+</div>
+</div>
+<div id="km" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Algoritma K-Means<a href="#km" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Placeholder</p>
+<div id="tahapan-algoritma-k-means" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Tahapan Algoritma K-Means<a href="#tahapan-algoritma-k-means" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="inisialisasi-centroid" class="section level3 unnumbered hasAnchor">
+<h3>1. Inisialisasi Centroid<a href="#inisialisasi-centroid" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="penugasan-cluster" class="section level3 unnumbered hasAnchor">
+<h3>2. Penugasan Cluster<a href="#penugasan-cluster" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="perbaharui-centroid" class="section level3 unnumbered hasAnchor">
+<h3>3. Perbaharui Centroid<a href="#perbaharui-centroid" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="ulangi-langkah-2-dan-3" class="section level3 unnumbered hasAnchor">
+<h3>4. Ulangi Langkah 2 dan 3<a href="#ulangi-langkah-2-dan-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="hasil-akhir" class="section level3 unnumbered hasAnchor">
+<h3>5. Hasil Akhir<a href="#hasil-akhir" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="eksperimen-algoritma-k-means" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Eksperimen Algoritma K-Means<a href="#eksperimen-algoritma-k-means" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="deskripsi-data" class="section level3 unnumbered hasAnchor">
+<h3>Deskripsi Data<a href="#deskripsi-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="data" class="section level3 unnumbered hasAnchor">
+<h3>Data<a href="#data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="memeriksa-missing-value" class="section level3 unnumbered hasAnchor">
+<h3>Memeriksa <em>Missing Value</em><a href="#memeriksa-missing-value" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="visualisasi-matriks-jarak" class="section level3 unnumbered hasAnchor">
+<h3>Visualisasi Matriks jarak<a href="#visualisasi-matriks-jarak" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="estimasi-jumlah-cluster-optimal" class="section level3 unnumbered hasAnchor">
+<h3>Estimasi Jumlah <em>Cluster</em> Optimal<a href="#estimasi-jumlah-cluster-optimal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="metode-elbow" class="section level3 unnumbered hasAnchor">
+<h3>Metode Elbow<a href="#metode-elbow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="metode-silhouette" class="section level3 unnumbered hasAnchor">
+<h3>Metode Silhouette<a href="#metode-silhouette" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="membuat-plot-cluster" class="section level3 unnumbered hasAnchor">
+<h3>Membuat Plot <em>Cluster</em><a href="#membuat-plot-cluster" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="eksperimen-k-means-clustering" class="section level3 unnumbered hasAnchor">
+<h3>Eksperimen K-Means Clustering<a href="#eksperimen-k-means-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="visualisasi-hasil-clustering" class="section level3 unnumbered hasAnchor">
+<h3>Visualisasi Hasil <em>clustering</em><a href="#visualisasi-hasil-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+
+</div>
+</div>
+</div>
+<div id="kmed" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Algoritma K-Medoids<a href="#kmed" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Placeholder</p>
+<div id="tahapan-algoritma-k-means-1" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Tahapan Algoritma K-Means<a href="#tahapan-algoritma-k-means-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="inisialisasi-centroid-1" class="section level3 unnumbered hasAnchor">
+<h3>1. Inisialisasi Centroid<a href="#inisialisasi-centroid-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="penugasan-anggota-cluster" class="section level3 unnumbered hasAnchor">
+<h3>2. Penugasan Anggota Cluster<a href="#penugasan-anggota-cluster" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="pembaruan-medoid" class="section level3 unnumbered hasAnchor">
+<h3>3. Pembaruan Medoid<a href="#pembaruan-medoid" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="iterasi" class="section level3 unnumbered hasAnchor">
+<h3>4. Iterasi<a href="#iterasi" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="hasil-akhir-1" class="section level3 unnumbered hasAnchor">
+<h3>5. Hasil Akhir<a href="#hasil-akhir-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="eksperimen-algoritma-k-medoids" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Eksperimen Algoritma K-Medoids<a href="#eksperimen-algoritma-k-medoids" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="data-1" class="section level3 unnumbered hasAnchor">
+<h3>Data<a href="#data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="r-packages-dan-fungsi-yang-dibutuhkan" class="section level3 unnumbered hasAnchor">
+<h3>R packages dan fungsi yang dibutuhkan<a href="#r-packages-dan-fungsi-yang-dibutuhkan" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="estimasi-jumlah-cluster-optimal-1" class="section level3 unnumbered hasAnchor">
+<h3>Estimasi Jumlah <em>Cluster</em> Optimal<a href="#estimasi-jumlah-cluster-optimal-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="eksperimen-k-medoids-clustering" class="section level3 unnumbered hasAnchor">
+<h3>Eksperimen K-Medoids Clustering<a href="#eksperimen-k-medoids-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="visualisasi-k-medoids-clustering" class="section level3 unnumbered hasAnchor">
+<h3>Visualisasi K-Medoids Clustering<a href="#visualisasi-k-medoids-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+
+</div>
+</div>
+</div>
+<div id="clra" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> CLARA - Clustering Large Applications<a href="#clra" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Placeholder</p>
+<div id="tahapan-algoritma-clara" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Tahapan Algoritma CLARA<a href="#tahapan-algoritma-clara" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="inisialisasi" class="section level3 unnumbered hasAnchor">
+<h3>1. Inisialisasi<a href="#inisialisasi" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="pengambilan-sampel-subset-data" class="section level3 unnumbered hasAnchor">
+<h3>2. Pengambilan Sampel Subset Data<a href="#pengambilan-sampel-subset-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="penerapan-algoritma-pam-pada-subset-data" class="section level3 unnumbered hasAnchor">
+<h3>3. Penerapan Algoritma PAM pada Subset Data<a href="#penerapan-algoritma-pam-pada-subset-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="pemilihan-medoid-terbaik" class="section level3 unnumbered hasAnchor">
+<h3>4. Pemilihan Medoid Terbaik<a href="#pemilihan-medoid-terbaik" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="penugasan-data-ke-cluster" class="section level3 unnumbered hasAnchor">
+<h3>5. Penugasan Data ke Cluster<a href="#penugasan-data-ke-cluster" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="evaluasi-kualitas-cluster" class="section level3 unnumbered hasAnchor">
+<h3>6. Evaluasi Kualitas Cluster<a href="#evaluasi-kualitas-cluster" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="eksperimen-algoritma-clara" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Eksperimen Algoritma CLARA<a href="#eksperimen-algoritma-clara" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="memuat-library-yang-diperlukan" class="section level3 unnumbered hasAnchor">
+<h3>1. Memuat library yang diperlukan<a href="#memuat-library-yang-diperlukan" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="membangkitkan-data-acak" class="section level3 unnumbered hasAnchor">
+<h3>2. Membangkitkan data acak<a href="#membangkitkan-data-acak" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="visualisasi-data-acak" class="section level3 unnumbered hasAnchor">
+<h3>3. Visualisasi data acak<a href="#visualisasi-data-acak" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="mencari-jumlah-clluster-optimal" class="section level3 unnumbered hasAnchor">
+<h3>4. Mencari Jumlah CLluster Optimal<a href="#mencari-jumlah-clluster-optimal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="menjalankan-clara" class="section level3 unnumbered hasAnchor">
+<h3>5. Menjalankan CLARA<a href="#menjalankan-clara" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="evaluasi-hasil" class="section level3 unnumbered hasAnchor">
+<h3>6. Evaluasi hasil<a href="#evaluasi-hasil" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="visualisasi-hasil-cluster" class="section level3 unnumbered hasAnchor">
+<h3>7. Visualisasi Hasil Cluster<a href="#visualisasi-hasil-cluster" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+
+</div>
+</div>
+</div>
+<div id="kmods" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Algoritma K-Modes<a href="#kmods" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Placeholder</p>
+<div id="tahapan-algoritma-k-modes" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Tahapan Algoritma K-Modes<a href="#tahapan-algoritma-k-modes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="inisialisasi-1" class="section level3 unnumbered hasAnchor">
+<h3>1. Inisialisasi<a href="#inisialisasi-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="pengelompokan" class="section level3 unnumbered hasAnchor">
+<h3>2. Pengelompokan<a href="#pengelompokan" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="penugasan-cluster-1" class="section level3 unnumbered hasAnchor">
+<h3>3. Penugasan Cluster<a href="#penugasan-cluster-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="update-centroid" class="section level3 unnumbered hasAnchor">
+<h3>4. Update Centroid<a href="#update-centroid" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="kondisi-berhenti" class="section level3 unnumbered hasAnchor">
+<h3>5. Kondisi Berhenti<a href="#kondisi-berhenti" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="penjelasan-tambahan" class="section level3 unnumbered hasAnchor">
+<h3>Penjelasan Tambahan<a href="#penjelasan-tambahan" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="eksperimen-algoritma-k-modes" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Eksperimen Algoritma K-Modes<a href="#eksperimen-algoritma-k-modes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="memuat-library-yang-diperlukan-1" class="section level3 unnumbered hasAnchor">
+<h3>1. Memuat library yang diperlukan<a href="#memuat-library-yang-diperlukan-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="persiapan-dataset" class="section level3 unnumbered hasAnchor">
+<h3>2. Persiapan Dataset<a href="#persiapan-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="memeriksa-missing-value-1" class="section level3 unnumbered hasAnchor">
+<h3>3. Memeriksa Missing value<a href="#memeriksa-missing-value-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="menjalankan-k-modes" class="section level3 unnumbered hasAnchor">
+<h3>3. Menjalankan K-Modes<a href="#menjalankan-k-modes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="menyimpan-hasil-cluster" class="section level3 unnumbered hasAnchor">
+<h3>4. Menyimpan Hasil Cluster<a href="#menyimpan-hasil-cluster" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+
+</div>
+</div>
+</div>
+<div id="HC" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> Metode Cluster Hirarki<a href="#HC" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Placeholder</p>
+<div id="tahapan-agglomerative-clustering" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Tahapan Agglomerative Clustering<a href="#tahapan-agglomerative-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="inisialisasi-2" class="section level3 unnumbered hasAnchor">
+<h3>1. Inisialisasi<a href="#inisialisasi-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="menghitung-jarak" class="section level3 unnumbered hasAnchor">
+<h3>2. Menghitung Jarak<a href="#menghitung-jarak" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="menggabungkan-cluster" class="section level3 unnumbered hasAnchor">
+<h3>3. Menggabungkan Cluster<a href="#menggabungkan-cluster" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="memperbarui-jarak" class="section level3 unnumbered hasAnchor">
+<h3>4. Memperbarui Jarak<a href="#memperbarui-jarak" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="ulangi-proses" class="section level3 unnumbered hasAnchor">
+<h3>5. Ulangi Proses<a href="#ulangi-proses" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="membuat-dendrogram" class="section level3 unnumbered hasAnchor">
+<h3>6. Membuat Dendrogram<a href="#membuat-dendrogram" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="kesimpulan" class="section level3 unnumbered hasAnchor">
+<h3>Kesimpulan<a href="#kesimpulan" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="eksperimen-agglomerative-clustering" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Eksperimen Agglomerative Clustering<a href="#eksperimen-agglomerative-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="standarisasi-data" class="section level3 unnumbered hasAnchor">
+<h3>Standarisasi Data<a href="#standarisasi-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="ukuran-similarity-dan-dissimilarity" class="section level3 unnumbered hasAnchor">
+<h3>Ukuran Similarity dan Dissimilarity<a href="#ukuran-similarity-dan-dissimilarity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="melakukan-pengelompokan-hierarkis" class="section level3 unnumbered hasAnchor">
+<h3>Melakukan Pengelompokan Hierarkis<a href="#melakukan-pengelompokan-hierarkis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="visualisasi-dengan-dendrogram" class="section level3 unnumbered hasAnchor">
+<h3>Visualisasi dengan Dendrogram<a href="#visualisasi-dengan-dendrogram" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="visualisasi-dengan-dendrogram-1" class="section level3 unnumbered hasAnchor">
+<h3>Visualisasi dengan Dendrogram<a href="#visualisasi-dengan-dendrogram-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="jumlah-anggota-dalam-setiap-cluster" class="section level3 unnumbered hasAnchor">
+<h3>Jumlah Anggota dalam Setiap Cluster<a href="#jumlah-anggota-dalam-setiap-cluster" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="visualisasi-dendrogram" class="section level3 unnumbered hasAnchor">
+<h3>Visualisasi Dendrogram<a href="#visualisasi-dendrogram" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="visualisasi-hasil-clustering-1" class="section level3 unnumbered hasAnchor">
+<h3>Visualisasi Hasil Clustering<a href="#visualisasi-hasil-clustering-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="perbandingan-dendogram" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Perbandingan Dendogram<a href="#perbandingan-dendogram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="tahapan-divisive-clustering" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Tahapan Divisive Clustering<a href="#tahapan-divisive-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="inisialisasi-3" class="section level3 unnumbered hasAnchor">
+<h3>1. Inisialisasi<a href="#inisialisasi-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="menghitung-dissimilarity" class="section level3 unnumbered hasAnchor">
+<h3>2. Menghitung Dissimilarity<a href="#menghitung-dissimilarity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="memilih-cluster-untuk-dibagi" class="section level3 unnumbered hasAnchor">
+<h3>3. Memilih Cluster untuk Dibagi<a href="#memilih-cluster-untuk-dibagi" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="membagi-cluster" class="section level3 unnumbered hasAnchor">
+<h3>4. Membagi Cluster<a href="#membagi-cluster" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="menghitung-dissimilarity-untuk-sub-cluster" class="section level3 unnumbered hasAnchor">
+<h3>5. Menghitung Dissimilarity untuk Sub-Cluster<a href="#menghitung-dissimilarity-untuk-sub-cluster" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="ulangi-proses-1" class="section level3 unnumbered hasAnchor">
+<h3>6. Ulangi Proses<a href="#ulangi-proses-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="membuat-dendrogram-1" class="section level3 unnumbered hasAnchor">
+<h3>7. Membuat Dendrogram<a href="#membuat-dendrogram-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="eksperimen-divisive-clustering" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Eksperimen Divisive Clustering<a href="#eksperimen-divisive-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+</div>
+</div>
+<div id="vizhc" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">7</span> Visualisasi Dendogram<a href="#vizhc" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+
+</div>
+<div id="fcm" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">8</span> Algoritma Fuzzy C-Means<a href="#fcm" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Placeholder</p>
+<div id="tahapan-algoritma-fuzzy-c-means" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Tahapan Algoritma Fuzzy C-Means<a href="#tahapan-algoritma-fuzzy-c-means" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="inisialisasi-parameter" class="section level3 unnumbered hasAnchor">
+<h3>1. Inisialisasi Parameter<a href="#inisialisasi-parameter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="inisialisasi-matriks-keanggotaan" class="section level3 unnumbered hasAnchor">
+<h3>2. Inisialisasi Matriks Keanggotaan<a href="#inisialisasi-matriks-keanggotaan" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="perhitungan-pusat-cluster" class="section level3 unnumbered hasAnchor">
+<h3>3. Perhitungan Pusat Cluster<a href="#perhitungan-pusat-cluster" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="perbarui-matriks-keanggotaan" class="section level3 unnumbered hasAnchor">
+<h3>4. Perbarui Matriks Keanggotaan<a href="#perbarui-matriks-keanggotaan" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="evaluasi-konvergensi" class="section level3 unnumbered hasAnchor">
+<h3>5. Evaluasi Konvergensi<a href="#evaluasi-konvergensi" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="hasil-akhir-2" class="section level3 unnumbered hasAnchor">
+<h3>6. Hasil Akhir<a href="#hasil-akhir-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="eksperimeen-fuzzy-c-means" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Eksperimeen Fuzzy C-Means<a href="#eksperimeen-fuzzy-c-means" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="install-dan-load-packagaes" class="section level3 unnumbered hasAnchor">
+<h3>Install dan Load Packagaes<a href="#install-dan-load-packagaes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="data-2" class="section level3 unnumbered hasAnchor">
+<h3>Data<a href="#data-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="hasil-clustering" class="section level3 unnumbered hasAnchor">
+<h3>Hasil Clustering<a href="#hasil-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="visualisasi-matrik-keanggotaan" class="section level3 unnumbered hasAnchor">
+<h3>Visualisasi Matrik Keanggotaan<a href="#visualisasi-matrik-keanggotaan" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="ringkasan-hasil-clustering-fcm" class="section level3 unnumbered hasAnchor">
+<h3>Ringkasan Hasil Clustering FCM<a href="#ringkasan-hasil-clustering-fcm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="visualisasi-hasil-cluster-1" class="section level3 unnumbered hasAnchor">
+<h3>Visualisasi Hasil Cluster<a href="#visualisasi-hasil-cluster-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="visualisasi-hasil-cluster-dengan-clusplot" class="section level3 unnumbered hasAnchor">
+<h3>Visualisasi Hasil Cluster dengan clusplot<a href="#visualisasi-hasil-cluster-dengan-clusplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+
+</div>
+</div>
+</div>
+<div id="referensi" class="section level1 unnumbered hasAnchor">
+<h1>Referensi<a href="#referensi" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-han2012mining" class="csl-entry">
+Han, Jiawei, Micheline Kamber, and Jian Pei. 2012. <span>“Data Mining Concepts and Techniques, Third Edition.”</span> Waltham, Mass.: Morgan Kaufmann Publishers. 2012.
+</div>
+<div id="ref-jain2010" class="csl-entry">
+Jain, Anil K. 2010. <span>“Data Clustering: 50 Years Beyond K-Means.”</span> <em>Pattern Recognition Letters</em> 31 (8): 651–66. <a href="https://doi.org/10.1016/j.patrec.2009.09.011">https://doi.org/10.1016/j.patrec.2009.09.011</a>.
+</div>
+<div id="ref-kaufman:clustering1990" class="csl-entry">
+Kaufman, L., and P. J. Rousseeuw. 1990. <em>Finding Groups in Data: An Introduction to Cluster Analysis</em>. Wiley.
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": true,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mca91/ClustR/edit/master/%s",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["CLUSTR.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>
