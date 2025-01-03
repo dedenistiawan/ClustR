@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisasi Algoritma K-Means</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .centroid {
+            fill: red;
+            stroke: black;
+            stroke-width: 2;
+        }
+        .controls {
+            margin-bottom: 10px;
+        }
+        svg {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Visualisasi Algoritma K-Means</h1>
+    <div class="controls">
+        <label for="numPoints">Jumlah Data:</label>
+        <input type="number" id="numPoints" value="200" min="10" max="1000">
+        <label for="numClusters">Jumlah Cluster:</label>
+        <input type="number" id="numClusters" value="3" min="2" max="10">
+        <button id="runButton">Run</button>
+        <button id="restartButton">Restart</button>
+    </div>
+    <svg id="kmeans-svg" width="800" height="600"></svg>
+
+    <script>
+        const width = 880, height = 770, maxIterations = 10;
+        let svg, points, centroids, numPoints, numClusters, iteration;
+
+        // Initialize SVG
+        svg = d3.select("#kmeans-svg");
+
+        // Generate random points
+        function generatePoints(numPoints) {
+            return d3.range(numPoints).map(() => ({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                cluster: Math.floor(Math.random() * numClusters),
+            }));
+        }
+
+        // Initialize centroids randomly
+        function initializeCentroids(numClusters) {
+            return d3.range(numClusters).map(() => ({
+                x: Math.random() * width,
+                y: Math.random() * height,
+            }));
+        }
+
+        // Assign points to the nearest centroid
+        function assignPointsToClusters() {
+            points.forEach(point => {
+                let minDist = Infinity, cluster = 0;
+                centroids.forEach((centroid, i) => {
+                    const dist = Math.hypot(point.x - centroid.x, point.y - centroid.y);
+                    if (dist < minDist) {
+                        minDist = dist;
+                        cluster = i;
+                    }
+                });
+                point.cluster = cluster;
+            });
+        }
+
+        // Update centroids based on cluster points
+        function updateCentroids() {
+            centroids = centroids.map((centroid, i) => {
+                const clusterPoints = points.filter(p => p.cluster === i);
+                const avgX = d3.mean(clusterPoints, p => p.x);
+                const avgY = d3.mean(clusterPoints, p => p.y);
+                return { x: avgX || centroid.x, y: avgY || centroid.y };
+            });
+        }
+
+        // Draw points and centroids
+        function draw() {
+            svg.selectAll("*").remove();
+
+            // Draw points
+            svg.selectAll(".point")
+                .data(points)
+                .join("circle")
+                .attr("class", "point")
+                .attr("cx", d => d.x)
+                .attr("cy", d => d.y)
+                .attr("r", 5)
+                .attr("fill", d => d3.schemeCategory10[d.cluster]);
+
+            // Draw centroids
+            svg.selectAll(".centroid")
+                .data(centroids)
+                .join("circle")
+                .attr("class", "centroid")
+                .attr("cx", d => d.x)
+                .attr("cy", d => d.y)
+                .attr("r", 10);
+
+            // Add iteration label
+            svg.append("text")
+                .attr("x", 10)
+                .attr("y", 20)
+                .text(`Iteration: ${iteration}`)
+                .attr("font-size", "16px");
+        }
+
+        // Run K-Means
+        async function runKMeans() {
+            iteration = 0;
+            for (let i = 1; i <= maxIterations; i++) {
+                iteration = i;
+                assignPointsToClusters();
+                draw();
+                await new Promise(resolve => setTimeout(resolve, 1000)); // Pause for 1 second
+                updateCentroids();
+            }
+        }
+
+        // Initialize visualization
+        function initializeVisualization() {
+            numPoints = +document.getElementById("numPoints").value;
+            numClusters = +document.getElementById("numClusters").value;
+
+            points = generatePoints(numPoints);
+            centroids = initializeCentroids(numClusters);
+
+            draw();
+        }
+
+        // Event listeners
+        document.getElementById("runButton").addEventListener("click", runKMeans);
+        document.getElementById("restartButton").addEventListener("click", initializeVisualization);
+
+        // Initial draw
+        initializeVisualization();
+    </script>
+</body>
+</html>
