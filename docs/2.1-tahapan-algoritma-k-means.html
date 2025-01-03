@@ -23,7 +23,7 @@
 <meta name="author" content="Deden Istiawan" />
 
 
-<meta name="date" content="2025-01-01" />
+<meta name="date" content="2025-01-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -213,6 +213,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#fungsi-dan-pemrograman-di-r"><i class="fa fa-check"></i>Fungsi dan Pemrograman di R</a></li>
 </ul></li>
 </ul></li>
+<li class="part"><span><b>I Pendekatan Partisi</b></span></li>
 <li class="chapter" data-level="2" data-path="2-km.html"><a href="2-km.html"><i class="fa fa-check"></i><b>2</b> Algoritma K-Means</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="2.1-tahapan-algoritma-k-means.html"><a href="2.1-tahapan-algoritma-k-means.html"><i class="fa fa-check"></i><b>2.1</b> Tahapan Algoritma K-Means</a>
@@ -298,6 +299,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="5.2-eksperimen-algoritma-k-modes.html"><a href="5.2-eksperimen-algoritma-k-modes.html#menyimpan-hasil-cluster"><i class="fa fa-check"></i>4. Menyimpan Hasil Cluster</a></li>
 </ul></li>
 </ul></li>
+<li class="part"><span><b>II Pendekatan Hirarki</b></span></li>
 <li class="chapter" data-level="6" data-path="6-HC.html"><a href="6-HC.html"><i class="fa fa-check"></i><b>6</b> Metode Cluster Hirarki</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="6.1-tahapan-agglomerative-clustering.html"><a href="6.1-tahapan-agglomerative-clustering.html"><i class="fa fa-check"></i><b>6.1</b> Tahapan Agglomerative Clustering</a>
@@ -334,7 +336,18 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="6.5-eksperimen-divisive-clustering.html"><a href="6.5-eksperimen-divisive-clustering.html"><i class="fa fa-check"></i><b>6.5</b> Eksperimen Divisive Clustering</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="7-vizhc.html"><a href="7-vizhc.html"><i class="fa fa-check"></i><b>7</b> Visualisasi Dendogram</a></li>
+<li class="chapter" data-level="7" data-path="7-vizhc.html"><a href="7-vizhc.html"><i class="fa fa-check"></i><b>7</b> Visualisasi Dendogram</a>
+<ul>
+<li class="chapter" data-level="" data-path="7-vizhc.html"><a href="7-vizhc.html#proses-pembentukan-dendrogram"><i class="fa fa-check"></i>Proses Pembentukan Dendrogram</a></li>
+<li class="chapter" data-level="7.1" data-path="7.1-eksperimen.html"><a href="7.1-eksperimen.html"><i class="fa fa-check"></i><b>7.1</b> Eksperimen</a>
+<ul>
+<li class="chapter" data-level="" data-path="7.1-eksperimen.html"><a href="7.1-eksperimen.html#read-data"><i class="fa fa-check"></i>Read Data</a></li>
+<li class="chapter" data-level="" data-path="7.1-eksperimen.html"><a href="7.1-eksperimen.html#standarisasi-data-1"><i class="fa fa-check"></i>Standarisasi Data</a></li>
+<li class="chapter" data-level="" data-path="7.1-eksperimen.html"><a href="7.1-eksperimen.html#pengelompokan-data"><i class="fa fa-check"></i>Pengelompokan Data</a></li>
+<li class="chapter" data-level="" data-path="7.1-eksperimen.html"><a href="7.1-eksperimen.html#visualisasi-dendogram"><i class="fa fa-check"></i>Visualisasi Dendogram</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Pendekatan Fuzzy</b></span></li>
 <li class="chapter" data-level="8" data-path="8-fcm.html"><a href="8-fcm.html"><i class="fa fa-check"></i><b>8</b> Algoritma Fuzzy C-Means</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="8.1-tahapan-algoritma-fuzzy-c-means.html"><a href="8.1-tahapan-algoritma-fuzzy-c-means.html"><i class="fa fa-check"></i><b>8.1</b> Tahapan Algoritma Fuzzy C-Means</a>
@@ -389,7 +402,7 @@ text-align: justify}
 </style>
 <div id="inisialisasi-centroid" class="section level3 unnumbered hasAnchor">
 <h3>1. Inisialisasi Centroid<a href="2.1-tahapan-algoritma-k-means.html#inisialisasi-centroid" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Pilih jumlah cluster <span class="math inline">\(K\)</span> yang diinginkan. Inisialisasi <span class="math inline">\(K\)</span> centroid secara acak dari dataset. Centroid adalah titik yang mewakili pusat dari setiap cluster.</p>
+<p>Pilih jumlah cluster <span class="math inline">\(k\)</span> yang diinginkan. Inisialisasi <span class="math inline">\(k\)</span> centroid secara acak dari dataset. Centroid adalah titik yang mewakili pusat dari setiap cluster.</p>
 <p><span class="math display">\[
 C_k = (x_{k1}, x_{k2}, \ldots, x_{kn}) \quad \text{untuk } k = 1, 2, \ldots, K
 \]</span>

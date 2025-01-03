@@ -177,7 +177,7 @@ colback=kcblue,colframe=kcdarkblue,fonttitle=\bfseries, title=Key Concept~#2, af
 
 \title{Analisis Cluster dengan R: Panduan Lengkap untuk Pemula}
 \author{Deden Istiawan}
-\date{2025-01-01}
+\date{2025-01-03}
 
 \begin{document}
 \maketitle
@@ -193,7 +193,7 @@ Rekayasa Perangkat Lunak
 Fakultas Sains dan Teknologi Institut Teknologi Statistika dan
 Bisnis Muhammadiyah Semarang, Indonesia
 \href{mailto:deden.istiawan@itesa.ac.id}{\nolinkurl{deden.istiawan@itesa.ac.id}}.
-Last updated on Wednesday, January 01, 2025.
+Last updated on Friday, January 03, 2025.
 
 Analisis \emph{cluster} merupakan teknik yang sangat penting dalam bidang data
 science, karena kemampuannya untuk mengelompokkan data berdasarkan
@@ -458,7 +458,7 @@ diakses di \href{https://github.com/dedenistiawan/ClustR}{GitHub}.
 #>  collate  English_Indonesia.utf8
 #>  ctype    English_Indonesia.utf8
 #>  tz       Asia/Jakarta
-#>  date     2025-01-01
+#>  date     2025-01-03
 #>  pandoc   3.2 @ C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools/ (via rmarkdown)
 #> 
 #> - Packages -------------------------------------------------------------------
@@ -941,7 +941,15 @@ mencobanya di bawah ini.
 \textit{This interactive application is only available in the HTML version.}
 \end{center}
 
+\part{Pendekatan Partisi}\label{part-pendekatan-partisi}
+
 \chapter{Algoritma K-Means}\label{km}
+
+\begin{quote}
+``It's not the data that's important, it's the story the data tells''
+
+-- Moneyball
+\end{quote}
 
 Algoritma K-Means merupakan salah satu metode yang paling populer dalam analisis \emph{cluster}, yang digunakan untuk mengelompokkan data ke dalam beberapa kelompok berdasarkan kesamaan fitur \citep{jain2010} . Metode ini bekerja dengan cara membagi data ke dalam \(K\) cluster, di mana \(K\) adalah jumlah \emph{cluster} yang ditentukan sebelumnya oleh pengguna \citep{macqueen1967some}. Proses pengelompokan ini dilakukan dengan meminimalkan jarak antara data dalam satu \emph{cluster} dan pusat \emph{cluster} (centroid) yang dihasilkan. Langkah pertama dalam algoritma K-Means adalah inisialisasi centroid untuk setiap \emph{cluster}, yang dapat dilakukan secara acak atau menggunakan metode tertentu seperti K-Means++ \citep{arthur2007kmeans}. Setelah centroid diinisialisasi, algoritma kemudian mengelompokkan setiap data ke dalam \emph{cluster} terdekat berdasarkan jarak Euclidean\citep{hastie2009elements}. Proses ini diulang hingga tidak ada perubahan signifikan dalam posisi \emph{centroid} atau tidak ada perubahan dalam pengelompokan data.
 
@@ -954,7 +962,7 @@ Secara keseluruhan, algoritma K-Means adalah alat yang kuat dan fleksibel untuk 
 \subsection*{1. Inisialisasi Centroid}\label{inisialisasi-centroid}
 \addcontentsline{toc}{subsection}{1. Inisialisasi Centroid}
 
-Pilih jumlah cluster \(K\) yang diinginkan. Inisialisasi \(K\) centroid secara acak dari dataset. Centroid adalah titik yang mewakili pusat dari setiap cluster.
+Pilih jumlah cluster \(k\) yang diinginkan. Inisialisasi \(k\) centroid secara acak dari dataset. Centroid adalah titik yang mewakili pusat dari setiap cluster.
 
 \[
 C_k = (x_{k1}, x_{k2}, \ldots, x_{kn}) \quad \text{untuk } k = 1, 2, \ldots, K
@@ -1013,7 +1021,7 @@ Data yang digunakan dalam eksperimen k-means ini berasal dari Tim Percepatan Pen
 \subsection*{Data}\label{data}
 \addcontentsline{toc}{subsection}{Data}
 
-Dengan menggunakan fungsi \texttt{read.csv()} dari R, kami dapat mengimpor data langsung dari URL tersebut ke dalam lingkungan kerja R. Berikut adalah kode yang digunakan untuk membaca data:
+Dengan menggunakan fungsi \texttt{read.csv()} dari \texttt{R}, kami dapat mengimpor data langsung dari URL tersebut ke dalam lingkungan kerja \texttt{R}. Berikut adalah kode yang digunakan untuk membaca data:
 Package \texttt{reader} menyiapkan fungsi \href{https://readr.tidyverse.org/reference/read_delim.html}{\texttt{read\_csv()}} untuk import data dari file CSV. Pada kasus ini digunakan data \href{https://github.com/dedenistiawan/Dataset/blob/main/BDT.csv}{Data 40\% Kemiskinan di jawa Tengah}.
 
 \begin{Shaded}
@@ -1069,6 +1077,15 @@ Setelah melakukan pemeriksaan terhadap dataset, tidak ada nilai yang hilang (\em
 
 Setelah mempersiapkan data dan memastikan tidak ada nilai yang hilang, langkah selanjutnya adalah membuat visualisasi matriks jarak. Visualisasi ini penting untuk memahami seberapa dekat atau jauh objek-objek dalam dataset berdasarkan variabel yang ada. Dengan menggunakan matriks jarak, kita dapat melihat pola dan hubungan antar data yang akan membantu dalam analisis \emph{cluster}. Kami akan menggunakan library \texttt{factoextra} untuk menghitung dan memvisualisasikan matriks jarak. Fungsi \texttt{get\_dist()} akan digunakan untuk menghitung jarak antar objek, dan \texttt{fviz\_dist()} dari \texttt{factoextra} akan digunakan untuk membuat visualisasi. Berikut adalah kode untuk membuat visualisasi matriks jarak:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(factoextra)}
+\NormalTok{distance }\OtherTok{\textless{}{-}} \FunctionTok{get\_dist}\NormalTok{(data)}
+\FunctionTok{fviz\_dist}\NormalTok{(distance, }\AttributeTok{gradient =} \FunctionTok{list}\NormalTok{(}\AttributeTok{low =} \StringTok{"\#00AFBB"}\NormalTok{, }\AttributeTok{mid =} \StringTok{"white"}\NormalTok{, }\AttributeTok{high =} \StringTok{"\#FC4E07"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{figure}[h]
 
 {\centering \includegraphics[width=0.8\linewidth]{02-ch2_files/figure-latex/unnamed-chunk-4-1} 
@@ -1107,6 +1124,16 @@ Dalam metode k-means banyaknya klaster ditentukan sendiri oleh pengguna. Maka da
 
 Metode Elbow merupakan suatu metode yang digunakan untuk menghasilkan informasi dalam menentukan jumlah cluster terbaik dengan cara melihat persentase hasil perbandingan antara jumlah cluster yang akan membentuk siku pada suatu titik. Metode ini memberikan ide/gagasan dengan cara memilih nilai cluster dan kemudian menambah nilai cluster tersebut untuk dijadikan model data dalam penentuan cluster terbaik. Dan selain itu persentase perhitungan yang dihasilkan menjadi pembanding antara jumlah cluster yang ditambah. Hasil persentase yang berbeda dari setiap nilai cluster dapat ditunjukan dengan menggunakan grafik sebagai sumber informasinya. Jika nilai cluster pertama dengan nilai cluster kedua memberikan sudut dalam grafik atau nilainya mengalami penurunan paling besar maka nilai cluster tersebut yang terbaik.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#penentuan jumlah cluster optimal}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(factoextra)}
+\FunctionTok{fviz\_nbclust}\NormalTok{(data, kmeans, }\AttributeTok{method =} \StringTok{"wss"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{2}\NormalTok{, }\AttributeTok{linetype =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{figure}[h]
 
 {\centering \includegraphics[width=0.8\linewidth]{02-ch2_files/figure-latex/unnamed-chunk-5-1} 
@@ -1116,12 +1143,19 @@ Metode Elbow merupakan suatu metode yang digunakan untuk menghasilkan informasi 
 \caption{Plot Jumlah Cluster Metode Elbow}\label{fig:unnamed-chunk-5}
 \end{figure}
 
-Metode elbow menggunakan nilai total wss (whitin sum square) sebagai penentu 𝐾 optimalnya. Dari gambar di atas terlihat garis mengalami patahan yang membentuk elbow atau siku pada saat 𝐾 = 2. Maka dengan menggunakan metode ini diperoleh 𝐾 optimal pada saat berada di 𝐾 = 2.
+Metode elbow menggunakan nilai total wss (whitin sum square) sebagai penentu \(k\) optimalnya. Dari gambar di atas terlihat garis mengalami patahan yang membentuk elbow atau siku pada saat \(k=2\). Maka dengan menggunakan metode ini diperoleh \(k\) optimal pada saat berada di \(k=2\).
 
 \subsection*{Metode Silhouette}\label{metode-silhouette}
 \addcontentsline{toc}{subsection}{Metode Silhouette}
 
 Silhouette Coefficient digunakan untuk melihat kualitas dan kekuatan cluster, seberapa baik suatu objek ditempatkan dalam suatu cluster. Metode ini merupakan gabungan dari metode cohesion dan separation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#Average Silhouette Method}
+\FunctionTok{fviz\_nbclust}\NormalTok{(data, kmeans, }\AttributeTok{method =} \StringTok{"silhouette"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{figure}[h]
 
@@ -1132,7 +1166,7 @@ Silhouette Coefficient digunakan untuk melihat kualitas dan kekuatan cluster, se
 \caption{Plot Jumlah Cluster Metode silhouette}\label{fig:unnamed-chunk-6}
 \end{figure}
 
-Pendekatan rata-rata nilai metode silhouette untuk menduga kualitas dari klaster yang terbentuk. Semakin tinggi nilai rata-ratanya maka akan semakin baik. Berdasarkan grafik pada gambar di atas banyak klaster optimal yang terbentuk pada 𝐾 = 2.
+Pendekatan rata-rata nilai metode silhouette untuk menduga kualitas dari klaster yang terbentuk. Semakin tinggi nilai rata-ratanya maka akan semakin baik. Berdasarkan grafik pada gambar di atas banyak klaster optimal yang terbentuk pada \(k=2\).
 
 \subsection*{\texorpdfstring{Membuat Plot \emph{Cluster}}{Membuat Plot Cluster}}\label{membuat-plot-cluster}
 \addcontentsline{toc}{subsection}{Membuat Plot \emph{Cluster}}
@@ -1151,7 +1185,24 @@ Pada eksperimen ini, algoritma K-Means diterapkan pada dataset dengan jumlah clu
 
 Kode ini digunakan untuk membandingkan hasil clustering dengan jumlah cluster yang berbeda, mulai dari 2 hingga 5, dengan memvisualisasikan setiap hasil clustering menggunakan fungsi \texttt{fviz\_cluster()} dari paket \texttt{factoextra}. Setiap plot menggambarkan hasil clustering untuk jumlah cluster yang berbeda, di mana parameter \texttt{geom\ =\ "point"} memastikan bahwa titik data diplot sebagai titik pada grafik. Judul setiap plot, seperti \texttt{"k\ =\ 2"}, \texttt{"k\ =\ 3"}, \texttt{"k\ =\ 4"}, dan \texttt{"k\ =\ 5"}, menunjukkan jumlah cluster yang digunakan dalam setiap eksperimen clustering. Dengan menghasilkan empat plot ini, kita dapat membandingkan sebaran data dalam setiap cluster dan menganalisis bagaimana pemisahan data berubah dengan jumlah cluster yang berbeda. Visualisasi ini sangat berguna untuk membantu menentukan jumlah cluster yang optimal berdasarkan struktur data yang terlihat dalam plot.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# komparasi plot}
+\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{fviz\_cluster}\NormalTok{(k2, }\AttributeTok{geom =} \StringTok{"point"}\NormalTok{, }\AttributeTok{data =}\NormalTok{ data) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"k = 2"}\NormalTok{)}
+\NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{fviz\_cluster}\NormalTok{(k3, }\AttributeTok{geom =} \StringTok{"point"}\NormalTok{,  }\AttributeTok{data =}\NormalTok{ data) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"k = 3"}\NormalTok{)}
+\NormalTok{p3 }\OtherTok{\textless{}{-}} \FunctionTok{fviz\_cluster}\NormalTok{(k4, }\AttributeTok{geom =} \StringTok{"point"}\NormalTok{,  }\AttributeTok{data =}\NormalTok{ data) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"k = 4"}\NormalTok{)}
+\NormalTok{p4 }\OtherTok{\textless{}{-}} \FunctionTok{fviz\_cluster}\NormalTok{(k5, }\AttributeTok{geom =} \StringTok{"point"}\NormalTok{,  }\AttributeTok{data =}\NormalTok{ data) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"k = 5"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 Kode ini digunakan untuk menampilkan empat plot hasil clustering dalam satu tampilan teratur dengan menggunakan fungsi \texttt{grid.arrange()} dari paket \texttt{gridExtra}. Setiap plot yang mewakili jumlah cluster yang berbeda (2, 3, 4, dan 5) disusun dalam dua baris, masing-masing berisi dua plot, sehingga memudahkan perbandingan antar hasil clustering.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(gridExtra)}
+\FunctionTok{grid.arrange}\NormalTok{(p1, p2, p3, p4, }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{figure}[h]
 
@@ -1165,7 +1216,7 @@ Kode ini digunakan untuk menampilkan empat plot hasil clustering dalam satu tamp
 \subsection*{Eksperimen K-Means Clustering}\label{eksperimen-k-means-clustering}
 \addcontentsline{toc}{subsection}{Eksperimen K-Means Clustering}
 
-Berdasarkan pendekatan metode elbow dan metode Silhouette, jumlah cluster optimal yang diperoleh adalah K=2. Metode elbow digunakan untuk menentukan jumlah cluster yang meminimalkan total within-cluster sum of squares (WSS), sementara metode Silhouette mengukur seberapa baik titik data dikelompokkan dalam cluster yang benar. Hasil dari kedua metode ini menunjukkan bahwa dua cluster adalah jumlah yang paling optimal untuk dataset ini. Oleh karena itu, eksperimen selanjutnya dilakukan dengan menggunakan K=2 untuk melakukan clustering, dengan tujuan untuk memverifikasi apakah pembagian data ke dalam dua cluster menghasilkan pemisahan yang jelas dan bermakna berdasarkan karakteristik data yang ada.
+Berdasarkan pendekatan metode elbow dan metode Silhouette, jumlah cluster optimal yang diperoleh adalah \(k=2\). Metode elbow digunakan untuk menentukan jumlah cluster yang meminimalkan total within-cluster sum of squares (WSS), sementara metode Silhouette mengukur seberapa baik titik data dikelompokkan dalam cluster yang benar. Hasil dari kedua metode ini menunjukkan bahwa dua cluster adalah jumlah yang paling optimal untuk dataset ini. Oleh karena itu, eksperimen selanjutnya dilakukan dengan menggunakan \(k=2\) untuk melakukan clustering, dengan tujuan untuk memverifikasi apakah pembagian data ke dalam dua cluster menghasilkan pemisahan yang jelas dan bermakna berdasarkan karakteristik data yang ada.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1211,7 +1262,7 @@ Berdasarkan pendekatan metode elbow dan metode Silhouette, jumlah cluster optima
 \end{Highlighting}
 \end{Shaded}
 
-Untuk melihat hasil akhir clustering K-Means pada setiap kabupaten dalam dataset. Dengan menggunakan \texttt{km.res\$cluster}, kita dapat memperoleh informasi mengenai anggota setiap cluster yang terbentuk setelah algoritma K-Means dijalankan. Hasil ini akan menunjukkan cluster mana yang menjadi bagian dari setiap kabupaten berdasarkan hasil eksperimen dengan K=2, yang sebelumnya ditentukan sebagai jumlah cluster optimal. Setiap nilai dalam \texttt{km.res\$cluster} mengindikasikan nomor cluster (misalnya, 1 atau 2) yang sesuai dengan kabupaten tertentu, yang memungkinkan kita untuk menganalisis distribusi dan pemisahan kabupaten berdasarkan karakteristik yang relevan dalam dataset.
+Untuk melihat hasil akhir clustering K-Means pada setiap kabupaten dalam dataset. Dengan menggunakan \texttt{km.res\$cluster}, kita dapat memperoleh informasi mengenai anggota setiap cluster yang terbentuk setelah algoritma K-Means dijalankan. Hasil ini akan menunjukkan cluster mana yang menjadi bagian dari setiap kabupaten berdasarkan hasil eksperimen dengan \(k=2\), yang sebelumnya ditentukan sebagai jumlah cluster optimal. Setiap nilai dalam \texttt{km.res\$cluster} mengindikasikan nomor cluster (misalnya, 1 atau 2) yang sesuai dengan kabupaten tertentu, yang memungkinkan kita untuk menganalisis distribusi dan pemisahan kabupaten berdasarkan karakteristik yang relevan dalam dataset.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1234,7 +1285,7 @@ Untuk melihat hasil akhir clustering K-Means pada setiap kabupaten dalam dataset
 \end{Highlighting}
 \end{Shaded}
 
-Kode ini digunakan untuk melihat ukuran masing-masing cluster setelah algoritma K-Means dijalankan. Dengan menggunakan \texttt{km.res\$size}, kita dapat memperoleh jumlah anggota atau titik data yang termasuk dalam setiap cluster. Hasil dari \texttt{km.res\$size} akan memberikan informasi mengenai berapa banyak kabupaten yang tergolong dalam setiap cluster yang terbentuk, baik itu cluster 1 atau cluster 2, berdasarkan hasil eksperimen dengan K=2. Informasi ini sangat berguna untuk memahami distribusi data dan sebaran anggota di setiap cluster yang dihasilkan oleh proses clustering.
+Kode ini digunakan untuk melihat ukuran masing-masing cluster setelah algoritma K-Means dijalankan. Dengan menggunakan \texttt{km.res\$size}, kita dapat memperoleh jumlah anggota atau titik data yang termasuk dalam setiap cluster. Hasil dari \texttt{km.res\$size} akan memberikan informasi mengenai berapa banyak kabupaten yang tergolong dalam setiap cluster yang terbentuk, baik itu cluster 1 atau cluster 2, berdasarkan hasil eksperimen dengan \(k=2\). Informasi ini sangat berguna untuk memahami distribusi data dan sebaran anggota di setiap cluster yang dihasilkan oleh proses clustering.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1249,14 +1300,23 @@ Kode ini digunakan untuk melihat ukuran masing-masing cluster setelah algoritma 
 
 Kode ini digunakan untuk memvisualisasikan hasil clustering K-Means pada dataset. Pertama, \texttt{km.res\$centers} digunakan untuk menampilkan pusat cluster yang ditemukan oleh algoritma K-Means, yang mewakili rata-rata dari titik-titik data yang tergolong dalam setiap cluster. Pusat cluster ini memberikan gambaran tentang karakteristik masing-masing cluster. Selanjutnya, fungsi \texttt{fviz\_cluster(km.res,\ data\ =\ data)} digunakan untuk memvisualisasikan hasil clustering dalam bentuk plot. Titik-titik data diplot dengan warna yang berbeda untuk masing-masing cluster, memudahkan kita untuk melihat pemisahan antar cluster serta sebaran data dalam ruang fitur. Visualisasi ini sangat berguna untuk memahami seberapa baik pemisahan antara cluster dan memberikan wawasan mengenai struktur data setelah dilakukan clustering.
 
-\begin{verbatim}
-#>         X1       X2       X3       X4       X5       X6       X7       X8
-#> 1 1.918182 2.017273 1.675000 1.949091 1.890455 1.728182 1.557273 1.286818
-#> 2 4.446923 4.276923 4.854615 4.394615 4.494615 4.769231 5.056154 5.515385
-#>         X9      X10
-#> 1 1.952727 1.455455
-#> 2 4.389231 5.230000
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{km.res}\SpecialCharTok{$}\NormalTok{centers}
+\CommentTok{\#\textgreater{}         X1       X2       X3       X4       X5       X6       X7       X8}
+\CommentTok{\#\textgreater{} 1 1.918182 2.017273 1.675000 1.949091 1.890455 1.728182 1.557273 1.286818}
+\CommentTok{\#\textgreater{} 2 4.446923 4.276923 4.854615 4.394615 4.494615 4.769231 5.056154 5.515385}
+\CommentTok{\#\textgreater{}         X9      X10}
+\CommentTok{\#\textgreater{} 1 1.952727 1.455455}
+\CommentTok{\#\textgreater{} 2 4.389231 5.230000}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{fviz\_cluster}\NormalTok{(km.res, }\AttributeTok{data =}\NormalTok{ data)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{figure}[h]
 
@@ -1268,6 +1328,17 @@ Kode ini digunakan untuk memvisualisasikan hasil clustering K-Means pada dataset
 \end{figure}
 
 Kode ini digunakan untuk memvisualisasikan hasil clustering K-Means dengan tampilan yang lebih informatif dan menarik. Fungsi \texttt{fviz\_cluster()} digunakan untuk menggambarkan hasil clustering, di mana setiap cluster diberi warna yang berbeda---oranye untuk cluster pertama dan biru kehijauan untuk cluster kedua. Penambahan ellips dengan tipe Euclidean memperjelas batasan area setiap cluster, menunjukkan sebaran titik data di dalamnya. Selain itu, fitur star plot diaktifkan untuk menggambarkan titik pusat setiap cluster, dengan garis yang menghubungkannya ke titik data dalam cluster tersebut, memberikan gambaran visual yang jelas tentang posisi pusat dan distribusi data. Untuk meningkatkan keterbacaan, fitur \texttt{repel} digunakan agar label titik data tidak tumpang tindih, dan tema minimal dari \texttt{ggplot2} (\texttt{theme\_minimal()}) diterapkan untuk menghasilkan tampilan plot yang lebih bersih dan sederhana. Dengan pengaturan ini, visualisasi hasil clustering menjadi lebih mudah dipahami dan lebih menarik secara visual.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{fviz\_cluster}\NormalTok{(km.res, }\AttributeTok{data =}\NormalTok{ data,}
+             \AttributeTok{palette =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#FC4E07"}\NormalTok{, }\StringTok{"\#00AFBB"}\NormalTok{),}
+             \AttributeTok{ellipse.type =} \StringTok{"euclid"}\NormalTok{, }
+             \AttributeTok{star.plot =} \ConstantTok{TRUE}\NormalTok{, }
+             \AttributeTok{repel =} \ConstantTok{TRUE}\NormalTok{, }
+             \AttributeTok{ggtheme =} \FunctionTok{theme\_minimal}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{figure}[h]
 
@@ -1282,20 +1353,20 @@ Kode ini digunakan untuk memvisualisasikan hasil clustering K-Means dengan tampi
 
 K-Medoids adalah salah satu metode pengelompokan yang termasuk dalam kategori analisis cluster non-hierarki. Metode ini merupakan varian dari K-Means, yang dirancang untuk mengatasi kelemahan K-Means dalam menghadapi data yang mengandung outlier. Dalam K-Medoids, objek yang mewakili setiap cluster disebut medoid, yang merupakan titik pusat dari cluster tersebut. Berbeda dengan K-Means yang menggunakan rata-rata (centroid) sebagai pusat cluster, K-Medoids lebih robust terhadap outlier karena menggunakan objek yang sebenarnya dari dataset sebagai medoid \citep{jiawei2006data}.
 
-Proses kerja K-Medoids dimulai dengan menentukan jumlah cluster (k) yang diinginkan. Setelah itu, algoritma akan memilih secara acak medoid awal dari dataset. Selanjutnya, setiap objek dalam dataset akan dialokasikan ke cluster terdekat berdasarkan jarak ke medoid. Jarak yang umum digunakan dalam K-Medoids adalah jarak Euclidean. Proses ini diulang hingga tidak ada perubahan dalam pemilihan medoid, yang menunjukkan bahwa algoritma telah konvergen \citep{setyawati2017analisis}.
+Proses kerja K-Medoids dimulai dengan menentukan jumlah cluster (\(k\)) yang diinginkan. Setelah itu, algoritma akan memilih secara acak medoid awal dari dataset. Selanjutnya, setiap objek dalam dataset akan dialokasikan ke cluster terdekat berdasarkan jarak ke medoid. Jarak yang umum digunakan dalam K-Medoids adalah jarak Euclidean. Proses ini diulang hingga tidak ada perubahan dalam pemilihan medoid, yang menunjukkan bahwa algoritma telah konvergen \citep{setyawati2017analisis}.
 
 Salah satu keunggulan K-Medoids adalah kemampuannya untuk memberikan hasil yang lebih stabil dan representatif ketika data mengandung outlier. Hal ini menjadikan K-Medoids pilihan yang lebih baik dibandingkan K-Means dalam situasi di mana data tidak terdistribusi secara normal atau terdapat nilai ekstrim yang dapat mempengaruhi hasil clustering \citep{vercellis2009sistem}. Dengan demikian, K-Medoids sangat cocok untuk analisis data yang kompleks dan beragam.
 
-Dalam implementasinya, K-Medoids dapat dilakukan dengan menggunakan berbagai perangkat lunak statistik, termasuk R. R menyediakan paket-paket yang memudahkan pengguna untuk melakukan analisis clustering, termasuk K-Medoids. Dengan menggunakan fungsi-fungsi yang tersedia, pengguna dapat dengan mudah melakukan standarisasi data, menentukan jumlah cluster optimal, dan memvisualisasikan hasil clustering \citep{santoso2012aplikasi}.
+Dalam implementasinya, K-Medoids dapat dilakukan dengan menggunakan berbagai perangkat lunak statistik, termasuk \texttt{R}. \texttt{R} menyediakan paket-paket yang memudahkan pengguna untuk melakukan analisis clustering, termasuk K-Medoids. Dengan menggunakan fungsi-fungsi yang tersedia, pengguna dapat dengan mudah melakukan standarisasi data, menentukan jumlah cluster optimal, dan memvisualisasikan hasil clustering \citep{santoso2012aplikasi}.
 
 Secara keseluruhan, K-Medoids merupakan metode yang efektif untuk analisis cluster, terutama dalam konteks data yang mengandung outlier. Dengan pemahaman yang baik tentang cara kerja dan implementasinya, pengguna dapat memanfaatkan K-Medoids untuk mendapatkan wawasan yang lebih dalam dari data yang dianalisis.
 
-\section{Tahapan Algoritma K-Means}\label{tahapan-algoritma-k-means-1}
+\section{Tahapan Algoritma K-Medoids}\label{tahapan-algoritma-k-medoids}
 
 \subsection*{1. Inisialisasi Centroid}\label{inisialisasi-centroid-1}
 \addcontentsline{toc}{subsection}{1. Inisialisasi Centroid}
 
-Tentukan jumlah cluster \(K\) yang diinginkan. Pilih secara acak \(K\) titik data dari dataset sebagai medoid awal untuk setiap cluster.
+Tentukan jumlah cluster \(k\) yang diinginkan. Pilih secara acak \(k\) titik data dari dataset sebagai medoid awal untuk setiap cluster.
 
 \subsection*{2. Penugasan Anggota Cluster}\label{penugasan-anggota-cluster}
 \addcontentsline{toc}{subsection}{2. Penugasan Anggota Cluster}
@@ -1338,7 +1409,7 @@ Setelah konvergensi tercapai, algoritma berhenti, dan hasil akhir adalah pembagi
 \subsection*{Data}\label{data-1}
 \addcontentsline{toc}{subsection}{Data}
 
-Dengan menggunakan fungsi \texttt{read.csv()} dari R, kami dapat mengimpor data langsung dari URL tersebut ke dalam lingkungan kerja R. Berikut adalah kode yang digunakan untuk membaca data: Package \texttt{reader} menyiapkan fungsi \href{https://readr.tidyverse.org/reference/read_delim.html}{\texttt{read\_csv()}} untuk import data dari file CSV. Pada kasus ini digunakan data \href{https://github.com/dedenistiawan/Dataset/blob/main/BDT.csv}{Data 40\% Kemiskinan di jawa Tengah}.
+Dengan menggunakan fungsi \texttt{read.csv()} dari \texttt{R}, kami dapat mengimpor data langsung dari URL tersebut ke dalam lingkungan kerja R. Berikut adalah kode yang digunakan untuk membaca data: Package \texttt{reader} menyiapkan fungsi \href{https://readr.tidyverse.org/reference/read_delim.html}{\texttt{read\_csv()}} untuk import data dari file CSV. Pada kasus ini digunakan data \href{https://github.com/dedenistiawan/Dataset/blob/main/BDT.csv}{Data 40\% Kemiskinan di jawa Tengah}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1374,7 +1445,7 @@ KLATEN & 3.84 & 5.15 & 1.93 & 4.64 & 4.04 & 3.78 & 8.71 & 4.45 & 3.99 & 3.09\\
 \subsection*{R packages dan fungsi yang dibutuhkan}\label{r-packages-dan-fungsi-yang-dibutuhkan}
 \addcontentsline{toc}{subsection}{R packages dan fungsi yang dibutuhkan}
 
-Untuk melakukan analisis cluster dengan metode k-medoids di R, diperlukan beberapa paket dan fungsi utama. Paket yang wajib digunakan adalah \textbf{\texttt{cluster}}, yang menyediakan fungsi \texttt{pam()} (Partitioning Around Medoids) sebagai implementasi utama algoritma k-medoids. Selain itu, paket \textbf{\texttt{factoextra}} berguna untuk visualisasi hasil clustering dengan fungsi \texttt{fviz\_cluster()}. Untuk mengevaluasi kualitas clustering, paket \textbf{\texttt{fpc}} dan \textbf{\texttt{clusterCrit}} dapat digunakan sebagai opsi tambahan dengan fungsi seperti \texttt{cluster.stats()} untuk evaluasi statistik dan \texttt{intCriteria()} untuk menghitung indeks validasi clustering. Dalam proses analisis, fungsi \texttt{silhouette()} dapat digunakan untuk mengevaluasi kualitas clustering dengan Silhouette Width, sementara \texttt{dist()} diperlukan untuk membuat matriks jarak yang digunakan oleh algoritma. Sebagai langkah awal, data biasanya diskalakan menggunakan fungsi seperti \texttt{scale()} sebelum diterapkan algoritma k-medoids untuk memastikan hasil yang optimal. Kombinasi paket dan fungsi ini memungkinkan analisis cluster yang efektif, mulai dari pembentukan cluster hingga evaluasi hasil.
+Untuk melakukan analisis cluster dengan metode k-medoids di \texttt{R}, diperlukan beberapa paket dan fungsi utama. Paket yang wajib digunakan adalah \textbf{\texttt{cluster}}, yang menyediakan fungsi \texttt{pam()} (Partitioning Around Medoids) sebagai implementasi utama algoritma k-medoids. Selain itu, paket \textbf{\texttt{factoextra}} berguna untuk visualisasi hasil clustering dengan fungsi \texttt{fviz\_cluster()}. Untuk mengevaluasi kualitas clustering, paket \textbf{\texttt{fpc}} dan \textbf{\texttt{clusterCrit}} dapat digunakan sebagai opsi tambahan dengan fungsi seperti \texttt{cluster.stats()} untuk evaluasi statistik dan \texttt{intCriteria()} untuk menghitung indeks validasi clustering. Dalam proses analisis, fungsi \texttt{silhouette()} dapat digunakan untuk mengevaluasi kualitas clustering dengan Silhouette Width, sementara \texttt{dist()} diperlukan untuk membuat matriks jarak yang digunakan oleh algoritma. Sebagai langkah awal, data biasanya diskalakan menggunakan fungsi seperti \texttt{scale()} sebelum diterapkan algoritma k-medoids untuk memastikan hasil yang optimal. Kombinasi paket dan fungsi ini memungkinkan analisis cluster yang efektif, mulai dari pembentukan cluster hingga evaluasi hasil.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1545,7 +1616,7 @@ oleh metode clustering tradisional, tetapi juga memberikan hasil yang
 dapat diandalkan dalam konteks data besar. Di masa depan, pengembangan
 lebih lanjut dari algoritma ini dan integrasinya dengan teknik
 pembelajaran mesin lainnya dapat membuka jalan bagi analisis data yang
-lebih mendalam dan akurat (Halkidi et al., 2001).
+lebih mendalam dan akurat.
 
 \section{Tahapan Algoritma CLARA}\label{tahapan-algoritma-clara}
 
@@ -1755,7 +1826,7 @@ atau kategori produk, yang sering dijumpai dalam berbagai aplikasi
 analisis data \citep{handayani2020}.
 
 Proses kerja algoritma K-Modes mirip dengan K-Means, di mana algoritma
-ini juga memerlukan penentuan jumlah cluster (K) sebelum proses
+ini juga memerlukan penentuan jumlah cluster (\(k\)) sebelum proses
 clustering dimulai. K-Modes melakukan inisialisasi centroid dengan
 memilih modus dari setiap atribut dalam cluster. Selanjutnya, algoritma
 ini menghitung jarak antara data dan centroid menggunakan metode yang
@@ -1837,7 +1908,7 @@ Ulangi langkah 2 hingga 4 sampai tidak ada perubahan dalam penugasan cluster ata
 \subsection*{1. Memuat library yang diperlukan}\label{memuat-library-yang-diperlukan-1}
 \addcontentsline{toc}{subsection}{1. Memuat library yang diperlukan}
 
-Algoritma k-modes adalah salah satu metode clustering yang dirancang khusus untuk menangani data kategorikal. Di R, algoritma ini dapat diimplementasikan dengan menggunakan library Klar, yang menyediakan fungsi bawaan untuk k-modes. Selain itu, library MASS sering digunakan untuk mendukung manipulasi data atau keperluan lainnya dalam analisis clustering.
+Algoritma k-modes adalah salah satu metode clustering yang dirancang khusus untuk menangani data kategorikal. Di \texttt{R}, algoritma ini dapat diimplementasikan dengan menggunakan library \texttt{Klar}, yang menyediakan fungsi bawaan untuk k-modes. Selain itu, library \texttt{MASS} sering digunakan untuk mendukung manipulasi data atau keperluan lainnya dalam analisis clustering.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1917,6 +1988,8 @@ Fungsi \textbf{\texttt{write.csv()}} digunakan untuk mengekspor data frame \text
 \FunctionTok{write.csv}\NormalTok{(cluster.output, }\AttributeTok{file =} \StringTok{"kmodes clusters.csv"}\NormalTok{, }\AttributeTok{row.names =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\part{Pendekatan Hirarki}\label{part-pendekatan-hirarki}
 
 \chapter{Metode Cluster Hirarki}\label{HC}
 
@@ -2007,14 +2080,6 @@ Agglomerative Clustering adalah metode yang efektif untuk mengelompokkan data be
 \FunctionTok{library}\NormalTok{ (readr)}
 \NormalTok{urlfile }\OtherTok{=} \StringTok{"https://bit.ly/3VO3kRE"}
 \NormalTok{data}\OtherTok{\textless{}{-}}\FunctionTok{read.csv}\NormalTok{(}\FunctionTok{url}\NormalTok{(urlfile), }\AttributeTok{row.names =} \StringTok{"Kabupaten"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
-  \FunctionTok{head}\NormalTok{(data, }\DecValTok{10}\NormalTok{), }\AttributeTok{caption =} \StringTok{\textquotesingle{}Basis Data Terpadu Jawa Tengah\textquotesingle{}}\NormalTok{,}
-  \AttributeTok{booktabs =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2400,6 +2465,295 @@ Visualisasi dendrogram menggunakan fungsi \texttt{fviz\_dend} dari paket \texttt
 
 \chapter{Visualisasi Dendogram}\label{vizhc}
 
+Dendrogram merupakan representasi grafis yang menunjukkan bagaimana objek-objek dalam dataset dikelompokkan berdasarkan kemiripan atau jarak antar objek. Dalam dendrogram, setiap objek awalnya dianggap sebagai klaster terpisah. Proses penggabungan klaster dilakukan secara iteratif berdasarkan jarak terdekat hingga semua objek tergabung dalam satu klaster besar.
+
+\section{Proses Pembentukan Dendrogram}\label{proses-pembentukan-dendrogram}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Pengukuran Jarak: Langkah pertama adalah mengukur jarak antar objek menggunakan metode tertentu (misalnya, Euclidean distance).
+\item
+  Penggabungan Klaster: Klaster dengan jarak terdekat akan digabungkan menjadi satu klaster baru. Proses ini diulang hingga semua objek tergabung dalam satu klaster.
+\item
+  Pemotongan Dendrogram: Untuk menentukan jumlah klaster yang diinginkan, dendrogram dapat dipotong pada tingkat tertentu. Pemotongan ini membantu dalam mengidentifikasi kelompok-kelompok yang relevan dalam data
+\end{enumerate}
+
+\section{Eksperimen}\label{eksperimen}
+
+\subsection*{Read Data}\label{read-data}
+\addcontentsline{toc}{subsection}{Read Data}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{ (readr)}
+\NormalTok{urlfile }\OtherTok{=} \StringTok{"https://bit.ly/3VO3kRE"}
+\NormalTok{data}\OtherTok{\textless{}{-}}\FunctionTok{read.csv}\NormalTok{(}\FunctionTok{url}\NormalTok{(urlfile), }\AttributeTok{row.names =} \StringTok{"Kabupaten"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:nice-tab-2}Basis Data Terpadu Jawa Tengah}
+\centering
+\begin{tabular}[t]{lrrrrrrrrrr}
+\toprule
+  & X1 & X2 & X3 & X4 & X5 & X6 & X7 & X8 & X9 & X10\\
+\midrule
+CILACAP & 5.19 & 5.67 & 5.08 & 5.44 & 5.22 & 6.05 & 11.47 & 9.78 & 5.55 & 5.12\\
+BANYUMAS & 5.71 & 4.47 & 5.18 & 5.51 & 5.02 & 6.21 & 7.39 & 6.96 & 5.98 & 8.22\\
+PURBALINGGA & 3.30 & 2.19 & 3.80 & 3.13 & 3.73 & 3.34 & 8.71 & 7.41 & 3.21 & 4.65\\
+BANJARNEGARA & 2.73 & 2.34 & 3.76 & 2.80 & 2.57 & 2.99 & 3.31 & 5.45 & 4.21 & 6.05\\
+KEBUMEN & 4.17 & 2.55 & 3.26 & 4.16 & 3.15 & 4.15 & 4.30 & 9.29 & 4.61 & 4.34\\
+\addlinespace
+PURWOREJO & 1.87 & 2.12 & 1.48 & 3.05 & 1.78 & 1.83 & 5.00 & 4.90 & 3.12 & 2.09\\
+WONOSOBO & 2.13 & 1.95 & 3.00 & 1.78 & 1.62 & 2.06 & 0.45 & 2.32 & 3.57 & 0.84\\
+MAGELANG & 3.95 & 3.01 & 4.22 & 4.15 & 3.01 & 3.64 & 1.44 & 3.35 & 5.69 & 3.67\\
+BOYOLALI & 2.19 & 3.07 & 1.61 & 2.74 & 2.11 & 1.82 & 1.71 & 2.34 & 3.41 & 1.55\\
+KLATEN & 3.84 & 5.15 & 1.93 & 4.64 & 4.04 & 3.78 & 8.71 & 4.45 & 3.99 & 3.09\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Standarisasi Data}\label{standarisasi-data-1}
+\addcontentsline{toc}{subsection}{Standarisasi Data}
+
+Pertama, kita menghitung jarak antar kabupaten menggunakan fungsi \texttt{dist()}. Dalam hal ini, kita menggunakan metode jarak Euclidean. Sebelum menghitung jarak, data dinormalisasi dengan fungsi \texttt{scale()}, yang memastikan bahwa setiap variabel memiliki rata-rata 0 dan deviasi standar 1. Normalisasi ini penting untuk menghindari bias yang mungkin disebabkan oleh skala variabel yang berbeda.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_scale }\OtherTok{\textless{}{-}} \FunctionTok{dist}\NormalTok{(}\FunctionTok{scale}\NormalTok{(data), }\AttributeTok{method =} \StringTok{"euclidean"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection*{Pengelompokan Data}\label{pengelompokan-data}
+\addcontentsline{toc}{subsection}{Pengelompokan Data}
+
+Setelah menghitung jarak, langkah selanjutnya adalah melakukan pengelompokan menggunakan metode hirarki dengan fungsi \texttt{hclust()}. Dalam hal ini, kita menggunakan metode \texttt{Ward.D2}, yang bertujuan untuk meminimalkan varians dalam setiap kluster yang terbentuk. Metode ini sangat efektif dalam menghasilkan kluster yang lebih homogen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hasil\_cluster }\OtherTok{\textless{}{-}} \FunctionTok{hclust}\NormalTok{(data\_scale, }\AttributeTok{method =} \StringTok{"ward.D2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection*{Visualisasi Dendogram}\label{visualisasi-dendogram}
+\addcontentsline{toc}{subsection}{Visualisasi Dendogram}
+
+Visualisasi dendogram adalah alat penting dalam analisis kluster hirarki, yang memungkinkan kita untuk memahami struktur dan hubungan antar kelompok dalam data. Dalam konteks ini, kita menggunakan paket R \texttt{factoextra} dan \texttt{dendextend} untuk menghasilkan dan memodifikasi dendogram dari hasil analisis kluster. Kita dapat menggunakan fungsi \textbf{\texttt{fviz\_dend()}} dari paket \textbf{\texttt{factoextra}} di R untuk membuat dendrogram dengan mudah, baik menggunakan plot bawaan R atau melalui \textbf{\texttt{ggplot2}}.
+
+Dalam analisis kluster hirarki, visualisasi dendogram adalah alat yang sangat berguna untuk memahami struktur dan hubungan antar objek dalam dataset. Dalam contoh ini, kita menggunakan fungsi \texttt{fviz\_dend()} untuk menghasilkan dendogram berdasarkan hasil klustering yang dilakukan dengan metode Ward.D2.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(factoextra)}
+\FunctionTok{fviz\_dend}\NormalTok{(hasil\_cluster, }\AttributeTok{cex =} \FloatTok{0.5}\NormalTok{,}
+        \AttributeTok{main =} \StringTok{"Dendrogram {-} ward.D2"}\NormalTok{,}
+        \AttributeTok{xlab =} \StringTok{"Objects"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Distance"}\NormalTok{, }\AttributeTok{sub =} \StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.8\linewidth]{07-ch7_files/figure-latex/unnamed-chunk-4-1} 
+
+}
+
+\caption{Visualisasi Dendogram}\label{fig:unnamed-chunk-4}
+\end{figure}
+
+Untuk membuat visualisasi dendrogram dengan orientasi horizontal.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{fviz\_dend}\NormalTok{(hasil\_cluster, }\AttributeTok{cex =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{horiz =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.8\linewidth]{07-ch7_files/figure-latex/unnamed-chunk-5-1} 
+
+}
+
+\caption{Visualisasi Dendogram Horisontal}\label{fig:unnamed-chunk-5}
+\end{figure}
+
+Pohon dendrogram dapat dipotong pada ketinggian tertentu untuk membagi data menjadi beberapa kelompok. Dalam hal ini, cabang dapat diberi warna sesuai dengan kelompoknya, dan kotak dapat ditambahkan untuk menyoroti setiap kelompok. Kode ini digunakan untuk membuat dendrogram dengan pemotongan menjadi empat kelompok, memberikan warna pada cabang dan label berdasarkan kelompok, serta menambahkan kotak di sekitar setiap kelompok.
+
+Untuk memberikan warna yang berbeda pada masing-masing kelompok dalam dendrogram, dapat dilakukan dengan menggunakan parameter \texttt{k\_colors} pada fungsi \texttt{fviz\_dend} dari paket \textbf{factoextra}. Parameter ini memungkinkan pengguna untuk menentukan warna yang akan digunakan untuk setiap klaster. Misalnya, pada kode berikut, dendrogram dipotong menjadi empat kelompok (\texttt{k\ =\ 4}), dan masing-masing kelompok diberi warna spesifik: biru (\#2E9FDF), hijau (\#00AFBB), kuning (\#E7B800), dan oranye (\#FC4E07). Selain itu, parameter \texttt{color\_labels\_by\_k\ =\ TRUE} memastikan bahwa label pada dendrogram juga diberi warna sesuai dengan kelompoknya, sehingga visualisasi menjadi lebih informatif dan mudah untuk diinterpretasikan.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{fviz\_dend}\NormalTok{(hasil\_cluster, }
+          \AttributeTok{k =} \DecValTok{4}\NormalTok{,}
+          \AttributeTok{cex =} \FloatTok{0.5}\NormalTok{, }
+          \AttributeTok{k\_colors =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#2E9FDF"}\NormalTok{, }\StringTok{"\#00AFBB"}\NormalTok{, }\StringTok{"\#E7B800"}\NormalTok{, }\StringTok{"\#FC4E07"}\NormalTok{), }
+          \AttributeTok{color\_labels\_by\_k =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.8\linewidth]{07-ch7_files/figure-latex/unnamed-chunk-6-1} 
+
+}
+
+\caption{Visualisasi Dendogram 4 Kelompok}\label{fig:unnamed-chunk-6}
+\end{figure}
+
+Parameter \texttt{k\_colors} dapat menggunakan berbagai palet warna, termasuk palet dari paket \textbf{RColorBrewer} (contoh: ``RdBu'', ``Blues'', ``Dark2'', ``Set2'', dan sebagainya) serta palet warna bertema jurnal ilmiah yang tersedia di paket \textbf{ggsci} (contoh: ``npg'', ``aaas'', ``lancet'', ``jco'', ``ucscgb'', ``uchicago'', ``simpsons'', dan ``rickandmorty'').
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{fviz\_dend}\NormalTok{(hasil\_cluster, }\AttributeTok{cex =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{k=}\DecValTok{4}\NormalTok{,}
+\AttributeTok{k\_colors =} \StringTok{"jco"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.8\linewidth]{07-ch7_files/figure-latex/unnamed-chunk-7-1} 
+
+}
+
+\caption{Visualisasi Dendogram}\label{fig:unnamed-chunk-7}
+\end{figure}
+
+Kode ini digunakan untuk memvisualisasikan dendrogram hasil analisis klaster hierarkis dengan memotongnya menjadi empat kelompok (\texttt{k\ =\ 4}). Visualisasi dilakukan secara vertikal (\texttt{horiz\ =\ FALSE}), dengan ukuran label yang lebih kecil (\texttt{cex\ =\ 0.4}) untuk meningkatkan keterbacaan. Warna klaster dan batas persegi yang mengelilingi kelompok diatur menggunakan palet ``jco'' dari paket \textbf{ggsci} (\texttt{k\_colors\ =\ "jco"} dan \texttt{rect\_border\ =\ "jco"}). Persegi yang mengelilingi setiap klaster juga diisi dengan warna kelompok masing-masing (\texttt{rect\_fill\ =\ TRUE}). Hasilnya adalah dendrogram yang estetis dan mudah diinterpretasikan, dengan kelompok-kelompok yang ditampilkan secara jelas dan terorganisasi.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{fviz\_dend}\NormalTok{(hasil\_cluster, }\AttributeTok{k=}\DecValTok{4}\NormalTok{, }\AttributeTok{cex =} \FloatTok{0.4}\NormalTok{, }\AttributeTok{horiz =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{k\_colors =} \StringTok{"jco"}\NormalTok{,}
+\AttributeTok{rect =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{rect\_border =} \StringTok{"jco"}\NormalTok{, }\AttributeTok{rect\_fill =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.8\linewidth]{07-ch7_files/figure-latex/unnamed-chunk-8-1} 
+
+}
+
+\caption{Visualisasi Dendogram}\label{fig:unnamed-chunk-8}
+\end{figure}
+
+Kode ini digunakan untuk memvisualisasikan dendrogram hasil analisis klaster hierarkis dalam bentuk melingkar (\texttt{type\ =\ "circular"}). Dendrogram dipotong menjadi empat kelompok (\texttt{k\ =\ 4}), dan setiap klaster diberi warna menggunakan palet ``jco'' dari paket \textbf{ggsci} (\texttt{k\_colors\ =\ "jco"}). Ukuran label pada dendrogram diatur menjadi lebih kecil (\texttt{cex\ =\ 0.5}) untuk memastikan keterbacaan. Dengan bentuk melingkar, visualisasi ini memberikan tampilan yang estetis dan inovatif untuk analisis klaster, mempermudah identifikasi hubungan antar-objek dalam klaster.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{fviz\_dend}\NormalTok{(hasil\_cluster, }\AttributeTok{cex =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{k=}\DecValTok{4}\NormalTok{,}
+\AttributeTok{k\_colors =} \StringTok{"jco"}\NormalTok{, }\AttributeTok{type =} \StringTok{"circular"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.8\linewidth]{07-ch7_files/figure-latex/unnamed-chunk-9-1} 
+
+}
+
+\caption{Visualisasi Dendogram Bentuk Melingkar}\label{fig:unnamed-chunk-9}
+\end{figure}
+
+Kode ini digunakan untuk memvisualisasikan dendrogram hasil analisis klaster hierarkis dalam bentuk pohon filogenetik (\texttt{type\ =\ "phylogenic"}) menggunakan fungsi \texttt{fviz\_dend} dari paket \textbf{factoextra}. Dendrogram dipotong menjadi empat klaster (\texttt{k\ =\ 4}), dan setiap klaster diberi warna menggunakan palet ``jco'' dari paket \textbf{ggsci} (\texttt{k\_colors\ =\ "jco"}).
+
+Parameter \texttt{repel\ =\ TRUE} digunakan untuk mengatur posisi label agar tidak saling bertumpukan, sehingga meningkatkan keterbacaan visualisasi. Paket \textbf{igraph} diperlukan untuk mendukung visualisasi pohon filogenetik ini. Hasil akhirnya adalah dendrogram yang menyerupai struktur pohon, cocok untuk menganalisis hubungan hierarkis dengan tampilan yang rapi dan informatif.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{require}\NormalTok{(}\StringTok{"igraph"}\NormalTok{)}
+\FunctionTok{fviz\_dend}\NormalTok{(hasil\_cluster, }\AttributeTok{k=}\DecValTok{4}\NormalTok{, }\AttributeTok{k\_colors =} \StringTok{"jco"}\NormalTok{,}
+\AttributeTok{type =} \StringTok{"phylogenic"}\NormalTok{, }\AttributeTok{repel =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.8\linewidth]{07-ch7_files/figure-latex/unnamed-chunk-10-1} 
+
+}
+
+\caption{Visualisasi Dendogram Bentuk Filogenetik}\label{fig:unnamed-chunk-10}
+\end{figure}
+
+Kode ini digunakan untuk memvisualisasikan dendrogram hasil analisis klaster dan mengekstrak data dendrogram untuk pemrosesan lebih lanjut. Pertama, dendrogram divisualisasikan dengan memotongnya menjadi empat kelompok (\texttt{k\ =\ 4}) dan menggunakan palet warna ``jco'' untuk setiap klaster. Ukuran label ditentukan sebesar 0.5 (\texttt{cex\ =\ 0.5}).
+
+Selanjutnya, data dendrogram diekstrak dari objek plot menggunakan \texttt{attr(dend\_plot,\ "dendrogram")}. Kemudian, dendrogram dipotong pada ketinggian tertentu (\texttt{h\ =\ 10}) dengan menggunakan fungsi \texttt{cut()}, yang menghasilkan dua cabang utama.
+
+Terakhir, visualisasi dilakukan pada bagian atas dendrogram yang telah dipotong dengan menampilkan hanya cabang-cabang tersebut menggunakan \texttt{fviz\_dend(dend\_cuts\$upper)}. Hasilnya adalah dendrogram yang lebih sederhana, menampilkan dua cabang utama berdasarkan pemotongan pada ketinggian tertentu.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dend\_plot }\OtherTok{\textless{}{-}} \FunctionTok{fviz\_dend}\NormalTok{(hasil\_cluster, }\AttributeTok{k=}\DecValTok{4}\NormalTok{,}
+\AttributeTok{cex =} \FloatTok{0.5}\NormalTok{,}
+\AttributeTok{k\_colors =} \StringTok{"jco"}
+\NormalTok{)}
+\NormalTok{dend\_data }\OtherTok{\textless{}{-}} \FunctionTok{attr}\NormalTok{(dend\_plot, }\StringTok{"dendrogram"}\NormalTok{) }
+
+\NormalTok{dend\_cuts }\OtherTok{\textless{}{-}} \FunctionTok{cut}\NormalTok{(dend\_data, }\AttributeTok{h=}\DecValTok{10}\NormalTok{)}
+
+\FunctionTok{fviz\_dend}\NormalTok{(dend\_cuts}\SpecialCharTok{$}\NormalTok{upper)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{07-ch7_files/figure-latex/unnamed-chunk-11-1} \end{center}
+
+Kode ini digunakan untuk menampilkan dendrogram secara keseluruhan yang telah disiapkan sebelumnya. Dengan menggunakan \texttt{print(dend\_plot)}, visualisasi dendrogram yang telah dihasilkan oleh fungsi \texttt{fviz\_dend} akan ditampilkan. Dendrogram ini menunjukkan hasil klasterisasi dengan empat kelompok (\texttt{k\ =\ 4}) dan diberi warna berdasarkan palet ``jco'', dengan ukuran label yang diatur menjadi 0.5 (\texttt{cex\ =\ 0.5}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(dend\_plot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.8\linewidth]{07-ch7_files/figure-latex/unnamed-chunk-12-1} 
+
+}
+
+\caption{Visualisasi Dendogram}\label{fig:unnamed-chunk-12}
+\end{figure}
+
+Kode ini digunakan untuk memvisualisasikan salah satu cabang bawah dari dendrogram yang telah dipotong sebelumnya. Dengan menggunakan \texttt{fviz\_dend(dend\_cuts\$lower{[}{[}1{]}{]},\ main\ =\ "Subtree\ 1")}, visualisasi akan menampilkan cabang pertama dari bagian bawah dendrogram yang telah dipotong pada ketinggian \texttt{h\ =\ 10}. Judul ``Subtree 1'' akan ditambahkan untuk menandai bagian ini, memudahkan interpretasi bagian tertentu dari hasil klasterisasi.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Plot subtree 1}
+\FunctionTok{fviz\_dend}\NormalTok{(dend\_cuts}\SpecialCharTok{$}\NormalTok{lower[[}\DecValTok{1}\NormalTok{]], }\AttributeTok{main =} \StringTok{"Subtree 1"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.8\linewidth]{07-ch7_files/figure-latex/unnamed-chunk-13-1} 
+
+}
+
+\caption{Visualisasi Dendogram Subtree 1}\label{fig:unnamed-chunk-13}
+\end{figure}
+
+Kode ini digunakan untuk memvisualisasikan cabang kedua dari dendrogram yang telah dipotong sebelumnya. Dengan menggunakan \texttt{fviz\_dend(dend\_cuts\$lower{[}{[}2{]}{]},\ main\ =\ "Subtree\ 2")}, visualisasi akan menampilkan cabang kedua dari bagian bawah dendrogram yang telah dipotong pada ketinggian \texttt{h\ =\ 10}. Judul ``Subtree 2'' akan ditambahkan untuk mempermudah identifikasi bagian ini, sehingga hasil klasterisasi dapat dianalisis dengan lebih detail pada cabang kedua tersebut.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Plot subtree 2}
+\FunctionTok{fviz\_dend}\NormalTok{(dend\_cuts}\SpecialCharTok{$}\NormalTok{lower[[}\DecValTok{2}\NormalTok{]], }\AttributeTok{main =} \StringTok{"Subtree 2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.8\linewidth]{07-ch7_files/figure-latex/unnamed-chunk-14-1} 
+
+}
+
+\caption{Visualisasi Dendogram Subtree 2}\label{fig:unnamed-chunk-14}
+\end{figure}
+
+\part{Pendekatan Fuzzy}\label{part-pendekatan-fuzzy}
+
 \chapter{Algoritma Fuzzy C-Means}\label{fcm}
 
 Algoritma fuzzy c-means (FCM) merupakan salah satu metode clustering yang banyak digunakan dalam analisis data dan pengolahan citra. Berbeda dengan algoritma clustering tradisional seperti k-means, yang mengelompokkan data ke dalam cluster yang jelas dan tegas, FCM memberikan fleksibilitas dengan memungkinkan setiap data untuk memiliki derajat keanggotaan pada lebih dari satu cluster. Hal ini menjadikan FCM sangat berguna dalam situasi di mana batasan antara cluster tidak dapat ditentukan dengan jelas \citep{bezdek1981pattern}.
@@ -2415,8 +2769,6 @@ Dalam konteks perkembangan teknologi dan kebutuhan analisis data yang semakin ko
 Klastering dengan algoritma Fuzzy C-Means didasarkan pada teori logika fuzzy yang diperkenalkan oleh Lotfi Zadeh pada tahun 1965 dengan nama himpunan fuzzy (fuzzy set). Fuzzy C-Means Clustering pertama kali diperkenalkan oleh Dun pada (1973) dan diperbaiki oleh Bezdek \citep{bezdek1981pattern} . Dalam teori fuzzy, keangotaan sebuah data diberikan dengan suatu nilai derajat keanggotaan yang jangkauan nilainya 0 sampai 1. Semakin tinggi nilai derajat keanggotaannya maka semakin tinggi nilai keanggotaan sebuah data dalam suatu kelompok dan semakin kecil nilai derajat keanggotaannya maka semakin rendah nilai keanggotaan sebuah data dalam suatu kelompok.
 
 \section{Tahapan Algoritma Fuzzy C-Means}\label{tahapan-algoritma-fuzzy-c-means}
-
-Berikut adalah tahapan algoritma Fuzzy C-Means (FCM):
 
 \subsection*{1. Inisialisasi Parameter}\label{inisialisasi-parameter}
 \addcontentsline{toc}{subsection}{1. Inisialisasi Parameter}
@@ -2585,10 +2937,10 @@ Kode ini digunakan untuk mengakses dan menampilkan pusat cluster pertama (\(v_0\
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{res.fcm}\SpecialCharTok{$}\NormalTok{v0}
-\CommentTok{\#\textgreater{}             X1   X2   X3   X4   X5   X6    X7   X8   X9  X10}
-\CommentTok{\#\textgreater{} Cluster 1 2.19 3.07 1.61 2.74 2.11 1.82  1.71 2.34 3.41 1.55}
-\CommentTok{\#\textgreater{} Cluster 2 5.19 5.67 5.08 5.44 5.22 6.05 11.47 9.78 5.55 5.12}
-\CommentTok{\#\textgreater{} Cluster 3 4.78 3.91 6.70 4.84 6.35 5.82  3.00 5.99 2.98 5.98}
+\CommentTok{\#\textgreater{}             X1   X2    X3   X4   X5   X6    X7   X8   X9   X10}
+\CommentTok{\#\textgreater{} Cluster 1 2.19 3.07  1.61 2.74 2.11 1.82  1.71 2.34 3.41  1.55}
+\CommentTok{\#\textgreater{} Cluster 2 5.19 5.67  5.08 5.44 5.22 6.05 11.47 9.78 5.55  5.12}
+\CommentTok{\#\textgreater{} Cluster 3 7.45 4.26 10.94 5.13 4.99 8.17  5.61 7.11 3.97 11.40}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2626,10 +2978,10 @@ Untuk menampilkan ringkasan dari hasil algoritma Fuzzy C-Means (FCM) yang telah 
 \CommentTok{\#\textgreater{}  [1] 2 2 2 3 2 3 1 3 1 3 1 1 1 1 3 3 1 3 1 3 3 1 1 3 1 3 2 2 2 1 1 1 1 1 1}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Initial cluster prototypes:}
-\CommentTok{\#\textgreater{}             X1   X2   X3   X4   X5   X6    X7   X8   X9  X10}
-\CommentTok{\#\textgreater{} Cluster 1 2.19 3.07 1.61 2.74 2.11 1.82  1.71 2.34 3.41 1.55}
-\CommentTok{\#\textgreater{} Cluster 2 5.19 5.67 5.08 5.44 5.22 6.05 11.47 9.78 5.55 5.12}
-\CommentTok{\#\textgreater{} Cluster 3 4.78 3.91 6.70 4.84 6.35 5.82  3.00 5.99 2.98 5.98}
+\CommentTok{\#\textgreater{}             X1   X2    X3   X4   X5   X6    X7   X8   X9   X10}
+\CommentTok{\#\textgreater{} Cluster 1 2.19 3.07  1.61 2.74 2.11 1.82  1.71 2.34 3.41  1.55}
+\CommentTok{\#\textgreater{} Cluster 2 5.19 5.67  5.08 5.44 5.22 6.05 11.47 9.78 5.55  5.12}
+\CommentTok{\#\textgreater{} Cluster 3 7.45 4.26 10.94 5.13 4.99 8.17  5.61 7.11 3.97 11.40}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Final cluster prototypes:}
 \CommentTok{\#\textgreater{}                 X1       X2       X3       X4       X5       X6       X7}
@@ -2650,14 +3002,14 @@ Untuk menampilkan ringkasan dari hasil algoritma Fuzzy C-Means (FCM) yang telah 
 \CommentTok{\#\textgreater{}                   X1        X2         X3         X4         X5         X6}
 \CommentTok{\#\textgreater{} Cluster 1 {-}0.4652294 {-}1.326697 {-}0.1775916 {-}1.0339977 {-}0.4833119 {-}0.3151670}
 \CommentTok{\#\textgreater{} Cluster 2 {-}0.1882786 {-}1.628907  0.4510540 {-}0.7705855 {-}0.5814383 {-}0.5496647}
-\CommentTok{\#\textgreater{} Cluster 3 {-}1.3617618  0.115821 {-}3.2026942 {-}1.1829516 {-}2.5061115 {-}2.3429386}
-\CommentTok{\#\textgreater{}                    X7        X8         X9        X10}
-\CommentTok{\#\textgreater{} Cluster 1 {-}0.37468801 {-}1.318530 {-}1.7128795 {-}0.4935021}
-\CommentTok{\#\textgreater{} Cluster 2 {-}5.01199283 {-}2.770076 {-}1.0913711  1.3544068}
-\CommentTok{\#\textgreater{} Cluster 3  0.07441915 {-}2.932867  0.8223093 {-}2.4507443}
+\CommentTok{\#\textgreater{} Cluster 3 {-}4.0317618 {-}0.234179 {-}7.4426942 {-}1.4729516 {-}1.1461115 {-}4.6929386}
+\CommentTok{\#\textgreater{}                  X7        X8         X9        X10}
+\CommentTok{\#\textgreater{} Cluster 1 {-}0.374688 {-}1.318530 {-}1.7128795 {-}0.4935021}
+\CommentTok{\#\textgreater{} Cluster 2 {-}5.011993 {-}2.770076 {-}1.0913711  1.3544068}
+\CommentTok{\#\textgreater{} Cluster 3 {-}2.535581 {-}4.052867 {-}0.1676907 {-}7.8707443}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} Root Mean Squared Deviations (RMSD): 5.44658 }
-\CommentTok{\#\textgreater{} Mean Absolute Deviation (MAD): 130.3066 }
+\CommentTok{\#\textgreater{} Root Mean Squared Deviations (RMSD): 8.764585 }
+\CommentTok{\#\textgreater{} Mean Absolute Deviation (MAD): 185.823 }
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Membership degrees matrix (top and bottom 5 rows): }
 \CommentTok{\#\textgreater{}               Cluster 1 Cluster 2  Cluster 3}
@@ -2723,7 +3075,7 @@ Menampilkan \texttt{res.fcm\$iter} memberikan wawasan tentang seberapa cepat ata
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{res.fcm}\SpecialCharTok{$}\NormalTok{iter}
-\CommentTok{\#\textgreater{} [1] 85 82 53 70 77}
+\CommentTok{\#\textgreater{} [1] 79 76 75 82 61}
 \end{Highlighting}
 \end{Shaded}
 

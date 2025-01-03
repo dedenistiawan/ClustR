@@ -23,7 +23,7 @@
 <meta name="author" content="Deden Istiawan" />
 
 
-<meta name="date" content="2025-01-01" />
+<meta name="date" content="2025-01-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -213,6 +213,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#fungsi-dan-pemrograman-di-r"><i class="fa fa-check"></i>Fungsi dan Pemrograman di R</a></li>
 </ul></li>
 </ul></li>
+<li class="part"><span><b>I Pendekatan Partisi</b></span></li>
 <li class="chapter" data-level="2" data-path="2-km.html"><a href="2-km.html"><i class="fa fa-check"></i><b>2</b> Algoritma K-Means</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="2.1-tahapan-algoritma-k-means.html"><a href="2.1-tahapan-algoritma-k-means.html"><i class="fa fa-check"></i><b>2.1</b> Tahapan Algoritma K-Means</a>
@@ -298,6 +299,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="5.2-eksperimen-algoritma-k-modes.html"><a href="5.2-eksperimen-algoritma-k-modes.html#menyimpan-hasil-cluster"><i class="fa fa-check"></i>4. Menyimpan Hasil Cluster</a></li>
 </ul></li>
 </ul></li>
+<li class="part"><span><b>II Pendekatan Hirarki</b></span></li>
 <li class="chapter" data-level="6" data-path="6-HC.html"><a href="6-HC.html"><i class="fa fa-check"></i><b>6</b> Metode Cluster Hirarki</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="6.1-tahapan-agglomerative-clustering.html"><a href="6.1-tahapan-agglomerative-clustering.html"><i class="fa fa-check"></i><b>6.1</b> Tahapan Agglomerative Clustering</a>
@@ -334,7 +336,18 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="6.5-eksperimen-divisive-clustering.html"><a href="6.5-eksperimen-divisive-clustering.html"><i class="fa fa-check"></i><b>6.5</b> Eksperimen Divisive Clustering</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="7-vizhc.html"><a href="7-vizhc.html"><i class="fa fa-check"></i><b>7</b> Visualisasi Dendogram</a></li>
+<li class="chapter" data-level="7" data-path="7-vizhc.html"><a href="7-vizhc.html"><i class="fa fa-check"></i><b>7</b> Visualisasi Dendogram</a>
+<ul>
+<li class="chapter" data-level="" data-path="7-vizhc.html"><a href="7-vizhc.html#proses-pembentukan-dendrogram"><i class="fa fa-check"></i>Proses Pembentukan Dendrogram</a></li>
+<li class="chapter" data-level="7.1" data-path="7.1-eksperimen.html"><a href="7.1-eksperimen.html"><i class="fa fa-check"></i><b>7.1</b> Eksperimen</a>
+<ul>
+<li class="chapter" data-level="" data-path="7.1-eksperimen.html"><a href="7.1-eksperimen.html#read-data"><i class="fa fa-check"></i>Read Data</a></li>
+<li class="chapter" data-level="" data-path="7.1-eksperimen.html"><a href="7.1-eksperimen.html#standarisasi-data-1"><i class="fa fa-check"></i>Standarisasi Data</a></li>
+<li class="chapter" data-level="" data-path="7.1-eksperimen.html"><a href="7.1-eksperimen.html#pengelompokan-data"><i class="fa fa-check"></i>Pengelompokan Data</a></li>
+<li class="chapter" data-level="" data-path="7.1-eksperimen.html"><a href="7.1-eksperimen.html#visualisasi-dendogram"><i class="fa fa-check"></i>Visualisasi Dendogram</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Pendekatan Fuzzy</b></span></li>
 <li class="chapter" data-level="8" data-path="8-fcm.html"><a href="8-fcm.html"><i class="fa fa-check"></i><b>8</b> Algoritma Fuzzy C-Means</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="8.1-tahapan-algoritma-fuzzy-c-means.html"><a href="8.1-tahapan-algoritma-fuzzy-c-means.html"><i class="fa fa-check"></i><b>8.1</b> Tahapan Algoritma Fuzzy C-Means</a>
@@ -393,7 +406,7 @@ text-align: justify}
 </div>
 <div id="data" class="section level3 unnumbered hasAnchor">
 <h3>Data<a href="2.2-eksperimen-algoritma-k-means.html#data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Dengan menggunakan fungsi <code>read.csv()</code> dari R, kami dapat mengimpor data langsung dari URL tersebut ke dalam lingkungan kerja R. Berikut adalah kode yang digunakan untuk membaca data:
+<p>Dengan menggunakan fungsi <code>read.csv()</code> dari <tt>R</tt>, kami dapat mengimpor data langsung dari URL tersebut ke dalam lingkungan kerja <tt>R</tt>. Berikut adalah kode yang digunakan untuk membaca data:
 Package <code>reader</code> menyiapkan fungsi <a href="https://readr.tidyverse.org/reference/read_delim.html"><code>read_csv()</code></a> untuk import data dari file CSV. Pada kasus ini digunakan data <a href="https://github.com/dedenistiawan/Dataset/blob/main/BDT.csv">Data 40% Kemiskinan di jawa Tengah</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="2.2-eksperimen-algoritma-k-means.html#cb1-1" tabindex="-1"></a><span class="fu">library</span> (readr)</span>
 <span id="cb1-2"><a href="2.2-eksperimen-algoritma-k-means.html#cb1-2" tabindex="-1"></a>urlfile <span class="ot">=</span> <span class="st">&quot;https://bit.ly/3VO3kRE&quot;</span></span>
@@ -574,6 +587,10 @@ Package <code>reader</code> menyiapkan fungsi <a href="https://readr.tidyverse.o
 <div id="visualisasi-matriks-jarak" class="section level3 unnumbered hasAnchor">
 <h3>Visualisasi Matriks jarak<a href="2.2-eksperimen-algoritma-k-means.html#visualisasi-matriks-jarak" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Setelah mempersiapkan data dan memastikan tidak ada nilai yang hilang, langkah selanjutnya adalah membuat visualisasi matriks jarak. Visualisasi ini penting untuk memahami seberapa dekat atau jauh objek-objek dalam dataset berdasarkan variabel yang ada. Dengan menggunakan matriks jarak, kita dapat melihat pola dan hubungan antar data yang akan membantu dalam analisis <em>cluster</em>. Kami akan menggunakan library <code>factoextra</code> untuk menghitung dan memvisualisasikan matriks jarak. Fungsi <code>get_dist()</code> akan digunakan untuk menghitung jarak antar objek, dan <code>fviz_dist()</code> dari <code>factoextra</code> akan digunakan untuk membuat visualisasi. Berikut adalah kode untuk membuat visualisasi matriks jarak:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="2.2-eksperimen-algoritma-k-means.html#cb3-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="2.2-eksperimen-algoritma-k-means.html#cb3-2" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb3-3"><a href="2.2-eksperimen-algoritma-k-means.html#cb3-3" tabindex="-1"></a>distance <span class="ot">&lt;-</span> <span class="fu">get_dist</span>(data)</span>
+<span id="cb3-4"><a href="2.2-eksperimen-algoritma-k-means.html#cb3-4" tabindex="-1"></a><span class="fu">fviz_dist</span>(distance, <span class="at">gradient =</span> <span class="fu">list</span>(<span class="at">low =</span> <span class="st">&quot;#00AFBB&quot;</span>, <span class="at">mid =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;#FC4E07&quot;</span>))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
 <img src="02-ch2_files/figure-html/unnamed-chunk-4-1.png" alt="Matrik Jarak" width="80%" />
 <p class="caption">
@@ -599,35 +616,49 @@ Objek yang jauh dari kelompok lainnya dapat dianggap sebagai outlier. Outlier in
 <div id="metode-elbow" class="section level3 unnumbered hasAnchor">
 <h3>Metode Elbow<a href="2.2-eksperimen-algoritma-k-means.html#metode-elbow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Metode Elbow merupakan suatu metode yang digunakan untuk menghasilkan informasi dalam menentukan jumlah cluster terbaik dengan cara melihat persentase hasil perbandingan antara jumlah cluster yang akan membentuk siku pada suatu titik. Metode ini memberikan ide/gagasan dengan cara memilih nilai cluster dan kemudian menambah nilai cluster tersebut untuk dijadikan model data dalam penentuan cluster terbaik. Dan selain itu persentase perhitungan yang dihasilkan menjadi pembanding antara jumlah cluster yang ditambah. Hasil persentase yang berbeda dari setiap nilai cluster dapat ditunjukan dengan menggunakan grafik sebagai sumber informasinya. Jika nilai cluster pertama dengan nilai cluster kedua memberikan sudut dalam grafik atau nilainya mengalami penurunan paling besar maka nilai cluster tersebut yang terbaik.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-1" tabindex="-1"></a><span class="co">#penentuan jumlah cluster optimal</span></span>
+<span id="cb4-2"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb4-3"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-3" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb4-4"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-4" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(data, kmeans, <span class="at">method =</span> <span class="st">&quot;wss&quot;</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-5" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">2</span>, <span class="at">linetype =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
 <img src="02-ch2_files/figure-html/unnamed-chunk-5-1.png" alt="Plot Jumlah Cluster Metode Elbow" width="80%" />
 <p class="caption">
 Gambar 2.2: Plot Jumlah Cluster Metode Elbow
 </p>
 </div>
-<p>Metode elbow menggunakan nilai total wss (whitin sum square) sebagai penentu 𝐾 optimalnya. Dari gambar di atas terlihat garis mengalami patahan yang membentuk elbow atau siku pada saat 𝐾 = 2. Maka dengan menggunakan metode ini diperoleh 𝐾 optimal pada saat berada di 𝐾 = 2.</p>
+<p>Metode elbow menggunakan nilai total wss (whitin sum square) sebagai penentu <span class="math inline">\(k\)</span> optimalnya. Dari gambar di atas terlihat garis mengalami patahan yang membentuk elbow atau siku pada saat <span class="math inline">\(k=2\)</span>. Maka dengan menggunakan metode ini diperoleh <span class="math inline">\(k\)</span> optimal pada saat berada di <span class="math inline">\(k=2\)</span>.</p>
 </div>
 <div id="metode-silhouette" class="section level3 unnumbered hasAnchor">
 <h3>Metode Silhouette<a href="2.2-eksperimen-algoritma-k-means.html#metode-silhouette" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Silhouette Coefficient digunakan untuk melihat kualitas dan kekuatan cluster, seberapa baik suatu objek ditempatkan dalam suatu cluster. Metode ini merupakan gabungan dari metode cohesion dan separation.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="2.2-eksperimen-algoritma-k-means.html#cb5-1" tabindex="-1"></a><span class="do">##Average Silhouette Method</span></span>
+<span id="cb5-2"><a href="2.2-eksperimen-algoritma-k-means.html#cb5-2" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(data, kmeans, <span class="at">method =</span> <span class="st">&quot;silhouette&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
 <img src="02-ch2_files/figure-html/unnamed-chunk-6-1.png" alt="Plot Jumlah Cluster Metode silhouette" width="80%" />
 <p class="caption">
 Gambar 2.3: Plot Jumlah Cluster Metode silhouette
 </p>
 </div>
-<p>Pendekatan rata-rata nilai metode silhouette untuk menduga kualitas dari klaster yang terbentuk. Semakin tinggi nilai rata-ratanya maka akan semakin baik. Berdasarkan grafik pada gambar di atas banyak klaster optimal yang terbentuk pada 𝐾 = 2.</p>
+<p>Pendekatan rata-rata nilai metode silhouette untuk menduga kualitas dari klaster yang terbentuk. Semakin tinggi nilai rata-ratanya maka akan semakin baik. Berdasarkan grafik pada gambar di atas banyak klaster optimal yang terbentuk pada <span class="math inline">\(k=2\)</span>.</p>
 </div>
 <div id="membuat-plot-cluster" class="section level3 unnumbered hasAnchor">
 <h3>Membuat Plot <em>Cluster</em><a href="2.2-eksperimen-algoritma-k-means.html#membuat-plot-cluster" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Pada eksperimen ini, algoritma K-Means diterapkan pada dataset dengan jumlah cluster yang bervariasi dari 2 hingga 5 untuk menganalisis bagaimana sebaran data berubah dengan jumlah cluster yang berbeda. Fungsi <code>kmeans()</code> digunakan untuk melakukan clustering, dengan parameter <code>centers</code> yang menentukan jumlah cluster yang diinginkan. Pada setiap percobaan, parameter <code>nstart = 25</code> digunakan untuk menjalankan algoritma K-Means sebanyak 25 kali dengan inisialisasi pusat cluster yang berbeda, untuk meningkatkan kemungkinan mendapatkan hasil yang lebih baik dan menghindari solusi lokal yang tidak optimal. Hasil clustering dengan 2, 3, 4, dan 5 cluster ini memberikan gambaran mengenai pemisahan data dalam ruang fitur dan memungkinkan kita untuk mengevaluasi sebaran data pada setiap cluster serta menentukan jumlah cluster yang paling sesuai untuk analisis lebih lanjut.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="2.2-eksperimen-algoritma-k-means.html#cb3-1" tabindex="-1"></a><span class="co">#gunakan beberapa nilai K</span></span>
-<span id="cb3-2"><a href="2.2-eksperimen-algoritma-k-means.html#cb3-2" tabindex="-1"></a>k2 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> <span class="dv">2</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb3-3"><a href="2.2-eksperimen-algoritma-k-means.html#cb3-3" tabindex="-1"></a>k3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb3-4"><a href="2.2-eksperimen-algoritma-k-means.html#cb3-4" tabindex="-1"></a>k4 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb3-5"><a href="2.2-eksperimen-algoritma-k-means.html#cb3-5" tabindex="-1"></a>k5 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> <span class="dv">5</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="2.2-eksperimen-algoritma-k-means.html#cb6-1" tabindex="-1"></a><span class="co">#gunakan beberapa nilai K</span></span>
+<span id="cb6-2"><a href="2.2-eksperimen-algoritma-k-means.html#cb6-2" tabindex="-1"></a>k2 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> <span class="dv">2</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb6-3"><a href="2.2-eksperimen-algoritma-k-means.html#cb6-3" tabindex="-1"></a>k3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb6-4"><a href="2.2-eksperimen-algoritma-k-means.html#cb6-4" tabindex="-1"></a>k4 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb6-5"><a href="2.2-eksperimen-algoritma-k-means.html#cb6-5" tabindex="-1"></a>k5 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> <span class="dv">5</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span></code></pre></div>
 <p>Kode ini digunakan untuk membandingkan hasil clustering dengan jumlah cluster yang berbeda, mulai dari 2 hingga 5, dengan memvisualisasikan setiap hasil clustering menggunakan fungsi <code>fviz_cluster()</code> dari paket <code>factoextra</code>. Setiap plot menggambarkan hasil clustering untuk jumlah cluster yang berbeda, di mana parameter <code>geom = "point"</code> memastikan bahwa titik data diplot sebagai titik pada grafik. Judul setiap plot, seperti <code>"k = 2"</code>, <code>"k = 3"</code>, <code>"k = 4"</code>, dan <code>"k = 5"</code>, menunjukkan jumlah cluster yang digunakan dalam setiap eksperimen clustering. Dengan menghasilkan empat plot ini, kita dapat membandingkan sebaran data dalam setiap cluster dan menganalisis bagaimana pemisahan data berubah dengan jumlah cluster yang berbeda. Visualisasi ini sangat berguna untuk membantu menentukan jumlah cluster yang optimal berdasarkan struktur data yang terlihat dalam plot.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="2.2-eksperimen-algoritma-k-means.html#cb7-1" tabindex="-1"></a><span class="co"># komparasi plot</span></span>
+<span id="cb7-2"><a href="2.2-eksperimen-algoritma-k-means.html#cb7-2" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k2, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">data =</span> data) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;k = 2&quot;</span>)</span>
+<span id="cb7-3"><a href="2.2-eksperimen-algoritma-k-means.html#cb7-3" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k3, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>,  <span class="at">data =</span> data) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;k = 3&quot;</span>)</span>
+<span id="cb7-4"><a href="2.2-eksperimen-algoritma-k-means.html#cb7-4" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k4, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>,  <span class="at">data =</span> data) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;k = 4&quot;</span>)</span>
+<span id="cb7-5"><a href="2.2-eksperimen-algoritma-k-means.html#cb7-5" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k5, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>,  <span class="at">data =</span> data) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;k = 5&quot;</span>)</span></code></pre></div>
 <p>Kode ini digunakan untuk menampilkan empat plot hasil clustering dalam satu tampilan teratur dengan menggunakan fungsi <code>grid.arrange()</code> dari paket <code>gridExtra</code>. Setiap plot yang mewakili jumlah cluster yang berbeda (2, 3, 4, dan 5) disusun dalam dua baris, masing-masing berisi dua plot, sehingga memudahkan perbandingan antar hasil clustering.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="2.2-eksperimen-algoritma-k-means.html#cb8-1" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb8-2"><a href="2.2-eksperimen-algoritma-k-means.html#cb8-2" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, p3, p4, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
 <img src="02-ch2_files/figure-html/unnamed-chunk-9-1.png" alt="Plot Jumlah Cluster" width="80%" />
 <p class="caption">
@@ -637,77 +668,79 @@ Gambar 2.4: Plot Jumlah Cluster
 </div>
 <div id="eksperimen-k-means-clustering" class="section level3 unnumbered hasAnchor">
 <h3>Eksperimen K-Means Clustering<a href="2.2-eksperimen-algoritma-k-means.html#eksperimen-k-means-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Berdasarkan pendekatan metode elbow dan metode Silhouette, jumlah cluster optimal yang diperoleh adalah K=2. Metode elbow digunakan untuk menentukan jumlah cluster yang meminimalkan total within-cluster sum of squares (WSS), sementara metode Silhouette mengukur seberapa baik titik data dikelompokkan dalam cluster yang benar. Hasil dari kedua metode ini menunjukkan bahwa dua cluster adalah jumlah yang paling optimal untuk dataset ini. Oleh karena itu, eksperimen selanjutnya dilakukan dengan menggunakan K=2 untuk melakukan clustering, dengan tujuan untuk memverifikasi apakah pembagian data ke dalam dua cluster menghasilkan pemisahan yang jelas dan bermakna berdasarkan karakteristik data yang ada.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-1" tabindex="-1"></a><span class="co">#jalankan k-means dengan k = 2</span></span>
-<span id="cb4-2"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb4-3"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-3" tabindex="-1"></a>km.res <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="dv">2</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb4-4"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-4" tabindex="-1"></a><span class="co"># cetak hasil</span></span>
-<span id="cb4-5"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-5" tabindex="-1"></a><span class="fu">print</span>(km.res)</span>
-<span id="cb4-6"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-6" tabindex="-1"></a><span class="co">#&gt; K-means clustering with 2 clusters of sizes 22, 13</span></span>
-<span id="cb4-7"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb4-8"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-8" tabindex="-1"></a><span class="co">#&gt; Cluster means:</span></span>
-<span id="cb4-9"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-9" tabindex="-1"></a><span class="co">#&gt;         X1       X2       X3       X4       X5       X6       X7       X8</span></span>
-<span id="cb4-10"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-10" tabindex="-1"></a><span class="co">#&gt; 1 1.918182 2.017273 1.675000 1.949091 1.890455 1.728182 1.557273 1.286818</span></span>
-<span id="cb4-11"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-11" tabindex="-1"></a><span class="co">#&gt; 2 4.446923 4.276923 4.854615 4.394615 4.494615 4.769231 5.056154 5.515385</span></span>
-<span id="cb4-12"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-12" tabindex="-1"></a><span class="co">#&gt;         X9      X10</span></span>
-<span id="cb4-13"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-13" tabindex="-1"></a><span class="co">#&gt; 1 1.952727 1.455455</span></span>
-<span id="cb4-14"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-14" tabindex="-1"></a><span class="co">#&gt; 2 4.389231 5.230000</span></span>
-<span id="cb4-15"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb4-16"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-16" tabindex="-1"></a><span class="co">#&gt; Clustering vector:</span></span>
-<span id="cb4-17"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-17" tabindex="-1"></a><span class="co">#&gt;         CILACAP        BANYUMAS     PURBALINGGA    BANJARNEGARA         KEBUMEN </span></span>
-<span id="cb4-18"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-18" tabindex="-1"></a><span class="co">#&gt;               2               2               2               2               2 </span></span>
-<span id="cb4-19"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-19" tabindex="-1"></a><span class="co">#&gt;       PURWOREJO        WONOSOBO        MAGELANG        BOYOLALI          KLATEN </span></span>
-<span id="cb4-20"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-20" tabindex="-1"></a><span class="co">#&gt;               1               1               2               1               2 </span></span>
-<span id="cb4-21"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-21" tabindex="-1"></a><span class="co">#&gt;       SUKOHARJO        WONOGIRI     KARANGANYAR          SRAGEN        GROBOGAN </span></span>
-<span id="cb4-22"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-22" tabindex="-1"></a><span class="co">#&gt;               1               1               1               1               2 </span></span>
-<span id="cb4-23"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-23" tabindex="-1"></a><span class="co">#&gt;           BLORA         REMBANG            PATI           KUDUS          JEPARA </span></span>
-<span id="cb4-24"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-24" tabindex="-1"></a><span class="co">#&gt;               1               1               2               1               2 </span></span>
-<span id="cb4-25"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-25" tabindex="-1"></a><span class="co">#&gt;         DEMAK          SEMARANG      TEMANGGUNG          KENDAL          BATANG </span></span>
-<span id="cb4-26"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-26" tabindex="-1"></a><span class="co">#&gt;               1               1               1               1               1 </span></span>
-<span id="cb4-27"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-27" tabindex="-1"></a><span class="co">#&gt;      PEKALONGAN        PEMALANG           TEGAL          BREBES   KOTA MAGELANG </span></span>
-<span id="cb4-28"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-28" tabindex="-1"></a><span class="co">#&gt;               1               2               2               2               1 </span></span>
-<span id="cb4-29"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-29" tabindex="-1"></a><span class="co">#&gt;  KOTA SURAKARTA   KOTA SALATIGA   KOTA SEMARANG KOTA PEKALONGAN      KOTA TEGAL </span></span>
-<span id="cb4-30"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-30" tabindex="-1"></a><span class="co">#&gt;               1               1               1               1               1 </span></span>
-<span id="cb4-31"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-31" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb4-32"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-32" tabindex="-1"></a><span class="co">#&gt; Within cluster sum of squares by cluster:</span></span>
-<span id="cb4-33"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-33" tabindex="-1"></a><span class="co">#&gt; [1] 262.6536 466.0163</span></span>
-<span id="cb4-34"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-34" tabindex="-1"></a><span class="co">#&gt;  (between_SS / total_SS =  51.3 %)</span></span>
-<span id="cb4-35"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-35" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb4-36"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-36" tabindex="-1"></a><span class="co">#&gt; Available components:</span></span>
-<span id="cb4-37"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-37" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb4-38"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-38" tabindex="-1"></a><span class="co">#&gt; [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;     &quot;tot.withinss&quot;</span></span>
-<span id="cb4-39"><a href="2.2-eksperimen-algoritma-k-means.html#cb4-39" tabindex="-1"></a><span class="co">#&gt; [6] &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;         &quot;ifault&quot;</span></span></code></pre></div>
-<p>Untuk melihat hasil akhir clustering K-Means pada setiap kabupaten dalam dataset. Dengan menggunakan <code>km.res$cluster</code>, kita dapat memperoleh informasi mengenai anggota setiap cluster yang terbentuk setelah algoritma K-Means dijalankan. Hasil ini akan menunjukkan cluster mana yang menjadi bagian dari setiap kabupaten berdasarkan hasil eksperimen dengan K=2, yang sebelumnya ditentukan sebagai jumlah cluster optimal. Setiap nilai dalam <code>km.res$cluster</code> mengindikasikan nomor cluster (misalnya, 1 atau 2) yang sesuai dengan kabupaten tertentu, yang memungkinkan kita untuk menganalisis distribusi dan pemisahan kabupaten berdasarkan karakteristik yang relevan dalam dataset.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="2.2-eksperimen-algoritma-k-means.html#cb5-1" tabindex="-1"></a><span class="co"># Jumlah anggota cluster</span></span>
-<span id="cb5-2"><a href="2.2-eksperimen-algoritma-k-means.html#cb5-2" tabindex="-1"></a>km.res<span class="sc">$</span>cluster</span>
-<span id="cb5-3"><a href="2.2-eksperimen-algoritma-k-means.html#cb5-3" tabindex="-1"></a><span class="co">#&gt;         CILACAP        BANYUMAS     PURBALINGGA    BANJARNEGARA         KEBUMEN </span></span>
-<span id="cb5-4"><a href="2.2-eksperimen-algoritma-k-means.html#cb5-4" tabindex="-1"></a><span class="co">#&gt;               2               2               2               2               2 </span></span>
-<span id="cb5-5"><a href="2.2-eksperimen-algoritma-k-means.html#cb5-5" tabindex="-1"></a><span class="co">#&gt;       PURWOREJO        WONOSOBO        MAGELANG        BOYOLALI          KLATEN </span></span>
-<span id="cb5-6"><a href="2.2-eksperimen-algoritma-k-means.html#cb5-6" tabindex="-1"></a><span class="co">#&gt;               1               1               2               1               2 </span></span>
-<span id="cb5-7"><a href="2.2-eksperimen-algoritma-k-means.html#cb5-7" tabindex="-1"></a><span class="co">#&gt;       SUKOHARJO        WONOGIRI     KARANGANYAR          SRAGEN        GROBOGAN </span></span>
-<span id="cb5-8"><a href="2.2-eksperimen-algoritma-k-means.html#cb5-8" tabindex="-1"></a><span class="co">#&gt;               1               1               1               1               2 </span></span>
-<span id="cb5-9"><a href="2.2-eksperimen-algoritma-k-means.html#cb5-9" tabindex="-1"></a><span class="co">#&gt;           BLORA         REMBANG            PATI           KUDUS          JEPARA </span></span>
-<span id="cb5-10"><a href="2.2-eksperimen-algoritma-k-means.html#cb5-10" tabindex="-1"></a><span class="co">#&gt;               1               1               2               1               2 </span></span>
-<span id="cb5-11"><a href="2.2-eksperimen-algoritma-k-means.html#cb5-11" tabindex="-1"></a><span class="co">#&gt;         DEMAK          SEMARANG      TEMANGGUNG          KENDAL          BATANG </span></span>
-<span id="cb5-12"><a href="2.2-eksperimen-algoritma-k-means.html#cb5-12" tabindex="-1"></a><span class="co">#&gt;               1               1               1               1               1 </span></span>
-<span id="cb5-13"><a href="2.2-eksperimen-algoritma-k-means.html#cb5-13" tabindex="-1"></a><span class="co">#&gt;      PEKALONGAN        PEMALANG           TEGAL          BREBES   KOTA MAGELANG </span></span>
-<span id="cb5-14"><a href="2.2-eksperimen-algoritma-k-means.html#cb5-14" tabindex="-1"></a><span class="co">#&gt;               1               2               2               2               1 </span></span>
-<span id="cb5-15"><a href="2.2-eksperimen-algoritma-k-means.html#cb5-15" tabindex="-1"></a><span class="co">#&gt;  KOTA SURAKARTA   KOTA SALATIGA   KOTA SEMARANG KOTA PEKALONGAN      KOTA TEGAL </span></span>
-<span id="cb5-16"><a href="2.2-eksperimen-algoritma-k-means.html#cb5-16" tabindex="-1"></a><span class="co">#&gt;               1               1               1               1               1</span></span></code></pre></div>
-<p>Kode ini digunakan untuk melihat ukuran masing-masing cluster setelah algoritma K-Means dijalankan. Dengan menggunakan <code>km.res$size</code>, kita dapat memperoleh jumlah anggota atau titik data yang termasuk dalam setiap cluster. Hasil dari <code>km.res$size</code> akan memberikan informasi mengenai berapa banyak kabupaten yang tergolong dalam setiap cluster yang terbentuk, baik itu cluster 1 atau cluster 2, berdasarkan hasil eksperimen dengan K=2. Informasi ini sangat berguna untuk memahami distribusi data dan sebaran anggota di setiap cluster yang dihasilkan oleh proses clustering.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="2.2-eksperimen-algoritma-k-means.html#cb6-1" tabindex="-1"></a><span class="co"># ukuran cluster</span></span>
-<span id="cb6-2"><a href="2.2-eksperimen-algoritma-k-means.html#cb6-2" tabindex="-1"></a>km.res<span class="sc">$</span>size</span>
-<span id="cb6-3"><a href="2.2-eksperimen-algoritma-k-means.html#cb6-3" tabindex="-1"></a><span class="co">#&gt; [1] 22 13</span></span></code></pre></div>
+<p>Berdasarkan pendekatan metode elbow dan metode Silhouette, jumlah cluster optimal yang diperoleh adalah <span class="math inline">\(k=2\)</span>. Metode elbow digunakan untuk menentukan jumlah cluster yang meminimalkan total within-cluster sum of squares (WSS), sementara metode Silhouette mengukur seberapa baik titik data dikelompokkan dalam cluster yang benar. Hasil dari kedua metode ini menunjukkan bahwa dua cluster adalah jumlah yang paling optimal untuk dataset ini. Oleh karena itu, eksperimen selanjutnya dilakukan dengan menggunakan <span class="math inline">\(k=2\)</span> untuk melakukan clustering, dengan tujuan untuk memverifikasi apakah pembagian data ke dalam dua cluster menghasilkan pemisahan yang jelas dan bermakna berdasarkan karakteristik data yang ada.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-1" tabindex="-1"></a><span class="co">#jalankan k-means dengan k = 2</span></span>
+<span id="cb9-2"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb9-3"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-3" tabindex="-1"></a>km.res <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="dv">2</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb9-4"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-4" tabindex="-1"></a><span class="co"># cetak hasil</span></span>
+<span id="cb9-5"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-5" tabindex="-1"></a><span class="fu">print</span>(km.res)</span>
+<span id="cb9-6"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-6" tabindex="-1"></a><span class="co">#&gt; K-means clustering with 2 clusters of sizes 22, 13</span></span>
+<span id="cb9-7"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-8"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-8" tabindex="-1"></a><span class="co">#&gt; Cluster means:</span></span>
+<span id="cb9-9"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-9" tabindex="-1"></a><span class="co">#&gt;         X1       X2       X3       X4       X5       X6       X7       X8</span></span>
+<span id="cb9-10"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-10" tabindex="-1"></a><span class="co">#&gt; 1 1.918182 2.017273 1.675000 1.949091 1.890455 1.728182 1.557273 1.286818</span></span>
+<span id="cb9-11"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-11" tabindex="-1"></a><span class="co">#&gt; 2 4.446923 4.276923 4.854615 4.394615 4.494615 4.769231 5.056154 5.515385</span></span>
+<span id="cb9-12"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-12" tabindex="-1"></a><span class="co">#&gt;         X9      X10</span></span>
+<span id="cb9-13"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-13" tabindex="-1"></a><span class="co">#&gt; 1 1.952727 1.455455</span></span>
+<span id="cb9-14"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-14" tabindex="-1"></a><span class="co">#&gt; 2 4.389231 5.230000</span></span>
+<span id="cb9-15"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-16"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-16" tabindex="-1"></a><span class="co">#&gt; Clustering vector:</span></span>
+<span id="cb9-17"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-17" tabindex="-1"></a><span class="co">#&gt;         CILACAP        BANYUMAS     PURBALINGGA    BANJARNEGARA         KEBUMEN </span></span>
+<span id="cb9-18"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-18" tabindex="-1"></a><span class="co">#&gt;               2               2               2               2               2 </span></span>
+<span id="cb9-19"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-19" tabindex="-1"></a><span class="co">#&gt;       PURWOREJO        WONOSOBO        MAGELANG        BOYOLALI          KLATEN </span></span>
+<span id="cb9-20"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-20" tabindex="-1"></a><span class="co">#&gt;               1               1               2               1               2 </span></span>
+<span id="cb9-21"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-21" tabindex="-1"></a><span class="co">#&gt;       SUKOHARJO        WONOGIRI     KARANGANYAR          SRAGEN        GROBOGAN </span></span>
+<span id="cb9-22"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-22" tabindex="-1"></a><span class="co">#&gt;               1               1               1               1               2 </span></span>
+<span id="cb9-23"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-23" tabindex="-1"></a><span class="co">#&gt;           BLORA         REMBANG            PATI           KUDUS          JEPARA </span></span>
+<span id="cb9-24"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-24" tabindex="-1"></a><span class="co">#&gt;               1               1               2               1               2 </span></span>
+<span id="cb9-25"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-25" tabindex="-1"></a><span class="co">#&gt;         DEMAK          SEMARANG      TEMANGGUNG          KENDAL          BATANG </span></span>
+<span id="cb9-26"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-26" tabindex="-1"></a><span class="co">#&gt;               1               1               1               1               1 </span></span>
+<span id="cb9-27"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-27" tabindex="-1"></a><span class="co">#&gt;      PEKALONGAN        PEMALANG           TEGAL          BREBES   KOTA MAGELANG </span></span>
+<span id="cb9-28"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-28" tabindex="-1"></a><span class="co">#&gt;               1               2               2               2               1 </span></span>
+<span id="cb9-29"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-29" tabindex="-1"></a><span class="co">#&gt;  KOTA SURAKARTA   KOTA SALATIGA   KOTA SEMARANG KOTA PEKALONGAN      KOTA TEGAL </span></span>
+<span id="cb9-30"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-30" tabindex="-1"></a><span class="co">#&gt;               1               1               1               1               1 </span></span>
+<span id="cb9-31"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-31" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-32"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-32" tabindex="-1"></a><span class="co">#&gt; Within cluster sum of squares by cluster:</span></span>
+<span id="cb9-33"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-33" tabindex="-1"></a><span class="co">#&gt; [1] 262.6536 466.0163</span></span>
+<span id="cb9-34"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-34" tabindex="-1"></a><span class="co">#&gt;  (between_SS / total_SS =  51.3 %)</span></span>
+<span id="cb9-35"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-35" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-36"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-36" tabindex="-1"></a><span class="co">#&gt; Available components:</span></span>
+<span id="cb9-37"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-37" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-38"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-38" tabindex="-1"></a><span class="co">#&gt; [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;     &quot;tot.withinss&quot;</span></span>
+<span id="cb9-39"><a href="2.2-eksperimen-algoritma-k-means.html#cb9-39" tabindex="-1"></a><span class="co">#&gt; [6] &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;         &quot;ifault&quot;</span></span></code></pre></div>
+<p>Untuk melihat hasil akhir clustering K-Means pada setiap kabupaten dalam dataset. Dengan menggunakan <code>km.res$cluster</code>, kita dapat memperoleh informasi mengenai anggota setiap cluster yang terbentuk setelah algoritma K-Means dijalankan. Hasil ini akan menunjukkan cluster mana yang menjadi bagian dari setiap kabupaten berdasarkan hasil eksperimen dengan <span class="math inline">\(k=2\)</span>, yang sebelumnya ditentukan sebagai jumlah cluster optimal. Setiap nilai dalam <code>km.res$cluster</code> mengindikasikan nomor cluster (misalnya, 1 atau 2) yang sesuai dengan kabupaten tertentu, yang memungkinkan kita untuk menganalisis distribusi dan pemisahan kabupaten berdasarkan karakteristik yang relevan dalam dataset.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="2.2-eksperimen-algoritma-k-means.html#cb10-1" tabindex="-1"></a><span class="co"># Jumlah anggota cluster</span></span>
+<span id="cb10-2"><a href="2.2-eksperimen-algoritma-k-means.html#cb10-2" tabindex="-1"></a>km.res<span class="sc">$</span>cluster</span>
+<span id="cb10-3"><a href="2.2-eksperimen-algoritma-k-means.html#cb10-3" tabindex="-1"></a><span class="co">#&gt;         CILACAP        BANYUMAS     PURBALINGGA    BANJARNEGARA         KEBUMEN </span></span>
+<span id="cb10-4"><a href="2.2-eksperimen-algoritma-k-means.html#cb10-4" tabindex="-1"></a><span class="co">#&gt;               2               2               2               2               2 </span></span>
+<span id="cb10-5"><a href="2.2-eksperimen-algoritma-k-means.html#cb10-5" tabindex="-1"></a><span class="co">#&gt;       PURWOREJO        WONOSOBO        MAGELANG        BOYOLALI          KLATEN </span></span>
+<span id="cb10-6"><a href="2.2-eksperimen-algoritma-k-means.html#cb10-6" tabindex="-1"></a><span class="co">#&gt;               1               1               2               1               2 </span></span>
+<span id="cb10-7"><a href="2.2-eksperimen-algoritma-k-means.html#cb10-7" tabindex="-1"></a><span class="co">#&gt;       SUKOHARJO        WONOGIRI     KARANGANYAR          SRAGEN        GROBOGAN </span></span>
+<span id="cb10-8"><a href="2.2-eksperimen-algoritma-k-means.html#cb10-8" tabindex="-1"></a><span class="co">#&gt;               1               1               1               1               2 </span></span>
+<span id="cb10-9"><a href="2.2-eksperimen-algoritma-k-means.html#cb10-9" tabindex="-1"></a><span class="co">#&gt;           BLORA         REMBANG            PATI           KUDUS          JEPARA </span></span>
+<span id="cb10-10"><a href="2.2-eksperimen-algoritma-k-means.html#cb10-10" tabindex="-1"></a><span class="co">#&gt;               1               1               2               1               2 </span></span>
+<span id="cb10-11"><a href="2.2-eksperimen-algoritma-k-means.html#cb10-11" tabindex="-1"></a><span class="co">#&gt;         DEMAK          SEMARANG      TEMANGGUNG          KENDAL          BATANG </span></span>
+<span id="cb10-12"><a href="2.2-eksperimen-algoritma-k-means.html#cb10-12" tabindex="-1"></a><span class="co">#&gt;               1               1               1               1               1 </span></span>
+<span id="cb10-13"><a href="2.2-eksperimen-algoritma-k-means.html#cb10-13" tabindex="-1"></a><span class="co">#&gt;      PEKALONGAN        PEMALANG           TEGAL          BREBES   KOTA MAGELANG </span></span>
+<span id="cb10-14"><a href="2.2-eksperimen-algoritma-k-means.html#cb10-14" tabindex="-1"></a><span class="co">#&gt;               1               2               2               2               1 </span></span>
+<span id="cb10-15"><a href="2.2-eksperimen-algoritma-k-means.html#cb10-15" tabindex="-1"></a><span class="co">#&gt;  KOTA SURAKARTA   KOTA SALATIGA   KOTA SEMARANG KOTA PEKALONGAN      KOTA TEGAL </span></span>
+<span id="cb10-16"><a href="2.2-eksperimen-algoritma-k-means.html#cb10-16" tabindex="-1"></a><span class="co">#&gt;               1               1               1               1               1</span></span></code></pre></div>
+<p>Kode ini digunakan untuk melihat ukuran masing-masing cluster setelah algoritma K-Means dijalankan. Dengan menggunakan <code>km.res$size</code>, kita dapat memperoleh jumlah anggota atau titik data yang termasuk dalam setiap cluster. Hasil dari <code>km.res$size</code> akan memberikan informasi mengenai berapa banyak kabupaten yang tergolong dalam setiap cluster yang terbentuk, baik itu cluster 1 atau cluster 2, berdasarkan hasil eksperimen dengan <span class="math inline">\(k=2\)</span>. Informasi ini sangat berguna untuk memahami distribusi data dan sebaran anggota di setiap cluster yang dihasilkan oleh proses clustering.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="2.2-eksperimen-algoritma-k-means.html#cb11-1" tabindex="-1"></a><span class="co"># ukuran cluster</span></span>
+<span id="cb11-2"><a href="2.2-eksperimen-algoritma-k-means.html#cb11-2" tabindex="-1"></a>km.res<span class="sc">$</span>size</span>
+<span id="cb11-3"><a href="2.2-eksperimen-algoritma-k-means.html#cb11-3" tabindex="-1"></a><span class="co">#&gt; [1] 22 13</span></span></code></pre></div>
 </div>
 <div id="visualisasi-hasil-clustering" class="section level3 unnumbered hasAnchor">
 <h3>Visualisasi Hasil <em>clustering</em><a href="2.2-eksperimen-algoritma-k-means.html#visualisasi-hasil-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Kode ini digunakan untuk memvisualisasikan hasil clustering K-Means pada dataset. Pertama, <code>km.res$centers</code> digunakan untuk menampilkan pusat cluster yang ditemukan oleh algoritma K-Means, yang mewakili rata-rata dari titik-titik data yang tergolong dalam setiap cluster. Pusat cluster ini memberikan gambaran tentang karakteristik masing-masing cluster. Selanjutnya, fungsi <code>fviz_cluster(km.res, data = data)</code> digunakan untuk memvisualisasikan hasil clustering dalam bentuk plot. Titik-titik data diplot dengan warna yang berbeda untuk masing-masing cluster, memudahkan kita untuk melihat pemisahan antar cluster serta sebaran data dalam ruang fitur. Visualisasi ini sangat berguna untuk memahami seberapa baik pemisahan antara cluster dan memberikan wawasan mengenai struktur data setelah dilakukan clustering.</p>
-<pre><code>#&gt;         X1       X2       X3       X4       X5       X6       X7       X8
-#&gt; 1 1.918182 2.017273 1.675000 1.949091 1.890455 1.728182 1.557273 1.286818
-#&gt; 2 4.446923 4.276923 4.854615 4.394615 4.494615 4.769231 5.056154 5.515385
-#&gt;         X9      X10
-#&gt; 1 1.952727 1.455455
-#&gt; 2 4.389231 5.230000</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="2.2-eksperimen-algoritma-k-means.html#cb12-1" tabindex="-1"></a>km.res<span class="sc">$</span>centers</span>
+<span id="cb12-2"><a href="2.2-eksperimen-algoritma-k-means.html#cb12-2" tabindex="-1"></a><span class="co">#&gt;         X1       X2       X3       X4       X5       X6       X7       X8</span></span>
+<span id="cb12-3"><a href="2.2-eksperimen-algoritma-k-means.html#cb12-3" tabindex="-1"></a><span class="co">#&gt; 1 1.918182 2.017273 1.675000 1.949091 1.890455 1.728182 1.557273 1.286818</span></span>
+<span id="cb12-4"><a href="2.2-eksperimen-algoritma-k-means.html#cb12-4" tabindex="-1"></a><span class="co">#&gt; 2 4.446923 4.276923 4.854615 4.394615 4.494615 4.769231 5.056154 5.515385</span></span>
+<span id="cb12-5"><a href="2.2-eksperimen-algoritma-k-means.html#cb12-5" tabindex="-1"></a><span class="co">#&gt;         X9      X10</span></span>
+<span id="cb12-6"><a href="2.2-eksperimen-algoritma-k-means.html#cb12-6" tabindex="-1"></a><span class="co">#&gt; 1 1.952727 1.455455</span></span>
+<span id="cb12-7"><a href="2.2-eksperimen-algoritma-k-means.html#cb12-7" tabindex="-1"></a><span class="co">#&gt; 2 4.389231 5.230000</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="2.2-eksperimen-algoritma-k-means.html#cb13-1" tabindex="-1"></a><span class="fu">fviz_cluster</span>(km.res, <span class="at">data =</span> data)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
 <img src="02-ch2_files/figure-html/unnamed-chunk-13-1.png" alt="Plot Hasil Cluster" width="80%" />
 <p class="caption">
@@ -715,6 +748,12 @@ Gambar 2.5: Plot Hasil Cluster
 </p>
 </div>
 <p>Kode ini digunakan untuk memvisualisasikan hasil clustering K-Means dengan tampilan yang lebih informatif dan menarik. Fungsi <code>fviz_cluster()</code> digunakan untuk menggambarkan hasil clustering, di mana setiap cluster diberi warna yang berbeda—oranye untuk cluster pertama dan biru kehijauan untuk cluster kedua. Penambahan ellips dengan tipe Euclidean memperjelas batasan area setiap cluster, menunjukkan sebaran titik data di dalamnya. Selain itu, fitur star plot diaktifkan untuk menggambarkan titik pusat setiap cluster, dengan garis yang menghubungkannya ke titik data dalam cluster tersebut, memberikan gambaran visual yang jelas tentang posisi pusat dan distribusi data. Untuk meningkatkan keterbacaan, fitur <code>repel</code> digunakan agar label titik data tidak tumpang tindih, dan tema minimal dari <code>ggplot2</code> (<code>theme_minimal()</code>) diterapkan untuk menghasilkan tampilan plot yang lebih bersih dan sederhana. Dengan pengaturan ini, visualisasi hasil clustering menjadi lebih mudah dipahami dan lebih menarik secara visual.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="2.2-eksperimen-algoritma-k-means.html#cb14-1" tabindex="-1"></a><span class="fu">fviz_cluster</span>(km.res, <span class="at">data =</span> data,</span>
+<span id="cb14-2"><a href="2.2-eksperimen-algoritma-k-means.html#cb14-2" tabindex="-1"></a>             <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#FC4E07&quot;</span>, <span class="st">&quot;#00AFBB&quot;</span>),</span>
+<span id="cb14-3"><a href="2.2-eksperimen-algoritma-k-means.html#cb14-3" tabindex="-1"></a>             <span class="at">ellipse.type =</span> <span class="st">&quot;euclid&quot;</span>, </span>
+<span id="cb14-4"><a href="2.2-eksperimen-algoritma-k-means.html#cb14-4" tabindex="-1"></a>             <span class="at">star.plot =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb14-5"><a href="2.2-eksperimen-algoritma-k-means.html#cb14-5" tabindex="-1"></a>             <span class="at">repel =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb14-6"><a href="2.2-eksperimen-algoritma-k-means.html#cb14-6" tabindex="-1"></a>             <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
 <img src="02-ch2_files/figure-html/unnamed-chunk-14-1.png" alt="Plot Hasil Cluster" width="80%" />
 <p class="caption">

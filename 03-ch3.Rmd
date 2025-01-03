@@ -12,15 +12,15 @@ text-align: justify}
 
 K-Medoids adalah salah satu metode pengelompokan yang termasuk dalam kategori analisis cluster non-hierarki. Metode ini merupakan varian dari K-Means, yang dirancang untuk mengatasi kelemahan K-Means dalam menghadapi data yang mengandung outlier. Dalam K-Medoids, objek yang mewakili setiap cluster disebut medoid, yang merupakan titik pusat dari cluster tersebut. Berbeda dengan K-Means yang menggunakan rata-rata (centroid) sebagai pusat cluster, K-Medoids lebih robust terhadap outlier karena menggunakan objek yang sebenarnya dari dataset sebagai medoid [@jiawei2006data].
 
-Proses kerja K-Medoids dimulai dengan menentukan jumlah cluster (k) yang diinginkan. Setelah itu, algoritma akan memilih secara acak medoid awal dari dataset. Selanjutnya, setiap objek dalam dataset akan dialokasikan ke cluster terdekat berdasarkan jarak ke medoid. Jarak yang umum digunakan dalam K-Medoids adalah jarak Euclidean. Proses ini diulang hingga tidak ada perubahan dalam pemilihan medoid, yang menunjukkan bahwa algoritma telah konvergen [@setyawati2017analisis].
+Proses kerja K-Medoids dimulai dengan menentukan jumlah cluster ($k$) yang diinginkan. Setelah itu, algoritma akan memilih secara acak medoid awal dari dataset. Selanjutnya, setiap objek dalam dataset akan dialokasikan ke cluster terdekat berdasarkan jarak ke medoid. Jarak yang umum digunakan dalam K-Medoids adalah jarak Euclidean. Proses ini diulang hingga tidak ada perubahan dalam pemilihan medoid, yang menunjukkan bahwa algoritma telah konvergen [@setyawati2017analisis].
 
 Salah satu keunggulan K-Medoids adalah kemampuannya untuk memberikan hasil yang lebih stabil dan representatif ketika data mengandung outlier. Hal ini menjadikan K-Medoids pilihan yang lebih baik dibandingkan K-Means dalam situasi di mana data tidak terdistribusi secara normal atau terdapat nilai ekstrim yang dapat mempengaruhi hasil clustering [@vercellis2009sistem]. Dengan demikian, K-Medoids sangat cocok untuk analisis data yang kompleks dan beragam.
 
-Dalam implementasinya, K-Medoids dapat dilakukan dengan menggunakan berbagai perangkat lunak statistik, termasuk R. R menyediakan paket-paket yang memudahkan pengguna untuk melakukan analisis clustering, termasuk K-Medoids. Dengan menggunakan fungsi-fungsi yang tersedia, pengguna dapat dengan mudah melakukan standarisasi data, menentukan jumlah cluster optimal, dan memvisualisasikan hasil clustering [@santoso2012aplikasi].
+Dalam implementasinya, K-Medoids dapat dilakukan dengan menggunakan berbagai perangkat lunak statistik, termasuk `r ttcode("R")`. `r ttcode("R")` menyediakan paket-paket yang memudahkan pengguna untuk melakukan analisis clustering, termasuk K-Medoids. Dengan menggunakan fungsi-fungsi yang tersedia, pengguna dapat dengan mudah melakukan standarisasi data, menentukan jumlah cluster optimal, dan memvisualisasikan hasil clustering [@santoso2012aplikasi].
 
 Secara keseluruhan, K-Medoids merupakan metode yang efektif untuk analisis cluster, terutama dalam konteks data yang mengandung outlier. Dengan pemahaman yang baik tentang cara kerja dan implementasinya, pengguna dapat memanfaatkan K-Medoids untuk mendapatkan wawasan yang lebih dalam dari data yang dianalisis.
 
-## Tahapan Algoritma K-Means
+## Tahapan Algoritma K-Medoids
 
 ```{=html}
 <style>
@@ -30,7 +30,7 @@ text-align: justify}
 ```
 
 ### 1. Inisialisasi Centroid {-}
-Tentukan jumlah cluster \( K \) yang diinginkan. Pilih secara acak \( K \) titik data dari dataset sebagai medoid awal untuk setiap cluster.
+Tentukan jumlah cluster \( k \) yang diinginkan. Pilih secara acak \( k \) titik data dari dataset sebagai medoid awal untuk setiap cluster.
 
 ### 2. Penugasan Anggota Cluster {-}
 Setiap titik data \( x_i \) dalam dataset dialokasikan ke cluster yang memiliki medoid terdekat. Penugasan dilakukan berdasarkan jarak antara titik data dan medoid menggunakan rumus jarak (misalnya, jarak Euclidean).
@@ -71,7 +71,7 @@ text-align: justify}
 
 ### Data {.unnumbered}
 
-Dengan menggunakan fungsi `read.csv()` dari R, kami dapat mengimpor data langsung dari URL tersebut ke dalam lingkungan kerja R. Berikut adalah kode yang digunakan untuk membaca data: Package `reader` menyiapkan fungsi [`read_csv()`](https://readr.tidyverse.org/reference/read_delim.html) untuk import data dari file CSV. Pada kasus ini digunakan data [Data 40% Kemiskinan di jawa Tengah](https://github.com/dedenistiawan/Dataset/blob/main/BDT.csv).
+Dengan menggunakan fungsi `read.csv()` dari `r ttcode("R")`, kami dapat mengimpor data langsung dari URL tersebut ke dalam lingkungan kerja R. Berikut adalah kode yang digunakan untuk membaca data: Package `reader` menyiapkan fungsi [`read_csv()`](https://readr.tidyverse.org/reference/read_delim.html) untuk import data dari file CSV. Pada kasus ini digunakan data [Data 40% Kemiskinan di jawa Tengah](https://github.com/dedenistiawan/Dataset/blob/main/BDT.csv).
 
 ```{r Load_data_km,warning=FALSE, tidy=FALSE}
 library (readr)
@@ -87,7 +87,7 @@ knitr::kable(
 
 ### R packages dan fungsi yang dibutuhkan {.unnumbered}
 
-Untuk melakukan analisis cluster dengan metode k-medoids di R, diperlukan beberapa paket dan fungsi utama. Paket yang wajib digunakan adalah **`cluster`**, yang menyediakan fungsi `pam()` (Partitioning Around Medoids) sebagai implementasi utama algoritma k-medoids. Selain itu, paket **`factoextra`** berguna untuk visualisasi hasil clustering dengan fungsi `fviz_cluster()`. Untuk mengevaluasi kualitas clustering, paket **`fpc`** dan **`clusterCrit`** dapat digunakan sebagai opsi tambahan dengan fungsi seperti `cluster.stats()` untuk evaluasi statistik dan `intCriteria()` untuk menghitung indeks validasi clustering. Dalam proses analisis, fungsi `silhouette()` dapat digunakan untuk mengevaluasi kualitas clustering dengan Silhouette Width, sementara `dist()` diperlukan untuk membuat matriks jarak yang digunakan oleh algoritma. Sebagai langkah awal, data biasanya diskalakan menggunakan fungsi seperti `scale()` sebelum diterapkan algoritma k-medoids untuk memastikan hasil yang optimal. Kombinasi paket dan fungsi ini memungkinkan analisis cluster yang efektif, mulai dari pembentukan cluster hingga evaluasi hasil.
+Untuk melakukan analisis cluster dengan metode k-medoids di `r ttcode("R")`, diperlukan beberapa paket dan fungsi utama. Paket yang wajib digunakan adalah **`cluster`**, yang menyediakan fungsi `pam()` (Partitioning Around Medoids) sebagai implementasi utama algoritma k-medoids. Selain itu, paket **`factoextra`** berguna untuk visualisasi hasil clustering dengan fungsi `fviz_cluster()`. Untuk mengevaluasi kualitas clustering, paket **`fpc`** dan **`clusterCrit`** dapat digunakan sebagai opsi tambahan dengan fungsi seperti `cluster.stats()` untuk evaluasi statistik dan `intCriteria()` untuk menghitung indeks validasi clustering. Dalam proses analisis, fungsi `silhouette()` dapat digunakan untuk mengevaluasi kualitas clustering dengan Silhouette Width, sementara `dist()` diperlukan untuk membuat matriks jarak yang digunakan oleh algoritma. Sebagai langkah awal, data biasanya diskalakan menggunakan fungsi seperti `scale()` sebelum diterapkan algoritma k-medoids untuk memastikan hasil yang optimal. Kombinasi paket dan fungsi ini memungkinkan analisis cluster yang efektif, mulai dari pembentukan cluster hingga evaluasi hasil.
 
 ```{r}
 library(cluster)

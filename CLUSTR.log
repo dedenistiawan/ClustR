@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.31)  1 JAN 2025 21:51
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.31)  3 JAN 2025 10:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -700,6 +700,39 @@ LaTeX Warning: Label `fig:unnamed-chunk-9' multiply defined.
 LaTeX Warning: Label `fig:unnamed-chunk-13' multiply defined.
 
 
+LaTeX Warning: Label `tab:nice-tab-2' multiply defined.
+
+
+LaTeX Warning: Label `fig:unnamed-chunk-4' multiply defined.
+
+
+LaTeX Warning: Label `fig:unnamed-chunk-5' multiply defined.
+
+
+LaTeX Warning: Label `fig:unnamed-chunk-6' multiply defined.
+
+
+LaTeX Warning: Label `fig:unnamed-chunk-7' multiply defined.
+
+
+LaTeX Warning: Label `fig:unnamed-chunk-8' multiply defined.
+
+
+LaTeX Warning: Label `fig:unnamed-chunk-9' multiply defined.
+
+
+LaTeX Warning: Label `fig:unnamed-chunk-10' multiply defined.
+
+
+LaTeX Warning: Label `fig:unnamed-chunk-12' multiply defined.
+
+
+LaTeX Warning: Label `fig:unnamed-chunk-13' multiply defined.
+
+
+LaTeX Warning: Label `fig:unnamed-chunk-14' multiply defined.
+
+
 LaTeX Warning: Label `tab:nice-tab-1' multiply defined.
 
 
@@ -1096,16 +1129,20 @@ File: images/rstudio.jpg Graphic file (type bmp)
 [13]
 
 [14]
-Chapter 2.
-
 
 [15
 
 ]
+Chapter 2.
 
-[16]
+
+[16
+
+]
 
 [17]
+
+[18]
 File: 02-ch2_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
 <use 02-ch2_files/figure-latex/unnamed-chunk-4-1.pdf>
 
@@ -1113,50 +1150,40 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[18]
+[19]
+
+[20]
 File: 02-ch2_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pdf)
 <use 02-ch2_files/figure-latex/unnamed-chunk-5-1.pdf>
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Font Warning: Font shape `TU/lmtt/bx/it' in size <10> not available
+(Font)              Font shape `TU/lmtt/b/sl' tried instead on input line 1155.
 
-Missing character: There is no 𝐾 (U+1D43E) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no 𝐾 (U+1D43E) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no 𝐾 (U+1D43E) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no 𝐾 (U+1D43E) in font [lmroman10-regular]:mapping=tex-text;!
-
-
-[19]
 File: 02-ch2_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
 <use 02-ch2_files/figure-latex/unnamed-chunk-6-1.pdf>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-Missing character: There is no 𝐾 (U+1D43E) in font [lmroman10-regular]:mapping=tex-text;!
-
-
-[20]
-File: 02-ch2_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
-<use 02-ch2_files/figure-latex/unnamed-chunk-9-1.pdf>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
 [21]
-Underfull \vbox (badness 10000) detected at line 1212
- []
-
-
-Underfull \vbox (badness 10000) detected at line 1212
- []
-
-
 
 [22]
+File: 02-ch2_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
+<use 02-ch2_files/figure-latex/unnamed-chunk-9-1.pdf>
+
 
 [23]
+
+[24]
 File: 02-ch2_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
 <use 02-ch2_files/figure-latex/unnamed-chunk-13-1.pdf>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[25]
 File: 02-ch2_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type pdf)
 <use 02-ch2_files/figure-latex/unnamed-chunk-14-1.pdf>
 
@@ -1164,48 +1191,44 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[24]
+[26]
 
-[25]
+[27]
 Chapter 3.
 
 
-[26
+[28
 
 ]
-
-[27]
-
-[28]
-File: 03-ch3_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
-<use 03-ch3_files/figure-latex/unnamed-chunk-3-1.pdf>
-
-LaTeX Font Warning: Font shape `TU/lmtt/bx/it' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/sl' tried instead on input line 1418.
-
-
 
 [29]
 
 [30]
+File: 03-ch3_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
+<use 03-ch3_files/figure-latex/unnamed-chunk-3-1.pdf>
+
+
+[31]
+
+[32]
 File: 03-ch3_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type pdf)
 <use 03-ch3_files/figure-latex/unnamed-chunk-7-1.pdf>
 
 
-[31]
+[33]
 Chapter 4.
 
 
-[32
+[34
 
 ]
 
-[33]
+[35]
 File: 04-ch4_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
 <use 04-ch4_files/figure-latex/unnamed-chunk-4-1.pdf>
 
 
-[34]
+[36]
 File: 04-ch4_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pdf)
 <use 04-ch4_files/figure-latex/unnamed-chunk-5-1.pdf>
 
@@ -1213,52 +1236,56 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[35]
-Overfull \vbox (0.57832pt too high) detected at line 1699
+[37]
+Overfull \vbox (0.57832pt too high) detected at line 1770
  []
 
 
 
-[36]
+[38]
 File: 04-ch4_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (type pdf)
 <use 04-ch4_files/figure-latex/unnamed-chunk-8-1.pdf>
 
 
-[37]
+[39]
 File: 04-ch4_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
 <use 04-ch4_files/figure-latex/unnamed-chunk-9-1.pdf>
 
 
-[38]
+[40]
 Chapter 5.
 
 
-[39
+[41
 
 ]
-
-[40]
-
-[41]
 
 [42]
-Chapter 6.
 
-
-[43
-
-]
+[43]
 
 [44]
 
-[45]
-Overfull \hbox (232.7917pt too wide) in paragraph at lines 2062--2079
+[45
+
+]
+Chapter 6.
+
+
+[46
+
+]
+
+[47]
+
+[48]
+Overfull \hbox (232.7917pt too wide) in paragraph at lines 2127--2144
  [][] 
  []
 
 
 
-[46]
+[49]
 File: 06-ch6_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
 <use 06-ch6_files/figure-latex/unnamed-chunk-6-1.pdf>
 
@@ -1266,15 +1293,15 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[47]
+[50]
 
-[48]
+[51]
 File: 06-ch6_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
 <use 06-ch6_files/figure-latex/unnamed-chunk-9-1.pdf>
 
 
-[49]
-Underfull \hbox (badness 1472) in paragraph at lines 2225--2227
+[52]
+Underfull \hbox (badness 1472) in paragraph at lines 2290--2292
 []\TU/lmtt/b/n/10 palette = c("#E7B800", "#FC4E07")\TU/lmr/m/n/10 : Menentukan warna yang akan digunakan untuk
  []
 
@@ -1285,9 +1312,9 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[50]
+[53]
 
-[51]
+[54]
 File: 06-ch6_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type pdf)
 <use 06-ch6_files/figure-latex/unnamed-chunk-12-1.pdf>
 File: 06-ch6_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
@@ -1297,9 +1324,9 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[52]
+[55]
 
-[53]
+[56]
 File: 06-ch6_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type pdf)
 <use 06-ch6_files/figure-latex/unnamed-chunk-15-1.pdf>
 
@@ -1307,46 +1334,131 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[54]
+[57]
 
-[55]
+[58]
 Chapter 7.
 
 
-[56
+[59
 
 ]
-Chapter 8.
+File: 07-ch7_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
+<use 07-ch7_files/figure-latex/unnamed-chunk-4-1.pdf>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-[57
-
-]
-
-[58]
-
-[59]
 
 [60]
-File: 08-ch8_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
-<use 08-ch8_files/figure-latex/unnamed-chunk-4-1.pdf>
+File: 07-ch7_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pdf)
+<use 07-ch7_files/figure-latex/unnamed-chunk-5-1.pdf>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+File: 07-ch7_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
+<use 07-ch7_files/figure-latex/unnamed-chunk-6-1.pdf>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 
 
 [61]
+File: 07-ch7_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type pdf)
+<use 07-ch7_files/figure-latex/unnamed-chunk-7-1.pdf>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+File: 07-ch7_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (type pdf)
+<use 07-ch7_files/figure-latex/unnamed-chunk-8-1.pdf>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+File: 07-ch7_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
+<use 07-ch7_files/figure-latex/unnamed-chunk-9-1.pdf>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
 
 [62]
-Underfull \vbox (badness 10000) detected at line 2698
- []
+File: 07-ch7_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
+<use 07-ch7_files/figure-latex/unnamed-chunk-10-1.pdf>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \vbox (badness 10000) detected at line 2698
+Underfull \hbox (badness 6078) in paragraph at lines 2682--2683
+[]\TU/lmr/m/n/10 Selanjutnya, data dendrogram diekstrak dari objek plot menggunakan \TU/lmtt/m/n/10 attr(dend_plot,
  []
 
 
 
 [63]
+File: 07-ch7_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (type pdf)
+<use 07-ch7_files/figure-latex/unnamed-chunk-11-1.pdf>
+
 
 [64]
+File: 07-ch7_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type pdf)
+<use 07-ch7_files/figure-latex/unnamed-chunk-12-1.pdf>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+File: 07-ch7_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
+<use 07-ch7_files/figure-latex/unnamed-chunk-13-1.pdf>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+File: 07-ch7_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type pdf)
+<use 07-ch7_files/figure-latex/unnamed-chunk-14-1.pdf>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[65]
+
+[66]
+
+[67]
+
+[68]
+
+[69
+
+]
+Chapter 8.
+
+
+[70
+
+]
+
+[71]
+
+[72]
+
+[73]
+File: 08-ch8_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
+<use 08-ch8_files/figure-latex/unnamed-chunk-4-1.pdf>
+
+
+[74]
+
+[75]
+Underfull \vbox (badness 10000) detected at line 3050
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 3050
+ []
+
+
+
+[76]
+
+[77]
 File: 08-ch8_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type pdf)
 <use 08-ch8_files/figure-latex/unnamed-chunk-12-1.pdf>
 
@@ -1354,7 +1466,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[65]
+[78]
 File: 08-ch8_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
 <use 08-ch8_files/figure-latex/unnamed-chunk-13-1.pdf>
 
@@ -1362,19 +1474,19 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[66]
+[79]
 
-[67] (./CLUSTR.bbl
+[80] (./CLUSTR.bbl
 
-[68
+[81
 
 ]
 
-[69
+[82
 
 ])
 
-[70] (./CLUSTR.aux)
+[83] (./CLUSTR.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-12-09>
@@ -1384,12 +1496,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 30842 strings out of 475888
- 626684 string characters out of 5774314
- 1131728 words of memory out of 5000000
- 53226 multiletter control sequences out of 15000+600000
+ 30968 strings out of 475888
+ 632961 string characters out of 5774314
+ 1132180 words of memory out of 5000000
+ 53350 multiletter control sequences out of 15000+600000
  564608 words of font info for 100 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 98i,8n,123p,1263b,470s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 98i,8n,123p,1272b,470s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on CLUSTR.pdf (71 pages).
+Output written on CLUSTR.pdf (84 pages).

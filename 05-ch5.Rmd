@@ -20,7 +20,7 @@ atau kategori produk, yang sering dijumpai dalam berbagai aplikasi
 analisis data [@handayani2020].
 
 Proses kerja algoritma K-Modes mirip dengan K-Means, di mana algoritma
-ini juga memerlukan penentuan jumlah cluster (K) sebelum proses
+ini juga memerlukan penentuan jumlah cluster ($k$) sebelum proses
 clustering dimulai. K-Modes melakukan inisialisasi centroid dengan
 memilih modus dari setiap atribut dalam cluster. Selanjutnya, algoritma
 ini menghitung jarak antara data dan centroid menggunakan metode yang
@@ -97,7 +97,7 @@ text-align: justify}
 ```
 
 ### 1. Memuat library yang diperlukan {-}
-Algoritma k-modes adalah salah satu metode clustering yang dirancang khusus untuk menangani data kategorikal. Di R, algoritma ini dapat diimplementasikan dengan menggunakan library Klar, yang menyediakan fungsi bawaan untuk k-modes. Selain itu, library MASS sering digunakan untuk mendukung manipulasi data atau keperluan lainnya dalam analisis clustering.
+Algoritma k-modes adalah salah satu metode clustering yang dirancang khusus untuk menangani data kategorikal. Di `r ttcode("R")`, algoritma ini dapat diimplementasikan dengan menggunakan library `Klar`, yang menyediakan fungsi bawaan untuk k-modes. Selain itu, library `MASS` sering digunakan untuk mendukung manipulasi data atau keperluan lainnya dalam analisis clustering.
 
 ```{r}
 library(klaR)

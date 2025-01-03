@@ -23,7 +23,7 @@
 <meta name="author" content="Deden Istiawan" />
 
 
-<meta name="date" content="2024-12-31" />
+<meta name="date" content="2025-01-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="6.5-eksperimen-divisive-clustering.html"/>
-<link rel="next" href="8-fcm.html"/>
+<link rel="next" href="7.1-proses-pembentukan-dendrogram.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -92,6 +92,69 @@
 
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #204a87; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <style type="text/css">
   
@@ -119,8 +182,15 @@
 <li class="chapter" data-level="1" data-path="1-pd.html"><a href="1-pd.html"><i class="fa fa-check"></i><b>1</b> Pendahuluan</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="1.1-kolofon.html"><a href="1.1-kolofon.html"><i class="fa fa-check"></i><b>1.1</b> Kolofon</a></li>
-<li class="chapter" data-level="1.2" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> Pengenalan Singkat R and RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> Pengenalan Singkat R and RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#instalasi-r-dan-rstudio"><i class="fa fa-check"></i>Instalasi R dan RStudio</a></li>
+<li class="chapter" data-level="" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#dasar-dasar-r"><i class="fa fa-check"></i>Dasar-Dasar R</a></li>
+<li class="chapter" data-level="" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#struktur-data-pada-r"><i class="fa fa-check"></i>Struktur Data pada R</a></li>
+<li class="chapter" data-level="" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#fungsi-dan-pemrograman-di-r"><i class="fa fa-check"></i>Fungsi dan Pemrograman di R</a></li>
 </ul></li>
+</ul></li>
+<li class="part"><span><b>I Pendekatan Partisi</b></span></li>
 <li class="chapter" data-level="2" data-path="2-km.html"><a href="2-km.html"><i class="fa fa-check"></i><b>2</b> Algoritma K-Means</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="2.1-tahapan-algoritma-k-means.html"><a href="2.1-tahapan-algoritma-k-means.html"><i class="fa fa-check"></i><b>2.1</b> Tahapan Algoritma K-Means</a>
@@ -147,13 +217,13 @@
 </ul></li>
 <li class="chapter" data-level="3" data-path="3-kmed.html"><a href="3-kmed.html"><i class="fa fa-check"></i><b>3</b> Algoritma K-Medoids</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="3.1-tahapan-algoritma-k-means-1.html"><a href="3.1-tahapan-algoritma-k-means-1.html"><i class="fa fa-check"></i><b>3.1</b> Tahapan Algoritma K-Means</a>
+<li class="chapter" data-level="3.1" data-path="3.1-tahapan-algoritma-k-medoids.html"><a href="3.1-tahapan-algoritma-k-medoids.html"><i class="fa fa-check"></i><b>3.1</b> Tahapan Algoritma K-Medoids</a>
 <ul>
-<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-means-1.html"><a href="3.1-tahapan-algoritma-k-means-1.html#inisialisasi-centroid-1"><i class="fa fa-check"></i>1. Inisialisasi Centroid</a></li>
-<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-means-1.html"><a href="3.1-tahapan-algoritma-k-means-1.html#penugasan-anggota-cluster"><i class="fa fa-check"></i>2. Penugasan Anggota Cluster</a></li>
-<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-means-1.html"><a href="3.1-tahapan-algoritma-k-means-1.html#pembaruan-medoid"><i class="fa fa-check"></i>3. Pembaruan Medoid</a></li>
-<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-means-1.html"><a href="3.1-tahapan-algoritma-k-means-1.html#iterasi"><i class="fa fa-check"></i>4. Iterasi</a></li>
-<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-means-1.html"><a href="3.1-tahapan-algoritma-k-means-1.html#hasil-akhir-1"><i class="fa fa-check"></i>5. Hasil Akhir</a></li>
+<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-medoids.html"><a href="3.1-tahapan-algoritma-k-medoids.html#inisialisasi-centroid-1"><i class="fa fa-check"></i>1. Inisialisasi Centroid</a></li>
+<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-medoids.html"><a href="3.1-tahapan-algoritma-k-medoids.html#penugasan-anggota-cluster"><i class="fa fa-check"></i>2. Penugasan Anggota Cluster</a></li>
+<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-medoids.html"><a href="3.1-tahapan-algoritma-k-medoids.html#pembaruan-medoid"><i class="fa fa-check"></i>3. Pembaruan Medoid</a></li>
+<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-medoids.html"><a href="3.1-tahapan-algoritma-k-medoids.html#iterasi"><i class="fa fa-check"></i>4. Iterasi</a></li>
+<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-medoids.html"><a href="3.1-tahapan-algoritma-k-medoids.html#hasil-akhir-1"><i class="fa fa-check"></i>5. Hasil Akhir</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="3.2-eksperimen-algoritma-k-medoids.html"><a href="3.2-eksperimen-algoritma-k-medoids.html"><i class="fa fa-check"></i><b>3.2</b> Eksperimen Algoritma K-Medoids</a>
 <ul>
@@ -206,6 +276,7 @@
 <li class="chapter" data-level="" data-path="5.2-eksperimen-algoritma-k-modes.html"><a href="5.2-eksperimen-algoritma-k-modes.html#menyimpan-hasil-cluster"><i class="fa fa-check"></i>4. Menyimpan Hasil Cluster</a></li>
 </ul></li>
 </ul></li>
+<li class="part"><span><b>II Pendekatan Hirarki</b></span></li>
 <li class="chapter" data-level="6" data-path="6-HC.html"><a href="6-HC.html"><i class="fa fa-check"></i><b>6</b> Metode Cluster Hirarki</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="6.1-tahapan-agglomerative-clustering.html"><a href="6.1-tahapan-agglomerative-clustering.html"><i class="fa fa-check"></i><b>6.1</b> Tahapan Agglomerative Clustering</a>
@@ -242,7 +313,18 @@
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="6.5-eksperimen-divisive-clustering.html"><a href="6.5-eksperimen-divisive-clustering.html"><i class="fa fa-check"></i><b>6.5</b> Eksperimen Divisive Clustering</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="7-vizhc.html"><a href="7-vizhc.html"><i class="fa fa-check"></i><b>7</b> Visualisasi Dendogram</a></li>
+<li class="chapter" data-level="7" data-path="7-vizhc.html"><a href="7-vizhc.html"><i class="fa fa-check"></i><b>7</b> Visualisasi Dendogram</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7.1-proses-pembentukan-dendrogram.html"><a href="7.1-proses-pembentukan-dendrogram.html"><i class="fa fa-check"></i><b>7.1</b> Proses Pembentukan Dendrogram</a></li>
+<li class="chapter" data-level="7.2" data-path="7.2-eksperimen.html"><a href="7.2-eksperimen.html"><i class="fa fa-check"></i><b>7.2</b> Eksperimen</a>
+<ul>
+<li class="chapter" data-level="" data-path="7.2-eksperimen.html"><a href="7.2-eksperimen.html#read-data"><i class="fa fa-check"></i>Read Data</a></li>
+<li class="chapter" data-level="" data-path="7.2-eksperimen.html"><a href="7.2-eksperimen.html#standarisasi-data-1"><i class="fa fa-check"></i>Standarisasi Data</a></li>
+<li class="chapter" data-level="" data-path="7.2-eksperimen.html"><a href="7.2-eksperimen.html#pengelompokan-data"><i class="fa fa-check"></i>Pengelompokan Data</a></li>
+<li class="chapter" data-level="" data-path="7.2-eksperimen.html"><a href="7.2-eksperimen.html#visualisasi-dendogram"><i class="fa fa-check"></i>Visualisasi Dendogram</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Pendekatan Fuzzy</b></span></li>
 <li class="chapter" data-level="8" data-path="8-fcm.html"><a href="8-fcm.html"><i class="fa fa-check"></i><b>8</b> Algoritma Fuzzy C-Means</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="8.1-tahapan-algoritma-fuzzy-c-means.html"><a href="8.1-tahapan-algoritma-fuzzy-c-means.html"><i class="fa fa-check"></i><b>8.1</b> Tahapan Algoritma Fuzzy C-Means</a>
@@ -291,7 +373,11 @@ Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda
 </div>
 <div id="vizhc" class="section level1 hasAnchor" number="7">
 <h1><span class="header-section-number">7</span> Visualisasi Dendogram<a href="7-vizhc.html#vizhc" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-
+<style>
+body{
+text-align: justify}
+</style>
+<p>Dendrogram merupakan representasi grafis yang menunjukkan bagaimana objek-objek dalam dataset dikelompokkan berdasarkan kemiripan atau jarak antar objek. Dalam dendrogram, setiap objek awalnya dianggap sebagai klaster terpisah. Proses penggabungan klaster dilakukan secara iteratif berdasarkan jarak terdekat hingga semua objek tergabung dalam satu klaster besar.</p>
 </div>
             </section>
 
@@ -299,7 +385,7 @@ Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda
         </div>
       </div>
 <a href="6.5-eksperimen-divisive-clustering.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="8-fcm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="7.1-proses-pembentukan-dendrogram.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -341,7 +427,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["CLUSTR.pdf"],
 "search": {
 "engine": "fuse",
 "options": null

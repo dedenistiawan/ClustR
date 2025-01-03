@@ -1,3 +1,5 @@
+# (PART) Pendekatan Fuzzy {-}
+
 # Algoritma Fuzzy C-Means {#fcm}
 
 ```{=html}
@@ -30,8 +32,6 @@ body{
 text-align: justify}
 </style>
 ```
-
-Berikut adalah tahapan algoritma Fuzzy C-Means (FCM):
 
 ### 1. Inisialisasi Parameter {-}  
 Tentukan jumlah cluster (*c*), parameter pembobot (*m*, biasanya \(m > 1\)), toleransi error (\(\epsilon\)), dan maksimum iterasi.

@@ -59,7 +59,7 @@ oleh metode clustering tradisional, tetapi juga memberikan hasil yang
 dapat diandalkan dalam konteks data besar. Di masa depan, pengembangan
 lebih lanjut dari algoritma ini dan integrasinya dengan teknik
 pembelajaran mesin lainnya dapat membuka jalan bagi analisis data yang
-lebih mendalam dan akurat (Halkidi et al., 2001).
+lebih mendalam dan akurat.
 
 ## Tahapan Algoritma CLARA
 
