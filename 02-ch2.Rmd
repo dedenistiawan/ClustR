@@ -80,7 +80,7 @@ Setelah konvergensi tercapai, hasil akhir adalah centroid dari setiap cluster da
 if (my_output=="html"){
   cat('
 <center>
-<iframe height="880" width="770" frameborder="0" scrolling="no" src="km_viz.html"></iframe>
+<iframe height="880" width="770" frameborder="0" scrolling="no" src="k-means-vis.html"></iframe>
 </center>
 ')
 } else {
