@@ -229,6 +229,74 @@ diakses di [GitHub](https://github.com/dedenistiawan/ClustR).
 sessioninfo::session_info()
 ```
 
+Berikut adalah library yang digunakan dalam buku ini:
+
+```{r, echo = FALSE, results = 'hide', message = FALSE, warning = FALSE}
+# Function to extract used libraries from Rmd files
+extract_used_libraries <- function(directory) {
+  # List all Rmd files in the specified directory
+  rmd_files <- list.files(directory, pattern = "\\.Rmd$", full.names = TRUE)
+  
+  # Initialize an empty vector to store package names
+  used_packages <- c()
+  
+  # Loop through each Rmd file
+  for (file in rmd_files) {
+    # Read the content of the file
+    content <- readLines(file)
+    
+    # Find lines that load libraries
+    library_calls <- grep("library\\(|require\\(", content, value = TRUE)
+    
+    # Extract package names from the calls
+    packages <- gsub(".*\\b(library|require)\\s*\\(\\s*['\"]?([^'\")]+)['\"]?\\s*\\).*", "\\2", library_calls)
+    
+    # Append unique package names to the vector
+    used_packages <- unique(c(used_packages, packages))
+  }
+  
+  return(used_packages)
+}
+
+# Example usage
+# Replace "path/to/your/bookdown/directory" with the actual path
+used_libraries <- extract_used_libraries("D:/00 Programming/01 R/01 Bookdown/01 ClustR/ClustR")
+print(used_libraries)
+```
+
+
+```{r message = FALSE, warning = FALSE, echo = FALSE}
+# Load necessary libraries
+library(dplyr)
+library(DT)
+
+# Get the list of used libraries
+used_libraries <- extract_used_libraries("D:/00 Programming/01 R/01 Bookdown/01 ClustR/ClustR")
+
+# Get information about the used packages
+packages_info <- as.data.frame(installed.packages())
+used_packages_info <- packages_info[packages_info$Package %in% used_libraries, ]
+
+# Create a datatable of used packages
+datatable_output <- used_packages_info %>% 
+  select(Package, Version, Built, Priority) %>%  # Adjust columns as needed
+  DT::datatable(
+    rownames = FALSE,
+    class = 'cell-border stripe',
+    filter = list(position = 'top'),
+    options = list(
+      pageLength = nrow(used_packages_info), 
+      autoWidth = TRUE,
+      bInfo = FALSE,
+      paging = FALSE
+    )
+  )
+
+# Display the datatable
+datatable_output
+```
+
+
 ## Pengenalan Singkat R and RStudio
 
 ```{=html}
