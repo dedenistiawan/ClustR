@@ -1,10 +1,3 @@
-tab:nice-tab-km
-fig:unnamed-chunk-4
-fig:unnamed-chunk-5
-fig:unnamed-chunk-6
-fig:unnamed-chunk-9
-fig:unnamed-chunk-13
-fig:unnamed-chunk-14
 pd
 kolofon
 pengenalan-singkat-r-and-rstudio
@@ -32,6 +25,3 @@ eksperimen
 fcm
 tahapan-algoritma-fuzzy-c-means
 eksperimeen-fuzzy-c-means
-fig:unnamed-chunk-7
-fig:unnamed-chunk-10
-fig:unnamed-chunk-15

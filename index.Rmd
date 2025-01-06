@@ -1,5 +1,5 @@
 ---
-title: "Analisis Cluster dengan R: Panduan Lengkap untuk Pemula"
+title: "Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R"
 cover-image: "images/cover.png"
 author: "Deden Istiawan"
 date: "`r Sys.Date()`"
@@ -38,7 +38,7 @@ biblio-style: apalike
 biblatexoptions:
   - sortcites
 link-citations: yes
-github-repo: "dedenistiawan/Analisis_Cluster_R"
+github-repo: ""
 description: "Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster."
 url: 'https://github.com/dedenistiawan/ClustR'
 tags: [Tutorial, Analisis Cluster, Unsupervised Learning, R Programming, Textbook]

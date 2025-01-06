@@ -1,8 +1,8 @@
 ---
-title: "Analisis Cluster dengan R: Panduan Lengkap untuk Pemula"
+title: "Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R"
 cover-image: "images/cover.png"
 author: "Deden Istiawan"
-date: "2025-01-03"
+date: "2025-01-06"
 site: bookdown::bookdown_site
 output:
   bookdown::word_document2:
@@ -38,7 +38,7 @@ biblio-style: apalike
 biblatexoptions:
   - sortcites
 link-citations: yes
-github-repo: "dedenistiawan/Analisis_Cluster_R"
+github-repo: ""
 description: "Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster."
 url: 'https://github.com/dedenistiawan/ClustR'
 tags: [Tutorial, Analisis Cluster, Unsupervised Learning, R Programming, Textbook]
@@ -77,7 +77,7 @@ text-align: justify}
 Bisnis Muhammadiyah <br> Semarang, Indonesia <br>
 <a href=\"mailto:deden.istiawan@itesa.ac.id?subject=Clustering%20with%20R\">[deden.istiawan\@itesa.ac.id](mailto:deden.istiawan@itesa.ac.id){.email}.</a>
 <br><br>
-Last updated on Friday, January 03, 2025.
+Last updated on Monday, January 06, 2025.
 <br> <br>
 <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FEconometricsWithR%2F&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId" width="400" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" align="left"></iframe>
 <br> <br> <br>
