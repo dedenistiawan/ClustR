@@ -18,5 +18,6 @@ rmd_files: ["index.Rmd",
             "05-ch5.Rmd", 
             "06-ch6.Rmd", 
             "07-ch7.Rmd",
-            "08-ch8.Rmd", 
+            "08-ch8.Rmd",
+            "09-ch9.Rmd",
             "references.Rmd"]

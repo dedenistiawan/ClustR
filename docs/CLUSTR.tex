@@ -170,14 +170,14 @@ colback=kcblue,colframe=kcdarkblue,fonttitle=\bfseries, title=Key Concept~#2, af
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={Analisis Cluster dengan R: Panduan Lengkap untuk Pemula},
+  pdftitle={Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R},
   pdfauthor={Deden Istiawan},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
-\title{Analisis Cluster dengan R: Panduan Lengkap untuk Pemula}
+\title{Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R}
 \author{Deden Istiawan}
-\date{2025-01-03}
+\date{2025-01-07}
 
 \begin{document}
 \maketitle
@@ -193,7 +193,7 @@ Rekayasa Perangkat Lunak
 Fakultas Sains dan Teknologi Institut Teknologi Statistika dan
 Bisnis Muhammadiyah Semarang, Indonesia
 \href{mailto:deden.istiawan@itesa.ac.id}{\nolinkurl{deden.istiawan@itesa.ac.id}}.
-Last updated on Friday, January 03, 2025.
+Last updated on Tuesday, January 07, 2025.
 
 Analisis \emph{cluster} merupakan teknik yang sangat penting dalam bidang data
 science, karena kemampuannya untuk mengelompokkan data berdasarkan
@@ -414,7 +414,7 @@ yang dihasilkan.
 \begin{Highlighting}[]
 \CommentTok{\# Cek jumlah paket R yang tersedia di CRAN}
 \FunctionTok{nrow}\NormalTok{(}\FunctionTok{available.packages}\NormalTok{(}\AttributeTok{repos =} \StringTok{"http://cran.us.r{-}project.org"}\NormalTok{))}
-\CommentTok{\#\textgreater{} [1] 21834}
+\CommentTok{\#\textgreater{} [1] 21829}
 \end{Highlighting}
 \end{Shaded}
 
@@ -458,7 +458,7 @@ diakses di \href{https://github.com/dedenistiawan/ClustR}{GitHub}.
 #>  collate  English_Indonesia.utf8
 #>  ctype    English_Indonesia.utf8
 #>  tz       Asia/Jakarta
-#>  date     2025-01-03
+#>  date     2025-01-07
 #>  pandoc   3.2 @ C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools/ (via rmarkdown)
 #> 
 #> - Packages -------------------------------------------------------------------
@@ -483,6 +483,10 @@ diakses di \href{https://github.com/dedenistiawan/ClustR}{GitHub}.
 #> 
 #> ------------------------------------------------------------------------------
 \end{verbatim}
+
+Berikut adalah library yang digunakan dalam buku ini:
+
+\begin{center}\includegraphics[width=0.8\linewidth]{01-ch1_files/figure-latex/unnamed-chunk-5-1} \end{center}
 
 \section{Pengenalan Singkat R and RStudio}\label{pengenalan-singkat-r-and-rstudio}
 
@@ -537,7 +541,7 @@ fitur-fitur berikut:
 
 }
 
-\caption{RStudio: empat panel}\label{fig:unnamed-chunk-4}
+\caption{RStudio: empat panel}\label{fig:unnamed-chunk-6}
 \end{figure}
 
 CRAN (Comprehensive R Archive Network) adalah repositori resmi yang
@@ -1010,6 +1014,11 @@ di mana \(\epsilon\) adalah ambang batas kecil yang ditentukan sebelumnya.
 \addcontentsline{toc}{subsection}{5. Hasil Akhir}
 
 Setelah konvergensi tercapai, hasil akhir adalah centroid dari setiap cluster dan pengelompokan titik data ke dalam cluster yang sesuai.
+
+\subsection*{Visualisasi Algoritma K-Means}\label{visualisasi-algoritma-k-means}
+\addcontentsline{toc}{subsection}{Visualisasi Algoritma K-Means}
+
+\begin{center}\textit{This interactive part of the book is only available in the HTML version.}\end{center}
 
 \section{Eksperimen Algoritma K-Means}\label{eksperimen-algoritma-k-means}
 
@@ -2872,41 +2881,41 @@ Hasil clustering diperoleh dengan menerapkan algoritma Fuzzy C-Means (FCM) mengg
 \NormalTok{res.fcm }\OtherTok{\textless{}{-}} \FunctionTok{fcm}\NormalTok{(data, }\AttributeTok{centers=}\DecValTok{3}\NormalTok{)}
 \FunctionTok{as.data.frame}\NormalTok{(res.fcm}\SpecialCharTok{$}\NormalTok{u)}
 \CommentTok{\#\textgreater{}                  Cluster 1  Cluster 2  Cluster 3}
-\CommentTok{\#\textgreater{} CILACAP         0.09432155 0.70608174 0.19959671}
-\CommentTok{\#\textgreater{} BANYUMAS        0.03242738 0.87685700 0.09071562}
-\CommentTok{\#\textgreater{} PURBALINGGA     0.12503329 0.58855259 0.28641412}
-\CommentTok{\#\textgreater{} BANJARNEGARA    0.15770912 0.27431153 0.56797934}
-\CommentTok{\#\textgreater{} KEBUMEN         0.12183017 0.55326811 0.32490172}
-\CommentTok{\#\textgreater{} PURWOREJO       0.37665821 0.15508384 0.46825795}
-\CommentTok{\#\textgreater{} WONOSOBO        0.73997169 0.04794255 0.21208577}
-\CommentTok{\#\textgreater{} MAGELANG        0.12565978 0.11864932 0.75569090}
-\CommentTok{\#\textgreater{} BOYOLALI        0.65917928 0.04746322 0.29335751}
-\CommentTok{\#\textgreater{} KLATEN          0.15366683 0.40625017 0.44008300}
-\CommentTok{\#\textgreater{} SUKOHARJO       0.90659203 0.01812578 0.07528219}
-\CommentTok{\#\textgreater{} WONOGIRI        0.62649398 0.05984340 0.31366262}
-\CommentTok{\#\textgreater{} KARANGANYAR     0.83280963 0.03151333 0.13567704}
-\CommentTok{\#\textgreater{} SRAGEN          0.92987167 0.01369224 0.05643609}
-\CommentTok{\#\textgreater{} GROBOGAN        0.10906165 0.20509357 0.68584478}
-\CommentTok{\#\textgreater{} BLORA           0.42364979 0.06584083 0.51050938}
-\CommentTok{\#\textgreater{} REMBANG         0.77496097 0.03515460 0.18988443}
-\CommentTok{\#\textgreater{} PATI            0.18226626 0.18018760 0.63754615}
-\CommentTok{\#\textgreater{} KUDUS           0.93999864 0.01358093 0.04642043}
-\CommentTok{\#\textgreater{} JEPARA          0.13357477 0.17434136 0.69208387}
-\CommentTok{\#\textgreater{} DEMAK           0.22405973 0.12077163 0.65516864}
-\CommentTok{\#\textgreater{} SEMARANG        0.92443899 0.01375558 0.06180543}
-\CommentTok{\#\textgreater{} TEMANGGUNG      0.92181846 0.01515432 0.06302723}
-\CommentTok{\#\textgreater{} KENDAL          0.30783534 0.07103512 0.62112953}
-\CommentTok{\#\textgreater{} BATANG          0.74568211 0.05146780 0.20285008}
-\CommentTok{\#\textgreater{} PEKALONGAN      0.33879435 0.11753007 0.54367557}
-\CommentTok{\#\textgreater{} PEMALANG        0.13508254 0.47108349 0.39383397}
-\CommentTok{\#\textgreater{} TEGAL           0.08391671 0.61445746 0.30162583}
-\CommentTok{\#\textgreater{} BREBES          0.11958050 0.64100931 0.23941019}
-\CommentTok{\#\textgreater{} KOTA MAGELANG   0.82227544 0.05127744 0.12644712}
-\CommentTok{\#\textgreater{} KOTA SURAKARTA  0.88284897 0.03051218 0.08663885}
-\CommentTok{\#\textgreater{} KOTA SALATIGA   0.82356236 0.05093432 0.12550332}
-\CommentTok{\#\textgreater{} KOTA SEMARANG   0.81177689 0.04152177 0.14670134}
-\CommentTok{\#\textgreater{} KOTA PEKALONGAN 0.87988142 0.03226874 0.08784985}
-\CommentTok{\#\textgreater{} KOTA TEGAL      0.88100104 0.03188749 0.08711147}
+\CommentTok{\#\textgreater{} CILACAP         0.70608174 0.09432155 0.19959671}
+\CommentTok{\#\textgreater{} BANYUMAS        0.87685700 0.03242738 0.09071562}
+\CommentTok{\#\textgreater{} PURBALINGGA     0.58855259 0.12503329 0.28641412}
+\CommentTok{\#\textgreater{} BANJARNEGARA    0.27431153 0.15770912 0.56797934}
+\CommentTok{\#\textgreater{} KEBUMEN         0.55326811 0.12183017 0.32490172}
+\CommentTok{\#\textgreater{} PURWOREJO       0.15508384 0.37665821 0.46825795}
+\CommentTok{\#\textgreater{} WONOSOBO        0.04794255 0.73997169 0.21208577}
+\CommentTok{\#\textgreater{} MAGELANG        0.11864932 0.12565978 0.75569090}
+\CommentTok{\#\textgreater{} BOYOLALI        0.04746322 0.65917928 0.29335751}
+\CommentTok{\#\textgreater{} KLATEN          0.40625017 0.15366683 0.44008300}
+\CommentTok{\#\textgreater{} SUKOHARJO       0.01812578 0.90659203 0.07528219}
+\CommentTok{\#\textgreater{} WONOGIRI        0.05984340 0.62649398 0.31366262}
+\CommentTok{\#\textgreater{} KARANGANYAR     0.03151333 0.83280963 0.13567704}
+\CommentTok{\#\textgreater{} SRAGEN          0.01369224 0.92987167 0.05643609}
+\CommentTok{\#\textgreater{} GROBOGAN        0.20509357 0.10906165 0.68584478}
+\CommentTok{\#\textgreater{} BLORA           0.06584083 0.42364979 0.51050938}
+\CommentTok{\#\textgreater{} REMBANG         0.03515460 0.77496097 0.18988443}
+\CommentTok{\#\textgreater{} PATI            0.18018760 0.18226626 0.63754615}
+\CommentTok{\#\textgreater{} KUDUS           0.01358093 0.93999864 0.04642043}
+\CommentTok{\#\textgreater{} JEPARA          0.17434136 0.13357477 0.69208387}
+\CommentTok{\#\textgreater{} DEMAK           0.12077163 0.22405973 0.65516864}
+\CommentTok{\#\textgreater{} SEMARANG        0.01375558 0.92443899 0.06180543}
+\CommentTok{\#\textgreater{} TEMANGGUNG      0.01515432 0.92181846 0.06302723}
+\CommentTok{\#\textgreater{} KENDAL          0.07103512 0.30783534 0.62112953}
+\CommentTok{\#\textgreater{} BATANG          0.05146780 0.74568211 0.20285008}
+\CommentTok{\#\textgreater{} PEKALONGAN      0.11753007 0.33879435 0.54367557}
+\CommentTok{\#\textgreater{} PEMALANG        0.47108349 0.13508254 0.39383397}
+\CommentTok{\#\textgreater{} TEGAL           0.61445746 0.08391671 0.30162583}
+\CommentTok{\#\textgreater{} BREBES          0.64100931 0.11958050 0.23941019}
+\CommentTok{\#\textgreater{} KOTA MAGELANG   0.05127744 0.82227544 0.12644712}
+\CommentTok{\#\textgreater{} KOTA SURAKARTA  0.03051218 0.88284897 0.08663885}
+\CommentTok{\#\textgreater{} KOTA SALATIGA   0.05093432 0.82356236 0.12550332}
+\CommentTok{\#\textgreater{} KOTA SEMARANG   0.04152177 0.81177689 0.14670134}
+\CommentTok{\#\textgreater{} KOTA PEKALONGAN 0.03226874 0.87988142 0.08784985}
+\CommentTok{\#\textgreater{} KOTA TEGAL      0.03188749 0.88100104 0.08711147}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2937,10 +2946,10 @@ Kode ini digunakan untuk mengakses dan menampilkan pusat cluster pertama (\(v_0\
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{res.fcm}\SpecialCharTok{$}\NormalTok{v0}
-\CommentTok{\#\textgreater{}             X1   X2    X3   X4   X5   X6    X7   X8   X9   X10}
-\CommentTok{\#\textgreater{} Cluster 1 2.19 3.07  1.61 2.74 2.11 1.82  1.71 2.34 3.41  1.55}
-\CommentTok{\#\textgreater{} Cluster 2 5.19 5.67  5.08 5.44 5.22 6.05 11.47 9.78 5.55  5.12}
-\CommentTok{\#\textgreater{} Cluster 3 7.45 4.26 10.94 5.13 4.99 8.17  5.61 7.11 3.97 11.40}
+\CommentTok{\#\textgreater{}             X1   X2   X3   X4   X5   X6    X7   X8   X9  X10}
+\CommentTok{\#\textgreater{} Cluster 1 5.19 5.67 5.08 5.44 5.22 6.05 11.47 9.78 5.55 5.12}
+\CommentTok{\#\textgreater{} Cluster 2 0.59 0.65 0.75 0.63 1.21 0.71  1.15 0.36 0.12 0.27}
+\CommentTok{\#\textgreater{} Cluster 3 3.84 5.15 1.93 4.64 4.04 3.78  8.71 4.45 3.99 3.09}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2950,12 +2959,12 @@ Kode ini digunakan untuk mengakses dan menampilkan pusat cluster yang dihasilkan
 \begin{Highlighting}[]
 \NormalTok{res.fcm}\SpecialCharTok{$}\NormalTok{v}
 \CommentTok{\#\textgreater{}                 X1       X2       X3       X4       X5       X6       X7}
-\CommentTok{\#\textgreater{} Cluster 1 1.724771 1.743303 1.432408 1.706002 1.626688 1.504833 1.335312}
-\CommentTok{\#\textgreater{} Cluster 2 5.001721 4.041093 5.531054 4.669414 4.638562 5.500335 6.458007}
+\CommentTok{\#\textgreater{} Cluster 1 5.001721 4.041093 5.531054 4.669414 4.638562 5.500335 6.458007}
+\CommentTok{\#\textgreater{} Cluster 2 1.724771 1.743303 1.432408 1.706002 1.626688 1.504833 1.335312}
 \CommentTok{\#\textgreater{} Cluster 3 3.418238 4.025821 3.497306 3.657048 3.843888 3.477061 3.074419}
 \CommentTok{\#\textgreater{}                 X8       X9      X10}
-\CommentTok{\#\textgreater{} Cluster 1 1.021470 1.697120 1.056498}
-\CommentTok{\#\textgreater{} Cluster 2 7.009924 4.458629 6.474407}
+\CommentTok{\#\textgreater{} Cluster 1 7.009924 4.458629 6.474407}
+\CommentTok{\#\textgreater{} Cluster 2 1.021470 1.697120 1.056498}
 \CommentTok{\#\textgreater{} Cluster 3 3.057133 3.802309 3.529256}
 \end{Highlighting}
 \end{Shaded}
@@ -2975,61 +2984,61 @@ Untuk menampilkan ringkasan dari hasil algoritma Fuzzy C-Means (FCM) yang telah 
 \CommentTok{\#\textgreater{} Number of clusters:  3 }
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Crisp clustering vector:}
-\CommentTok{\#\textgreater{}  [1] 2 2 2 3 2 3 1 3 1 3 1 1 1 1 3 3 1 3 1 3 3 1 1 3 1 3 2 2 2 1 1 1 1 1 1}
+\CommentTok{\#\textgreater{}  [1] 1 1 1 3 1 3 2 3 2 3 2 2 2 2 3 3 2 3 2 3 3 2 2 3 2 3 1 1 1 2 2 2 2 2 2}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Initial cluster prototypes:}
-\CommentTok{\#\textgreater{}             X1   X2    X3   X4   X5   X6    X7   X8   X9   X10}
-\CommentTok{\#\textgreater{} Cluster 1 2.19 3.07  1.61 2.74 2.11 1.82  1.71 2.34 3.41  1.55}
-\CommentTok{\#\textgreater{} Cluster 2 5.19 5.67  5.08 5.44 5.22 6.05 11.47 9.78 5.55  5.12}
-\CommentTok{\#\textgreater{} Cluster 3 7.45 4.26 10.94 5.13 4.99 8.17  5.61 7.11 3.97 11.40}
+\CommentTok{\#\textgreater{}             X1   X2   X3   X4   X5   X6    X7   X8   X9  X10}
+\CommentTok{\#\textgreater{} Cluster 1 5.19 5.67 5.08 5.44 5.22 6.05 11.47 9.78 5.55 5.12}
+\CommentTok{\#\textgreater{} Cluster 2 0.59 0.65 0.75 0.63 1.21 0.71  1.15 0.36 0.12 0.27}
+\CommentTok{\#\textgreater{} Cluster 3 3.84 5.15 1.93 4.64 4.04 3.78  8.71 4.45 3.99 3.09}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Final cluster prototypes:}
 \CommentTok{\#\textgreater{}                 X1       X2       X3       X4       X5       X6       X7}
-\CommentTok{\#\textgreater{} Cluster 1 1.724771 1.743303 1.432408 1.706002 1.626688 1.504833 1.335312}
-\CommentTok{\#\textgreater{} Cluster 2 5.001721 4.041093 5.531054 4.669414 4.638562 5.500335 6.458007}
+\CommentTok{\#\textgreater{} Cluster 1 5.001721 4.041093 5.531054 4.669414 4.638562 5.500335 6.458007}
+\CommentTok{\#\textgreater{} Cluster 2 1.724771 1.743303 1.432408 1.706002 1.626688 1.504833 1.335312}
 \CommentTok{\#\textgreater{} Cluster 3 3.418238 4.025821 3.497306 3.657048 3.843888 3.477061 3.074419}
 \CommentTok{\#\textgreater{}                 X8       X9      X10}
-\CommentTok{\#\textgreater{} Cluster 1 1.021470 1.697120 1.056498}
-\CommentTok{\#\textgreater{} Cluster 2 7.009924 4.458629 6.474407}
+\CommentTok{\#\textgreater{} Cluster 1 7.009924 4.458629 6.474407}
+\CommentTok{\#\textgreater{} Cluster 2 1.021470 1.697120 1.056498}
 \CommentTok{\#\textgreater{} Cluster 3 3.057133 3.802309 3.529256}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Distance between the final cluster prototypes}
 \CommentTok{\#\textgreater{}           Cluster 1 Cluster 2}
 \CommentTok{\#\textgreater{} Cluster 2 165.71763          }
-\CommentTok{\#\textgreater{} Cluster 3  42.66853  48.57171}
+\CommentTok{\#\textgreater{} Cluster 3  48.57171  42.66853}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Difference between the initial and final cluster prototypes}
-\CommentTok{\#\textgreater{}                   X1        X2         X3         X4         X5         X6}
-\CommentTok{\#\textgreater{} Cluster 1 {-}0.4652294 {-}1.326697 {-}0.1775916 {-}1.0339977 {-}0.4833119 {-}0.3151670}
-\CommentTok{\#\textgreater{} Cluster 2 {-}0.1882786 {-}1.628907  0.4510540 {-}0.7705855 {-}0.5814383 {-}0.5496647}
-\CommentTok{\#\textgreater{} Cluster 3 {-}4.0317618 {-}0.234179 {-}7.4426942 {-}1.4729516 {-}1.1461115 {-}4.6929386}
-\CommentTok{\#\textgreater{}                  X7        X8         X9        X10}
-\CommentTok{\#\textgreater{} Cluster 1 {-}0.374688 {-}1.318530 {-}1.7128795 {-}0.4935021}
-\CommentTok{\#\textgreater{} Cluster 2 {-}5.011993 {-}2.770076 {-}1.0913711  1.3544068}
-\CommentTok{\#\textgreater{} Cluster 3 {-}2.535581 {-}4.052867 {-}0.1676907 {-}7.8707443}
+\CommentTok{\#\textgreater{}                   X1        X2        X3         X4         X5         X6}
+\CommentTok{\#\textgreater{} Cluster 1 {-}0.1882786 {-}1.628907 0.4510540 {-}0.7705855 {-}0.5814383 {-}0.5496647}
+\CommentTok{\#\textgreater{} Cluster 2  1.1347706  1.093303 0.6824084  1.0760023  0.4166881  0.7948330}
+\CommentTok{\#\textgreater{} Cluster 3 {-}0.4217618 {-}1.124179 1.5673058 {-}0.9829516 {-}0.1961115 {-}0.3029386}
+\CommentTok{\#\textgreater{}                  X7         X8         X9       X10}
+\CommentTok{\#\textgreater{} Cluster 1 {-}5.011993 {-}2.7700760 {-}1.0913711 1.3544068}
+\CommentTok{\#\textgreater{} Cluster 2  0.185312  0.6614704  1.5771205 0.7864979}
+\CommentTok{\#\textgreater{} Cluster 3 {-}5.635581 {-}1.3928674 {-}0.1876907 0.4392557}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} Root Mean Squared Deviations (RMSD): 8.764585 }
-\CommentTok{\#\textgreater{} Mean Absolute Deviation (MAD): 185.823 }
+\CommentTok{\#\textgreater{} Root Mean Squared Deviations (RMSD): 5.396213 }
+\CommentTok{\#\textgreater{} Mean Absolute Deviation (MAD): 116.8561 }
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Membership degrees matrix (top and bottom 5 rows): }
-\CommentTok{\#\textgreater{}               Cluster 1 Cluster 2  Cluster 3}
-\CommentTok{\#\textgreater{} CILACAP      0.09432155 0.7060817 0.19959671}
-\CommentTok{\#\textgreater{} BANYUMAS     0.03242738 0.8768570 0.09071562}
-\CommentTok{\#\textgreater{} PURBALINGGA  0.12503329 0.5885526 0.28641412}
-\CommentTok{\#\textgreater{} BANJARNEGARA 0.15770912 0.2743115 0.56797934}
-\CommentTok{\#\textgreater{} KEBUMEN      0.12183017 0.5532681 0.32490172}
+\CommentTok{\#\textgreater{}              Cluster 1  Cluster 2  Cluster 3}
+\CommentTok{\#\textgreater{} CILACAP      0.7060817 0.09432155 0.19959671}
+\CommentTok{\#\textgreater{} BANYUMAS     0.8768570 0.03242738 0.09071562}
+\CommentTok{\#\textgreater{} PURBALINGGA  0.5885526 0.12503329 0.28641412}
+\CommentTok{\#\textgreater{} BANJARNEGARA 0.2743115 0.15770912 0.56797934}
+\CommentTok{\#\textgreater{} KEBUMEN      0.5532681 0.12183017 0.32490172}
 \CommentTok{\#\textgreater{} ...}
-\CommentTok{\#\textgreater{}                 Cluster 1  Cluster 2  Cluster 3}
-\CommentTok{\#\textgreater{} KOTA SURAKARTA  0.8828490 0.03051218 0.08663885}
-\CommentTok{\#\textgreater{} KOTA SALATIGA   0.8235624 0.05093432 0.12550332}
-\CommentTok{\#\textgreater{} KOTA SEMARANG   0.8117769 0.04152177 0.14670134}
-\CommentTok{\#\textgreater{} KOTA PEKALONGAN 0.8798814 0.03226873 0.08784985}
-\CommentTok{\#\textgreater{} KOTA TEGAL      0.8810010 0.03188749 0.08711147}
+\CommentTok{\#\textgreater{}                  Cluster 1 Cluster 2  Cluster 3}
+\CommentTok{\#\textgreater{} KOTA SURAKARTA  0.03051218 0.8828490 0.08663885}
+\CommentTok{\#\textgreater{} KOTA SALATIGA   0.05093432 0.8235624 0.12550332}
+\CommentTok{\#\textgreater{} KOTA SEMARANG   0.04152177 0.8117769 0.14670134}
+\CommentTok{\#\textgreater{} KOTA PEKALONGAN 0.03226873 0.8798814 0.08784985}
+\CommentTok{\#\textgreater{} KOTA TEGAL      0.03188749 0.8810010 0.08711147}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Descriptive statistics for the membership degrees by clusters}
 \CommentTok{\#\textgreater{}           Size       Min        Q1      Mean    Median        Q3       Max}
-\CommentTok{\#\textgreater{} Cluster 1   17 0.6264940 0.7749610 0.8295979 0.8328096 0.9065920 0.9399986}
-\CommentTok{\#\textgreater{} Cluster 2    7 0.4710835 0.5709104 0.6359014 0.6144575 0.6735455 0.8768570}
+\CommentTok{\#\textgreater{} Cluster 1    7 0.4710835 0.5709104 0.6359014 0.6144575 0.6735455 0.8768570}
+\CommentTok{\#\textgreater{} Cluster 2   17 0.6264940 0.7749610 0.8295979 0.8328096 0.9065920 0.9399986}
 \CommentTok{\#\textgreater{} Cluster 3   11 0.4400830 0.5270925 0.5979972 0.6211295 0.6705067 0.7556909}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Dunn\textquotesingle{}s Fuzziness Coefficients:}
@@ -3038,7 +3047,7 @@ Untuk menampilkan ringkasan dari hasil algoritma Fuzzy C-Means (FCM) yang telah 
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Within cluster sum of squares by cluster:}
 \CommentTok{\#\textgreater{}        1        2        3 }
-\CommentTok{\#\textgreater{} 130.5953 220.3251 200.0818 }
+\CommentTok{\#\textgreater{} 220.3251 130.5953 200.0818 }
 \CommentTok{\#\textgreater{} (between\_SS / total\_SS =  61.98\%) }
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Available components: }
@@ -3075,7 +3084,7 @@ Menampilkan \texttt{res.fcm\$iter} memberikan wawasan tentang seberapa cepat ata
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{res.fcm}\SpecialCharTok{$}\NormalTok{iter}
-\CommentTok{\#\textgreater{} [1] 79 76 75 82 61}
+\CommentTok{\#\textgreater{} [1] 74 81 84 73 73}
 \end{Highlighting}
 \end{Shaded}
 

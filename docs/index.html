@@ -23,7 +23,7 @@
 <meta name="author" content="Deden Istiawan" />
 
 
-<meta name="date" content="2025-01-06" />
+<meta name="date" content="2025-01-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -321,6 +321,23 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="8.2-eksperimeen-fuzzy-c-means.html"><a href="8.2-eksperimeen-fuzzy-c-means.html#visualisasi-hasil-cluster-dengan-clusplot"><i class="fa fa-check"></i>Visualisasi Hasil Cluster dengan clusplot</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="9-pcm.html"><a href="9-pcm.html"><i class="fa fa-check"></i><b>9</b> Possibilistic C-Means Clustering</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="9.1-tahapan-algoritma-ossibilistic-c-means-clustering.html"><a href="9.1-tahapan-algoritma-ossibilistic-c-means-clustering.html"><i class="fa fa-check"></i><b>9.1</b> Tahapan Algoritma ossibilistic C-Means Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="9.1-tahapan-algoritma-ossibilistic-c-means-clustering.html"><a href="9.1-tahapan-algoritma-ossibilistic-c-means-clustering.html#inisialisasi-parameter-1"><i class="fa fa-check"></i>1. Inisialisasi Parameter</a></li>
+<li class="chapter" data-level="" data-path="9.1-tahapan-algoritma-ossibilistic-c-means-clustering.html"><a href="9.1-tahapan-algoritma-ossibilistic-c-means-clustering.html#hitung-jarak"><i class="fa fa-check"></i>2. Hitung Jarak</a></li>
+<li class="chapter" data-level="" data-path="9.1-tahapan-algoritma-ossibilistic-c-means-clustering.html"><a href="9.1-tahapan-algoritma-ossibilistic-c-means-clustering.html#perbarui-matriks-keanggotaan-1"><i class="fa fa-check"></i>3. Perbarui Matriks Keanggotaan</a></li>
+<li class="chapter" data-level="" data-path="9.1-tahapan-algoritma-ossibilistic-c-means-clustering.html"><a href="9.1-tahapan-algoritma-ossibilistic-c-means-clustering.html#hitung-parameter-omega"><i class="fa fa-check"></i>4. Hitung Parameter <span class="math inline">\(\Omega\)</span></a></li>
+<li class="chapter" data-level="" data-path="9.1-tahapan-algoritma-ossibilistic-c-means-clustering.html"><a href="9.1-tahapan-algoritma-ossibilistic-c-means-clustering.html#perbarui-pusat-cluster"><i class="fa fa-check"></i>5. Perbarui Pusat Cluster</a></li>
+<li class="chapter" data-level="" data-path="9.1-tahapan-algoritma-ossibilistic-c-means-clustering.html"><a href="9.1-tahapan-algoritma-ossibilistic-c-means-clustering.html#kondisi-berhenti-1"><i class="fa fa-check"></i>6. Kondisi Berhenti</a></li>
+<li class="chapter" data-level="" data-path="9.1-tahapan-algoritma-ossibilistic-c-means-clustering.html"><a href="9.1-tahapan-algoritma-ossibilistic-c-means-clustering.html#rumus-fungsi-objektif-pcm"><i class="fa fa-check"></i>Rumus Fungsi Objektif PCM</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="9.2-eksperimen-algoritma-ossibilistic-c-means-clustering.html"><a href="9.2-eksperimen-algoritma-ossibilistic-c-means-clustering.html"><i class="fa fa-check"></i><b>9.2</b> Eksperimen Algoritma ossibilistic C-Means Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="9.2-eksperimen-algoritma-ossibilistic-c-means-clustering.html"><a href="9.2-eksperimen-algoritma-ossibilistic-c-means-clustering.html#install-dan-load-packagaes-1"><i class="fa fa-check"></i>Install dan Load Packagaes</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i>Referensi</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -348,7 +365,7 @@ Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda
 <div id="header">
 <h1 class="title">Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R</h1>
 <p class="author"><em>Deden Istiawan</em></p>
-<p class="date"><em>2025-01-06</em></p>
+<p class="date"><em>2025-01-10</em></p>
 </div>
 <div id="kata-pengantar" class="section level1 unnumbered hasAnchor">
 <h1>Kata Pengantar<a href="index.html#kata-pengantar" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -366,7 +383,7 @@ text-align: justify}
 Bisnis Muhammadiyah <br> Semarang, Indonesia <br>
 <a href=\"mailto:deden.istiawan@itesa.ac.id?subject=Clustering%20with%20R\"><a href="mailto:deden.istiawan@itesa.ac.id" class="email">deden.istiawan@itesa.ac.id</a>.</a>
 <br><br>
-Last updated on Monday, January 06, 2025.
+Last updated on Friday, January 10, 2025.
 <br> <br>
 <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FEconometricsWithR%2F&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId" width="400" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" align="left"></iframe>
 <br> <br> <br></p>
@@ -484,6 +501,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

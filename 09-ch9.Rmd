@@ -1,0 +1,169 @@
+# Possibilistic C-Means Clustering {#pcm}
+
+```{=html}
+<style>
+body{
+text-align: justify}
+</style>
+```
+
+```{r, child="_setup.Rmd"}
+```
+
+Algoritma Possibilistic C-Means (PCM), yang diperkenalkan oleh Krishnapuram dan Keller pada tahun 1993, dirancang untuk mengatasi kelemahan Fuzzy C-Means (FCM) dalam menghadapi noise. PCM menghasilkan pengelompokan data yang bersifat possibilistik, di mana nilai keanggotaan mencerminkan derajat kemungkinan bahwa suatu titik data termasuk dalam kluster tertentu, yaitu sejauh mana titik tersebut sesuai dengan prototipe kluster. Tidak seperti FCM, PCM tidak memberlakukan batasan probabilistik pada jumlah keanggotaan suatu objek terhadap seluruh kluster. Namun, parameter (Ω) dalam PCM dihitung berdasarkan hasil pengelompokan fuzzy yang diperoleh dari FCM. Meskipun PCM lebih tahan terhadap noise dibandingkan FCM, algoritma ini sangat bergantung pada inisialisasi awal dan rentan terhadap penurunan kinerja akibat masalah pengelompokan simultan.
+
+Fungsi objektif pada algoritma Possibilistic C-Means (PCM) dirumuskan sebagai berikut:
+
+\[
+J_{PCM} = \sum_{i=1}^n \sum_{j=1}^c u_{ij}^m \|x_i - v_j\|^2 + \sum_{j=1}^c \eta_j \sum_{i=1}^n (1 - u_{ij})^m
+\]
+
+Dengan keterangan:  
+- \(n\): Jumlah data.  
+- \(c\): Jumlah klaster.  
+- \(x_i\): Titik data ke-\(i\).  
+- \(v_j\): Prototipe (centroid) dari klaster ke-\(j\).  
+- \(u_{ij}\): Derajat keanggotaan \(x_i\) terhadap klaster \(j\).  
+- \(m\): Parameter fuzzy (\(m > 1\)).  
+- \(\eta_j\): Parameter skala untuk klaster \(j\), yang mengontrol pengaruh keanggotaan possibilistik.  
+
+Bagian pertama dari fungsi objektif meminimalkan jarak antara titik data dan pusat klaster, dengan mempertimbangkan derajat keanggotaan. Bagian kedua mendorong nilai keanggotaan possibilistik dengan memberikan penalti pada derajat keanggotaan yang rendah, sehingga mengurangi sensitivitas terhadap noise.
+
+Pada fungsi objektif PCM yang telah dijelaskan sebelumnya, komponen pertama bertujuan meminimalkan jarak berbobot antara data dan pusat klaster, sementara komponen kedua mencegah solusi trivial (Timm et al., 2004). 
+
+Krishnapuram dan Keller kemudian mengusulkan fungsi objektif alternatif untuk PCM (Krishnapuram & Keller, 1996), yang dirumuskan sebagai berikut:
+
+\[
+J_{PCM_2}(\mathbf{X}; \mathbf{V}, \mathbf{T}) = \sum\limits_{i=1}^n t_{ij}^\eta \; d^2(\vec{x}_i, \vec{v}_j) + \sum\limits_{j=1}^k \Omega_j \sum\limits_{i=1}^n \big(t_{ij}^\eta \; \log{t_{ij}^\eta} - t_{ij}^\eta \big)
+\]
+
+Dengan definisi:
+
+\[
+\vec{\Omega}_j = K \frac{\sum\limits_{i=1}^n u_{ij}^m \; d^2(\vec{x}_i, \vec{v}_j)}{\sum\limits_{i=1}^n u_{ij}^m}
+\]
+
+Keanggotaan dalam PCM bersifat possibilistik, sehingga derajat keanggotaan dapat dianggap sebagai nilai tipikalitas yang merepresentasikan seberapa khas suatu objek data terhadap klaster tertentu, tanpa memperhatikan klaster lainnya. Persamaan pembaruan derajat tipikalitas serupa dengan yang digunakan dalam FCM dan diturunkan dari fungsi objektif PCM, yaitu:
+
+\[
+t_{ij} = \Bigg[ 1 + \Big(\frac{d^2(\vec{x}_i, \vec{v}_j)}{\Omega_j}\Big)^{1/(m-1)} \Bigg]^{-1} \;\;; \; 1 \leq i \leq n,\; 1 \leq j \leq k
+\]
+
+Sedangkan, persamaan pembaruan prototipe klaster tetap sama seperti pada FCM:
+
+\[
+\vec{v}_j = \frac{\sum\limits_{i=1}^n t_{ij}^m \vec{x}_i}{\sum\limits_{i=1}^n t_{ij}^m} \;\;; \; 1 \leq j \leq k
+\]
+
+## Tahapan Algoritma ossibilistic C-Means Clustering
+
+```{=html}
+<style>
+body{
+text-align: justify}
+</style>
+```
+
+### 1. Inisialisasi Parameter {-} 
+
+   - Tentukan jumlah cluster \( k \).
+   - Inisialisasi pusat cluster \( \mathbf{V} \) secara acak atau menggunakan metode lain (misalnya, K-means).
+   - Inisialisasi matriks keanggotaan \( \mathbf{T} \) dengan nilai acak antara 0 dan 1.
+
+### 2. Hitung Jarak {-}
+
+   - Hitung jarak antara setiap titik data \( \mathbf{x}_i \) dan pusat cluster \( \mathbf{v}_j \) menggunakan rumus:
+   \[
+   d(\mathbf{x}_i, \mathbf{v}_j) = \| \mathbf{x}_i - \mathbf{v}_j \|
+   \]
+
+### 3. Perbarui Matriks Keanggotaan {-}
+
+   - Perbarui nilai keanggotaan \( t_{ij} \) menggunakan rumus:
+   \[
+   t_{ij} = \frac{1}{\sum_{j=1}^{k} \left( \frac{d(\mathbf{x}_i, \mathbf{v}_j)}{d(\mathbf{x}_i, \mathbf{v}_j)} \right)^{\frac{2}{\eta - 1}}}
+   \]
+
+### 4. Hitung Parameter \(\Omega\) {-}
+
+   - Hitung parameter \(\Omega_j\) untuk setiap cluster \( j \) menggunakan rumus:
+   \[
+   \Omega_j = \sum_{i=1}^{n} (1 - t_{ij})^\eta
+   \]
+
+### 5. Perbarui Pusat Cluster {-}
+
+   - Perbarui pusat cluster \( \mathbf{V} \) menggunakan rumus:
+   \[
+   \mathbf{v}_j = \frac{\sum_{i=1}^{n} t_{ij}^\eta \mathbf{x}_i}{\sum_{i=1}^{n} t_{ij}^\eta}
+   \]
+
+### 6. Kondisi Berhenti {-}
+
+   - Periksa kondisi hentian, seperti perubahan pusat cluster yang sangat kecil atau jumlah iterasi maksimum tercapai. Jika kondisi ini tidak terpenuhi, kembali ke langkah 2.
+
+### Rumus Fungsi Objektif PCM {-}
+
+Fungsi objektif untuk algoritma PCM didefinisikan sebagai berikut:
+
+\[
+J_{PCM}(\mathbf{X}; \mathbf{V}, \mathbf{T}) = \sum_{i=1}^n t_{ij}^\eta \; d^2(\mathbf{x}_i, \mathbf{v}_j) + \sum_{j=1}^k \Omega_j \sum_{i=1}^n (1 - t_{ij})^\eta
+\]
+
+## Eksperimen Algoritma ossibilistic C-Means Clustering
+
+### Install dan Load Packagaes {-}
+
+```{r}
+library(ppclust)
+library(factoextra)
+library(ggplot2)
+library(dplyr)
+```
+
+```{r}
+data(iris)
+iris_data <- iris[, -5]  # Menghapus kolom species untuk clustering
+```
+
+```{r}
+pairs(iris_data, col=iris[,5])
+```
+
+```{r}
+res.pcm <- pcm(iris_data, centers=3)
+```
+
+```{r}
+v0 <- matrix(nrow=3, ncol=4,
+     c(5.0, 3.4, 1.4, 0.3,
+       6.7, 3.0, 5.6, 2.1,
+       5.8, 2.7, 4.3, 1.4),
+       byrow=TRUE)
+print(v0)
+```
+
+```{r}
+res.pcm <- pcm(iris_data, centers=v0)
+```
+
+```{r}
+v0 <- inaparc::kmpp(iris_data, k=3)$v
+print(v0)
+```
+
+```{r}
+res.pcm <- pcm(iris_data, centers=v0)
+```
+
+```{r}
+u0 <- inaparc::imembrand(nrow(iris_data), k=3)$u
+res.upfc <- upfc(iris_data, centers=3, memberships=u0)
+```
+
+```{r}
+res.pcm <- pcm(iris_data, centers=3, alginitv="firstk", alginitu="imembrand")
+```
+
+
+

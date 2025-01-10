@@ -5,9 +5,6 @@ author: "Deden Istiawan"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output:
-  bookdown::word_document2:
-    toc: true
-    number_sections: true
   bookdown::pdf_book:
     latex_engine: xelatex
     pandoc_args: [ "--csl", "apa-old-doi-prefix.csl"]
@@ -15,6 +12,9 @@ output:
       in_header: preamble.tex
     citation_package: natbib
     keep_tex: yes
+  bookdown::word_document2:
+    toc: true
+    number_sections: true
   bookdown::gitbook:
     config:
       toc:
@@ -29,7 +29,7 @@ output:
     includes:
       in_header: [header_include.html]
       before_body: open_review_block.html
-always_allow_html: yes
+always_allow_html: true
 documentclass: book
 classoption: oneside
 geometry: "left=3cm,right=3cm,top=3cm,bottom=3cm"

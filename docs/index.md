@@ -2,12 +2,9 @@
 title: "Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R"
 cover-image: "images/cover.png"
 author: "Deden Istiawan"
-date: "2025-01-06"
+date: "2025-01-10"
 site: bookdown::bookdown_site
 output:
-  bookdown::word_document2:
-    toc: true
-    number_sections: true
   bookdown::pdf_book:
     latex_engine: xelatex
     pandoc_args: [ "--csl", "apa-old-doi-prefix.csl"]
@@ -15,6 +12,9 @@ output:
       in_header: preamble.tex
     citation_package: natbib
     keep_tex: yes
+  bookdown::word_document2:
+    toc: true
+    number_sections: true
   bookdown::gitbook:
     config:
       toc:
@@ -29,7 +29,7 @@ output:
     includes:
       in_header: [header_include.html]
       before_body: open_review_block.html
-always_allow_html: yes
+always_allow_html: true
 documentclass: book
 classoption: oneside
 geometry: "left=3cm,right=3cm,top=3cm,bottom=3cm"
@@ -77,7 +77,7 @@ text-align: justify}
 Bisnis Muhammadiyah <br> Semarang, Indonesia <br>
 <a href=\"mailto:deden.istiawan@itesa.ac.id?subject=Clustering%20with%20R\">[deden.istiawan\@itesa.ac.id](mailto:deden.istiawan@itesa.ac.id){.email}.</a>
 <br><br>
-Last updated on Monday, January 06, 2025.
+Last updated on Friday, January 10, 2025.
 <br> <br>
 <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FEconometricsWithR%2F&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId" width="400" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" align="left"></iframe>
 <br> <br> <br>
