@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R</title>
+  <title>10 Possibilistic Fuzzy C-Means | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R</title>
   <meta name="description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R" />
+  <meta property="og:title" content="10 Possibilistic Fuzzy C-Means | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://github.com/dedenistiawan/ClustR/images/cover.png" />
   <meta property="og:description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R" />
+  <meta name="twitter:title" content="10 Possibilistic Fuzzy C-Means | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R" />
   
   <meta name="twitter:description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
   <meta name="twitter:image" content="https://github.com/dedenistiawan/ClustR/images/cover.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="9.2-eksperimen-algoritma-possibilistic-c-means-clustering.html"/>
+<link rel="next" href="10.1-tahapan-algoritma-pfcm.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -448,19 +448,86 @@ div.csl-indent {
 <div class = rmdreview>
 Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda untuk membuat buku ini lebih baik bagi. Anda dapat memberikan anotasi pada beberapa teks dengan <span style="background-color: #3297FD; color: white">memilihnya menggunakan kursor</span> dan kemudian klik “Beri Anotasi” pada menu pop-up. Anda juga dapat melihat anotasi orang lain: klik tanda panah di sudut kanan atas halaman <i class="fa fa-arrow-circle-right  fa-rotate-315" aria-hidden="true"></i>
 </div>
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="possibilistic-fuzzy-c-means" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">10</span> Possibilistic Fuzzy C-Means<a href="10-possibilistic-fuzzy-c-means.html#possibilistic-fuzzy-c-means" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<style>
+body{
+text-align: justify}
+</style>
+<p>Algoritma Possibilistic Fuzzy C-Means (PFCM) merupakan salah satu metode pengelompokan yang menggabungkan kekuatan dari Fuzzy C-Means (FCM) dengan pendekatan possibilistic. Algoritma ini dirancang untuk menangani ketidakpastian dalam data, terutama ketika data tersebut mengandung noise atau outlier. Dalam konteks ini, PFCM menawarkan pendekatan yang lebih robust dibandingkan dengan FCM, di mana setiap data tidak hanya memiliki derajat keanggotaan dalam cluster tertentu tetapi juga nilai kekhasan yang menunjukkan seberapa khas data tersebut terhadap cluster yang bersangkutan <span class="citation">(<a href="#ref-Grover2014">Grover 2014</a>)</span> <span class="citation">(<a href="#ref-Suganya2012">Suganya and Shanthi 2012</a>)</span>.</p>
+<p>Konsep dasar dari PFCM adalah bahwa setiap titik data memiliki dua parameter: derajat keanggotaan dan derajat kekhasan. Derajat keanggotaan menunjukkan seberapa besar kemungkinan suatu titik data termasuk dalam cluster tertentu, sementara derajat kekhasan menunjukkan seberapa unik atau khas titik data tersebut dibandingkan dengan titik data lainnya dalam cluster. Dengan cara ini, PFCM dapat mengurangi dampak dari outlier yang sering kali mempengaruhi hasil clustering pada algoritma FCM tradisional <span class="citation">(<a href="#ref-Kusumadewi2006">Kusumadewi et al. 2006</a>)</span> <span class="citation">(<a href="#ref-Chaudhuri2015">Chaudhuri 2015</a>)</span>.</p>
+<p>PFCM bekerja dengan cara iteratif, di mana pusat cluster diperbarui berdasarkan nilai keanggotaan dan kekhasan dari setiap titik data. Proses ini berlanjut hingga konvergensi tercapai, yaitu ketika perubahan dalam pusat cluster dan nilai keanggotaan menjadi sangat kecil. Dengan demikian, algoritma ini tidak hanya fokus pada pengelompokan data tetapi juga pada pemahaman karakteristik unik dari setiap cluster yang terbentuk <span class="citation">(<a href="#ref-Bora2014">Bora and Gupta 2014</a>)</span>.</p>
+<p>Keunggulan utama dari PFCM adalah kemampuannya untuk mengatasi masalah pengelompokan pada dataset yang kompleks dan noisy. Hal ini menjadikannya pilihan yang baik untuk berbagai aplikasi, mulai dari analisis citra hingga pengelompokan teks dan analisis pasar. Penelitian menunjukkan bahwa PFCM dapat memberikan hasil yang lebih akurat dibandingkan dengan FCM dalam situasi di mana terdapat banyak noise dalam data <span class="citation">(<a href="#ref-Phukon2013">Phukon and Baruah 2013</a>)</span>.</p>
+<p>Secara keseluruhan, algoritma Possibilistic Fuzzy C-Means merupakan inovasi penting dalam bidang clustering yang menawarkan solusi efektif untuk tantangan pengelompokan data yang tidak jelas batasannya. Dengan menggabungkan konsep fuzzy dan possibilistic, PFCM memberikan pendekatan yang lebih kaya dan informatif dalam analisis cluster, sehingga dapat digunakan secara luas dalam berbagai disiplin ilmu dan aplikasi praktis <span class="citation">(<a href="#ref-Dwi2017">Dwi 2017</a>)</span>.</p>
+<p>Algoritma <strong>Possibilistic Fuzzy C-Means (PFCM)</strong> diperkenalkan oleh Pal et al. (2005) sebagai pengembangan dari algoritma Fuzzy Possibilistic C-Means (FPCM). Salah satu kelemahan utama FPCM adalah adanya kendala bahwa jumlah seluruh nilai typicality dari semua data pada satu klaster harus sama dengan satu, yang dapat menyebabkan masalah, terutama pada dataset yang besar. Untuk mengatasi kendala ini, PFCM memodifikasi fungsi objektifnya seperti berikut.</p>
+<div id="fungsi-objektif" class="section level3 unnumbered hasAnchor">
+<h3>Fungsi Objektif<a href="10-possibilistic-fuzzy-c-means.html#fungsi-objektif" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Fungsi objektif PFCM didefinisikan sebagai:</p>
+<p><span class="math display">\[
+J_{PFCM}(\mathbf{X}; \mathbf{V}, \mathbf{U}, \mathbf{T}) = \sum_{j=1}^k \sum_{i=1}^n \left( a \; u_{ij}^m + b \; t_{ij}^\eta \right) d^2(\vec{x}_i, \vec{v}_j) + \sum_{j=1}^k \Omega_j \sum_{i=1}^n (1-t_{ij})^\eta
+\]</span></p>
+<p>Di mana:</p>
+<ul>
+<li><p><span class="math inline">\(a\)</span> dan <span class="math inline">\(b\)</span>: Koefisien untuk menentukan tingkat kepentingan relatif antara keanggotaan fuzzy (<span class="math inline">\(u\)</span>) dan nilai typicality (<span class="math inline">\(t\)</span>) (<span class="math inline">\(a &gt; 0, b &gt; 0\)</span>).</p></li>
+<li><p><span class="math inline">\(m\)</span>: Parameter fuzzifier yang mengontrol tingkat kekaburan (<span class="math inline">\(m \geq 1\)</span>, biasanya <span class="math inline">\(m = 2\)</span>).</p></li>
+<li><p><span class="math inline">\(\eta\)</span>: Eksponen typicality yang mengontrol tingkat typicality (<span class="math inline">\(\eta \geq 1\)</span>, biasanya <span class="math inline">\(\eta = 2\)</span>).</p></li>
+<li><p><span class="math inline">\(\Omega_j\)</span>: Parameter penalti possibilistik yang mengontrol varian klaster.</p></li>
+</ul>
+</div>
+<div id="perhitungan-keanggotaan-dan-typicality" class="section level3 unnumbered hasAnchor">
+<h3>Perhitungan Keanggotaan dan Typicality<a href="10-possibilistic-fuzzy-c-means.html#perhitungan-keanggotaan-dan-typicality" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Derajat keanggotaan (<span class="math inline">\(u_{ij}\)</span>) dihitung seperti pada algoritma Fuzzy C-Means (FCM):</p>
+<p><span class="math display">\[
+u_{ij} = \left[\sum_{l=1}^k \left(\frac{d^2(\vec{x}_i, \vec{v}_j)}{d^2(\vec{x}_i, \vec{v}_l)}\right)^{\frac{1}{m-1}}\right]^{-1}
+\]</span></p>
+<p>di mana <span class="math inline">\(d^2(\vec{x}_i, \vec{v}_j)\)</span> adalah jarak kuadrat antara data <span class="math inline">\(\vec{x}_i\)</span> dan pusat klaster <span class="math inline">\(\vec{v}_j\)</span>.</p>
+</div>
+<div id="derajat-typicality" class="section level3 unnumbered hasAnchor">
+<h3>Derajat Typicality<a href="10-possibilistic-fuzzy-c-means.html#derajat-typicality" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Derajat typicality (<span class="math inline">\(t_{ij}\)</span>) dihitung menggunakan rumus:</p>
+<p><span class="math display">\[
+t_{ij} = \left[1 + \left(\frac{b \; d^2(\vec{x}_i, \vec{v}_j)}{\Omega_j}\right)^{\frac{1}{\eta-1}}\right]^{-1}
+\]</span></p>
+</div>
+<div id="pembaruan-pusat-klaster" class="section level3 unnumbered hasAnchor">
+<h3>Pembaruan Pusat Klaster<a href="10-possibilistic-fuzzy-c-means.html#pembaruan-pusat-klaster" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Pusat klaster (<span class="math inline">\(\vec{v}_j\)</span>) diperbarui menggunakan rumus berikut:</p>
+<p><span class="math display">\[
+\vec{v}_j = \frac{\sum_{i=1}^n \left(a \; u_{ij}^m + b \; t_{ij}^\eta \right) \vec{x}_i}{\sum_{i=1}^n \left(a \; u_{ij}^m + b \; t_{ij}^\eta \right)}
+\]</span></p>
+</div>
+</div>
+<h3>Referensi<a href="References.html#References" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-Bora2014" class="csl-entry">
+Bora, A., and S. Gupta. 2014. <span>“Analisis Cluster Dengan Algoritma k-Means Dan Fuzzy c-Means.”</span> <em>Neliti</em>.
+</div>
+<div id="ref-Chaudhuri2015" class="csl-entry">
+Chaudhuri, S. 2015. <span>“Fuzzy Possibilistic c-Means Clustering.”</span> <em>E-Journal UNDIP</em>.
+</div>
+<div id="ref-Dwi2017" class="csl-entry">
+Dwi, A. 2017. <span>“Analisis Cluster Untuk Mengklasifikasi Tingkat Kesejahteraan Sosial.”</span> Repository UINSU.
+</div>
+<div id="ref-Grover2014" class="csl-entry">
+Grover, A. 2014. <span>“Implementasi Fuzzy c-Means Dan Fuzzy Possibilistic c-Means.”</span> <em>Jurnal Ilmiah</em>.
+</div>
+<div id="ref-Kusumadewi2006" class="csl-entry">
+Kusumadewi, S. et al. 2006. <span>“Penerapan Metode Fuzzy c-Means.”</span> <em>Universitas Brawijaya</em>.
+</div>
+<div id="ref-Phukon2013" class="csl-entry">
+Phukon, D., and M. Baruah. 2013. <span>“Analisis Cluster Data Menggunakan Algoritma Fuzzy.”</span> <em>Jurnal Gaussian</em>.
+</div>
+<div id="ref-Suganya2012" class="csl-entry">
+Suganya, S., and M. Shanthi. 2012. <span>“Penerapan Metode Fuzzy c-Means.”</span> <em>Jurnal Penelitian</em>.
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="9.2-eksperimen-algoritma-possibilistic-c-means-clustering.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="10.1-tahapan-algoritma-pfcm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -491,7 +558,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mca91/ClustR/edit/master/%s",
+"link": "https://github.com/mca91/ClustR/edit/master/10-ch10.Rmd",
 "text": "Edit"
 },
 "history": {

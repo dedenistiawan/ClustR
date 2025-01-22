@@ -35,3 +35,12 @@ eksperimen-algoritma-possibilistic-c-means-clustering
 tahapan-algoritma-possibilistic-c-means-clustering
 fig:unnamed-chunk-3
 fig:unnamed-chunk-11
+possibilistic-fuzzy-c-means
+fungsi-objektif
+perhitungan-keanggotaan-dan-typicality
+derajat-keanggotaan-fuzzy
+derajat-typicality
+kendala
+pembaruan-pusat-klaster
+tahapan-algoritma-pfcm
+eksperimen-possibilistic-fuzzy-c-means
