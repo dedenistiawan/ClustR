@@ -30,3 +30,8 @@ tahapan-algoritma-ossibilistic-c-means-clustering
 rumus-fungsi-objektif-pcm
 kesimpulan-1
 eksperimen-algoritma-ossibilistic-c-means-clustering
+tab:nice-tab-1
+eksperimen-algoritma-possibilistic-c-means-clustering
+tahapan-algoritma-possibilistic-c-means-clustering
+fig:unnamed-chunk-3
+fig:unnamed-chunk-11

@@ -55,7 +55,7 @@ Sedangkan, persamaan pembaruan prototipe klaster tetap sama seperti pada FCM:
 \vec{v}_j = \frac{\sum\limits_{i=1}^n t_{ij}^m \vec{x}_i}{\sum\limits_{i=1}^n t_{ij}^m} \;\;; \; 1 \leq j \leq k
 \]
 
-## Tahapan Algoritma ossibilistic C-Means Clustering
+## Tahapan Algoritma Possibilistic C-Means Clustering
 
 ```{=html}
 <style>
@@ -65,105 +65,120 @@ text-align: justify}
 ```
 
 ### 1. Inisialisasi Parameter {-} 
-
-   - Tentukan jumlah cluster \( k \).
-   - Inisialisasi pusat cluster \( \mathbf{V} \) secara acak atau menggunakan metode lain (misalnya, K-means).
-   - Inisialisasi matriks keanggotaan \( \mathbf{T} \) dengan nilai acak antara 0 dan 1.
+Tentukan jumlah cluster \( k \). Inisialisasi pusat cluster \( \mathbf{v} \) secara acak atau menggunakan metode lain (misalnya, K-means atau fcm). Inisialisasi matriks keanggotaan \( \mathbf{t} \) dengan nilai acak antara 0 dan 1.
 
 ### 2. Hitung Jarak {-}
-
-   - Hitung jarak antara setiap titik data \( \mathbf{x}_i \) dan pusat cluster \( \mathbf{v}_j \) menggunakan rumus:
+Hitung jarak antara setiap titik data \( \mathbf{x}_i \) dan pusat cluster \( \mathbf{v}_j \) menggunakan rumus:
    \[
    d(\mathbf{x}_i, \mathbf{v}_j) = \| \mathbf{x}_i - \mathbf{v}_j \|
    \]
 
 ### 3. Perbarui Matriks Keanggotaan {-}
-
-   - Perbarui nilai keanggotaan \( t_{ij} \) menggunakan rumus:
+Perbarui nilai keanggotaan \( t_{ij} \) menggunakan rumus:
    \[
    t_{ij} = \frac{1}{\sum_{j=1}^{k} \left( \frac{d(\mathbf{x}_i, \mathbf{v}_j)}{d(\mathbf{x}_i, \mathbf{v}_j)} \right)^{\frac{2}{\eta - 1}}}
    \]
 
 ### 4. Hitung Parameter \(\Omega\) {-}
-
-   - Hitung parameter \(\Omega_j\) untuk setiap cluster \( j \) menggunakan rumus:
+Hitung parameter \(\Omega_j\) untuk setiap cluster \( j \) menggunakan rumus:
    \[
    \Omega_j = \sum_{i=1}^{n} (1 - t_{ij})^\eta
    \]
 
 ### 5. Perbarui Pusat Cluster {-}
-
-   - Perbarui pusat cluster \( \mathbf{V} \) menggunakan rumus:
+Perbarui pusat cluster \( \mathbf{v} \) menggunakan rumus:
    \[
    \mathbf{v}_j = \frac{\sum_{i=1}^{n} t_{ij}^\eta \mathbf{x}_i}{\sum_{i=1}^{n} t_{ij}^\eta}
    \]
 
 ### 6. Kondisi Berhenti {-}
-
-   - Periksa kondisi hentian, seperti perubahan pusat cluster yang sangat kecil atau jumlah iterasi maksimum tercapai. Jika kondisi ini tidak terpenuhi, kembali ke langkah 2.
-
-### Rumus Fungsi Objektif PCM {-}
-
-Fungsi objektif untuk algoritma PCM didefinisikan sebagai berikut:
+Periksa kondisi hentian, seperti perubahan pusat cluster yang sangat kecil atau jumlah iterasi maksimum tercapai. Jika kondisi ini tidak terpenuhi, kembali ke *langkah 2*. Fungsi objektif untuk algoritma PCM didefinisikan sebagai berikut:
 
 \[
 J_{PCM}(\mathbf{X}; \mathbf{V}, \mathbf{T}) = \sum_{i=1}^n t_{ij}^\eta \; d^2(\mathbf{x}_i, \mathbf{v}_j) + \sum_{j=1}^k \Omega_j \sum_{i=1}^n (1 - t_{ij})^\eta
 \]
 
-## Eksperimen Algoritma ossibilistic C-Means Clustering
+## Eksperimen Algoritma Possibilistic C-Means Clustering
+```{=html}
+<style>
+body{
+text-align: justify}
+</style>
+```
 
-### Install dan Load Packagaes {-}
+### Persiapan Library {-}
+Possibilistic C-Means (PCM) adalah algoritma fuzzy clustering yang dirancang untuk menangani noise dan outlier dalam data. Pada eksperimen ini, kita akan mengimplementasikan PCM menggunakan beberapa library R, yaitu `ppclust`, `factoextra`, `ggplot2`, dan `dplyr`.
 
-```{r}
+```{r warning=FALSE}
+library(cluster)
 library(ppclust)
 library(factoextra)
 library(ggplot2)
 library(dplyr)
 ```
 
+### Dataset {-}
+Dataset Ruspini adalah sekumpulan data klasik yang sering digunakan dalam analisis klaster untuk demonstrasi dan pembelajaran. Dataset ini terdiri dari 75 titik data yang masing-masing direpresentasikan dalam dua dimensi Data ini tersedia secara bawaan dalam package `cluster` di R. Dataset ini pertama kali diperkenalkan oleh Ruspini pada tahun 1970 sebagai bagian dari studi tentang algoritma clustering. 
+
+```{r Load_data_fcm,warning=FALSE, tidy=FALSE}
+data <- ruspini
+```
+
+Visualisasi sederhana dataset ini dapat dilakukan dengan:
+
+```{r, fig.align='center', fig.cap="Scaterplot Dataset Ruspini"}
+plot(data, main = "Dataset Ruspini", xlab = "X", ylab = "Y", pch = 16, col = "blue")
+```
+
+### Inisialisasi Matriks Prototipe {-} 
+
+Pada proses inisialisasi algoritma clustering, dua komponen utama yang dibutuhkan adalah matriks prototipe (pusat cluster) dan matriks derajat keanggotaan. Matriks prototipe diinisialisasi menggunakan algoritma **K-means++** melalui fungsi `kmpp()` dari library `inaparc`. Algoritma ini dipilih karena kemampuannya untuk memberikan pusat cluster awal yang lebih baik dibandingkan metode acak. Dataset yang akan digunakan adalah `x12`, dengan jumlah cluster ditentukan sebanyak 2 (`k=2`). Fungsi ini menghasilkan matriks prototipe (`v`), yang merepresentasikan koordinat pusat cluster awal. Selanjutnya, matriks derajat keanggotaan diinisialisasi secara acak menggunakan fungsi `imembrand()`. Fungsi ini memanfaatkan jumlah baris pada dataset (`nrow(x12)`) untuk menentukan jumlah data yang akan dikelompokkan, dengan jumlah cluster yang sama, yaitu 2. Hasil dari fungsi ini adalah matriks derajat keanggotaan (`u`), yang berisi probabilitas awal keanggotaan setiap data ke masing-masing cluster. Kedua inisialisasi ini memainkan peran penting dalam meningkatkan efisiensi dan akurasi algoritma clustering  **Possibilistic C-Means**.
+
 ```{r}
-data(iris)
-iris_data <- iris[, -5]  # Menghapus kolom species untuk clustering
+v <- inaparc::kmpp(data, k=4)$v
+u <- inaparc::imembrand(nrow(data), k=4)$u
+```
+
+Kedua komponen ini menjadi masukan awal untuk menjalankan algoritma Fuzzy C-Means (FCM) dengan fungsi `fcm()`, di mana parameter `m=2` digunakan untuk menentukan tingkat fuzziness. Hasil dari proses FCM, yaitu prototipe akhir `(fcm.res$v)` dan derajat keanggotaan `(fcm.res$u)`, digunakan sebagai inisialisasi untuk algoritma PCM.
+
+```{r}
+fcm.res <- fcm(data, centers=v, memberships=u, m=2)
+```
+
+PCM dijalankan menggunakan fungsi `pcm()`, dengan parameter $eta=2$ untuk menentukan sensitivitas algoritma terhadap outlier. Hasil algoritma PCM mencakup derajat typicality (pcm.res$t), yang menunjukkan tingkat keanggotaan data terhadap cluster berdasarkan pendekatan possibilistic.
+
+```{r}
+pcm.res <- pcm(data, centers=fcm.res$v, memberships=fcm.res$u, eta=2)
+```
+
+Derajat typicality ini ditampilkan menggunakan fungsi `print()`.
+
+```{r}
+print(pcm.res$t)
+```
+
+Visualisasi hasil clustering dilakukan melalui dua pendekatan: pertama, dengan memetakan cluster menggunakan derajat typicality maksimum.
+
+```{r}
+plotcluster(pcm.res, mt="t", trans=TRUE )
 ```
 
 ```{r}
-pairs(iris_data, col=iris[,5])
+plotcluster(pcm.res, mt="t", cm="threshold", tv=0.5)
 ```
 
 ```{r}
-res.pcm <- pcm(iris_data, centers=3)
+df_pcm <- as.data.frame(data)
+df_pcm$cluster <- apply(pcm.res$t, 1, which.max)
 ```
 
-```{r}
-v0 <- matrix(nrow=3, ncol=4,
-     c(5.0, 3.4, 1.4, 0.3,
-       6.7, 3.0, 5.6, 2.1,
-       5.8, 2.7, 4.3, 1.4),
-       byrow=TRUE)
-print(v0)
+```{r, fig.align='center', fig.cap="Hasil CLuster PCM"}
+fviz_cluster(list(data = df_pcm[, 1:2], cluster = df_pcm$cluster),
+             geom = "point",
+             ellipse = TRUE,
+             show.clust.cent = TRUE,
+             palette = "jco",
+             ggtheme = theme_minimal(),
+             main = "Visualisasi Hasil Clustering Possibilistic C-Means (PCM)")
 ```
-
-```{r}
-res.pcm <- pcm(iris_data, centers=v0)
-```
-
-```{r}
-v0 <- inaparc::kmpp(iris_data, k=3)$v
-print(v0)
-```
-
-```{r}
-res.pcm <- pcm(iris_data, centers=v0)
-```
-
-```{r}
-u0 <- inaparc::imembrand(nrow(iris_data), k=3)$u
-res.upfc <- upfc(iris_data, centers=3, memberships=u0)
-```
-
-```{r}
-res.pcm <- pcm(iris_data, centers=3, alginitv="firstk", alginitu="imembrand")
-```
-
-
 
