@@ -21,63 +21,179 @@ text-align: justify}
 >
 > -- Tyrion Lannister-Game of Thrones
 
-`r ttcode("R")` adalah bahasa pemrograman dan perangkat lunak yang dirancang khusus untuk keperluan analisis data, pengolahan statistik, dan visualisasi data. Bahasa ini menawarkan fleksibilitas untuk menulis kode guna menjalankan berbagai metode analisis statistik, mulai dari analisis statistik deskriptif hingga prediktif. Sebagai perangkat lunak, `r ttcode("R")` menyediakan lingkungan interaktif untuk eksplorasi data, pengolahan, serta pembuatan laporan yang informatif. Kemampuan ini diperkuat dengan paket visualisasi yang sangat kaya seperti `ggplot2`, `lattice`, dan `plotly`, yang memungkinkan pengguna membuat grafik berkualitas tinggi. `r ttcode("R")` tidak hanya membantu menganalisis data tetapi juga memvisualisasikannya dengan cara yang interaktif dan estetis, sehingga dapat menggali wawasan yang lebih dalam.
-`r ttcode("R")` pertama kali dikembangkan pada awal 1990-an oleh **Ross Ihaka dan Robert Gentleman** di University of Auckland, Selandia Baru. Proyek ini terinspirasi oleh bahasa pemrograman `r ttcode("S")` yang dikembangkan oleh John Chambers di Bell Laboratories. Pada tahun 1995, `r ttcode("R")` dirilis sebagai perangkat lunak open source, sehingga memungkinkan pengembang di seluruh dunia untuk berkontribusi dalam pengembangannya.
+`r ttcode("R")` adalah bahasa pemrograman dan perangkat lunak yang
+dirancang khusus untuk keperluan analisis data, pengolahan statistik,
+dan visualisasi data. Bahasa ini menawarkan fleksibilitas untuk menulis
+kode guna menjalankan berbagai metode analisis statistik, mulai dari
+analisis statistik deskriptif hingga prediktif. Sebagai perangkat lunak,
+`r ttcode("R")` menyediakan lingkungan interaktif untuk eksplorasi data,
+pengolahan, serta pembuatan laporan yang informatif. Kemampuan ini
+diperkuat dengan paket visualisasi yang sangat kaya seperti `ggplot2`,
+`lattice`, dan `plotly`, yang memungkinkan pengguna membuat grafik
+berkualitas tinggi. `r ttcode("R")` tidak hanya membantu menganalisis
+data tetapi juga memvisualisasikannya dengan cara yang interaktif dan
+estetis, sehingga dapat menggali wawasan yang lebih dalam.
+`r ttcode("R")` pertama kali dikembangkan pada awal 1990-an oleh **Ross
+Ihaka dan Robert Gentleman** di University of Auckland, Selandia Baru.
+Proyek ini terinspirasi oleh bahasa pemrograman `r ttcode("S")` yang
+dikembangkan oleh John Chambers di Bell Laboratories. Pada tahun 1995,
+`r ttcode("R")` dirilis sebagai perangkat lunak open source, sehingga
+memungkinkan pengembang di seluruh dunia untuk berkontribusi dalam
+pengembangannya.
 
-Sejak itu, `r ttcode("R")` berkembang pesat dengan ribuan paket yang tersedia di **[CRAN]**(https://cran.r-project.org/) (Comprehensive R Archive Network) serta repositori lainnya. Dukungan komunitas dan kontribusi aktif dari pengembang di seluruh dunia telah menjadikan `r ttcode("R")` sebagai bahasa yang terus berevolusi untuk memenuhi kebutuhan analisis data modern. `r ttcode("R")` memiliki salah satu komunitas pengguna paling aktif di dunia. Komunitas ini terdiri dari akademisi, peneliti, praktisi industri, hingga pengembang perangkat lunak. Forum diskusi seperti **RStudio Community**, Stack Overflow, dan mailing list `r ttcode("R")` membantu pengguna menyelesaikan masalah serta berbagi ide.
+Sejak itu, `r ttcode("R")` berkembang pesat dengan ribuan paket yang
+tersedia di [**CRAN**](https://cran.r-project.org/) (Comprehensive R
+Archive Network) serta repositori lainnya. Dukungan komunitas dan
+kontribusi aktif dari pengembang di seluruh dunia telah menjadikan
+`r ttcode("R")` sebagai bahasa yang terus berevolusi untuk memenuhi
+kebutuhan analisis data modern. `r ttcode("R")` memiliki salah satu
+komunitas pengguna paling aktif di dunia. Komunitas ini terdiri dari
+akademisi, peneliti, praktisi industri, hingga pengembang perangkat
+lunak. Forum diskusi seperti **RStudio Community**, Stack Overflow, dan
+mailing list `r ttcode("R")` membantu pengguna menyelesaikan masalah
+serta berbagi ide.
 
-Ekosistem `r ttcode("R")` terus berkembang dengan adanya **[RStudio]** (https://posit.co/download/rstudio-desktop/) sebagai Integrated Development Environment (IDE) yang populer. Selain itu, repositori paket seperti CRAN dan **[Bioconductor]** (https://www.bioconductor.org/). Bioconductor adalah sebuah platform perangkat lunak untuk analisis data genomik yang kompleks, dikembangkan khusus untuk mendukung penelitian dalam bioinformatika dan biologi komputasi. Dibangun di atas bahasa pemrograman R, Bioconductor menyediakan berbagai paket yang dirancang untuk analisis data omics, seperti genomik, proteomik, dan metabolomik. Dukungan komunitas yang besar, dokumentasi yang melimpah, dan
-ketersediaan sumber daya membuat `r ttcode("R")` menjadi alat yang mudah diakses oleh pemula sekaligus sangat berguna bagi pengguna tingkat lanjut.
+Ekosistem `r ttcode("R")` terus berkembang dengan adanya
+[**RStudio**](https://posit.co/download/rstudio-desktop/) sebagai
+Integrated Development Environment (IDE) yang populer. Selain itu,
+repositori paket seperti CRAN dan
+[**Bioconductor**](https://www.bioconductor.org/). Bioconductor adalah
+sebuah platform perangkat lunak untuk analisis data genomik yang
+kompleks, dikembangkan khusus untuk mendukung penelitian dalam
+bioinformatika dan biologi komputasi. Dibangun di atas bahasa
+pemrograman R, Bioconductor menyediakan berbagai paket yang dirancang
+untuk analisis data omics, seperti genomik, proteomik, dan metabolomik.
+Dukungan komunitas yang besar, dokumentasi yang melimpah, dan
+ketersediaan sumber daya membuat `r ttcode("R")` menjadi alat yang mudah
+diakses oleh pemula sekaligus sangat berguna bagi pengguna tingkat
+lanjut.
 
-`r ttcode("R")` dapat diintegrasikan dengan berbagai bahasa pemrograman lain, seperti Python, C++, Java, dan SQL. Kompatibilitas ini memungkinkan pengguna untuk menggabungkan kekuatan masing-masing bahasa dalam satu proyek. Misalnya, pengguna dapat memanfaatkan Python untuk
-preprocessing data skala besar, kemudian menggunakan `r ttcode("R")` untuk analisis statistik mendalam dan visualisasi. Selain itu, `r ttcode("R")` juga mendukung integrasi dengan berbagai perangkat lunak lain seperti Excel, Tableau, dan Power BI, membuatnya menjadi bagian penting dalam alur kerja data modern.
+`r ttcode("R")` dapat diintegrasikan dengan berbagai bahasa pemrograman
+lain, seperti Python, C++, Java, dan SQL. Kompatibilitas ini
+memungkinkan pengguna untuk menggabungkan kekuatan masing-masing bahasa
+dalam satu proyek. Misalnya, pengguna dapat memanfaatkan Python untuk
+preprocessing data skala besar, kemudian menggunakan `r ttcode("R")`
+untuk analisis statistik mendalam dan visualisasi. Selain itu,
+`r ttcode("R")` juga mendukung integrasi dengan berbagai perangkat lunak
+lain seperti Excel, Tableau, dan Power BI, membuatnya menjadi bagian
+penting dalam alur kerja data modern.
 
-`r ttcode("R")` telah menjadi alat yang sangat populer di berbagai bidang, berkat fleksibilitasnya dalam menangani analisis data. Beberapa bidang utama yang banyak memanfaatkan `r ttcode("R")` antara lain:
+`r ttcode("R")` telah menjadi alat yang sangat populer di berbagai
+bidang, berkat fleksibilitasnya dalam menangani analisis data. Beberapa
+bidang utama yang banyak memanfaatkan `r ttcode("R")` antara lain:
 
--   **Statistik:** `r ttcode("R")` digunakan untuk berbagai jenis analisis statistik, seperti uji hipotesis, analisis regresi, dan analisis multivariat.
+-   **Statistik:** `r ttcode("R")` digunakan untuk berbagai jenis
+    analisis statistik, seperti uji hipotesis, analisis regresi, dan
+    analisis multivariat.
 
--   **Data Science:** `r ttcode("R")` digunakan untuk eksplorasi data, pembuatan model prediktif, dan pengolahan data besar.
+-   **Data Science:** `r ttcode("R")` digunakan untuk eksplorasi data,
+    pembuatan model prediktif, dan pengolahan data besar.
 
--   **Biologi dan Bioinformatika:** Paket seperti `Bioconductor` memungkinkan analisis data genomik dan proteomik.
+-   **Biologi dan Bioinformatika:** Paket seperti `Bioconductor`
+    memungkinkan analisis data genomik dan proteomik.
 
--   **Ekonomi dan Keuangan:** `r ttcode("R")` digunakan untuk analisis time series, pemodelan risiko, dan optimasi portofolio.
+-   **Ekonomi dan Keuangan:** `r ttcode("R")` digunakan untuk analisis
+    time series, pemodelan risiko, dan optimasi portofolio.
 
--   **Ilmu Sosial**: `r ttcode("R")` membantu dalam analisis survei, data panel, dan analisis konten.
+-   **Ilmu Sosial**: `r ttcode("R")` membantu dalam analisis survei,
+    data panel, dan analisis konten.
 
-`r ttcode("R")` dirancang khusus untuk analisis statistik, membuatnya menjadi salah satu alat terbaik untuk keperluan ini. Selain itu, `r ttcode("R")` menyediakan banyak metode untuk data mining, seperti clustering, classification, dan association rule mining. Dukungan
-paket seperti `caret` untuk machine learning dan `tm` untuk analisis teks menjadikan `r ttcode("R")` alat yang sangat andal dalam data mining dan pengolahan data tidak terstruktur. Selain itu, paket `bookdown` menjadi alat utama dalam proyek ini. Paket
-ini berbasis rmarkdown dan memberikan kemudahan untuk membuat dokumen yang menarik, seperti halaman web interaktif, e-book, dan laporan dalam format PDF. Dengan fitur yang memungkinkan integrasi antara teks, kode, dan hasil analisis, bookdown sangat cocok digunakan untuk pembelajaran dan dokumentasi ilmiah.
+`r ttcode("R")` dirancang khusus untuk analisis statistik, membuatnya
+menjadi salah satu alat terbaik untuk keperluan ini. Selain itu,
+`r ttcode("R")` menyediakan banyak metode untuk data mining, seperti
+clustering, classification, dan association rule mining. Dukungan paket
+seperti `caret` untuk machine learning dan `tm` untuk analisis teks
+menjadikan `r ttcode("R")` alat yang sangat andal dalam data mining dan
+pengolahan data tidak terstruktur. Selain itu, paket `bookdown` menjadi
+alat utama dalam proyek ini. Paket ini berbasis rmarkdown dan memberikan
+kemudahan untuk membuat dokumen yang menarik, seperti halaman web
+interaktif, e-book, dan laporan dalam format PDF. Dengan fitur yang
+memungkinkan integrasi antara teks, kode, dan hasil analisis, bookdown
+sangat cocok digunakan untuk pembelajaran dan dokumentasi ilmiah.
 
-Dengan menggunakan paket `bookdown` , kami menyusun sebuah buku berjudul *Analisis Cluster dengan R: Panduan Lengkap untuk Pemula*. Buku ini dirancang sebagai panduan interaktif yang menggabungkan teori, kode, dan hasil analisis dalam satu kesatuan. Tujuannya adalah menyediakan bahan belajar elektronik yang dapat diakses di berbagai platform, sehingga pembaca dapat memahami teori sekaligus mempraktikkan analisis data secara langsung. Buku ini diharapkan menjadi panduan lengkap bagi pemula untuk mempelajari analisis cluster dengan pendekatan yang mudah dipahami dan terstruktur.
+Dengan menggunakan paket `bookdown` , kami menyusun sebuah buku berjudul
+*Analisis Cluster dengan R: Panduan Lengkap untuk Pemula*. Buku ini
+dirancang sebagai panduan interaktif yang menggabungkan teori, kode, dan
+hasil analisis dalam satu kesatuan. Tujuannya adalah menyediakan bahan
+belajar elektronik yang dapat diakses di berbagai platform, sehingga
+pembaca dapat memahami teori sekaligus mempraktikkan analisis data
+secara langsung. Buku ini diharapkan menjadi panduan lengkap bagi pemula
+untuk mempelajari analisis cluster dengan pendekatan yang mudah dipahami
+dan terstruktur.
 
-Setiap bab dalam buku ini dilengkapi dengan latihan pemrograman interaktif menggunakan `r ttcode("R")`. Latihan-latihan ini dirancang untuk melengkapi contoh kode yang menunjukkan penerapan algoritma clustering yang dibahas. Latihan dibuat dengan menggunakan [DataCamp light
-widget](https://github.com/datacamp/datacamp-light) yang terhubung langsung ke sesi `r ttcode("R")` yang dikelola oleh server **DataCamp**.
+Setiap bab dalam buku ini dilengkapi dengan latihan pemrograman
+interaktif menggunakan `r ttcode("R")`. Latihan-latihan ini dirancang
+untuk melengkapi contoh kode yang menunjukkan penerapan algoritma
+clustering yang dibahas. Latihan dibuat dengan menggunakan [**DataCamp
+light widget**](https://github.com/datacamp/datacamp-light) yang
+terhubung langsung ke sesi `r ttcode("R")` yang dikelola oleh server
+**DataCamp**.
 
-Melalui pendekatan ini, pembaca dapat langsung mencoba dan bereksperimen dengan latihan yang disediakan, sehingga pemahaman mereka terhadap metode yang dipelajari dapat lebih mendalam. Kami berharap metode ini dapat memberikan pengalaman belajar yang menyeluruh dan menarik, terutama bagi pembaca yang ingin mempelajari analisis cluster menggunakan `r ttcode("R")` secara praktis.
+Melalui pendekatan ini, pembaca dapat langsung mencoba dan bereksperimen
+dengan latihan yang disediakan, sehingga pemahaman mereka terhadap
+metode yang dipelajari dapat lebih mendalam. Kami berharap metode ini
+dapat memberikan pengalaman belajar yang menyeluruh dan menarik,
+terutama bagi pembaca yang ingin mempelajari analisis cluster
+menggunakan `r ttcode("R")` secara praktis.
 
 <iframe src="DCL/intro_1.html" frameborder="0" scrolling="no" style="width:100%;height:360px">
 
 </iframe>
 
-Widget ini terdiri dari dua tab. Tab pertama, `r ttcode("script.R")`, berfungsi seperti file dengan format `r ttcode(".R")`, yang umum digunakan untuk menyimpan kode `r ttcode("R")`. Baris yang diawali dengan tanda \# merupakan komentar, yang tidak dihitung sebagai kode oleh `r ttcode("R")`. Tab `script.R` ini berfungsi seperti lembar latihan, di mana Anda dapat menuliskan solusi Anda. Setelah menulis kode, Anda bisa menekan tombol *Run* untuk menjalankannya. Sistem akan menguji kebenaran solusi yang Anda buat dan memberi tahu apakah solusi tersebut benar. Jika salah, Anda akan mendapatkan umpan balik berupa saran atau petunjuk perbaikan.
+Widget ini terdiri dari dua tab. Tab pertama, `r ttcode("script.R")`,
+berfungsi seperti file dengan format `r ttcode(".R")`, yang umum
+digunakan untuk menyimpan kode `r ttcode("R")`. Baris yang diawali
+dengan tanda \# merupakan komentar, yang tidak dihitung sebagai kode
+oleh `r ttcode("R")`. Tab `script.R` ini berfungsi seperti lembar
+latihan, di mana Anda dapat menuliskan solusi Anda. Setelah menulis
+kode, Anda bisa menekan tombol *Run* untuk menjalankannya. Sistem akan
+menguji kebenaran solusi yang Anda buat dan memberi tahu apakah solusi
+tersebut benar. Jika salah, Anda akan mendapatkan umpan balik berupa
+saran atau petunjuk perbaikan.
 
-Tab kedua, `r ttcode("R Console")`, adalah konsol `r ttcode("R")` yang sepenuhnya berfungsi, yang memungkinkan Anda mencoba solusi terlebih dahulu sebelum mengirimkannya. Anda juga bisa mengirimkan hampir semua kode R ke konsol untuk bereksperimen dan mengeksplorasi lebih lanjut. Cukup ketikkan perintah dan tekan *Enter* untuk menjalankannya.
+Tab kedua, `r ttcode("R Console")`, adalah konsol `r ttcode("R")` yang
+sepenuhnya berfungsi, yang memungkinkan Anda mencoba solusi terlebih
+dahulu sebelum mengirimkannya. Anda juga bisa mengirimkan hampir semua
+kode R ke konsol untuk bereksperimen dan mengeksplorasi lebih lanjut.
+Cukup ketikkan perintah dan tekan *Enter* untuk menjalankannya.
 
-Pada konsol, Anda akan melihat simbol <tt>\></tt> di panel kanan (konsol). Simbol ini disebut **prompt** dan menandakan bahwa pengguna dapat mulai memasukkan kode untuk dijalankan. Agar tidak membingungkan, simbol ini tidak akan ditampilkan di buku ini. Output yang dihasilkan oleh kode `r ttcode("R")` akan diberi komentar dengan <tt>#\></tt>.
+Pada konsol, Anda akan melihat simbol <tt>\></tt> di panel kanan
+(konsol). Simbol ini disebut **prompt** dan menandakan bahwa pengguna
+dapat mulai memasukkan kode untuk dijalankan. Agar tidak membingungkan,
+simbol ini tidak akan ditampilkan di buku ini. Output yang dihasilkan
+oleh kode `r ttcode("R")` akan diberi komentar dengan <tt>#\></tt>.
 
-Biasanya, kami menampilkan kode `r ttcode("R")` bersama dengan output yang dihasilkan dalam satu potongan kode. Sebagai contoh, perhatikan baris kode berikut yang ditampilkan dalam potongan di bawah ini. Kode ini memberi perintah kepada `r ttcode("R")` untuk menghitung jumlah
-paket yang tersedia di **CRAN**. Potongan kode tersebut diikuti oleh output yang dihasilkan.
+Biasanya, kami menampilkan kode `r ttcode("R")` bersama dengan output
+yang dihasilkan dalam satu potongan kode. Sebagai contoh, perhatikan
+baris kode berikut yang ditampilkan dalam potongan di bawah ini. Kode
+ini memberi perintah kepada `r ttcode("R")` untuk menghitung jumlah
+paket yang tersedia di **CRAN**. Potongan kode tersebut diikuti oleh
+output yang dihasilkan.
 
 ```{r}
 # Cek jumlah paket R yang tersedia di CRAN
 nrow(available.packages(repos = "http://cran.us.r-project.org"))
 ```
 
-Setiap potongan kode dilengkapi dengan tombol di sisi kanan yang memungkinkan Anda menyalin kode ke clipboard. Fitur ini mempermudah pekerjaan dengan segmen kode yang lebih besar, baik di versi <tt>R</tt>/*RStudio* Anda maupun di widget-widget yang ada di sepanjang
-buku ini. Pada widget di atas, Anda bisa mengklik tab `r ttcode("R Console")` dan mengetikkan perintah `nrow(available.packages(repos = "http://cran.us.r-project.org"))`
-(perintah dari potongan kode di atas), lalu menjalankannya dengan menekan tombol *Enter* pada keyboard Anda.
+Setiap potongan kode dilengkapi dengan tombol di sisi kanan yang
+memungkinkan Anda menyalin kode ke clipboard. Fitur ini mempermudah
+pekerjaan dengan segmen kode yang lebih besar, baik di versi
+<tt>R</tt>/*RStudio* Anda maupun di widget-widget yang ada di sepanjang
+buku ini. Pada widget di atas, Anda bisa mengklik tab
+`r ttcode("R Console")` dan mengetikkan perintah
+`nrow(available.packages(repos = "http://cran.us.r-project.org"))`
+(perintah dari potongan kode di atas), lalu menjalankannya dengan
+menekan tombol *Enter* pada keyboard Anda.
 
-Setiap potongan kode dilengkapi dengan tombol di sisi kanan luar yang memungkinkan Anda menyalin kode ke clipboard Anda. Ini membuat pekerjaan dengan segmen kode yang lebih besar menjadi lebih nyaman, baik di versi <tt>R</tt>/*RStudio* Anda maupun di widget-widget yang disajikan di sepanjang buku ini. Pada widget di atas, Anda dapat mengklik tab `r ttcode("R Console")` Console dan mengetikkan `nrow(available.packages(repos = "http://cran.us.r-project.org"))` (perintah dari potongan kode di atas) dan menjalankannya dengan menekan tombol *Enter* pada keyboard Anda. [^01-ch1-1]
+Setiap potongan kode dilengkapi dengan tombol di sisi kanan luar yang
+memungkinkan Anda menyalin kode ke clipboard Anda. Ini membuat pekerjaan
+dengan segmen kode yang lebih besar menjadi lebih nyaman, baik di versi
+<tt>R</tt>/*RStudio* Anda maupun di widget-widget yang disajikan di
+sepanjang buku ini. Pada widget di atas, Anda dapat mengklik tab
+`r ttcode("R Console")` Console dan mengetikkan
+`nrow(available.packages(repos = "http://cran.us.r-project.org"))`
+(perintah dari potongan kode di atas) dan menjalankannya dengan menekan
+tombol *Enter* pada keyboard Anda. [^01-ch1-1]
 
 [^01-ch1-1]: Sesi `r ttcode("R")` akan diinisialisasi dengan mengklik
     widget. Proses ini mungkin memakan waktu beberapa detik. Cukup
@@ -86,7 +202,9 @@ Setiap potongan kode dilengkapi dengan tombol di sisi kanan luar yang memungkink
 
 ## Kolofon
 
-Buku ini ditulis menggunakan [bookdown](http://bookdown.org/) di dalam [RStudio](http://www.rstudio.com/ide/). Seluruh kode sumbernya dapat diakses di [GitHub](https://github.com/dedenistiawan/ClustR).
+Buku ini ditulis menggunakan [bookdown](http://bookdown.org/) di dalam
+[RStudio](http://www.rstudio.com/ide/). Seluruh kode sumbernya dapat
+diakses di [GitHub](https://github.com/dedenistiawan/ClustR).
 
 ```{r, echo = FALSE}
 sessioninfo::session_info()
@@ -127,7 +245,6 @@ used_libraries <- extract_used_libraries("D:/00 Programming/01 R/01 Bookdown/01 
 print(used_libraries)
 ```
 
-
 ```{r message = FALSE, warning = FALSE, echo = FALSE}
 # Load necessary libraries
 library(dplyr)
@@ -159,7 +276,6 @@ datatable_output <- used_packages_info %>%
 datatable_output
 ```
 
-
 ## Pengenalan Singkat R and RStudio
 
 ```{=html}
@@ -169,13 +285,13 @@ text-align: justify}
 </style>
 ```
 
-### Instalasi R dan RStudio {-}
+### Instalasi R dan RStudio {.unnumbered}
 
 Untuk memulai menggunakan `r ttcode("R")`, langkah pertama adalah
 menginstal perangkat lunaknya. Berikut langkah-langkah instalasinya:
 
-1.  Buka situs resmi CRAN (Comprehensive R Archive Network) di
-    <https://cran.r-project.org>.
+1.  Buka situs resmi [**CRAN**](https://cran.r-project.org)
+    (Comprehensive R Archive Network)
 
 2.  Pilih sistem operasi yang digunakan (Windows, macOS, atau Linux).
 
@@ -210,19 +326,16 @@ fitur-fitur berikut:
 knitr::include_graphics('images/rstudio.jpg')
 ```
 
-CRAN (Comprehensive R Archive Network) adalah repositori resmi yang
-menyimpan ribuan paket tambahan untuk memperluas fungsi R. Paket-paket
-ini mencakup berbagai bidang aplikasi, seperti statistik, visualisasi,
-dan machine learning. Untuk mengunduh dan menginstal paket di
-`r ttcode("R")`, langkah-langkahnya adalah sebagai berikut:
+[**CRAN**](https://cran.r-project.org) (Comprehensive R Archive Network) adalah repositori resmi yang menyimpan ribuan paket tambahan untuk memperluas fungsi R. Paket-paket
+ini mencakup berbagai bidang aplikasi, seperti statistik, visualisasi, dan machine learning. Untuk mengunduh dan menginstal paket di `r ttcode("R")`, langkah-langkahnya adalah sebagai berikut:
 
 1.  Buka RStudio dan pastikan Anda terhubung ke internet.
 
-2.  Gunakan perintah install.packages() untuk menginstal library atau
+2.  Gunakan perintah `install.packages()` untuk menginstal library atau
     paket.
 
 3.  Setelah instalasi selesai, muat paket ke dalam sesi kerja
-    menggunakan perintah library(). Contoh:
+    menggunakan perintah `library()`. Contoh:
 
 ```{r}
 library(ggplot2)
@@ -322,7 +435,6 @@ x <- 10     # x sekarang bernilai 10 (nilai sebelumnya akan tertimpa)
 print(x)    # Output: 10
 ```
 
-
 ### Struktur Data pada R {.unnumbered}
 
 `r ttcode("R")` menyediakan berbagai jenis struktur data untuk mengelola
@@ -334,7 +446,10 @@ data frame, dan list.
 
 #### Vektor {.unnumbered}
 
-Vektor adalah struktur data paling dasar di `r ttcode("R")`. Vektor adalah sekumpulan elemen yang memiliki tipe data yang sama, seperti angka, karakter, atau logika. Vektor dapat dibuat menggunakan fungsi `c()`, yang berarti combine atau concatenate. Contoh pembuatan vektor:
+Vektor adalah struktur data paling dasar di `r ttcode("R")`. Vektor
+adalah sekumpulan elemen yang memiliki tipe data yang sama, seperti
+angka, karakter, atau logika. Vektor dapat dibuat menggunakan fungsi
+`c()`, yang berarti combine atau concatenate. Contoh pembuatan vektor:
 
 ```{r}
 vektor_angka <- c(1, 2, 3, 4, 5)      # Vektor angka
@@ -354,7 +469,9 @@ tergantung tipe data elemen yang ada di dalamnya.
 
 #### Matriks {.unnumbered}
 
-Matriks adalah struktur data dua dimensi, yang berarti memiliki baris dan kolom. Semua elemen dalam matriks harus memiliki tipe data yang sama, seperti vektor. Contoh pembuatan matriks:
+Matriks adalah struktur data dua dimensi, yang berarti memiliki baris
+dan kolom. Semua elemen dalam matriks harus memiliki tipe data yang
+sama, seperti vektor. Contoh pembuatan matriks:
 
 ```{r}
 matriks <- matrix(1:6, nrow = 2, ncol = 3)  # Matriks 2x3 dengan elemen dari 1 hingga 6
@@ -363,7 +480,11 @@ print(matriks)
 
 #### Data Frame {.unnumbered}
 
-Data frame adalah struktur data yang lebih kompleks dan sering digunakan dalam analisis data. Data frame terdiri dari kolom-kolom yang dapat memiliki tipe data yang berbeda (numerik, karakter, logika, dll.), mirip dengan tabel dalam basis data atau spreadsheet. Contoh pembuatan data frame:
+Data frame adalah struktur data yang lebih kompleks dan sering digunakan
+dalam analisis data. Data frame terdiri dari kolom-kolom yang dapat
+memiliki tipe data yang berbeda (numerik, karakter, logika, dll.), mirip
+dengan tabel dalam basis data atau spreadsheet. Contoh pembuatan data
+frame:
 
 ```{r}
 df <- data.frame(
@@ -376,7 +497,10 @@ print(df)
 
 #### List {.unnumbered}
 
-List adalah struktur data yang paling fleksibel di `r ttcode("R")`. List dapat menyimpan berbagai jenis objek yang berbeda dalam satu struktur data, termasuk vektor, matriks, data frame, atau bahkan fungsi. Contoh pembuatan list:
+List adalah struktur data yang paling fleksibel di `r ttcode("R")`. List
+dapat menyimpan berbagai jenis objek yang berbeda dalam satu struktur
+data, termasuk vektor, matriks, data frame, atau bahkan fungsi. Contoh
+pembuatan list:
 
 ```{r}
 daftar <- list(
@@ -389,7 +513,10 @@ print(daftar)
 
 #### Vektor {.unnumbered}
 
-Faktor adalah tipe data di `r ttcode("R")` yang digunakan untuk menyimpan data kategorikal. Faktor menyimpan data dalam bentuk level yang dapat digunakan untuk analisis kategorikal, seperti dalam model regresi atau analisis statistik lainnya. Contoh pembuatan faktor:
+Faktor adalah tipe data di `r ttcode("R")` yang digunakan untuk
+menyimpan data kategorikal. Faktor menyimpan data dalam bentuk level
+yang dapat digunakan untuk analisis kategorikal, seperti dalam model
+regresi atau analisis statistik lainnya. Contoh pembuatan faktor:
 
 ```{r}
 status <- factor(c("Single", "Married", "Single", "Divorced"))
@@ -399,7 +526,7 @@ print(status)
 **Berikut adalah perbandingan antara berbagai struktur data di R:**
 
 | Struktur Data | Deskripsi | Contoh Penggunaan |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | Vektor | Sekumpulan elemen dengan tipe data yang sama | Menyimpan data numerik atau karakter |
 | Matriks | Struktur dua dimensi (baris dan kolom) | Menyimpan data dalam bentuk tabel numerik |
 | Data Frame | Tabel dua dimensi dengan tipe data berbeda | Menyimpan data observasi dan variabel |
@@ -408,10 +535,18 @@ print(status)
 
 ### Fungsi dan Pemrograman di R {.unnumbered}
 
-`r ttcode("R")` menyediakan berbagai cara untuk mendefinisikan dan menggunakan fungsi dalam pemrograman. Fungsi adalah blok kode yang dirancang untuk melakukan tugas tertentu, menerima input, dan memberikan output. Pemrograman berbasis fungsi memungkinkan pengguna untuk menulis kode yang lebih modular dan terstruktur, yang memudahkan pemeliharaan dan pengembangan program.
+`r ttcode("R")` menyediakan berbagai cara untuk mendefinisikan dan
+menggunakan fungsi dalam pemrograman. Fungsi adalah blok kode yang
+dirancang untuk melakukan tugas tertentu, menerima input, dan memberikan
+output. Pemrograman berbasis fungsi memungkinkan pengguna untuk menulis
+kode yang lebih modular dan terstruktur, yang memudahkan pemeliharaan
+dan pengembangan program.
 
 #### Definisi Fungsi {.unnumbered}
-Fungsi di `r ttcode("R")` dibuat menggunakan kata kunci `function()`. Fungsi ini dapat menerima satu atau lebih argumen dan menghasilkan nilai output. Contoh pembuatan fungsi:
+
+Fungsi di `r ttcode("R")` dibuat menggunakan kata kunci `function()`.
+Fungsi ini dapat menerima satu atau lebih argumen dan menghasilkan nilai
+output. Contoh pembuatan fungsi:
 
 ```{r}
 # Fungsi untuk menghitung kuadrat suatu angka
@@ -429,7 +564,11 @@ print(hasil)          # Output: 25
 
 #### Argumen fungsi {.unnumbered}
 
-Fungsi di `r ttcode("R")` dapat menerima berbagai jenis argumen, yang bisa berupa variabel, nilai tetap, atau objek lain. Argumen juga bisa diberikan nilai default, yang berarti fungsi tetap dapat dipanggil meskipun beberapa argumen tidak diberikan nilai. Contoh argumen dengan nilai default:
+Fungsi di `r ttcode("R")` dapat menerima berbagai jenis argumen, yang
+bisa berupa variabel, nilai tetap, atau objek lain. Argumen juga bisa
+diberikan nilai default, yang berarti fungsi tetap dapat dipanggil
+meskipun beberapa argumen tidak diberikan nilai. Contoh argumen dengan
+nilai default:
 
 ```{r}
 # Fungsi untuk menghitung hasil pembagian
@@ -443,7 +582,11 @@ print(bagi(10, 5)) # Output: 2 (10 dibagi 5)
 
 #### Fungsi dengan Beberapa Nilai Kembalian {.unnumbered}
 
-Fungsi di `r ttcode("R")` dapat mengembalikan lebih dari satu nilai. Salah satu cara untuk melakukan ini adalah dengan menggunakan list. Fungsi dapat mengembalikan objek yang lebih kompleks, seperti list, untuk menyimpan beberapa hasil sekaligus. Contoh fungsi dengan beberapa nilai kembalian:
+Fungsi di `r ttcode("R")` dapat mengembalikan lebih dari satu nilai.
+Salah satu cara untuk melakukan ini adalah dengan menggunakan list.
+Fungsi dapat mengembalikan objek yang lebih kompleks, seperti list,
+untuk menyimpan beberapa hasil sekaligus. Contoh fungsi dengan beberapa
+nilai kembalian:
 
 ```{r}
 hasil_operasi <- function(a, b) {
@@ -459,7 +602,10 @@ print(output$perkalian)    # Output: 20
 
 #### Fungsi Bawaan di R {.unnumbered}
 
-`r ttcode("R")` menyediakan banyak fungsi bawaan untuk melakukan berbagai tugas, seperti manipulasi data, analisis statistik, dan visualisasi. Fungsi-fungsi ini sangat berguna dan sering digunakan dalam berbagai analisis. Contoh fungsi bawaan:
+`r ttcode("R")` menyediakan banyak fungsi bawaan untuk melakukan
+berbagai tugas, seperti manipulasi data, analisis statistik, dan
+visualisasi. Fungsi-fungsi ini sangat berguna dan sering digunakan dalam
+berbagai analisis. Contoh fungsi bawaan:
 
 ```{r}
 # Fungsi untuk menghitung rata-rata
@@ -468,7 +614,11 @@ print(rata_rata)
 ```
 
 #### Fungsi Anonim {.unnumbered}
-Fungsi anonim adalah fungsi yang tidak memiliki nama. Fungsi jenis ini sering digunakan dalam operasi sementara atau dalam konteks tertentu, seperti dalam operasi dengan apply atau pemrograman berbasis vektor. Contoh fungsi anonim:
+
+Fungsi anonim adalah fungsi yang tidak memiliki nama. Fungsi jenis ini
+sering digunakan dalam operasi sementara atau dalam konteks tertentu,
+seperti dalam operasi dengan apply atau pemrograman berbasis vektor.
+Contoh fungsi anonim:
 
 ```{r}
 # Menggunakan fungsi anonim dalam apply
@@ -477,9 +627,9 @@ hasil <- sapply(angka, function(x) x^2)  # Menerapkan fungsi untuk menghitung ku
 print(hasil)  # Output: 1 4 9 16 25
 ```
 
-Semua perintah yang telah dijelaskan di atas juga dapat
-digunakan pada widget interaktif di seluruh buku ini. Anda dapat
-mencobanya di bawah ini.
+Semua perintah yang telah dijelaskan di atas juga dapat digunakan pada
+widget interaktif di seluruh buku ini. Anda dapat mencobanya di bawah
+ini.
 
 ```{r, echo=FALSE, results='asis'}
 write_html(playground = T)

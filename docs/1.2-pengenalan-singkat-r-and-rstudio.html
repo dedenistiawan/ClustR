@@ -264,7 +264,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#memuat-library-yang-diperlukan"><i class="fa fa-check"></i>1. Memuat library yang diperlukan</a></li>
 <li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#membangkitkan-data-acak"><i class="fa fa-check"></i>2. Membangkitkan data acak</a></li>
 <li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#visualisasi-data-acak"><i class="fa fa-check"></i>3. Visualisasi data acak</a></li>
-<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#mencari-jumlah-clluster-optimal"><i class="fa fa-check"></i>4. Mencari Jumlah CLluster Optimal</a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#mencari-jumlah-cluster-optimal"><i class="fa fa-check"></i>4. Mencari Jumlah Cluster Optimal</a></li>
 <li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#menjalankan-clara"><i class="fa fa-check"></i>5. Menjalankan CLARA</a></li>
 <li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#evaluasi-hasil"><i class="fa fa-check"></i>6. Evaluasi hasil</a></li>
 <li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#visualisasi-hasil-cluster"><i class="fa fa-check"></i>7. Visualisasi Hasil Cluster</a></li>
@@ -436,8 +436,8 @@ text-align: justify}
 <p>Untuk memulai menggunakan <tt>R</tt>, langkah pertama adalah
 menginstal perangkat lunaknya. Berikut langkah-langkah instalasinya:</p>
 <ol style="list-style-type: decimal">
-<li><p>Buka situs resmi CRAN (Comprehensive R Archive Network) di
-<a href="https://cran.r-project.org" class="uri">https://cran.r-project.org</a>.</p></li>
+<li><p>Buka situs resmi <a href="https://cran.r-project.org"><strong>CRAN</strong></a>
+(Comprehensive R Archive Network)</p></li>
 <li><p>Pilih sistem operasi yang digunakan (Windows, macOS, atau Linux).</p></li>
 <li><p>Unduh file instalasi dan ikuti instruksi instalasinya. Unduh dan
 Instal RStudio</p></li>
@@ -467,17 +467,14 @@ plot.</p></li>
 Gambar 1.1: RStudio: empat panel
 </p>
 </div>
-<p>CRAN (Comprehensive R Archive Network) adalah repositori resmi yang
-menyimpan ribuan paket tambahan untuk memperluas fungsi R. Paket-paket
-ini mencakup berbagai bidang aplikasi, seperti statistik, visualisasi,
-dan machine learning. Untuk mengunduh dan menginstal paket di
-<tt>R</tt>, langkah-langkahnya adalah sebagai berikut:</p>
+<p><a href="https://cran.r-project.org"><strong>CRAN</strong></a> (Comprehensive R Archive Network) adalah repositori resmi yang menyimpan ribuan paket tambahan untuk memperluas fungsi R. Paket-paket
+ini mencakup berbagai bidang aplikasi, seperti statistik, visualisasi, dan machine learning. Untuk mengunduh dan menginstal paket di <tt>R</tt>, langkah-langkahnya adalah sebagai berikut:</p>
 <ol style="list-style-type: decimal">
 <li><p>Buka RStudio dan pastikan Anda terhubung ke internet.</p></li>
-<li><p>Gunakan perintah install.packages() untuk menginstal library atau
+<li><p>Gunakan perintah <code>install.packages()</code> untuk menginstal library atau
 paket.</p></li>
 <li><p>Setelah instalasi selesai, muat paket ke dalam sesi kerja
-menggunakan perintah library(). Contoh:</p></li>
+menggunakan perintah <code>library()</code>. Contoh:</p></li>
 </ol>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb3-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 <p>Paket yang diunduh akan otomatis tersimpan di komputer Anda dan dapat
@@ -565,7 +562,10 @@ data dasar yang tersedia di <tt>R</tt> meliputi vektor, matriks,
 data frame, dan list.</p>
 <div id="vektor" class="section level4 unnumbered hasAnchor">
 <h4>Vektor<a href="1.2-pengenalan-singkat-r-and-rstudio.html#vektor" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Vektor adalah struktur data paling dasar di <tt>R</tt>. Vektor adalah sekumpulan elemen yang memiliki tipe data yang sama, seperti angka, karakter, atau logika. Vektor dapat dibuat menggunakan fungsi <code>c()</code>, yang berarti combine atau concatenate. Contoh pembuatan vektor:</p>
+<p>Vektor adalah struktur data paling dasar di <tt>R</tt>. Vektor
+adalah sekumpulan elemen yang memiliki tipe data yang sama, seperti
+angka, karakter, atau logika. Vektor dapat dibuat menggunakan fungsi
+<code>c()</code>, yang berarti combine atau concatenate. Contoh pembuatan vektor:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb9-1" tabindex="-1"></a>vektor_angka <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)      <span class="co"># Vektor angka</span></span>
 <span id="cb9-2"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb9-2" tabindex="-1"></a>vektor_karakter <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)   <span class="co"># Vektor karakter</span></span>
 <span id="cb9-3"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb9-3" tabindex="-1"></a>vektor_logika <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)  <span class="co"># Vektor logika</span></span></code></pre></div>
@@ -579,7 +579,9 @@ tergantung tipe data elemen yang ada di dalamnya.</p>
 </div>
 <div id="matriks" class="section level4 unnumbered hasAnchor">
 <h4>Matriks<a href="1.2-pengenalan-singkat-r-and-rstudio.html#matriks" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Matriks adalah struktur data dua dimensi, yang berarti memiliki baris dan kolom. Semua elemen dalam matriks harus memiliki tipe data yang sama, seperti vektor. Contoh pembuatan matriks:</p>
+<p>Matriks adalah struktur data dua dimensi, yang berarti memiliki baris
+dan kolom. Semua elemen dalam matriks harus memiliki tipe data yang
+sama, seperti vektor. Contoh pembuatan matriks:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb11-1" tabindex="-1"></a>matriks <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>)  <span class="co"># Matriks 2x3 dengan elemen dari 1 hingga 6</span></span>
 <span id="cb11-2"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb11-2" tabindex="-1"></a><span class="fu">print</span>(matriks)</span>
 <span id="cb11-3"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb11-3" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3]</span></span>
@@ -588,7 +590,11 @@ tergantung tipe data elemen yang ada di dalamnya.</p>
 </div>
 <div id="data-frame" class="section level4 unnumbered hasAnchor">
 <h4>Data Frame<a href="1.2-pengenalan-singkat-r-and-rstudio.html#data-frame" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Data frame adalah struktur data yang lebih kompleks dan sering digunakan dalam analisis data. Data frame terdiri dari kolom-kolom yang dapat memiliki tipe data yang berbeda (numerik, karakter, logika, dll.), mirip dengan tabel dalam basis data atau spreadsheet. Contoh pembuatan data frame:</p>
+<p>Data frame adalah struktur data yang lebih kompleks dan sering digunakan
+dalam analisis data. Data frame terdiri dari kolom-kolom yang dapat
+memiliki tipe data yang berbeda (numerik, karakter, logika, dll.), mirip
+dengan tabel dalam basis data atau spreadsheet. Contoh pembuatan data
+frame:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb12-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb12-2"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb12-2" tabindex="-1"></a>  <span class="at">Nama =</span> <span class="fu">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>),</span>
 <span id="cb12-3"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb12-3" tabindex="-1"></a>  <span class="at">Umur =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>),</span>
@@ -602,7 +608,10 @@ tergantung tipe data elemen yang ada di dalamnya.</p>
 </div>
 <div id="list" class="section level4 unnumbered hasAnchor">
 <h4>List<a href="1.2-pengenalan-singkat-r-and-rstudio.html#list" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>List adalah struktur data yang paling fleksibel di <tt>R</tt>. List dapat menyimpan berbagai jenis objek yang berbeda dalam satu struktur data, termasuk vektor, matriks, data frame, atau bahkan fungsi. Contoh pembuatan list:</p>
+<p>List adalah struktur data yang paling fleksibel di <tt>R</tt>. List
+dapat menyimpan berbagai jenis objek yang berbeda dalam satu struktur
+data, termasuk vektor, matriks, data frame, atau bahkan fungsi. Contoh
+pembuatan list:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb13-1" tabindex="-1"></a>daftar <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
 <span id="cb13-2"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb13-2" tabindex="-1"></a>  <span class="at">Nama =</span> <span class="st">&quot;John&quot;</span>,</span>
 <span id="cb13-3"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb13-3" tabindex="-1"></a>  <span class="at">Umur =</span> <span class="dv">25</span>,</span>
@@ -620,7 +629,10 @@ tergantung tipe data elemen yang ada di dalamnya.</p>
 </div>
 <div id="vektor-1" class="section level4 unnumbered hasAnchor">
 <h4>Vektor<a href="1.2-pengenalan-singkat-r-and-rstudio.html#vektor-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Faktor adalah tipe data di <tt>R</tt> yang digunakan untuk menyimpan data kategorikal. Faktor menyimpan data dalam bentuk level yang dapat digunakan untuk analisis kategorikal, seperti dalam model regresi atau analisis statistik lainnya. Contoh pembuatan faktor:</p>
+<p>Faktor adalah tipe data di <tt>R</tt> yang digunakan untuk
+menyimpan data kategorikal. Faktor menyimpan data dalam bentuk level
+yang dapat digunakan untuk analisis kategorikal, seperti dalam model
+regresi atau analisis statistik lainnya. Contoh pembuatan faktor:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb14-1" tabindex="-1"></a>status <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Single&quot;</span>, <span class="st">&quot;Married&quot;</span>, <span class="st">&quot;Single&quot;</span>, <span class="st">&quot;Divorced&quot;</span>))</span>
 <span id="cb14-2"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb14-2" tabindex="-1"></a><span class="fu">print</span>(status)</span>
 <span id="cb14-3"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb14-3" tabindex="-1"></a><span class="co">#&gt; [1] Single   Married  Single   Divorced</span></span>
@@ -671,10 +683,17 @@ tergantung tipe data elemen yang ada di dalamnya.</p>
 </div>
 <div id="fungsi-dan-pemrograman-di-r" class="section level3 unnumbered hasAnchor">
 <h3>Fungsi dan Pemrograman di R<a href="1.2-pengenalan-singkat-r-and-rstudio.html#fungsi-dan-pemrograman-di-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><tt>R</tt> menyediakan berbagai cara untuk mendefinisikan dan menggunakan fungsi dalam pemrograman. Fungsi adalah blok kode yang dirancang untuk melakukan tugas tertentu, menerima input, dan memberikan output. Pemrograman berbasis fungsi memungkinkan pengguna untuk menulis kode yang lebih modular dan terstruktur, yang memudahkan pemeliharaan dan pengembangan program.</p>
+<p><tt>R</tt> menyediakan berbagai cara untuk mendefinisikan dan
+menggunakan fungsi dalam pemrograman. Fungsi adalah blok kode yang
+dirancang untuk melakukan tugas tertentu, menerima input, dan memberikan
+output. Pemrograman berbasis fungsi memungkinkan pengguna untuk menulis
+kode yang lebih modular dan terstruktur, yang memudahkan pemeliharaan
+dan pengembangan program.</p>
 <div id="definisi-fungsi" class="section level4 unnumbered hasAnchor">
 <h4>Definisi Fungsi<a href="1.2-pengenalan-singkat-r-and-rstudio.html#definisi-fungsi" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Fungsi di <tt>R</tt> dibuat menggunakan kata kunci <code>function()</code>. Fungsi ini dapat menerima satu atau lebih argumen dan menghasilkan nilai output. Contoh pembuatan fungsi:</p>
+<p>Fungsi di <tt>R</tt> dibuat menggunakan kata kunci <code>function()</code>.
+Fungsi ini dapat menerima satu atau lebih argumen dan menghasilkan nilai
+output. Contoh pembuatan fungsi:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb15-1" tabindex="-1"></a><span class="co"># Fungsi untuk menghitung kuadrat suatu angka</span></span>
 <span id="cb15-2"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb15-2" tabindex="-1"></a>kuadrat <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb15-3"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb15-3" tabindex="-1"></a>  <span class="fu">return</span>(x<span class="sc">^</span><span class="dv">2</span>)   <span class="co"># Mengembalikan nilai kuadrat dari x</span></span>
@@ -688,7 +707,11 @@ tergantung tipe data elemen yang ada di dalamnya.</p>
 </div>
 <div id="argumen-fungsi" class="section level4 unnumbered hasAnchor">
 <h4>Argumen fungsi<a href="1.2-pengenalan-singkat-r-and-rstudio.html#argumen-fungsi" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Fungsi di <tt>R</tt> dapat menerima berbagai jenis argumen, yang bisa berupa variabel, nilai tetap, atau objek lain. Argumen juga bisa diberikan nilai default, yang berarti fungsi tetap dapat dipanggil meskipun beberapa argumen tidak diberikan nilai. Contoh argumen dengan nilai default:</p>
+<p>Fungsi di <tt>R</tt> dapat menerima berbagai jenis argumen, yang
+bisa berupa variabel, nilai tetap, atau objek lain. Argumen juga bisa
+diberikan nilai default, yang berarti fungsi tetap dapat dipanggil
+meskipun beberapa argumen tidak diberikan nilai. Contoh argumen dengan
+nilai default:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb17-1" tabindex="-1"></a><span class="co"># Fungsi untuk menghitung hasil pembagian</span></span>
 <span id="cb17-2"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb17-2" tabindex="-1"></a>bagi <span class="ot">&lt;-</span> <span class="cf">function</span>(a, <span class="at">b =</span> <span class="dv">2</span>) {</span>
 <span id="cb17-3"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb17-3" tabindex="-1"></a>  <span class="fu">return</span>(a <span class="sc">/</span> b)  <span class="co"># Jika b tidak diberikan, akan menggunakan nilai default 2</span></span>
@@ -701,7 +724,11 @@ tergantung tipe data elemen yang ada di dalamnya.</p>
 </div>
 <div id="fungsi-dengan-beberapa-nilai-kembalian" class="section level4 unnumbered hasAnchor">
 <h4>Fungsi dengan Beberapa Nilai Kembalian<a href="1.2-pengenalan-singkat-r-and-rstudio.html#fungsi-dengan-beberapa-nilai-kembalian" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Fungsi di <tt>R</tt> dapat mengembalikan lebih dari satu nilai. Salah satu cara untuk melakukan ini adalah dengan menggunakan list. Fungsi dapat mengembalikan objek yang lebih kompleks, seperti list, untuk menyimpan beberapa hasil sekaligus. Contoh fungsi dengan beberapa nilai kembalian:</p>
+<p>Fungsi di <tt>R</tt> dapat mengembalikan lebih dari satu nilai.
+Salah satu cara untuk melakukan ini adalah dengan menggunakan list.
+Fungsi dapat mengembalikan objek yang lebih kompleks, seperti list,
+untuk menyimpan beberapa hasil sekaligus. Contoh fungsi dengan beberapa
+nilai kembalian:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb18-1" tabindex="-1"></a>hasil_operasi <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
 <span id="cb18-2"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb18-2" tabindex="-1"></a>  hasil_penjumlahan <span class="ot">&lt;-</span> a <span class="sc">+</span> b</span>
 <span id="cb18-3"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb18-3" tabindex="-1"></a>  hasil_perkalian <span class="ot">&lt;-</span> a <span class="sc">*</span> b</span>
@@ -716,7 +743,10 @@ tergantung tipe data elemen yang ada di dalamnya.</p>
 </div>
 <div id="fungsi-bawaan-di-r" class="section level4 unnumbered hasAnchor">
 <h4>Fungsi Bawaan di R<a href="1.2-pengenalan-singkat-r-and-rstudio.html#fungsi-bawaan-di-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><tt>R</tt> menyediakan banyak fungsi bawaan untuk melakukan berbagai tugas, seperti manipulasi data, analisis statistik, dan visualisasi. Fungsi-fungsi ini sangat berguna dan sering digunakan dalam berbagai analisis. Contoh fungsi bawaan:</p>
+<p><tt>R</tt> menyediakan banyak fungsi bawaan untuk melakukan
+berbagai tugas, seperti manipulasi data, analisis statistik, dan
+visualisasi. Fungsi-fungsi ini sangat berguna dan sering digunakan dalam
+berbagai analisis. Contoh fungsi bawaan:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb19-1" tabindex="-1"></a><span class="co"># Fungsi untuk menghitung rata-rata</span></span>
 <span id="cb19-2"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb19-2" tabindex="-1"></a>rata_rata <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))  <span class="co"># Output: 3</span></span>
 <span id="cb19-3"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb19-3" tabindex="-1"></a><span class="fu">print</span>(rata_rata)</span>
@@ -724,15 +754,18 @@ tergantung tipe data elemen yang ada di dalamnya.</p>
 </div>
 <div id="fungsi-anonim" class="section level4 unnumbered hasAnchor">
 <h4>Fungsi Anonim<a href="1.2-pengenalan-singkat-r-and-rstudio.html#fungsi-anonim" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Fungsi anonim adalah fungsi yang tidak memiliki nama. Fungsi jenis ini sering digunakan dalam operasi sementara atau dalam konteks tertentu, seperti dalam operasi dengan apply atau pemrograman berbasis vektor. Contoh fungsi anonim:</p>
+<p>Fungsi anonim adalah fungsi yang tidak memiliki nama. Fungsi jenis ini
+sering digunakan dalam operasi sementara atau dalam konteks tertentu,
+seperti dalam operasi dengan apply atau pemrograman berbasis vektor.
+Contoh fungsi anonim:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb20-1" tabindex="-1"></a><span class="co"># Menggunakan fungsi anonim dalam apply</span></span>
 <span id="cb20-2"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb20-2" tabindex="-1"></a>angka <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
 <span id="cb20-3"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb20-3" tabindex="-1"></a>hasil <span class="ot">&lt;-</span> <span class="fu">sapply</span>(angka, <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span>)  <span class="co"># Menerapkan fungsi untuk menghitung kuadrat</span></span>
 <span id="cb20-4"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb20-4" tabindex="-1"></a><span class="fu">print</span>(hasil)  <span class="co"># Output: 1 4 9 16 25</span></span>
 <span id="cb20-5"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#cb20-5" tabindex="-1"></a><span class="co">#&gt; [1]  1  4  9 16 25</span></span></code></pre></div>
-<p>Semua perintah yang telah dijelaskan di atas juga dapat
-digunakan pada widget interaktif di seluruh buku ini. Anda dapat
-mencobanya di bawah ini.</p>
+<p>Semua perintah yang telah dijelaskan di atas juga dapat digunakan pada
+widget interaktif di seluruh buku ini. Anda dapat mencobanya di bawah
+ini.</p>
 <iframe src="DCL/playground.html" frameborder="0" scrolling="no" style="width:100%;height:340px">
 </iframe>
 

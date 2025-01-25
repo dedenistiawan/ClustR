@@ -264,7 +264,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#memuat-library-yang-diperlukan"><i class="fa fa-check"></i>1. Memuat library yang diperlukan</a></li>
 <li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#membangkitkan-data-acak"><i class="fa fa-check"></i>2. Membangkitkan data acak</a></li>
 <li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#visualisasi-data-acak"><i class="fa fa-check"></i>3. Visualisasi data acak</a></li>
-<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#mencari-jumlah-clluster-optimal"><i class="fa fa-check"></i>4. Mencari Jumlah CLluster Optimal</a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#mencari-jumlah-cluster-optimal"><i class="fa fa-check"></i>4. Mencari Jumlah Cluster Optimal</a></li>
 <li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#menjalankan-clara"><i class="fa fa-check"></i>5. Menjalankan CLARA</a></li>
 <li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#evaluasi-hasil"><i class="fa fa-check"></i>6. Evaluasi hasil</a></li>
 <li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#visualisasi-hasil-cluster"><i class="fa fa-check"></i>7. Visualisasi Hasil Cluster</a></li>
@@ -436,42 +436,158 @@ text-align: justify}
 what’s on the other side?”</p>
 <p>– Tyrion Lannister-Game of Thrones</p>
 </blockquote>
-<p><tt>R</tt> adalah bahasa pemrograman dan perangkat lunak yang dirancang khusus untuk keperluan analisis data, pengolahan statistik, dan visualisasi data. Bahasa ini menawarkan fleksibilitas untuk menulis kode guna menjalankan berbagai metode analisis statistik, mulai dari analisis statistik deskriptif hingga prediktif. Sebagai perangkat lunak, <tt>R</tt> menyediakan lingkungan interaktif untuk eksplorasi data, pengolahan, serta pembuatan laporan yang informatif. Kemampuan ini diperkuat dengan paket visualisasi yang sangat kaya seperti <code>ggplot2</code>, <code>lattice</code>, dan <code>plotly</code>, yang memungkinkan pengguna membuat grafik berkualitas tinggi. <tt>R</tt> tidak hanya membantu menganalisis data tetapi juga memvisualisasikannya dengan cara yang interaktif dan estetis, sehingga dapat menggali wawasan yang lebih dalam.
-<tt>R</tt> pertama kali dikembangkan pada awal 1990-an oleh <strong>Ross Ihaka dan Robert Gentleman</strong> di University of Auckland, Selandia Baru. Proyek ini terinspirasi oleh bahasa pemrograman <tt>S</tt> yang dikembangkan oleh John Chambers di Bell Laboratories. Pada tahun 1995, <tt>R</tt> dirilis sebagai perangkat lunak open source, sehingga memungkinkan pengembang di seluruh dunia untuk berkontribusi dalam pengembangannya.</p>
-<p>Sejak itu, <tt>R</tt> berkembang pesat dengan ribuan paket yang tersedia di <strong>[CRAN]</strong>(<a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a>) (Comprehensive R Archive Network) serta repositori lainnya. Dukungan komunitas dan kontribusi aktif dari pengembang di seluruh dunia telah menjadikan <tt>R</tt> sebagai bahasa yang terus berevolusi untuk memenuhi kebutuhan analisis data modern. <tt>R</tt> memiliki salah satu komunitas pengguna paling aktif di dunia. Komunitas ini terdiri dari akademisi, peneliti, praktisi industri, hingga pengembang perangkat lunak. Forum diskusi seperti <strong>RStudio Community</strong>, Stack Overflow, dan mailing list <tt>R</tt> membantu pengguna menyelesaikan masalah serta berbagi ide.</p>
-<p>Ekosistem <tt>R</tt> terus berkembang dengan adanya <strong>[RStudio]</strong> (<a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>) sebagai Integrated Development Environment (IDE) yang populer. Selain itu, repositori paket seperti CRAN dan <strong>[Bioconductor]</strong> (<a href="https://www.bioconductor.org/" class="uri">https://www.bioconductor.org/</a>). Bioconductor adalah sebuah platform perangkat lunak untuk analisis data genomik yang kompleks, dikembangkan khusus untuk mendukung penelitian dalam bioinformatika dan biologi komputasi. Dibangun di atas bahasa pemrograman R, Bioconductor menyediakan berbagai paket yang dirancang untuk analisis data omics, seperti genomik, proteomik, dan metabolomik. Dukungan komunitas yang besar, dokumentasi yang melimpah, dan
-ketersediaan sumber daya membuat <tt>R</tt> menjadi alat yang mudah diakses oleh pemula sekaligus sangat berguna bagi pengguna tingkat lanjut.</p>
-<p><tt>R</tt> dapat diintegrasikan dengan berbagai bahasa pemrograman lain, seperti Python, C++, Java, dan SQL. Kompatibilitas ini memungkinkan pengguna untuk menggabungkan kekuatan masing-masing bahasa dalam satu proyek. Misalnya, pengguna dapat memanfaatkan Python untuk
-preprocessing data skala besar, kemudian menggunakan <tt>R</tt> untuk analisis statistik mendalam dan visualisasi. Selain itu, <tt>R</tt> juga mendukung integrasi dengan berbagai perangkat lunak lain seperti Excel, Tableau, dan Power BI, membuatnya menjadi bagian penting dalam alur kerja data modern.</p>
-<p><tt>R</tt> telah menjadi alat yang sangat populer di berbagai bidang, berkat fleksibilitasnya dalam menangani analisis data. Beberapa bidang utama yang banyak memanfaatkan <tt>R</tt> antara lain:</p>
+<p><tt>R</tt> adalah bahasa pemrograman dan perangkat lunak yang
+dirancang khusus untuk keperluan analisis data, pengolahan statistik,
+dan visualisasi data. Bahasa ini menawarkan fleksibilitas untuk menulis
+kode guna menjalankan berbagai metode analisis statistik, mulai dari
+analisis statistik deskriptif hingga prediktif. Sebagai perangkat lunak,
+<tt>R</tt> menyediakan lingkungan interaktif untuk eksplorasi data,
+pengolahan, serta pembuatan laporan yang informatif. Kemampuan ini
+diperkuat dengan paket visualisasi yang sangat kaya seperti <code>ggplot2</code>,
+<code>lattice</code>, dan <code>plotly</code>, yang memungkinkan pengguna membuat grafik
+berkualitas tinggi. <tt>R</tt> tidak hanya membantu menganalisis
+data tetapi juga memvisualisasikannya dengan cara yang interaktif dan
+estetis, sehingga dapat menggali wawasan yang lebih dalam.
+<tt>R</tt> pertama kali dikembangkan pada awal 1990-an oleh <strong>Ross
+Ihaka dan Robert Gentleman</strong> di University of Auckland, Selandia Baru.
+Proyek ini terinspirasi oleh bahasa pemrograman <tt>S</tt> yang
+dikembangkan oleh John Chambers di Bell Laboratories. Pada tahun 1995,
+<tt>R</tt> dirilis sebagai perangkat lunak open source, sehingga
+memungkinkan pengembang di seluruh dunia untuk berkontribusi dalam
+pengembangannya.</p>
+<p>Sejak itu, <tt>R</tt> berkembang pesat dengan ribuan paket yang
+tersedia di <a href="https://cran.r-project.org/"><strong>CRAN</strong></a> (Comprehensive R
+Archive Network) serta repositori lainnya. Dukungan komunitas dan
+kontribusi aktif dari pengembang di seluruh dunia telah menjadikan
+<tt>R</tt> sebagai bahasa yang terus berevolusi untuk memenuhi
+kebutuhan analisis data modern. <tt>R</tt> memiliki salah satu
+komunitas pengguna paling aktif di dunia. Komunitas ini terdiri dari
+akademisi, peneliti, praktisi industri, hingga pengembang perangkat
+lunak. Forum diskusi seperti <strong>RStudio Community</strong>, Stack Overflow, dan
+mailing list <tt>R</tt> membantu pengguna menyelesaikan masalah
+serta berbagi ide.</p>
+<p>Ekosistem <tt>R</tt> terus berkembang dengan adanya
+<a href="https://posit.co/download/rstudio-desktop/"><strong>RStudio</strong></a> sebagai
+Integrated Development Environment (IDE) yang populer. Selain itu,
+repositori paket seperti CRAN dan
+<a href="https://www.bioconductor.org/"><strong>Bioconductor</strong></a>. Bioconductor adalah
+sebuah platform perangkat lunak untuk analisis data genomik yang
+kompleks, dikembangkan khusus untuk mendukung penelitian dalam
+bioinformatika dan biologi komputasi. Dibangun di atas bahasa
+pemrograman R, Bioconductor menyediakan berbagai paket yang dirancang
+untuk analisis data omics, seperti genomik, proteomik, dan metabolomik.
+Dukungan komunitas yang besar, dokumentasi yang melimpah, dan
+ketersediaan sumber daya membuat <tt>R</tt> menjadi alat yang mudah
+diakses oleh pemula sekaligus sangat berguna bagi pengguna tingkat
+lanjut.</p>
+<p><tt>R</tt> dapat diintegrasikan dengan berbagai bahasa pemrograman
+lain, seperti Python, C++, Java, dan SQL. Kompatibilitas ini
+memungkinkan pengguna untuk menggabungkan kekuatan masing-masing bahasa
+dalam satu proyek. Misalnya, pengguna dapat memanfaatkan Python untuk
+preprocessing data skala besar, kemudian menggunakan <tt>R</tt>
+untuk analisis statistik mendalam dan visualisasi. Selain itu,
+<tt>R</tt> juga mendukung integrasi dengan berbagai perangkat lunak
+lain seperti Excel, Tableau, dan Power BI, membuatnya menjadi bagian
+penting dalam alur kerja data modern.</p>
+<p><tt>R</tt> telah menjadi alat yang sangat populer di berbagai
+bidang, berkat fleksibilitasnya dalam menangani analisis data. Beberapa
+bidang utama yang banyak memanfaatkan <tt>R</tt> antara lain:</p>
 <ul>
-<li><p><strong>Statistik:</strong> <tt>R</tt> digunakan untuk berbagai jenis analisis statistik, seperti uji hipotesis, analisis regresi, dan analisis multivariat.</p></li>
-<li><p><strong>Data Science:</strong> <tt>R</tt> digunakan untuk eksplorasi data, pembuatan model prediktif, dan pengolahan data besar.</p></li>
-<li><p><strong>Biologi dan Bioinformatika:</strong> Paket seperti <code>Bioconductor</code> memungkinkan analisis data genomik dan proteomik.</p></li>
-<li><p><strong>Ekonomi dan Keuangan:</strong> <tt>R</tt> digunakan untuk analisis time series, pemodelan risiko, dan optimasi portofolio.</p></li>
-<li><p><strong>Ilmu Sosial</strong>: <tt>R</tt> membantu dalam analisis survei, data panel, dan analisis konten.</p></li>
+<li><p><strong>Statistik:</strong> <tt>R</tt> digunakan untuk berbagai jenis
+analisis statistik, seperti uji hipotesis, analisis regresi, dan
+analisis multivariat.</p></li>
+<li><p><strong>Data Science:</strong> <tt>R</tt> digunakan untuk eksplorasi data,
+pembuatan model prediktif, dan pengolahan data besar.</p></li>
+<li><p><strong>Biologi dan Bioinformatika:</strong> Paket seperti <code>Bioconductor</code>
+memungkinkan analisis data genomik dan proteomik.</p></li>
+<li><p><strong>Ekonomi dan Keuangan:</strong> <tt>R</tt> digunakan untuk analisis
+time series, pemodelan risiko, dan optimasi portofolio.</p></li>
+<li><p><strong>Ilmu Sosial</strong>: <tt>R</tt> membantu dalam analisis survei,
+data panel, dan analisis konten.</p></li>
 </ul>
-<p><tt>R</tt> dirancang khusus untuk analisis statistik, membuatnya menjadi salah satu alat terbaik untuk keperluan ini. Selain itu, <tt>R</tt> menyediakan banyak metode untuk data mining, seperti clustering, classification, dan association rule mining. Dukungan
-paket seperti <code>caret</code> untuk machine learning dan <code>tm</code> untuk analisis teks menjadikan <tt>R</tt> alat yang sangat andal dalam data mining dan pengolahan data tidak terstruktur. Selain itu, paket <code>bookdown</code> menjadi alat utama dalam proyek ini. Paket
-ini berbasis rmarkdown dan memberikan kemudahan untuk membuat dokumen yang menarik, seperti halaman web interaktif, e-book, dan laporan dalam format PDF. Dengan fitur yang memungkinkan integrasi antara teks, kode, dan hasil analisis, bookdown sangat cocok digunakan untuk pembelajaran dan dokumentasi ilmiah.</p>
-<p>Dengan menggunakan paket <code>bookdown</code> , kami menyusun sebuah buku berjudul <em>Analisis Cluster dengan R: Panduan Lengkap untuk Pemula</em>. Buku ini dirancang sebagai panduan interaktif yang menggabungkan teori, kode, dan hasil analisis dalam satu kesatuan. Tujuannya adalah menyediakan bahan belajar elektronik yang dapat diakses di berbagai platform, sehingga pembaca dapat memahami teori sekaligus mempraktikkan analisis data secara langsung. Buku ini diharapkan menjadi panduan lengkap bagi pemula untuk mempelajari analisis cluster dengan pendekatan yang mudah dipahami dan terstruktur.</p>
-<p>Setiap bab dalam buku ini dilengkapi dengan latihan pemrograman interaktif menggunakan <tt>R</tt>. Latihan-latihan ini dirancang untuk melengkapi contoh kode yang menunjukkan penerapan algoritma clustering yang dibahas. Latihan dibuat dengan menggunakan <a href="https://github.com/datacamp/datacamp-light">DataCamp light
-widget</a> yang terhubung langsung ke sesi <tt>R</tt> yang dikelola oleh server <strong>DataCamp</strong>.</p>
-<p>Melalui pendekatan ini, pembaca dapat langsung mencoba dan bereksperimen dengan latihan yang disediakan, sehingga pemahaman mereka terhadap metode yang dipelajari dapat lebih mendalam. Kami berharap metode ini dapat memberikan pengalaman belajar yang menyeluruh dan menarik, terutama bagi pembaca yang ingin mempelajari analisis cluster menggunakan <tt>R</tt> secara praktis.</p>
+<p><tt>R</tt> dirancang khusus untuk analisis statistik, membuatnya
+menjadi salah satu alat terbaik untuk keperluan ini. Selain itu,
+<tt>R</tt> menyediakan banyak metode untuk data mining, seperti
+clustering, classification, dan association rule mining. Dukungan paket
+seperti <code>caret</code> untuk machine learning dan <code>tm</code> untuk analisis teks
+menjadikan <tt>R</tt> alat yang sangat andal dalam data mining dan
+pengolahan data tidak terstruktur. Selain itu, paket <code>bookdown</code> menjadi
+alat utama dalam proyek ini. Paket ini berbasis rmarkdown dan memberikan
+kemudahan untuk membuat dokumen yang menarik, seperti halaman web
+interaktif, e-book, dan laporan dalam format PDF. Dengan fitur yang
+memungkinkan integrasi antara teks, kode, dan hasil analisis, bookdown
+sangat cocok digunakan untuk pembelajaran dan dokumentasi ilmiah.</p>
+<p>Dengan menggunakan paket <code>bookdown</code> , kami menyusun sebuah buku berjudul
+<em>Analisis Cluster dengan R: Panduan Lengkap untuk Pemula</em>. Buku ini
+dirancang sebagai panduan interaktif yang menggabungkan teori, kode, dan
+hasil analisis dalam satu kesatuan. Tujuannya adalah menyediakan bahan
+belajar elektronik yang dapat diakses di berbagai platform, sehingga
+pembaca dapat memahami teori sekaligus mempraktikkan analisis data
+secara langsung. Buku ini diharapkan menjadi panduan lengkap bagi pemula
+untuk mempelajari analisis cluster dengan pendekatan yang mudah dipahami
+dan terstruktur.</p>
+<p>Setiap bab dalam buku ini dilengkapi dengan latihan pemrograman
+interaktif menggunakan <tt>R</tt>. Latihan-latihan ini dirancang
+untuk melengkapi contoh kode yang menunjukkan penerapan algoritma
+clustering yang dibahas. Latihan dibuat dengan menggunakan <a href="https://github.com/datacamp/datacamp-light"><strong>DataCamp
+light widget</strong></a> yang
+terhubung langsung ke sesi <tt>R</tt> yang dikelola oleh server
+<strong>DataCamp</strong>.</p>
+<p>Melalui pendekatan ini, pembaca dapat langsung mencoba dan bereksperimen
+dengan latihan yang disediakan, sehingga pemahaman mereka terhadap
+metode yang dipelajari dapat lebih mendalam. Kami berharap metode ini
+dapat memberikan pengalaman belajar yang menyeluruh dan menarik,
+terutama bagi pembaca yang ingin mempelajari analisis cluster
+menggunakan <tt>R</tt> secara praktis.</p>
 <iframe src="DCL/intro_1.html" frameborder="0" scrolling="no" style="width:100%;height:360px">
 </iframe>
-<p>Widget ini terdiri dari dua tab. Tab pertama, <tt>script.R</tt>, berfungsi seperti file dengan format <tt>.R</tt>, yang umum digunakan untuk menyimpan kode <tt>R</tt>. Baris yang diawali dengan tanda # merupakan komentar, yang tidak dihitung sebagai kode oleh <tt>R</tt>. Tab <code>script.R</code> ini berfungsi seperti lembar latihan, di mana Anda dapat menuliskan solusi Anda. Setelah menulis kode, Anda bisa menekan tombol <em>Run</em> untuk menjalankannya. Sistem akan menguji kebenaran solusi yang Anda buat dan memberi tahu apakah solusi tersebut benar. Jika salah, Anda akan mendapatkan umpan balik berupa saran atau petunjuk perbaikan.</p>
-<p>Tab kedua, <tt>R Console</tt>, adalah konsol <tt>R</tt> yang sepenuhnya berfungsi, yang memungkinkan Anda mencoba solusi terlebih dahulu sebelum mengirimkannya. Anda juga bisa mengirimkan hampir semua kode R ke konsol untuk bereksperimen dan mengeksplorasi lebih lanjut. Cukup ketikkan perintah dan tekan <em>Enter</em> untuk menjalankannya.</p>
-<p>Pada konsol, Anda akan melihat simbol <tt>&gt;</tt> di panel kanan (konsol). Simbol ini disebut <strong>prompt</strong> dan menandakan bahwa pengguna dapat mulai memasukkan kode untuk dijalankan. Agar tidak membingungkan, simbol ini tidak akan ditampilkan di buku ini. Output yang dihasilkan oleh kode <tt>R</tt> akan diberi komentar dengan <tt>#&gt;</tt>.</p>
-<p>Biasanya, kami menampilkan kode <tt>R</tt> bersama dengan output yang dihasilkan dalam satu potongan kode. Sebagai contoh, perhatikan baris kode berikut yang ditampilkan dalam potongan di bawah ini. Kode ini memberi perintah kepada <tt>R</tt> untuk menghitung jumlah
-paket yang tersedia di <strong>CRAN</strong>. Potongan kode tersebut diikuti oleh output yang dihasilkan.</p>
+<p>Widget ini terdiri dari dua tab. Tab pertama, <tt>script.R</tt>,
+berfungsi seperti file dengan format <tt>.R</tt>, yang umum
+digunakan untuk menyimpan kode <tt>R</tt>. Baris yang diawali
+dengan tanda # merupakan komentar, yang tidak dihitung sebagai kode
+oleh <tt>R</tt>. Tab <code>script.R</code> ini berfungsi seperti lembar
+latihan, di mana Anda dapat menuliskan solusi Anda. Setelah menulis
+kode, Anda bisa menekan tombol <em>Run</em> untuk menjalankannya. Sistem akan
+menguji kebenaran solusi yang Anda buat dan memberi tahu apakah solusi
+tersebut benar. Jika salah, Anda akan mendapatkan umpan balik berupa
+saran atau petunjuk perbaikan.</p>
+<p>Tab kedua, <tt>R Console</tt>, adalah konsol <tt>R</tt> yang
+sepenuhnya berfungsi, yang memungkinkan Anda mencoba solusi terlebih
+dahulu sebelum mengirimkannya. Anda juga bisa mengirimkan hampir semua
+kode R ke konsol untuk bereksperimen dan mengeksplorasi lebih lanjut.
+Cukup ketikkan perintah dan tekan <em>Enter</em> untuk menjalankannya.</p>
+<p>Pada konsol, Anda akan melihat simbol <tt>&gt;</tt> di panel kanan
+(konsol). Simbol ini disebut <strong>prompt</strong> dan menandakan bahwa pengguna
+dapat mulai memasukkan kode untuk dijalankan. Agar tidak membingungkan,
+simbol ini tidak akan ditampilkan di buku ini. Output yang dihasilkan
+oleh kode <tt>R</tt> akan diberi komentar dengan <tt>#&gt;</tt>.</p>
+<p>Biasanya, kami menampilkan kode <tt>R</tt> bersama dengan output
+yang dihasilkan dalam satu potongan kode. Sebagai contoh, perhatikan
+baris kode berikut yang ditampilkan dalam potongan di bawah ini. Kode
+ini memberi perintah kepada <tt>R</tt> untuk menghitung jumlah
+paket yang tersedia di <strong>CRAN</strong>. Potongan kode tersebut diikuti oleh
+output yang dihasilkan.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="1-pd.html#cb1-1" tabindex="-1"></a><span class="co"># Cek jumlah paket R yang tersedia di CRAN</span></span>
 <span id="cb1-2"><a href="1-pd.html#cb1-2" tabindex="-1"></a><span class="fu">nrow</span>(<span class="fu">available.packages</span>(<span class="at">repos =</span> <span class="st">&quot;http://cran.us.r-project.org&quot;</span>))</span>
 <span id="cb1-3"><a href="1-pd.html#cb1-3" tabindex="-1"></a><span class="co">#&gt; [1] 21932</span></span></code></pre></div>
-<p>Setiap potongan kode dilengkapi dengan tombol di sisi kanan yang memungkinkan Anda menyalin kode ke clipboard. Fitur ini mempermudah pekerjaan dengan segmen kode yang lebih besar, baik di versi <tt>R</tt>/<em>RStudio</em> Anda maupun di widget-widget yang ada di sepanjang
-buku ini. Pada widget di atas, Anda bisa mengklik tab <tt>R Console</tt> dan mengetikkan perintah <code>nrow(available.packages(repos = "http://cran.us.r-project.org"))</code>
-(perintah dari potongan kode di atas), lalu menjalankannya dengan menekan tombol <em>Enter</em> pada keyboard Anda.</p>
-<p>Setiap potongan kode dilengkapi dengan tombol di sisi kanan luar yang memungkinkan Anda menyalin kode ke clipboard Anda. Ini membuat pekerjaan dengan segmen kode yang lebih besar menjadi lebih nyaman, baik di versi <tt>R</tt>/<em>RStudio</em> Anda maupun di widget-widget yang disajikan di sepanjang buku ini. Pada widget di atas, Anda dapat mengklik tab <tt>R Console</tt> Console dan mengetikkan <code>nrow(available.packages(repos = "http://cran.us.r-project.org"))</code> (perintah dari potongan kode di atas) dan menjalankannya dengan menekan tombol <em>Enter</em> pada keyboard Anda. <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>Setiap potongan kode dilengkapi dengan tombol di sisi kanan yang
+memungkinkan Anda menyalin kode ke clipboard. Fitur ini mempermudah
+pekerjaan dengan segmen kode yang lebih besar, baik di versi
+<tt>R</tt>/<em>RStudio</em> Anda maupun di widget-widget yang ada di sepanjang
+buku ini. Pada widget di atas, Anda bisa mengklik tab
+<tt>R Console</tt> dan mengetikkan perintah
+<code>nrow(available.packages(repos = "http://cran.us.r-project.org"))</code>
+(perintah dari potongan kode di atas), lalu menjalankannya dengan
+menekan tombol <em>Enter</em> pada keyboard Anda.</p>
+<p>Setiap potongan kode dilengkapi dengan tombol di sisi kanan luar yang
+memungkinkan Anda menyalin kode ke clipboard Anda. Ini membuat pekerjaan
+dengan segmen kode yang lebih besar menjadi lebih nyaman, baik di versi
+<tt>R</tt>/<em>RStudio</em> Anda maupun di widget-widget yang disajikan di
+sepanjang buku ini. Pada widget di atas, Anda dapat mengklik tab
+<tt>R Console</tt> Console dan mengetikkan
+<code>nrow(available.packages(repos = "http://cran.us.r-project.org"))</code>
+(perintah dari potongan kode di atas) dan menjalankannya dengan menekan
+tombol <em>Enter</em> pada keyboard Anda. <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 </div>
 <div class="footnotes">
 <hr />
