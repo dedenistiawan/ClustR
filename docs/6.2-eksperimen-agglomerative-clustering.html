@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.2 Eksperimen Agglomerative Clustering | Analisis Cluster dengan R: Panduan Lengkap untuk Pemula</title>
+  <title>6.2 Eksperimen Agglomerative Clustering | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R</title>
   <meta name="description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.2 Eksperimen Agglomerative Clustering | Analisis Cluster dengan R: Panduan Lengkap untuk Pemula" />
+  <meta property="og:title" content="6.2 Eksperimen Agglomerative Clustering | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://github.com/dedenistiawan/ClustR/images/cover.png" />
   <meta property="og:description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
-  <meta name="github-repo" content="dedenistiawan/Analisis_Cluster_R" />
+  
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.2 Eksperimen Agglomerative Clustering | Analisis Cluster dengan R: Panduan Lengkap untuk Pemula" />
+  <meta name="twitter:title" content="6.2 Eksperimen Agglomerative Clustering | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R" />
   
   <meta name="twitter:description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
   <meta name="twitter:image" content="https://github.com/dedenistiawan/ClustR/images/cover.png" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Deden Istiawan" />
 
 
-<meta name="date" content="2025-01-02" />
+<meta name="date" content="2025-01-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,19 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.33/datatables.js"></script>
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet" />
+<script src="libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
+<link href="libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="libs/selectize-0.12.0/selectize.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 <!-- font families -->
 
 <link href="https://fonts.googleapis.com/css?family=PT+Sans|Pacifico|Source+Sans+Pro" rel="stylesheet">
@@ -213,7 +226,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#fungsi-dan-pemrograman-di-r"><i class="fa fa-check"></i>Fungsi dan Pemrograman di R</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><span><b>I Metode Partisi</b></span></li>
+<li class="part"><span><b>I Pendekatan Partisi</b></span></li>
 <li class="chapter" data-level="2" data-path="2-km.html"><a href="2-km.html"><i class="fa fa-check"></i><b>2</b> Algoritma K-Means</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="2.1-tahapan-algoritma-k-means.html"><a href="2.1-tahapan-algoritma-k-means.html"><i class="fa fa-check"></i><b>2.1</b> Tahapan Algoritma K-Means</a>
@@ -223,6 +236,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="2.1-tahapan-algoritma-k-means.html"><a href="2.1-tahapan-algoritma-k-means.html#perbaharui-centroid"><i class="fa fa-check"></i>3. Perbaharui Centroid</a></li>
 <li class="chapter" data-level="" data-path="2.1-tahapan-algoritma-k-means.html"><a href="2.1-tahapan-algoritma-k-means.html#ulangi-langkah-2-dan-3"><i class="fa fa-check"></i>4. Ulangi Langkah 2 dan 3</a></li>
 <li class="chapter" data-level="" data-path="2.1-tahapan-algoritma-k-means.html"><a href="2.1-tahapan-algoritma-k-means.html#hasil-akhir"><i class="fa fa-check"></i>5. Hasil Akhir</a></li>
+<li class="chapter" data-level="" data-path="2.1-tahapan-algoritma-k-means.html"><a href="2.1-tahapan-algoritma-k-means.html#visualisasi-algoritma-k-means"><i class="fa fa-check"></i>Visualisasi Algoritma K-Means</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="2.2-eksperimen-algoritma-k-means.html"><a href="2.2-eksperimen-algoritma-k-means.html"><i class="fa fa-check"></i><b>2.2</b> Eksperimen Algoritma K-Means</a>
 <ul>
@@ -240,13 +254,13 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="3" data-path="3-kmed.html"><a href="3-kmed.html"><i class="fa fa-check"></i><b>3</b> Algoritma K-Medoids</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="3.1-tahapan-algoritma-k-means-1.html"><a href="3.1-tahapan-algoritma-k-means-1.html"><i class="fa fa-check"></i><b>3.1</b> Tahapan Algoritma K-Means</a>
+<li class="chapter" data-level="3.1" data-path="3.1-tahapan-algoritma-k-medoids.html"><a href="3.1-tahapan-algoritma-k-medoids.html"><i class="fa fa-check"></i><b>3.1</b> Tahapan Algoritma K-Medoids</a>
 <ul>
-<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-means-1.html"><a href="3.1-tahapan-algoritma-k-means-1.html#inisialisasi-centroid-1"><i class="fa fa-check"></i>1. Inisialisasi Centroid</a></li>
-<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-means-1.html"><a href="3.1-tahapan-algoritma-k-means-1.html#penugasan-anggota-cluster"><i class="fa fa-check"></i>2. Penugasan Anggota Cluster</a></li>
-<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-means-1.html"><a href="3.1-tahapan-algoritma-k-means-1.html#pembaruan-medoid"><i class="fa fa-check"></i>3. Pembaruan Medoid</a></li>
-<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-means-1.html"><a href="3.1-tahapan-algoritma-k-means-1.html#iterasi"><i class="fa fa-check"></i>4. Iterasi</a></li>
-<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-means-1.html"><a href="3.1-tahapan-algoritma-k-means-1.html#hasil-akhir-1"><i class="fa fa-check"></i>5. Hasil Akhir</a></li>
+<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-medoids.html"><a href="3.1-tahapan-algoritma-k-medoids.html#inisialisasi-centroid-1"><i class="fa fa-check"></i>1. Inisialisasi Centroid</a></li>
+<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-medoids.html"><a href="3.1-tahapan-algoritma-k-medoids.html#penugasan-anggota-cluster"><i class="fa fa-check"></i>2. Penugasan Anggota Cluster</a></li>
+<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-medoids.html"><a href="3.1-tahapan-algoritma-k-medoids.html#pembaruan-medoid"><i class="fa fa-check"></i>3. Pembaruan Medoid</a></li>
+<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-medoids.html"><a href="3.1-tahapan-algoritma-k-medoids.html#iterasi"><i class="fa fa-check"></i>4. Iterasi</a></li>
+<li class="chapter" data-level="" data-path="3.1-tahapan-algoritma-k-medoids.html"><a href="3.1-tahapan-algoritma-k-medoids.html#hasil-akhir-1"><i class="fa fa-check"></i>5. Hasil Akhir</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="3.2-eksperimen-algoritma-k-medoids.html"><a href="3.2-eksperimen-algoritma-k-medoids.html"><i class="fa fa-check"></i><b>3.2</b> Eksperimen Algoritma K-Medoids</a>
 <ul>
@@ -273,7 +287,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#memuat-library-yang-diperlukan"><i class="fa fa-check"></i>1. Memuat library yang diperlukan</a></li>
 <li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#membangkitkan-data-acak"><i class="fa fa-check"></i>2. Membangkitkan data acak</a></li>
 <li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#visualisasi-data-acak"><i class="fa fa-check"></i>3. Visualisasi data acak</a></li>
-<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#mencari-jumlah-clluster-optimal"><i class="fa fa-check"></i>4. Mencari Jumlah CLluster Optimal</a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#mencari-jumlah-cluster-optimal"><i class="fa fa-check"></i>4. Mencari Jumlah Cluster Optimal</a></li>
 <li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#menjalankan-clara"><i class="fa fa-check"></i>5. Menjalankan CLARA</a></li>
 <li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#evaluasi-hasil"><i class="fa fa-check"></i>6. Evaluasi hasil</a></li>
 <li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-clara.html"><a href="4.2-eksperimen-algoritma-clara.html#visualisasi-hasil-cluster"><i class="fa fa-check"></i>7. Visualisasi Hasil Cluster</a></li>
@@ -299,7 +313,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="5.2-eksperimen-algoritma-k-modes.html"><a href="5.2-eksperimen-algoritma-k-modes.html#menyimpan-hasil-cluster"><i class="fa fa-check"></i>4. Menyimpan Hasil Cluster</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><span><b>II Metode Hirarki</b></span></li>
+<li class="part"><span><b>II Pendekatan Hirarki</b></span></li>
 <li class="chapter" data-level="6" data-path="6-HC.html"><a href="6-HC.html"><i class="fa fa-check"></i><b>6</b> Metode Cluster Hirarki</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="6.1-tahapan-agglomerative-clustering.html"><a href="6.1-tahapan-agglomerative-clustering.html"><i class="fa fa-check"></i><b>6.1</b> Tahapan Agglomerative Clustering</a>
@@ -336,7 +350,18 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="6.5-eksperimen-divisive-clustering.html"><a href="6.5-eksperimen-divisive-clustering.html"><i class="fa fa-check"></i><b>6.5</b> Eksperimen Divisive Clustering</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="7-vizhc.html"><a href="7-vizhc.html"><i class="fa fa-check"></i><b>7</b> Visualisasi Dendogram</a></li>
+<li class="chapter" data-level="7" data-path="7-vizhc.html"><a href="7-vizhc.html"><i class="fa fa-check"></i><b>7</b> Visualisasi Dendogram</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7.1-proses-pembentukan-dendrogram.html"><a href="7.1-proses-pembentukan-dendrogram.html"><i class="fa fa-check"></i><b>7.1</b> Proses Pembentukan Dendrogram</a></li>
+<li class="chapter" data-level="7.2" data-path="7.2-eksperimen.html"><a href="7.2-eksperimen.html"><i class="fa fa-check"></i><b>7.2</b> Eksperimen</a>
+<ul>
+<li class="chapter" data-level="" data-path="7.2-eksperimen.html"><a href="7.2-eksperimen.html#read-data"><i class="fa fa-check"></i>Read Data</a></li>
+<li class="chapter" data-level="" data-path="7.2-eksperimen.html"><a href="7.2-eksperimen.html#standarisasi-data-1"><i class="fa fa-check"></i>Standarisasi Data</a></li>
+<li class="chapter" data-level="" data-path="7.2-eksperimen.html"><a href="7.2-eksperimen.html#pengelompokan-data"><i class="fa fa-check"></i>Pengelompokan Data</a></li>
+<li class="chapter" data-level="" data-path="7.2-eksperimen.html"><a href="7.2-eksperimen.html#visualisasi-dendogram"><i class="fa fa-check"></i>Visualisasi Dendogram</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Pendekatan Fuzzy</b></span></li>
 <li class="chapter" data-level="8" data-path="8-fcm.html"><a href="8-fcm.html"><i class="fa fa-check"></i><b>8</b> Algoritma Fuzzy C-Means</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="8.1-tahapan-algoritma-fuzzy-c-means.html"><a href="8.1-tahapan-algoritma-fuzzy-c-means.html"><i class="fa fa-check"></i><b>8.1</b> Tahapan Algoritma Fuzzy C-Means</a>
@@ -359,6 +384,46 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="8.2-eksperimeen-fuzzy-c-means.html"><a href="8.2-eksperimeen-fuzzy-c-means.html#visualisasi-hasil-cluster-dengan-clusplot"><i class="fa fa-check"></i>Visualisasi Hasil Cluster dengan clusplot</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="9-pcm.html"><a href="9-pcm.html"><i class="fa fa-check"></i><b>9</b> Possibilistic C-Means Clustering</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="9.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="9.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><i class="fa fa-check"></i><b>9.1</b> Tahapan Algoritma Possibilistic C-Means Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="9.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="9.1-tahapan-algoritma-possibilistic-c-means-clustering.html#inisialisasi-parameter-1"><i class="fa fa-check"></i>1. Inisialisasi Parameter</a></li>
+<li class="chapter" data-level="" data-path="9.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="9.1-tahapan-algoritma-possibilistic-c-means-clustering.html#hitung-jarak"><i class="fa fa-check"></i>2. Hitung Jarak</a></li>
+<li class="chapter" data-level="" data-path="9.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="9.1-tahapan-algoritma-possibilistic-c-means-clustering.html#perbarui-matriks-keanggotaan-1"><i class="fa fa-check"></i>3. Perbarui Matriks Keanggotaan</a></li>
+<li class="chapter" data-level="" data-path="9.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="9.1-tahapan-algoritma-possibilistic-c-means-clustering.html#hitung-parameter-omega"><i class="fa fa-check"></i>4. Hitung Parameter <span class="math inline">\(\Omega\)</span></a></li>
+<li class="chapter" data-level="" data-path="9.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="9.1-tahapan-algoritma-possibilistic-c-means-clustering.html#perbarui-pusat-cluster"><i class="fa fa-check"></i>5. Perbarui Pusat Cluster</a></li>
+<li class="chapter" data-level="" data-path="9.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="9.1-tahapan-algoritma-possibilistic-c-means-clustering.html#kondisi-berhenti-1"><i class="fa fa-check"></i>6. Kondisi Berhenti</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="9.2-eksperimen-algoritma-possibilistic-c-means-clustering.html"><a href="9.2-eksperimen-algoritma-possibilistic-c-means-clustering.html"><i class="fa fa-check"></i><b>9.2</b> Eksperimen Algoritma Possibilistic C-Means Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="9.2-eksperimen-algoritma-possibilistic-c-means-clustering.html"><a href="9.2-eksperimen-algoritma-possibilistic-c-means-clustering.html#persiapan-library"><i class="fa fa-check"></i>Persiapan Library</a></li>
+<li class="chapter" data-level="" data-path="9.2-eksperimen-algoritma-possibilistic-c-means-clustering.html"><a href="9.2-eksperimen-algoritma-possibilistic-c-means-clustering.html#dataset"><i class="fa fa-check"></i>Dataset</a></li>
+<li class="chapter" data-level="" data-path="9.2-eksperimen-algoritma-possibilistic-c-means-clustering.html"><a href="9.2-eksperimen-algoritma-possibilistic-c-means-clustering.html#inisialisasi-matriks-prototipe"><i class="fa fa-check"></i>Inisialisasi Matriks Prototipe</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-pfcm.html"><a href="10-pfcm.html"><i class="fa fa-check"></i><b>10</b> Possibilistic Fuzzy C-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path="10-pfcm.html"><a href="10-pfcm.html#fungsi-objektif"><i class="fa fa-check"></i>Fungsi Objektif</a></li>
+<li class="chapter" data-level="" data-path="10-pfcm.html"><a href="10-pfcm.html#perhitungan-keanggotaan-dan-typicality"><i class="fa fa-check"></i>Perhitungan Keanggotaan dan Typicality</a></li>
+<li class="chapter" data-level="" data-path="10-pfcm.html"><a href="10-pfcm.html#derajat-typicality"><i class="fa fa-check"></i>Derajat Typicality</a></li>
+<li class="chapter" data-level="" data-path="10-pfcm.html"><a href="10-pfcm.html#pembaruan-pusat-klaster"><i class="fa fa-check"></i>Pembaruan Pusat Klaster</a></li>
+<li class="chapter" data-level="10.1" data-path="10.1-tahapan-algoritma-pfcm.html"><a href="10.1-tahapan-algoritma-pfcm.html"><i class="fa fa-check"></i><b>10.1</b> Tahapan Algoritma PFCM</a>
+<ul>
+<li class="chapter" data-level="" data-path="10.1-tahapan-algoritma-pfcm.html"><a href="10.1-tahapan-algoritma-pfcm.html#inisialisasi-4"><i class="fa fa-check"></i>1. Inisialisasi</a></li>
+<li class="chapter" data-level="" data-path="10.1-tahapan-algoritma-pfcm.html"><a href="10.1-tahapan-algoritma-pfcm.html#hitung-keanggotaan-fuzzy-u_ij"><i class="fa fa-check"></i>2. Hitung Keanggotaan Fuzzy (<span class="math inline">\(u_{ij}\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="10.1-tahapan-algoritma-pfcm.html"><a href="10.1-tahapan-algoritma-pfcm.html#hitung-typicality-t_ij"><i class="fa fa-check"></i>3. Hitung Typicality (<span class="math inline">\(t_{ij}\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="10.1-tahapan-algoritma-pfcm.html"><a href="10.1-tahapan-algoritma-pfcm.html#perbarui-pusat-klaster-vecv_j"><i class="fa fa-check"></i>4. Perbarui Pusat Klaster (<span class="math inline">\(\vec{v}_j\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="10.1-tahapan-algoritma-pfcm.html"><a href="10.1-tahapan-algoritma-pfcm.html#evaluasi-konvergensi-1"><i class="fa fa-check"></i>5. Evaluasi Konvergensi</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="10.2-eksperimen-possibilistic-fuzzy-c-means.html"><a href="10.2-eksperimen-possibilistic-fuzzy-c-means.html"><i class="fa fa-check"></i><b>10.2</b> Eksperimen Possibilistic Fuzzy C-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path="10.2-eksperimen-possibilistic-fuzzy-c-means.html"><a href="10.2-eksperimen-possibilistic-fuzzy-c-means.html#library-yang-dibutuhkan"><i class="fa fa-check"></i>Library yang Dibutuhkan</a></li>
+<li class="chapter" data-level="" data-path="10.2-eksperimen-possibilistic-fuzzy-c-means.html"><a href="10.2-eksperimen-possibilistic-fuzzy-c-means.html#dataset-1"><i class="fa fa-check"></i>Dataset</a></li>
+<li class="chapter" data-level="" data-path="10.2-eksperimen-possibilistic-fuzzy-c-means.html"><a href="10.2-eksperimen-possibilistic-fuzzy-c-means.html#klasterisasi-menggunakan-pfcm"><i class="fa fa-check"></i>Klasterisasi Menggunakan PFCM</a></li>
+<li class="chapter" data-level="" data-path="10.2-eksperimen-possibilistic-fuzzy-c-means.html"><a href="10.2-eksperimen-possibilistic-fuzzy-c-means.html#visualisasi-hasil-klasterisasi"><i class="fa fa-check"></i>Visualisasi Hasil Klasterisasi</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i>Referensi</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -372,7 +437,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analisis Cluster dengan R: Panduan Lengkap untuk Pemula</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R</a>
           </h1>
         </div>
 
@@ -392,9 +457,6 @@ text-align: justify}
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb1-1" tabindex="-1"></a><span class="fu">library</span> (readr)</span>
 <span id="cb1-2"><a href="6.2-eksperimen-agglomerative-clustering.html#cb1-2" tabindex="-1"></a>urlfile <span class="ot">=</span> <span class="st">&quot;https://bit.ly/3VO3kRE&quot;</span></span>
 <span id="cb1-3"><a href="6.2-eksperimen-agglomerative-clustering.html#cb1-3" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="fu">url</span>(urlfile), <span class="at">row.names =</span> <span class="st">&quot;Kabupaten&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb2-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
-<span id="cb2-2"><a href="6.2-eksperimen-agglomerative-clustering.html#cb2-2" tabindex="-1"></a>  <span class="fu">head</span>(data, <span class="dv">10</span>), <span class="at">caption =</span> <span class="st">&#39;Basis Data Terpadu Jawa Tengah&#39;</span>,</span>
-<span id="cb2-3"><a href="6.2-eksperimen-agglomerative-clustering.html#cb2-3" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <table>
 <caption><span id="tab:nice-tab-2">Tabel 6.1: </span>Basis Data Terpadu Jawa Tengah</caption>
 <colgroup>
@@ -562,8 +624,8 @@ text-align: justify}
 <h3>Standarisasi Data<a href="6.2-eksperimen-agglomerative-clustering.html#standarisasi-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Sebelum melakukan analisis clustering, penting untuk menstandarisasi data agar setiap fitur memiliki skala yang sama. Standarisasi membantu menghindari bias yang mungkin muncul akibat perbedaan skala antar fitur, yang dapat mempengaruhi hasil analisis, terutama dalam pengukuran jarak.</p>
 <p>Dalam R, kita dapat menggunakan fungsi <code>scale()</code> untuk menstandarisasi dataset. Fungsi ini mengubah setiap fitur dalam dataset sehingga memiliki rata-rata 0 dan deviasi standar 1. Proses ini dilakukan dengan cara mengurangi rata-rata dari setiap nilai dan membaginya dengan deviasi standar fitur tersebut.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb3-1" tabindex="-1"></a><span class="co"># Standarisasi Data</span></span>
-<span id="cb3-2"><a href="6.2-eksperimen-agglomerative-clustering.html#cb3-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">scale</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb2-1" tabindex="-1"></a><span class="co"># Standarisasi Data</span></span>
+<span id="cb2-2"><a href="6.2-eksperimen-agglomerative-clustering.html#cb2-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">scale</span>(data)</span></code></pre></div>
 <table style="width:100%;">
 <caption><span id="tab:nice-tab-1">Tabel 6.2: </span>Data Hasil Standarisasi</caption>
 <colgroup>
@@ -732,22 +794,22 @@ text-align: justify}
 <h3>Ukuran Similarity dan Dissimilarity<a href="6.2-eksperimen-agglomerative-clustering.html#ukuran-similarity-dan-dissimilarity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Dalam analisis clustering, ukuran similarity (kesamaan) dan dissimilarity (ketidaksamaan) sangat penting untuk menentukan seberapa dekat atau jauh objek satu sama lain dalam ruang fitur. Ukuran dissimilarity sering digunakan untuk mengukur jarak antara data point, yang kemudian digunakan dalam algoritma clustering untuk mengelompokkan data berdasarkan kedekatan mereka.</p>
 <p>Salah satu langkah awal dalam proses clustering adalah menghitung matriks dissimilarity, yang memberikan informasi tentang jarak antara setiap pasangan objek dalam dataset. Dalam konteks ini, kita menggunakan ukuran jarak Euclidean, yang merupakan salah satu metode paling umum untuk mengukur jarak antara dua titik dalam ruang multidimensi.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb4-1" tabindex="-1"></a>res.dist <span class="ot">&lt;-</span> <span class="fu">dist</span>(df, <span class="at">method =</span> <span class="st">&quot;euclidean&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb3-1" tabindex="-1"></a>res.dist <span class="ot">&lt;-</span> <span class="fu">dist</span>(df, <span class="at">method =</span> <span class="st">&quot;euclidean&quot;</span>)</span></code></pre></div>
 <p>Pada kode di atas, kita menggunakan fungsi <code>dist()</code> dari R untuk menghitung matriks dissimilarity. Parameter <code>df</code> merujuk pada data yang telah distandarisasi, yang berarti bahwa setiap fitur dalam dataset telah dinormalisasi untuk memiliki rata-rata 0 dan deviasi standar 1. Proses standarisasi ini penting untuk memastikan bahwa semua fitur berkontribusi secara seimbang terhadap perhitungan jarak, terutama ketika fitur memiliki skala yang berbeda.</p>
 <p>Setelah menghitung matriks dissimilarity menggunakan fungsi <code>dist()</code>, kita sering kali ingin melihat representasi matriks tersebut dalam format yang lebih mudah dibaca. Dalam R, kita dapat menggunakan fungsi <code>as.matrix()</code> untuk mengonversi objek dissimilarity menjadi matriks biasa. Ini memungkinkan kita untuk melihat nilai-nilai jarak antara objek-objek dalam dataset.</p>
 <p>Pada kode di atas, <code>res.dist</code> adalah objek dissimilarity yang telah dihitung sebelumnya. Dengan menggunakan <code>as.matrix(res.dist)</code>, kita mengonversi objek tersebut menjadi matriks. Kemudian, kita menggunakan indeks <code>[1:5, 1:5]</code> untuk menampilkan lima baris dan lima kolom pertama dari matriks dissimilarity.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb5-1" tabindex="-1"></a><span class="fu">as.matrix</span>(res.dist)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
-<span id="cb5-2"><a href="6.2-eksperimen-agglomerative-clustering.html#cb5-2" tabindex="-1"></a><span class="co">#&gt;               CILACAP BANYUMAS PURBALINGGA BANJARNEGARA  KEBUMEN</span></span>
-<span id="cb5-3"><a href="6.2-eksperimen-agglomerative-clustering.html#cb5-3" tabindex="-1"></a><span class="co">#&gt; CILACAP      0.000000 2.327193    3.828424     5.188508 3.891360</span></span>
-<span id="cb5-4"><a href="6.2-eksperimen-agglomerative-clustering.html#cb5-4" tabindex="-1"></a><span class="co">#&gt; BANYUMAS     2.327193 0.000000    3.809719     4.232529 3.310710</span></span>
-<span id="cb5-5"><a href="6.2-eksperimen-agglomerative-clustering.html#cb5-5" tabindex="-1"></a><span class="co">#&gt; PURBALINGGA  3.828424 3.809719    0.000000     2.418211 2.235801</span></span>
-<span id="cb5-6"><a href="6.2-eksperimen-agglomerative-clustering.html#cb5-6" tabindex="-1"></a><span class="co">#&gt; BANJARNEGARA 5.188508 4.232529    2.418211     0.000000 2.159694</span></span>
-<span id="cb5-7"><a href="6.2-eksperimen-agglomerative-clustering.html#cb5-7" tabindex="-1"></a><span class="co">#&gt; KEBUMEN      3.891360 3.310710    2.235801     2.159694 0.000000</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb4-1" tabindex="-1"></a><span class="fu">as.matrix</span>(res.dist)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb4-2"><a href="6.2-eksperimen-agglomerative-clustering.html#cb4-2" tabindex="-1"></a><span class="co">#&gt;               CILACAP BANYUMAS PURBALINGGA BANJARNEGARA  KEBUMEN</span></span>
+<span id="cb4-3"><a href="6.2-eksperimen-agglomerative-clustering.html#cb4-3" tabindex="-1"></a><span class="co">#&gt; CILACAP      0.000000 2.327193    3.828424     5.188508 3.891360</span></span>
+<span id="cb4-4"><a href="6.2-eksperimen-agglomerative-clustering.html#cb4-4" tabindex="-1"></a><span class="co">#&gt; BANYUMAS     2.327193 0.000000    3.809719     4.232529 3.310710</span></span>
+<span id="cb4-5"><a href="6.2-eksperimen-agglomerative-clustering.html#cb4-5" tabindex="-1"></a><span class="co">#&gt; PURBALINGGA  3.828424 3.809719    0.000000     2.418211 2.235801</span></span>
+<span id="cb4-6"><a href="6.2-eksperimen-agglomerative-clustering.html#cb4-6" tabindex="-1"></a><span class="co">#&gt; BANJARNEGARA 5.188508 4.232529    2.418211     0.000000 2.159694</span></span>
+<span id="cb4-7"><a href="6.2-eksperimen-agglomerative-clustering.html#cb4-7" tabindex="-1"></a><span class="co">#&gt; KEBUMEN      3.891360 3.310710    2.235801     2.159694 0.000000</span></span></code></pre></div>
 </div>
 <div id="melakukan-pengelompokan-hierarkis" class="section level3 unnumbered hasAnchor">
 <h3>Melakukan Pengelompokan Hierarkis<a href="6.2-eksperimen-agglomerative-clustering.html#melakukan-pengelompokan-hierarkis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Setelah menghitung matriks dissimilarity, langkah selanjutnya dalam analisis clustering adalah menerapkan algoritma pengelompokan hierarkis. Dalam R, kita dapat menggunakan fungsi <code>hclust()</code> untuk melakukan ini. Salah satu metode yang umum digunakan dalam pengelompokan hierarkis adalah metode Ward, yang bertujuan untuk meminimalkan varians dalam setiap cluster yang terbentuk.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb6-1" tabindex="-1"></a>res.hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="at">d =</span>res.dist, <span class="at">method =</span> <span class="st">&quot;ward.D2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb5-1" tabindex="-1"></a>res.hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="at">d =</span>res.dist, <span class="at">method =</span> <span class="st">&quot;ward.D2&quot;</span>)</span></code></pre></div>
 <p>Pada kode di atas, <code>res.dist</code> adalah matriks dissimilarity yang telah dihitung sebelumnya. Parameter <code>method = "ward.D2"</code> menunjukkan bahwa kita menggunakan metode Ward untuk menggabungkan cluster. Metode Ward bekerja dengan cara menggabungkan dua cluster yang menghasilkan peningkatan terkecil dalam total varians dalam cluster yang baru terbentuk. Ini membantu dalam menghasilkan cluster yang lebih homogen.</p>
 <p>Hasil dari fungsi <code>hclust()</code> adalah objek yang berisi informasi tentang struktur pengelompokan hierarkis. Objek ini dapat digunakan untuk membuat dendrogram, yang merupakan representasi visual dari proses penggabungan cluster. Dendrogram ini membantu dalam menentukan jumlah cluster yang optimal dengan memotong dendrogram pada ketinggian tertentu.</p>
 </div>
@@ -755,9 +817,9 @@ text-align: justify}
 <h3>Visualisasi dengan Dendrogram<a href="6.2-eksperimen-agglomerative-clustering.html#visualisasi-dengan-dendrogram" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Setelah melakukan pengelompokan hierarkis menggunakan metode Ward, langkah selanjutnya adalah memvisualisasikan hasil clustering untuk memahami struktur dan hubungan antar cluster. Salah satu cara yang efektif untuk melakukan ini adalah dengan menggunakan dendrogram, yang menunjukkan bagaimana objek-objek dalam dataset digabungkan menjadi cluster.</p>
 <p>Library <code>factoextra</code> menyediakan fungsi yang memudahkan visualisasi hasil analisis multivariat, termasuk dendrogram untuk pengelompokan hierarkis. Berikut adalah kode untuk memvisualisasikan dendrogram dari hasil pengelompokan hierarkis yang telah dilakukan:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb7-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;factoextra&quot;</span>)</span>
-<span id="cb7-2"><a href="6.2-eksperimen-agglomerative-clustering.html#cb7-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb7-3"><a href="6.2-eksperimen-agglomerative-clustering.html#cb7-3" tabindex="-1"></a><span class="fu">fviz_dend</span>(res.hc, <span class="at">cex =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb6-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;factoextra&quot;</span>)</span>
+<span id="cb6-2"><a href="6.2-eksperimen-agglomerative-clustering.html#cb6-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-3"><a href="6.2-eksperimen-agglomerative-clustering.html#cb6-3" tabindex="-1"></a><span class="fu">fviz_dend</span>(res.hc, <span class="at">cex =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
 <img src="06-ch6_files/figure-html/unnamed-chunk-6-1.png" alt="Visualisasi Dendogram" width="80%" />
 <p class="caption">
@@ -770,30 +832,30 @@ Gambar 6.1: Visualisasi Dendogram
 <h3>Visualisasi dengan Dendrogram<a href="6.2-eksperimen-agglomerative-clustering.html#visualisasi-dengan-dendrogram-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Setelah memvisualisasikan dendrogram dari hasil pengelompokan hierarkis, langkah selanjutnya adalah menentukan jumlah cluster yang diinginkan dan memotong dendrogram untuk membentuk kelompok-kelompok tersebut. Dalam contoh ini, kita akan memotong dendrogram menjadi dua kelompok.</p>
 <p>Fungsi <code>cutree()</code> digunakan untuk memotong dendrogram dan mengelompokkan objek-objek ke dalam jumlah cluster yang ditentukan. Berikut adalah kode untuk memotong dendrogram menjadi dua kelompok:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb8-1" tabindex="-1"></a>grp <span class="ot">&lt;-</span> <span class="fu">cutree</span>(res.hc, <span class="at">k =</span><span class="dv">2</span>)</span>
-<span id="cb8-2"><a href="6.2-eksperimen-agglomerative-clustering.html#cb8-2" tabindex="-1"></a><span class="fu">head</span>(grp, <span class="at">n =</span><span class="dv">2</span>)</span>
-<span id="cb8-3"><a href="6.2-eksperimen-agglomerative-clustering.html#cb8-3" tabindex="-1"></a><span class="co">#&gt;  CILACAP BANYUMAS </span></span>
-<span id="cb8-4"><a href="6.2-eksperimen-agglomerative-clustering.html#cb8-4" tabindex="-1"></a><span class="co">#&gt;        1        1</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb7-1" tabindex="-1"></a>grp <span class="ot">&lt;-</span> <span class="fu">cutree</span>(res.hc, <span class="at">k =</span><span class="dv">2</span>)</span>
+<span id="cb7-2"><a href="6.2-eksperimen-agglomerative-clustering.html#cb7-2" tabindex="-1"></a><span class="fu">head</span>(grp, <span class="at">n =</span><span class="dv">2</span>)</span>
+<span id="cb7-3"><a href="6.2-eksperimen-agglomerative-clustering.html#cb7-3" tabindex="-1"></a><span class="co">#&gt;  CILACAP BANYUMAS </span></span>
+<span id="cb7-4"><a href="6.2-eksperimen-agglomerative-clustering.html#cb7-4" tabindex="-1"></a><span class="co">#&gt;        1        1</span></span></code></pre></div>
 <p>Pada kode di atas, <code>res.hc</code> adalah objek hasil pengelompokan hierarkis yang telah kita buat sebelumnya. Parameter <code>k = 2</code> menunjukkan bahwa kita ingin memotong dendrogram menjadi dua kelompok. Hasil dari fungsi <code>cutree()</code> disimpan dalam variabel <code>grp</code>, yang berisi penugasan kelompok untuk setiap objek dalam dataset.</p>
 </div>
 <div id="jumlah-anggota-dalam-setiap-cluster" class="section level3 unnumbered hasAnchor">
 <h3>Jumlah Anggota dalam Setiap Cluster<a href="6.2-eksperimen-agglomerative-clustering.html#jumlah-anggota-dalam-setiap-cluster" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Setelah memotong dendrogram dan mengelompokkan objek-objek ke dalam cluster, langkah selanjutnya adalah menghitung jumlah anggota dalam setiap cluster. Dalam contoh ini, kita akan menggunakan fungsi table() untuk menghitung jumlah anggota dalam setiap cluster.</p>
 <p>Fungsi <code>table()</code> digunakan untuk menghitung frekuensi atau jumlah anggota dalam setiap kategori atau cluster. Berikut adalah kode untuk menghitung jumlah anggota dalam setiap cluster:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb9-1" tabindex="-1"></a><span class="fu">table</span>(grp)</span>
-<span id="cb9-2"><a href="6.2-eksperimen-agglomerative-clustering.html#cb9-2" tabindex="-1"></a><span class="co">#&gt; grp</span></span>
-<span id="cb9-3"><a href="6.2-eksperimen-agglomerative-clustering.html#cb9-3" tabindex="-1"></a><span class="co">#&gt;  1  2 </span></span>
-<span id="cb9-4"><a href="6.2-eksperimen-agglomerative-clustering.html#cb9-4" tabindex="-1"></a><span class="co">#&gt; 12 23</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb8-1" tabindex="-1"></a><span class="fu">table</span>(grp)</span>
+<span id="cb8-2"><a href="6.2-eksperimen-agglomerative-clustering.html#cb8-2" tabindex="-1"></a><span class="co">#&gt; grp</span></span>
+<span id="cb8-3"><a href="6.2-eksperimen-agglomerative-clustering.html#cb8-3" tabindex="-1"></a><span class="co">#&gt;  1  2 </span></span>
+<span id="cb8-4"><a href="6.2-eksperimen-agglomerative-clustering.html#cb8-4" tabindex="-1"></a><span class="co">#&gt; 12 23</span></span></code></pre></div>
 </div>
 <div id="visualisasi-dendrogram" class="section level3 unnumbered hasAnchor">
 <h3>Visualisasi Dendrogram<a href="6.2-eksperimen-agglomerative-clustering.html#visualisasi-dendrogram" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Setelah memotong dendrogram untuk membentuk kelompok, kita dapat memvisualisasikan hasil pengelompokan dengan menandai setiap kelompok menggunakan warna yang berbeda. Ini membantu dalam memahami struktur cluster dan memudahkan interpretasi hasil.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb10-1" tabindex="-1"></a><span class="fu">fviz_dend</span>(res.hc, <span class="at">k =</span><span class="dv">2</span>, </span>
-<span id="cb10-2"><a href="6.2-eksperimen-agglomerative-clustering.html#cb10-2" tabindex="-1"></a>          <span class="at">cex =</span> <span class="fl">0.5</span>, </span>
-<span id="cb10-3"><a href="6.2-eksperimen-agglomerative-clustering.html#cb10-3" tabindex="-1"></a>          <span class="at">k_colors =</span> <span class="fu">c</span>(<span class="st">&quot;#E7B800&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>),</span>
-<span id="cb10-4"><a href="6.2-eksperimen-agglomerative-clustering.html#cb10-4" tabindex="-1"></a>          <span class="at">color_labels_by_k =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb10-5"><a href="6.2-eksperimen-agglomerative-clustering.html#cb10-5" tabindex="-1"></a>          <span class="at">rect =</span> <span class="cn">TRUE</span> </span>
-<span id="cb10-6"><a href="6.2-eksperimen-agglomerative-clustering.html#cb10-6" tabindex="-1"></a>          )</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb9-1" tabindex="-1"></a><span class="fu">fviz_dend</span>(res.hc, <span class="at">k =</span><span class="dv">2</span>, </span>
+<span id="cb9-2"><a href="6.2-eksperimen-agglomerative-clustering.html#cb9-2" tabindex="-1"></a>          <span class="at">cex =</span> <span class="fl">0.5</span>, </span>
+<span id="cb9-3"><a href="6.2-eksperimen-agglomerative-clustering.html#cb9-3" tabindex="-1"></a>          <span class="at">k_colors =</span> <span class="fu">c</span>(<span class="st">&quot;#E7B800&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>),</span>
+<span id="cb9-4"><a href="6.2-eksperimen-agglomerative-clustering.html#cb9-4" tabindex="-1"></a>          <span class="at">color_labels_by_k =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb9-5"><a href="6.2-eksperimen-agglomerative-clustering.html#cb9-5" tabindex="-1"></a>          <span class="at">rect =</span> <span class="cn">TRUE</span> </span>
+<span id="cb9-6"><a href="6.2-eksperimen-agglomerative-clustering.html#cb9-6" tabindex="-1"></a>          )</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
 <img src="06-ch6_files/figure-html/unnamed-chunk-9-1.png" alt="Visualisasi Dendogram" width="80%" />
 <p class="caption">
@@ -814,11 +876,11 @@ Gambar 6.2: Visualisasi Dendogram
 <li><p><strong><code>show.clust.cent = FALSE</code></strong>: Menentukan untuk tidak menampilkan pusat cluster pada visualisasi.</p></li>
 <li><p><strong><code>ggtheme = theme_minimal()</code></strong>: Menggunakan tema minimal untuk plot, yang memberikan tampilan yang bersih dan profesional.</p></li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb11-1" tabindex="-1"></a><span class="fu">fviz_cluster</span>(<span class="fu">list</span>(<span class="at">data =</span> df, <span class="at">cluster =</span> grp),</span>
-<span id="cb11-2"><a href="6.2-eksperimen-agglomerative-clustering.html#cb11-2" tabindex="-1"></a><span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#E7B800&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>),</span>
-<span id="cb11-3"><a href="6.2-eksperimen-agglomerative-clustering.html#cb11-3" tabindex="-1"></a><span class="at">ellipse.type =</span> <span class="st">&quot;convex&quot;</span>,</span>
-<span id="cb11-4"><a href="6.2-eksperimen-agglomerative-clustering.html#cb11-4" tabindex="-1"></a><span class="at">repel =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb11-5"><a href="6.2-eksperimen-agglomerative-clustering.html#cb11-5" tabindex="-1"></a><span class="at">show.clust.cent =</span> <span class="cn">FALSE</span>, <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="6.2-eksperimen-agglomerative-clustering.html#cb10-1" tabindex="-1"></a><span class="fu">fviz_cluster</span>(<span class="fu">list</span>(<span class="at">data =</span> df, <span class="at">cluster =</span> grp),</span>
+<span id="cb10-2"><a href="6.2-eksperimen-agglomerative-clustering.html#cb10-2" tabindex="-1"></a><span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#E7B800&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>),</span>
+<span id="cb10-3"><a href="6.2-eksperimen-agglomerative-clustering.html#cb10-3" tabindex="-1"></a><span class="at">ellipse.type =</span> <span class="st">&quot;convex&quot;</span>,</span>
+<span id="cb10-4"><a href="6.2-eksperimen-agglomerative-clustering.html#cb10-4" tabindex="-1"></a><span class="at">repel =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb10-5"><a href="6.2-eksperimen-agglomerative-clustering.html#cb10-5" tabindex="-1"></a><span class="at">show.clust.cent =</span> <span class="cn">FALSE</span>, <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
 <img src="06-ch6_files/figure-html/unnamed-chunk-10-1.png" alt="Visualisasi Hasil CLustering" width="80%" />
 <p class="caption">
@@ -875,7 +937,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["CLUSTR.pdf"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null

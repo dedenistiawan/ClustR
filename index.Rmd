@@ -77,7 +77,7 @@ Bisnis Muhammadiyah <br> Semarang, Indonesia <br>
 cat('<hr style="background-color:#3C6690;height:2px">')
 ```
 
-Analisis *cluster* merupakan teknik yang sangat penting dalam bidang data
+Analisis cluster merupakan teknik yang sangat penting dalam bidang data
 science, karena kemampuannya untuk mengelompokkan data berdasarkan
 kesamaan karakteristik. Dengan mengelompokkan objek atau data, analisis
 cluster membantu mengidentifikasi pola yang mungkin tidak terlihat

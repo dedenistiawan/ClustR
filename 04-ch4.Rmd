@@ -145,7 +145,7 @@ ggplot(data, aes(x = x, y = y)) +
   theme_minimal()
 ```
 
-### 4. Mencari Jumlah CLluster Optimal {-}
+### 4. Mencari Jumlah Cluster Optimal {-}
 Visualisasi jumlah klaster yang optimal dilakukan menggunakan metode silhouette dengan paket `cluster` dan `factoextra` di R. Fungsi `fviz_nbclust()` digunakan untuk menilai jumlah klaster terbaik berdasarkan metode yang dipilih, dalam hal ini menggunakan algoritma `clara` (Clustering Large Applications). Metode silhouette mengukur seberapa baik setiap objek dipisahkan dari klaster lain, dengan nilai yang lebih tinggi menunjukkan pemisahan yang lebih baik. Parameter `method = "silhouette"` mengindikasikan bahwa visualisasi menggunakan metode tersebut. Hasilnya akan memperlihatkan grafik yang menggambarkan nilai rata-rata silhouette untuk berbagai jumlah klaster. Terakhir, fungsi `theme_classic()` diterapkan untuk memberikan tampilan plot yang bersih dan sederhana. Grafik ini dapat membantu dalam menentukan jumlah klaster yang paling sesuai dengan data berdasarkan evaluasi kualitas pemisahan antar klaster.
 
 ```{r warning=FALSE, message=FALSE, fig.cap='Jumlah Cluster Optimal', out.width='80%', fig.asp=.75, fig.align='center'}

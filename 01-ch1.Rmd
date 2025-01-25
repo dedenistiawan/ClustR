@@ -21,198 +21,63 @@ text-align: justify}
 >
 > -- Tyrion Lannister-Game of Thrones
 
-`r ttcode("R")` adalah bahasa pemrograman dan perangkat lunak yang
-dirancang khusus untuk keperluan analisis data, pengolahan statistik,
-dan visualisasi. Bahasa ini menawarkan fleksibilitas untuk menulis kode
-guna menjalankan berbagai metode analisis statistik, mulai dari
-deskriptif hingga prediktif. Sebagai perangkat lunak, R menyediakan
-lingkungan interaktif untuk eksplorasi data, pengolahan, serta pembuatan
-laporan yang informatif.
+`r ttcode("R")` adalah bahasa pemrograman dan perangkat lunak yang dirancang khusus untuk keperluan analisis data, pengolahan statistik, dan visualisasi data. Bahasa ini menawarkan fleksibilitas untuk menulis kode guna menjalankan berbagai metode analisis statistik, mulai dari analisis statistik deskriptif hingga prediktif. Sebagai perangkat lunak, `r ttcode("R")` menyediakan lingkungan interaktif untuk eksplorasi data, pengolahan, serta pembuatan laporan yang informatif. Kemampuan ini diperkuat dengan paket visualisasi yang sangat kaya seperti `ggplot2`, `lattice`, dan `plotly`, yang memungkinkan pengguna membuat grafik berkualitas tinggi. `r ttcode("R")` tidak hanya membantu menganalisis data tetapi juga memvisualisasikannya dengan cara yang interaktif dan estetis, sehingga dapat menggali wawasan yang lebih dalam.
+`r ttcode("R")` pertama kali dikembangkan pada awal 1990-an oleh **Ross Ihaka dan Robert Gentleman** di University of Auckland, Selandia Baru. Proyek ini terinspirasi oleh bahasa pemrograman `r ttcode("S")` yang dikembangkan oleh John Chambers di Bell Laboratories. Pada tahun 1995, `r ttcode("R")` dirilis sebagai perangkat lunak open source, sehingga memungkinkan pengembang di seluruh dunia untuk berkontribusi dalam pengembangannya.
 
-`r ttcode("R")` pertama kali dikembangkan pada awal 1990-an oleh Ross
-Ihaka dan Robert Gentleman di University of Auckland, Selandia Baru.
-Proyek ini terinspirasi oleh bahasa pemrograman S yang dikembangkan oleh
-John Chambers di Bell Laboratories. Pada tahun 1995, `r ttcode("R")`
-dirilis sebagai perangkat lunak open source, sehingga memungkinkan
-pengembang di seluruh dunia untuk berkontribusi dalam pengembangannya.
+Sejak itu, `r ttcode("R")` berkembang pesat dengan ribuan paket yang tersedia di **[CRAN]**(https://cran.r-project.org/) (Comprehensive R Archive Network) serta repositori lainnya. Dukungan komunitas dan kontribusi aktif dari pengembang di seluruh dunia telah menjadikan `r ttcode("R")` sebagai bahasa yang terus berevolusi untuk memenuhi kebutuhan analisis data modern. `r ttcode("R")` memiliki salah satu komunitas pengguna paling aktif di dunia. Komunitas ini terdiri dari akademisi, peneliti, praktisi industri, hingga pengembang perangkat lunak. Forum diskusi seperti **RStudio Community**, Stack Overflow, dan mailing list `r ttcode("R")` membantu pengguna menyelesaikan masalah serta berbagi ide.
 
-Sejak itu, `r ttcode("R")` berkembang pesat dengan ribuan paket yang
-tersedia di [CRAN](https://cran.r-project.org/) (Comprehensive R Archive
-Network) serta repositori lainnya. Dukungan komunitas dan kontribusi
-aktif dari pengembang di seluruh dunia telah menjadikan `r ttcode("R")`
-sebagai bahasa yang terus berevolusi untuk memenuhi kebutuhan analisis
-data modern.
+Ekosistem `r ttcode("R")` terus berkembang dengan adanya **[RStudio]** (https://posit.co/download/rstudio-desktop/) sebagai Integrated Development Environment (IDE) yang populer. Selain itu, repositori paket seperti CRAN dan **[Bioconductor]** (https://www.bioconductor.org/). Bioconductor adalah sebuah platform perangkat lunak untuk analisis data genomik yang kompleks, dikembangkan khusus untuk mendukung penelitian dalam bioinformatika dan biologi komputasi. Dibangun di atas bahasa pemrograman R, Bioconductor menyediakan berbagai paket yang dirancang untuk analisis data omics, seperti genomik, proteomik, dan metabolomik. Dukungan komunitas yang besar, dokumentasi yang melimpah, dan
+ketersediaan sumber daya membuat `r ttcode("R")` menjadi alat yang mudah diakses oleh pemula sekaligus sangat berguna bagi pengguna tingkat lanjut.
 
-`r ttcode("R")` memiliki salah satu komunitas pengguna paling aktif di
-dunia. Komunitas ini terdiri dari akademisi, peneliti, praktisi
-industri, hingga pengembang perangkat lunak. Forum diskusi seperti
-RStudio Community, Stack Overflow, dan mailing list `r ttcode("R")`
-membantu pengguna menyelesaikan masalah serta berbagi ide.
+`r ttcode("R")` dapat diintegrasikan dengan berbagai bahasa pemrograman lain, seperti Python, C++, Java, dan SQL. Kompatibilitas ini memungkinkan pengguna untuk menggabungkan kekuatan masing-masing bahasa dalam satu proyek. Misalnya, pengguna dapat memanfaatkan Python untuk
+preprocessing data skala besar, kemudian menggunakan `r ttcode("R")` untuk analisis statistik mendalam dan visualisasi. Selain itu, `r ttcode("R")` juga mendukung integrasi dengan berbagai perangkat lunak lain seperti Excel, Tableau, dan Power BI, membuatnya menjadi bagian penting dalam alur kerja data modern.
 
-Ekosistem `r ttcode("R")` terus berkembang dengan adanya **RStudio**
-sebagai Integrated Development Environment (IDE) yang populer, serta
-berbagai konferensi seperti useR! yang mempertemukan pengguna R dari
-seluruh dunia. Selain itu, repositori paket seperti CRAN dan
-Bioconductor menyediakan ribuan alat tambahan untuk berbagai kebutuhan
-analisis.Dukungan komunitas yang besar, dokumentasi yang melimpah, dan
-ketersediaan sumber daya membuat `r ttcode("R")` menjadi alat yang mudah
-diakses oleh pemula sekaligus sangat berguna bagi pengguna tingkat
-lanjut.
+`r ttcode("R")` telah menjadi alat yang sangat populer di berbagai bidang, berkat fleksibilitasnya dalam menangani analisis data. Beberapa bidang utama yang banyak memanfaatkan `r ttcode("R")` antara lain:
 
-`r ttcode("R")` adalah perangkat lunak open source yang sepenuhnya
-gratis untuk digunakan oleh siapa saja. Tidak seperti beberapa perangkat
-lunak statistik lainnya yang membutuhkan biaya lisensi mahal,
-`r ttcode("R")` memberikan fleksibilitas bagi pengguna untuk
-mendownload, menginstal, dan memodifikasi kode sumbernya tanpa batasan.
-Hal ini menjadikan `r ttcode("R")` pilihan ideal bagi akademisi,
-peneliti, dan praktisi yang ingin menghemat biaya sekaligus mendapatkan
-alat analisis data yang andal.
+-   **Statistik:** `r ttcode("R")` digunakan untuk berbagai jenis analisis statistik, seperti uji hipotesis, analisis regresi, dan analisis multivariat.
 
-`r ttcode("R")` dirancang khusus untuk analisis statistik dan pengolahan
-data, dengan dukungan bawaan untuk berbagai metode analisis, mulai dari
-deskriptif hingga prediktif. Kemampuan ini diperkuat dengan pustaka
-visualisasi yang sangat kaya seperti `ggplot2`, `lattice`, dan `plotly`,
-yang memungkinkan pengguna membuat grafik berkualitas tinggi.
-`r ttcode("R")` tidak hanya membantu menganalisis data tetapi juga
-memvisualisasikannya dengan cara yang interaktif dan estetis, sehingga
-dapat menggali wawasan yang lebih dalam.
+-   **Data Science:** `r ttcode("R")` digunakan untuk eksplorasi data, pembuatan model prediktif, dan pengolahan data besar.
 
-Ekosistem `r ttcode("R")` sangat kaya dengan ribuan pustaka atau paket
-tambahan yang tersedia di [CRAN](https://cran.r-project.org/)
-(Comprehensive R Archive Network), Bioconductor, dan repositori lainnya.
-Paket-paket ini mencakup berbagai bidang aplikasi, seperti analisis
-genetik, analisis spasial, pengolahan teks, hingga machine learning.
-Dengan pustaka ini, pengguna dapat dengan mudah memperluas fungsi
-`r ttcode("R")` untuk memenuhi kebutuhan spesifik mereka tanpa harus
-menulis kode dari awal.
+-   **Biologi dan Bioinformatika:** Paket seperti `Bioconductor` memungkinkan analisis data genomik dan proteomik.
 
-`r ttcode("R")` dapat diintegrasikan dengan berbagai bahasa pemrograman
-lain, seperti Python, C++, Java, dan SQL. Kompatibilitas ini
-memungkinkan pengguna untuk menggabungkan kekuatan masing-masing bahasa
-dalam satu proyek. Misalnya, pengguna dapat memanfaatkan Python untuk
-preprocessing data skala besar, kemudian menggunakan `r ttcode("R")`
-untuk analisis statistik mendalam dan visualisasi. Selain itu,
-`r ttcode("R")` juga mendukung integrasi dengan berbagai perangkat lunak
-lain seperti Excel, Tableau, dan Power BI, membuatnya menjadi bagian
-penting dalam alur kerja data modern.
+-   **Ekonomi dan Keuangan:** `r ttcode("R")` digunakan untuk analisis time series, pemodelan risiko, dan optimasi portofolio.
 
-`r ttcode("R")` telah menjadi alat yang sangat populer di berbagai
-bidang, berkat fleksibilitasnya dalam menangani analisis data. Beberapa
-bidang utama yang banyak memanfaatkan `r ttcode("R")` antara lain:
+-   **Ilmu Sosial**: `r ttcode("R")` membantu dalam analisis survei, data panel, dan analisis konten.
 
--   **Statistik:** `r ttcode("R")` digunakan untuk berbagai jenis
-    analisis statistik, seperti uji hipotesis, analisis regresi, dan
-    analisis multivariat.
+`r ttcode("R")` dirancang khusus untuk analisis statistik, membuatnya menjadi salah satu alat terbaik untuk keperluan ini. Selain itu, `r ttcode("R")` menyediakan banyak metode untuk data mining, seperti clustering, classification, dan association rule mining. Dukungan
+paket seperti `caret` untuk machine learning dan `tm` untuk analisis teks menjadikan `r ttcode("R")` alat yang sangat andal dalam data mining dan pengolahan data tidak terstruktur. Selain itu, paket `bookdown` menjadi alat utama dalam proyek ini. Paket
+ini berbasis rmarkdown dan memberikan kemudahan untuk membuat dokumen yang menarik, seperti halaman web interaktif, e-book, dan laporan dalam format PDF. Dengan fitur yang memungkinkan integrasi antara teks, kode, dan hasil analisis, bookdown sangat cocok digunakan untuk pembelajaran dan dokumentasi ilmiah.
 
--   **Ilmu Data:** `r ttcode("R")` digunakan untuk eksplorasi data,
-    pembuatan model prediktif, dan pengolahan data besar.
+Dengan menggunakan paket `bookdown` , kami menyusun sebuah buku berjudul *Analisis Cluster dengan R: Panduan Lengkap untuk Pemula*. Buku ini dirancang sebagai panduan interaktif yang menggabungkan teori, kode, dan hasil analisis dalam satu kesatuan. Tujuannya adalah menyediakan bahan belajar elektronik yang dapat diakses di berbagai platform, sehingga pembaca dapat memahami teori sekaligus mempraktikkan analisis data secara langsung. Buku ini diharapkan menjadi panduan lengkap bagi pemula untuk mempelajari analisis cluster dengan pendekatan yang mudah dipahami dan terstruktur.
 
--   **Biologi dan Bioinformatika:** Paket seperti `Bioconductor`
-    memungkinkan analisis data genomik dan proteomik.
+Setiap bab dalam buku ini dilengkapi dengan latihan pemrograman interaktif menggunakan `r ttcode("R")`. Latihan-latihan ini dirancang untuk melengkapi contoh kode yang menunjukkan penerapan algoritma clustering yang dibahas. Latihan dibuat dengan menggunakan [DataCamp light
+widget](https://github.com/datacamp/datacamp-light) yang terhubung langsung ke sesi `r ttcode("R")` yang dikelola oleh server **DataCamp**.
 
--   **Ekonomi dan Keuangan:** `r ttcode("R")` digunakan untuk analisis
-    time series, pemodelan risiko, dan optimasi portofolio.
-
--   **Ilmu Sosial**: `r ttcode("R")` membantu dalam analisis survei,
-    data panel, dan analisis konten.
-
-`r ttcode("R")` dirancang khusus untuk analisis statistik, membuatnya
-menjadi salah satu alat terbaik untuk keperluan ini. Selain itu,
-`r ttcode("R")` menyediakan banyak metode untuk data mining, seperti
-clustering, classification, dan association rule mining. Dukungan
-pustaka seperti caret untuk pembelajaran mesin dan tm untuk analisis
-teks menjadikan `r ttcode("R")` alat yang sangat andal dalam penggalian
-data (data mining) dan pengolahan data tidak terstruktur.
-
-Selain itu, paket `bookdown` menjadi alat utama dalam proyek ini. Paket
-ini berbasis rmarkdown dan memberikan kemudahan untuk membuat dokumen
-yang menarik, seperti halaman web interaktif, e-book, dan laporan dalam
-format PDF. Dengan fitur yang memungkinkan integrasi antara teks, kode,
-dan hasil analisis, bookdown sangat cocok digunakan untuk pembelajaran
-dan dokumentasi ilmiah.
-
-Dengan menggunakan alat ini, kami menyusun sebuah buku berjudul
-*Analisis Cluster dengan R: Panduan Lengkap untuk Pemula*. Buku ini
-dirancang sebagai panduan interaktif yang menggabungkan teori, kode, dan
-hasil analisis dalam satu kesatuan. Tujuannya adalah menyediakan bahan
-belajar elektronik yang dapat diakses di berbagai platform, sehingga
-pembaca dapat memahami teori sekaligus mempraktikkan analisis data
-secara langsung. Buku ini diharapkan menjadi panduan lengkap bagi pemula
-untuk mempelajari analisis cluster dengan pendekatan yang mudah dipahami
-dan terstruktur.
-
-Setiap bab dalam buku ini dilengkapi dengan latihan pemrograman
-interaktif menggunakan `r ttcode("R")`. Latihan-latihan ini dirancang
-untuk melengkapi contoh kode yang menunjukkan penerapan teknik-teknik
-yang dibahas. Latihan dibuat dengan menggunakan [DataCamp light
-widget](https://github.com/datacamp/datacamp-light) yang terhubung
-langsung ke sesi `r ttcode("R")` yang dikelola oleh server DataCamp.
-
-Melalui pendekatan ini, pembaca dapat langsung mencoba dan bereksperimen
-dengan latihan yang disediakan, sehingga pemahaman mereka terhadap
-metode yang dipelajari dapat lebih mendalam. Kami berharap metode ini
-dapat memberikan pengalaman belajar yang menyeluruh dan menarik,
-terutama bagi pembaca yang ingin mempelajari analisis cluster
-menggunakan `r ttcode("R")` secara praktis.
+Melalui pendekatan ini, pembaca dapat langsung mencoba dan bereksperimen dengan latihan yang disediakan, sehingga pemahaman mereka terhadap metode yang dipelajari dapat lebih mendalam. Kami berharap metode ini dapat memberikan pengalaman belajar yang menyeluruh dan menarik, terutama bagi pembaca yang ingin mempelajari analisis cluster menggunakan `r ttcode("R")` secara praktis.
 
 <iframe src="DCL/intro_1.html" frameborder="0" scrolling="no" style="width:100%;height:360px">
 
 </iframe>
 
-Widget ini terdiri dari dua tab. Tab pertama, `r ttcode("script.R")`,
-berfungsi seperti file dengan format `r ttcode(".R")`, yang umum
-digunakan untuk menyimpan kode `r ttcode("R")`. Baris yang diawali
-dengan tanda \# merupakan komentar, yang tidak dihitung sebagai kode
-oleh `r ttcode("R")`. Tab `script.R` ini berfungsi seperti lembar
-latihan, di mana Anda dapat menuliskan solusi Anda. Setelah menulis
-kode, Anda bisa menekan tombol *Run* untuk menjalankannya. Sistem akan
-menguji kebenaran solusi yang Anda buat dan memberi tahu apakah solusi
-tersebut benar. Jika salah, Anda akan mendapatkan umpan balik berupa
-saran atau petunjuk perbaikan.
+Widget ini terdiri dari dua tab. Tab pertama, `r ttcode("script.R")`, berfungsi seperti file dengan format `r ttcode(".R")`, yang umum digunakan untuk menyimpan kode `r ttcode("R")`. Baris yang diawali dengan tanda \# merupakan komentar, yang tidak dihitung sebagai kode oleh `r ttcode("R")`. Tab `script.R` ini berfungsi seperti lembar latihan, di mana Anda dapat menuliskan solusi Anda. Setelah menulis kode, Anda bisa menekan tombol *Run* untuk menjalankannya. Sistem akan menguji kebenaran solusi yang Anda buat dan memberi tahu apakah solusi tersebut benar. Jika salah, Anda akan mendapatkan umpan balik berupa saran atau petunjuk perbaikan.
 
-Tab kedua, `r ttcode("R Console")`, adalah konsol `r ttcode("R")` yang
-sepenuhnya berfungsi, yang memungkinkan Anda mencoba solusi terlebih
-dahulu sebelum mengirimkannya. Anda juga bisa mengirimkan hampir semua
-kode R ke konsol untuk bereksperimen dan mengeksplorasi lebih lanjut.
-Cukup ketikkan perintah dan tekan *Enter* untuk menjalankannya.
+Tab kedua, `r ttcode("R Console")`, adalah konsol `r ttcode("R")` yang sepenuhnya berfungsi, yang memungkinkan Anda mencoba solusi terlebih dahulu sebelum mengirimkannya. Anda juga bisa mengirimkan hampir semua kode R ke konsol untuk bereksperimen dan mengeksplorasi lebih lanjut. Cukup ketikkan perintah dan tekan *Enter* untuk menjalankannya.
 
-Pada konsol, Anda akan melihat simbol <tt>\></tt> di panel kanan
-(konsol). Simbol ini disebut "prompt" dan menandakan bahwa pengguna
-dapat mulai memasukkan kode untuk dijalankan. Agar tidak membingungkan,
-simbol ini tidak akan ditampilkan di buku ini. Output yang dihasilkan
-oleh kode `r ttcode("R")` akan diberi komentar dengan <tt>#\></tt>.
+Pada konsol, Anda akan melihat simbol <tt>\></tt> di panel kanan (konsol). Simbol ini disebut **prompt** dan menandakan bahwa pengguna dapat mulai memasukkan kode untuk dijalankan. Agar tidak membingungkan, simbol ini tidak akan ditampilkan di buku ini. Output yang dihasilkan oleh kode `r ttcode("R")` akan diberi komentar dengan <tt>#\></tt>.
 
-Biasanya, kami menampilkan kode `r ttcode("R")` bersama dengan output
-yang dihasilkan dalam satu potongan kode. Sebagai contoh, perhatikan
-baris kode berikut yang ditampilkan dalam potongan di bawah ini. Kode
-ini memberi perintah kepada `r ttcode("R")` untuk menghitung jumlah
-paket yang tersedia di CRAN. Potongan kode tersebut diikuti oleh output
-yang dihasilkan.
+Biasanya, kami menampilkan kode `r ttcode("R")` bersama dengan output yang dihasilkan dalam satu potongan kode. Sebagai contoh, perhatikan baris kode berikut yang ditampilkan dalam potongan di bawah ini. Kode ini memberi perintah kepada `r ttcode("R")` untuk menghitung jumlah
+paket yang tersedia di **CRAN**. Potongan kode tersebut diikuti oleh output yang dihasilkan.
 
 ```{r}
 # Cek jumlah paket R yang tersedia di CRAN
 nrow(available.packages(repos = "http://cran.us.r-project.org"))
 ```
 
-Setiap potongan kode dilengkapi dengan tombol di sisi kanan yang
-memungkinkan Anda menyalin kode ke clipboard. Fitur ini mempermudah
-pekerjaan dengan segmen kode yang lebih besar, baik di versi
-<tt>R</tt>/*RStudio* Anda maupun di widget-widget yang ada di sepanjang
-buku ini. Pada widget di atas, Anda bisa mengklik tab
-`r ttcode("R Console")` dan mengetikkan perintah
-`nrow(available.packages(repos = "http://cran.us.r-project.org"))`
-(perintah dari potongan kode di atas), lalu menjalankannya dengan
-menekan tombol *Enter* pada keyboard Anda.
+Setiap potongan kode dilengkapi dengan tombol di sisi kanan yang memungkinkan Anda menyalin kode ke clipboard. Fitur ini mempermudah pekerjaan dengan segmen kode yang lebih besar, baik di versi <tt>R</tt>/*RStudio* Anda maupun di widget-widget yang ada di sepanjang
+buku ini. Pada widget di atas, Anda bisa mengklik tab `r ttcode("R Console")` dan mengetikkan perintah `nrow(available.packages(repos = "http://cran.us.r-project.org"))`
+(perintah dari potongan kode di atas), lalu menjalankannya dengan menekan tombol *Enter* pada keyboard Anda.
 
-Setiap potongan kode dilengkapi dengan tombol di sisi kanan luar yang
-memungkinkan Anda menyalin kode ke clipboard Anda. Ini membuat pekerjaan
-dengan segmen kode yang lebih besar menjadi lebih nyaman, baik di versi
-<tt>R</tt>/*RStudio* Anda maupun di widget-widget yang disajikan di
-sepanjang buku ini. Pada widget di atas, Anda dapat mengklik tab
-`r ttcode("R Console")` Console dan mengetikkan
-`nrow(available.packages(repos = "http://cran.us.r-project.org"))`
-(perintah dari potongan kode di atas) dan menjalankannya dengan menekan
-tombol *Enter* pada keyboard Anda. [^01-ch1-1]
+Setiap potongan kode dilengkapi dengan tombol di sisi kanan luar yang memungkinkan Anda menyalin kode ke clipboard Anda. Ini membuat pekerjaan dengan segmen kode yang lebih besar menjadi lebih nyaman, baik di versi <tt>R</tt>/*RStudio* Anda maupun di widget-widget yang disajikan di sepanjang buku ini. Pada widget di atas, Anda dapat mengklik tab `r ttcode("R Console")` Console dan mengetikkan `nrow(available.packages(repos = "http://cran.us.r-project.org"))` (perintah dari potongan kode di atas) dan menjalankannya dengan menekan tombol *Enter* pada keyboard Anda. [^01-ch1-1]
 
 [^01-ch1-1]: Sesi `r ttcode("R")` akan diinisialisasi dengan mengklik
     widget. Proses ini mungkin memakan waktu beberapa detik. Cukup
@@ -221,9 +86,7 @@ tombol *Enter* pada keyboard Anda. [^01-ch1-1]
 
 ## Kolofon
 
-Buku ini ditulis menggunakan [bookdown](http://bookdown.org/) di dalam
-[RStudio](http://www.rstudio.com/ide/). Seluruh kode sumbernya dapat
-diakses di [GitHub](https://github.com/dedenistiawan/ClustR).
+Buku ini ditulis menggunakan [bookdown](http://bookdown.org/) di dalam [RStudio](http://www.rstudio.com/ide/). Seluruh kode sumbernya dapat diakses di [GitHub](https://github.com/dedenistiawan/ClustR).
 
 ```{r, echo = FALSE}
 sessioninfo::session_info()

@@ -2,7 +2,7 @@
 title: "Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R"
 cover-image: "images/cover.png"
 author: "Deden Istiawan"
-date: "2025-01-22"
+date: "2025-01-25"
 site: bookdown::bookdown_site
 output:
   bookdown::pdf_book:
@@ -77,11 +77,11 @@ text-align: justify}
 Bisnis Muhammadiyah <br> Semarang, Indonesia <br>
 <a href=\"mailto:deden.istiawan@itesa.ac.id?subject=Clustering%20with%20R\">[deden.istiawan\@itesa.ac.id](mailto:deden.istiawan@itesa.ac.id){.email}.</a>
 <br><br>
-Last updated on Wednesday, January 22, 2025.
+Last updated on Saturday, January 25, 2025.
 
 <hr style="background-color:#3C6690;height:2px">
 
-Analisis *cluster* merupakan teknik yang sangat penting dalam bidang data
+Analisis cluster merupakan teknik yang sangat penting dalam bidang data
 science, karena kemampuannya untuk mengelompokkan data berdasarkan
 kesamaan karakteristik. Dengan mengelompokkan objek atau data, analisis
 cluster membantu mengidentifikasi pola yang mungkin tidak terlihat
