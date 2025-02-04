@@ -1,4 +1,6 @@
-# Possibilistic Fuzzy C-Means {#pfcm}
+# (PART) Pendekatan Fuzzy {-}
+
+# Algoritma Fuzzy C-Means {#fcm}
 
 ```{=html}
 <style>
@@ -10,157 +12,177 @@ text-align: justify}
 ```{r, child="_setup.Rmd"}
 ```
 
-Algoritma Possibilistic Fuzzy C-Means (PFCM) merupakan salah satu metode pengelompokan yang menggabungkan kekuatan dari Fuzzy C-Means (FCM) dengan pendekatan possibilistic. Algoritma ini dirancang untuk menangani ketidakpastian dalam data, terutama ketika data tersebut mengandung noise atau outlier. Dalam konteks ini, PFCM menawarkan pendekatan yang lebih robust dibandingkan dengan FCM, di mana setiap data tidak hanya memiliki derajat keanggotaan dalam cluster tertentu tetapi juga nilai kekhasan yang menunjukkan seberapa khas data tersebut terhadap cluster yang bersangkutan [@Grover2014] [@Suganya2012].
+Algoritma fuzzy c-means (FCM) merupakan salah satu metode clustering yang banyak digunakan dalam analisis data dan pengolahan citra. Berbeda dengan algoritma clustering tradisional seperti k-means, yang mengelompokkan data ke dalam cluster yang jelas dan tegas, FCM memberikan fleksibilitas dengan memungkinkan setiap data untuk memiliki derajat keanggotaan pada lebih dari satu cluster. Hal ini menjadikan FCM sangat berguna dalam situasi di mana batasan antara cluster tidak dapat ditentukan dengan jelas [@bezdek1981pattern].
 
-Konsep dasar dari PFCM adalah bahwa setiap titik data memiliki dua parameter: derajat keanggotaan dan derajat kekhasan. Derajat keanggotaan menunjukkan seberapa besar kemungkinan suatu titik data termasuk dalam cluster tertentu, sementara derajat kekhasan menunjukkan seberapa unik atau khas titik data tersebut dibandingkan dengan titik data lainnya dalam cluster. Dengan cara ini, PFCM dapat mengurangi dampak dari outlier yang sering kali mempengaruhi hasil clustering pada algoritma FCM tradisional [@Kusumadewi2006] [@Chaudhuri2015].
+FCM pertama kali diperkenalkan oleh Bezdek pada tahun 1981 dan sejak saat itu telah banyak diterapkan dalam berbagai bidang, termasuk pengolahan citra, pengenalan pola, dan analisis data multidimensi. Metode ini bekerja dengan meminimalkan fungsi objektif yang mengukur kesalahan antara data dan pusat cluster, dengan mempertimbangkan derajat keanggotaan setiap data terhadap cluster yang ada. Proses ini dilakukan secara iteratif hingga konvergensi tercapai, di mana perubahan pusat cluster dan derajat keanggotaan menjadi sangat kecil [@dunn1973fuzzy].
 
-PFCM bekerja dengan cara iteratif, di mana pusat cluster diperbarui berdasarkan nilai keanggotaan dan kekhasan dari setiap titik data. Proses ini berlanjut hingga konvergensi tercapai, yaitu ketika perubahan dalam pusat cluster dan nilai keanggotaan menjadi sangat kecil. Dengan demikian, algoritma ini tidak hanya fokus pada pengelompokan data tetapi juga pada pemahaman karakteristik unik dari setiap cluster yang terbentuk [@Bora2014].
+Salah satu keunggulan FCM adalah kemampuannya untuk menangani data yang memiliki noise atau outlier. Dalam banyak aplikasi dunia nyata, data sering kali tidak bersih dan mengandung kesalahan pengukuran. Dengan menggunakan derajat keanggotaan, FCM dapat mengurangi pengaruh data yang tidak representatif terhadap hasil clustering, sehingga menghasilkan model yang lebih robust dan akurat [@pal1995cluster].
 
-Keunggulan utama dari PFCM adalah kemampuannya untuk mengatasi masalah pengelompokan pada dataset yang kompleks dan noisy. Hal ini menjadikannya pilihan yang baik untuk berbagai aplikasi, mulai dari analisis citra hingga pengelompokan teks dan analisis pasar. Penelitian menunjukkan bahwa PFCM dapat memberikan hasil yang lebih akurat dibandingkan dengan FCM dalam situasi di mana terdapat banyak noise dalam data [@Phukon2013].
+Namun, meskipun FCM memiliki banyak kelebihan, algoritma ini juga memiliki beberapa kelemahan. Salah satunya adalah ketergantungan pada pemilihan jumlah cluster yang tepat, yang dapat mempengaruhi hasil akhir. Selain itu, FCM juga dapat menjadi sensitif terhadap inisialisasi pusat cluster, yang dapat menyebabkan hasil yang berbeda pada setiap iterasi [@huang1998extensions]. Oleh karena itu, penelitian lebih lanjut diperlukan untuk mengembangkan metode yang dapat mengatasi masalah ini.
 
-Secara keseluruhan, algoritma Possibilistic Fuzzy C-Means merupakan inovasi penting dalam bidang clustering yang menawarkan solusi efektif untuk tantangan pengelompokan data yang tidak jelas batasannya. Dengan menggabungkan konsep fuzzy dan possibilistic, PFCM memberikan pendekatan yang lebih kaya dan informatif dalam analisis cluster, sehingga dapat digunakan secara luas dalam berbagai disiplin ilmu dan aplikasi praktis [@Dwi2017].
+Dalam konteks perkembangan teknologi dan kebutuhan analisis data yang semakin kompleks, FCM tetap menjadi salah satu metode yang relevan dan banyak digunakan. Penelitian dan pengembangan lebih lanjut dalam algoritma ini diharapkan dapat meningkatkan kinerjanya dan memperluas aplikasinya di berbagai bidang, termasuk kecerdasan buatan dan analisis big data. Dengan demikian, pemahaman yang mendalam tentang FCM dan aplikasinya sangat penting bagi para peneliti dan praktisi di bidang ini.
 
-Algoritma **Possibilistic Fuzzy C-Means (PFCM)** diperkenalkan oleh Pal et al. (2005) sebagai pengembangan dari algoritma Fuzzy Possibilistic C-Means (FPCM). Salah satu kelemahan utama FPCM adalah adanya kendala bahwa jumlah seluruh nilai typicality dari semua data pada satu klaster harus sama dengan satu, yang dapat menyebabkan masalah, terutama pada dataset yang besar. Untuk mengatasi kendala ini, PFCM memodifikasi fungsi objektifnya seperti berikut.
+Klastering dengan algoritma Fuzzy C-Means didasarkan pada teori logika fuzzy yang diperkenalkan oleh Lotfi Zadeh pada tahun 1965 dengan nama himpunan fuzzy (fuzzy set). Fuzzy C-Means Clustering pertama kali diperkenalkan oleh Dun pada (1973) dan diperbaiki oleh Bezdek [@bezdek1981pattern] . Dalam teori fuzzy, keangotaan sebuah data diberikan dengan suatu nilai derajat keanggotaan yang jangkauan nilainya 0 sampai 1. Semakin tinggi nilai derajat keanggotaannya maka semakin tinggi nilai keanggotaan sebuah data dalam suatu kelompok dan semakin kecil nilai derajat keanggotaannya maka semakin rendah nilai keanggotaan sebuah data dalam suatu kelompok.
 
-### Fungsi Objektif {.unnumbered}
+## Tahapan Algoritma Fuzzy C-Means
 
-Fungsi objektif PFCM didefinisikan sebagai:
+```{=html}
+<style>
+body{
+text-align: justify}
+</style>
+```
 
-$$
-J_{PFCM}(\mathbf{X}; \mathbf{V}, \mathbf{U}, \mathbf{T}) = \sum_{j=1}^k \sum_{i=1}^n \left( a \; u_{ij}^m + b \; t_{ij}^\eta \right) d^2(\vec{x}_i, \vec{v}_j) + \sum_{j=1}^k \Omega_j \sum_{i=1}^n (1-t_{ij})^\eta
-$$
+### 1. Inisialisasi Parameter {-}  
+Tentukan jumlah cluster (*c*), parameter pembobot (*m*, biasanya \(m > 1\)), toleransi error (\(\epsilon\)), dan maksimum iterasi.
 
-Di mana:
+### 2. Inisialisasi Matriks Keanggotaan {-}
+Buat matriks keanggotaan awal (\(U^{(0)}\)) secara acak. Matriks ini memiliki ukuran \(N \times c\), di mana \(N\) adalah jumlah data, dan \(c\) adalah jumlah cluster. Pastikan bahwa \(\sum_{j=1}^c u_{ij} = 1\) untuk setiap data \(i\).
 
--   $a$ dan $b$: Koefisien untuk menentukan tingkat kepentingan relatif antara keanggotaan fuzzy ($u$) dan nilai typicality ($t$) ($a > 0, b > 0$).
+### 3. Perhitungan Pusat Cluster {-}
+Hitung pusat cluster (\(v_k\)) untuk setiap cluster \(k\) menggunakan rumus:
+     $$
+     v_k = \frac{\sum_{i=1}^N u_{ik}^m x_i}{\sum_{i=1}^N u_{ik}^m}
+     $$
+di mana \(u_{ik}\) adalah nilai keanggotaan data \(i\) pada cluster \(k\) dan \(x_i\) adalah data ke-\(i\).
 
--   $m$: Parameter fuzzifier yang mengontrol tingkat kekaburan ($m \geq 1$, biasanya $m = 2$).
+### 4. Perbarui Matriks Keanggotaan {-}
+Hitung matriks keanggotaan baru (\(U^{(t+1)}\)) dengan rumus:
+     $$
+     u_{ik} = \frac{1}{\sum_{j=1}^c \left( \frac{\|x_i - v_k\|}{\|x_i - v_j\|} \right)^{\frac{2}{m-1}}}
+     $$
+di mana \(\|x_i - v_k\|\) adalah jarak antara data \(i\) dan pusat cluster \(k\).
 
--   $\eta$: Eksponen typicality yang mengontrol tingkat typicality ($\eta \geq 1$, biasanya $\eta = 2$).
+### 5. Evaluasi Konvergensi {-}
+Hitung perubahan matriks keanggotaan (\(\|U^{(t+1)} - U^{(t)}\|\)).
+Jika perubahan lebih kecil dari toleransi error (\(\epsilon\)) atau iterasi maksimum tercapai, algoritma berhenti. Jika tidak, kembali ke langkah 3.
 
--   $\Omega_j$: Parameter penalti possibilistik yang mengontrol varian klaster.
+### 6. Hasil Akhir {-}
+Pusat cluster (\(v_k\)) dan matriks keanggotaan (\(u_{ik}\)) akhir menunjukkan distribusi data terhadap cluster. Data dapat diklasifikasikan ke cluster dengan keanggotaan tertinggi.
 
-### Perhitungan Keanggotaan dan Typicality {.unnumbered}
+## Eksperimeen Fuzzy C-Means
 
-Derajat keanggotaan ($u_{ij}$) dihitung seperti pada algoritma Fuzzy C-Means (FCM):
+```{=html}
+<style>
+body{
+text-align: justify}
+</style>
+```
 
-$$
-u_{ij} = \left[\sum_{l=1}^k \left(\frac{d^2(\vec{x}_i, \vec{v}_j)}{d^2(\vec{x}_i, \vec{v}_l)}\right)^{\frac{1}{m-1}}\right]^{-1}
-$$
+### Install dan Load Packagaes {-}
 
-di mana $d^2(\vec{x}_i, \vec{v}_j)$ adalah jarak kuadrat antara data $\vec{x}_i$ dan pusat klaster $\vec{v}_j$.
+Untuk memulai eksperimen menggunakan algoritma Fuzzy C-Means (FCM) di `r ttcode("R")`, beberapa library perlu diinstal dan dimuat untuk mendukung proses analisis, visualisasi, dan validasi hasil clustering. Library `ppclust` menyediakan berbagai metode clustering berbasis partisi, termasuk FCM, dan berfungsi untuk mengimplementasikan algoritma serta mengevaluasi hasil clustering. Library `factoextra` digunakan untuk memudahkan visualisasi hasil clustering, seperti menampilkan scatter plot dengan pembagian cluster yang jelas. Selain itu, library `fclust` mendukung berbagai fungsi terkait clustering berbasis fuzzy, termasuk penghitungan indeks validasi untuk menilai kualitas cluster. Terakhir, library `cluster` menawarkan berbagai alat untuk clustering dan validasi, termasuk perbandingan hasil clustering FCM dengan algoritma lain seperti K-Means atau PAM.
 
-### Derajat Typicality {.unnumbered}
-
-Derajat typicality ($t_{ij}$) dihitung menggunakan rumus:
-
-$$
-t_{ij} = \left[1 + \left(\frac{b \; d^2(\vec{x}_i, \vec{v}_j)}{\Omega_j}\right)^{\frac{1}{\eta-1}}\right]^{-1}
-$$
-
-### Pembaruan Pusat Klaster {.unnumbered}
-
-Pusat klaster ($\vec{v}_j$) diperbarui menggunakan rumus berikut:
-
-$$
-\vec{v}_j = \frac{\sum_{i=1}^n \left(a \; u_{ij}^m + b \; t_{ij}^\eta \right) \vec{x}_i}{\sum_{i=1}^n \left(a \; u_{ij}^m + b \; t_{ij}^\eta \right)}
-$$
-
-## Tahapan Algoritma PFCM
-
-### 1. Inisialisasi {.unnumbered}
-
--   Tentukan parameter:
-    -   $k$: jumlah klaster
-    -   $a, b$: koefisien untuk keanggotaan fuzzy dan typicality ($a > 0, b > 0$)
-    -   $m$: fuzzifier ($m \geq 1$, biasanya $m = 2$)
-    -   $\eta$: eksponen typicality ($\eta \geq 1$, biasanya $\eta = 2$)
--   Inisialisasi pusat klaster awal $\vec{v}_j^{(0)}$ untuk $j = 1, 2, ..., k$.
--   Inisialisasi derajat keanggotaan fuzzy $u_{ij}^{(0)}$ dan typicality $t_{ij}^{(0)}$.
-
-### 2. Hitung Keanggotaan Fuzzy ($u_{ij}$) {.unnumbered}
-
-Perbarui derajat keanggotaan fuzzy berdasarkan jarak antara data dan pusat klaster:
-
-$$
-u_{ij} = \left[\sum_{l=1}^k \left(\frac{d^2(\vec{x}_i, \vec{v}_j)}{d^2(\vec{x}_i, \vec{v}_l)}\right)^{\frac{1}{m-1}}\right]^{-1}
-$$
-
-di mana: - $d^2(\vec{x}_i, \vec{v}_j)$: jarak kuadrat antara data $\vec{x}_i$ dan pusat klaster $\vec{v}_j$.
-
-### 3. Hitung Typicality ($t_{ij}$) {.unnumbered}
-
-Perbarui derajat typicality untuk setiap data:
-
-$$
-t_{ij} = \left[1 + \left(\frac{b \; d^2(\vec{x}_i, \vec{v}_j)}{\Omega_j}\right)^{\frac{1}{\eta-1}}\right]^{-1}
-$$
-
-di mana $\Omega_j$ adalah penalti possibilistik yang dihitung sebagai:
-
-$$
-\Omega_j = \frac{\sum_{i=1}^n u_{ij}^m d^2(\vec{x}_i, \vec{v}_j)}{\sum_{i=1}^n u_{ij}^m}
-$$
-
-### 4. Perbarui Pusat Klaster ($\vec{v}_j$) {.unnumbered}
-
-Hitung pusat klaster baru berdasarkan kombinasi derajat keanggotaan fuzzy dan typicality:
-
-$$
-\vec{v}_j = \frac{\sum_{i=1}^n \left(a \; u_{ij}^m + b \; t_{ij}^\eta\right) \vec{x}_i}{\sum_{i=1}^n \left(a \; u_{ij}^m + b \; t_{ij}^\eta\right)}
-$$
-
-### 5. Evaluasi Konvergensi {.unnumbered}
-
-Hitung perubahan antara pusat klaster saat ini dan sebelumnya:
-
-$$
-\text{error} = \sum_{j=1}^k \|\vec{v}_j^{(t+1)} - \vec{v}_j^{(t)}\|
-$$
-
-Jika $\text{error}$ lebih kecil dari ambang batas ($\epsilon$), hentikan iterasi. Jika tidak, kembali ke **langkah 2**.
-
-## Eksperimen Possibilistic Fuzzy C-Means
-Pada eksperimen ini, kita akan menerapkan algoritma **Possibilistic Fuzzy C-Means (PFCM)** untuk klasterisasi data menggunakan dataset `iris`. Hasil klasterisasi akan divisualisasikan menggunakan fungsi `fviz_cluster` dari library `factoextra`.
-
-### Library yang Dibutuhkan {-}
-```{r}
+```{r eval=FALSE}
 library(ppclust)
 library(factoextra)
+library(fclust)
 library(cluster)
 ```
 
-### Dataset {-}
-Dataset yang digunakan adalah `iris`, terdiri dari 150 data bunga dengan empat fitur: panjang dan lebar kelopak serta sepal.
+### Data {-}
+Dataset diimpor ke dalam `r ttcode("R")` menggunakan library `readr`, yang dirancang untuk membaca data dengan format seperti CSV secara efisien. Data diakses melalui URL `https://bit.ly/3VO3kRE` dan dimuat menggunakan fungsi `read.csv()`. Parameter `row.names = "Kabupaten"` digunakan untuk menjadikan kolom "Kabupaten" sebagai indeks baris, sehingga setiap baris data dapat diidentifikasi berdasarkan nama kabupaten. Setelah proses ini, dataset disimpan dalam variabel `data` sebagai sebuah *data frame*, yang siap digunakan untuk analisis lebih lanjut, seperti preprocessing, penerapan algoritma clustering, atau visualisasi hasil.
 
-```{r}
-# Memuat dataset iris
-data(iris)
-iris_data <- iris[, -5] # Hanya menggunakan fitur numerik
+
+```{r Load_data_fcm,warning=FALSE, tidy=FALSE}
+library (readr)
+urlfile = "https://bit.ly/3VO3kRE"
+data<-read.csv(url(urlfile), row.names = "Kabupaten")
 ```
 
-### Klasterisasi Menggunakan PFCM {-}
-
-```{r}
-# Jalankan algoritma PFCM
-set.seed(123) # Untuk hasil yang dapat direproduksi
-pfcm_result <- ppclust::pfcm(iris_data, centers = 3, m = 2, eta = 2, a = 1, b = 1)
-
-# Tampilkan ringkasan hasil
-print(pfcm_result$u)
+```{r nice-tab-1, tidy=FALSE, echo=FALSE}
+knitr::kable(
+  head(data, 10), caption = 'Basis Data Terpadu Jawa Tengah',
+  booktabs = TRUE)
 ```
 
-### Visualisasi Hasil Klasterisasi {-}
-Hasil klasterisasi divisualisasikan menggunakan dua fitur pertama (Panjang dan Lebar Sepal).
-
+### Hasil Clustering {-}
+Hasil clustering diperoleh dengan menerapkan algoritma Fuzzy C-Means (FCM) menggunakan fungsi `fcm()` dari library `ppclust`. Dataset yang telah dipersiapkan dianalisis untuk menghasilkan tiga pusat cluster dengan parameter `centers=3`. Setelah proses clustering selesai, nilai derajat keanggotaan masing-masing data terhadap setiap cluster disimpan dalam matriks keanggotaan (\(u\)). Matriks ini kemudian dikonversi menjadi format *data frame* menggunakan fungsi `as.data.frame()` agar lebih mudah diakses dan dianalisis. Setiap baris dalam *data frame* merepresentasikan satu data observasi, sementara kolom-kolomnya menunjukkan derajat keanggotaan terhadap masing-masing cluster. Derajat keanggotaan ini mencerminkan probabilitas relatif atau tingkat afiliasi suatu data terhadap cluster tertentu.
 ```{r}
-# Visualisasi klaster
-fviz_cluster(list(data = iris_data, cluster = pfcm_result$cluster),
-             ellipse.type = "convex", 
-             geom = "point",
-             stand = FALSE,
-             ggtheme = theme_minimal(),
-             main = "Hasil Klasterisasi dengan PFCM")
+library(ppclust)
+res.fcm <- fcm(data, centers=3)
+as.data.frame(res.fcm$u)
 ```
 
+### Visualisasi Matrik Keanggotaan {-}
+Untuk memvisualisasikan matriks keanggotaan yang dihasilkan oleh algoritma Fuzzy C-Means (FCM) menggunakan fungsi `corrplot()` dari library `corrplot`. Matriks keanggotaan yang terdapat dalam `res.fcm$u` menggambarkan derajat keanggotaan masing-masing data terhadap setiap cluster. Dengan parameter `is.corr = FALSE`, kita memberi tahu fungsi bahwa data yang akan divisualisasikan bukanlah matriks korelasi, melainkan matriks keanggotaan FCM. Visualisasi ini membantu untuk memahami bagaimana data tersebar di antara cluster dan seberapa kuat hubungan data dengan setiap cluster berdasarkan derajat keanggotaannya. Grafik ini dapat memperlihatkan pola atau struktur dalam data yang terkelompok dengan cara yang lebih mudah dipahami.
 
+```{r warning=FALSE, message=FALSE, fig.cap='Matrik Keagotaan', out.width='80%', fig.asp=.75, fig.align='center'}
+# Visualize using corrplot
+library(corrplot)
+corrplot(res.fcm$u, is.corr = FALSE)
+```
+
+Kode ini digunakan untuk mengakses dan menampilkan pusat cluster pertama (\(v_0\)) yang dihasilkan oleh algoritma Fuzzy C-Means (FCM) yang telah diterapkan pada dataset. Pada objek `res.fcm`, atribut `v0` menyimpan informasi tentang pusat cluster pada iterasi pertama. Nilai ini menunjukkan posisi awal dari setiap cluster sebelum algoritma mulai melakukan iterasi lebih lanjut untuk memperbarui posisi pusat cluster berdasarkan derajat keanggotaan data. Dengan menampilkan `res.fcm$v0`, kita dapat melihat posisi awal cluster dalam ruang fitur data dan mengevaluasi bagaimana posisi tersebut berfungsi dalam pemisahan data pada iterasi selanjutnya.
+
+```{r}
+res.fcm$v0
+```
+
+Kode ini digunakan untuk mengakses dan menampilkan pusat cluster yang dihasilkan setelah algoritma Fuzzy C-Means (FCM) selesai dijalankan. Pada objek `res.fcm`, atribut `v` menyimpan informasi tentang posisi pusat cluster yang telah diperbarui setelah iterasi terakhir. Pusat cluster ini merupakan hasil akhir dari proses clustering dan menunjukkan lokasi sentroid (pusat) dari setiap cluster berdasarkan data dan derajat keanggotaan yang telah dihitung. Dengan menampilkan `res.fcm$v`, kita dapat melihat posisi akhir setiap cluster dalam ruang fitur data, yang membantu untuk memahami bagaimana data telah dikelompokkan ke dalam cluster yang berbeda setelah proses clustering selesai.
+
+```{r}
+res.fcm$v
+```
+
+### Ringkasan Hasil Clustering FCM {-}
+
+Untuk menampilkan ringkasan dari hasil algoritma Fuzzy C-Means (FCM) yang telah dijalankan, menggunakan fungsi `summary()` pada objek `res.fcm`. Fungsi ini memberikan gambaran umum tentang hasil clustering, termasuk informasi mengenai pusat cluster, derajat keanggotaan, dan konvergensi algoritma. Biasanya, hasil yang ditampilkan mencakup jumlah cluster yang terbentuk, posisi pusat cluster akhir, serta statistik terkait keanggotaan data terhadap cluster. Dengan menggunakan `summary(res.fcm)`, kita dapat memperoleh insight terkait seberapa baik algoritma telah mengelompokkan data dan apakah proses clustering telah konvergen, serta informasi tambahan yang dapat membantu evaluasi kualitas clustering.
+
+```{r}
+summary(res.fcm)
+```
+
+Menjalankan algoritma Fuzzy C-Means (FCM) pada dataset `data` dengan jumlah cluster yang ditentukan sebanyak 3 (`centers=3`) dan parameter `nstart=5`. Parameter `nstart=5` menunjukkan bahwa algoritma FCM akan dijalankan sebanyak 5 kali dengan inisialisasi pusat cluster yang berbeda pada setiap iterasi. Tujuan dari parameter ini adalah untuk meningkatkan kemungkinan menemukan solusi yang lebih baik dengan memulai algoritma dari berbagai kondisi awal, sehingga mengurangi kemungkinan terjebak pada solusi lokal yang tidak optimal. Setelah proses ini, hasil clustering akan disimpan dalam objek `res.fcm`, yang dapat digunakan untuk mengevaluasi pusat cluster, derajat keanggotaan, dan validitas clustering.
+
+```{r}
+res.fcm <- fcm(data, centers=3, nstart=5)
+```
+
+Untuk menampilkan nilai objektif (fungsi tujuan) dari hasil terbaik yang ditemukan selama eksperimen Fuzzy C-Means (FCM). Nilai ini dapat diakses melalui `res.fcm$func.val`, yang memberikan informasi tentang nilai minimum dari fungsi tujuan (objective function) pada iterasi terakhir setelah algoritma selesai dijalankan.
+
+Fungsi tujuan dalam FCM biasanya mengukur sejauh mana data sesuai dengan pusat cluster yang telah dihitung, dengan mempertimbangkan derajat keanggotaan data terhadap setiap cluster. Semakin rendah nilai fungsi tujuan, semakin baik hasil clustering yang dihasilkan, karena itu menunjukkan pemisahan yang lebih baik antara cluster dan data. Dengan menampilkan `res.fcm$func.val`, kita dapat mengevaluasi kualitas solusi terbaik yang ditemukan, yang sering digunakan sebagai indikator untuk memvalidasi hasil clustering yang diperoleh dengan multiple starts.
+
+```{r}
+res.fcm$func.val
+```
+
+Untuk menampilkan jumlah iterasi yang dibutuhkan oleh algoritma Fuzzy C-Means (FCM) untuk mencapai konvergensi. Atribut `res.fcm$iter` menyimpan informasi tentang jumlah iterasi yang dilakukan selama proses clustering hingga algoritma mencapai kondisi konvergen, yaitu saat perubahan posisi pusat cluster atau matriks keanggotaan menjadi sangat kecil atau mencapai batas iterasi maksimum.
+
+Menampilkan `res.fcm$iter` memberikan wawasan tentang seberapa cepat atau lambat algoritma FCM mencapai konvergensi dalam eksperimen yang dijalankan. Jumlah iterasi yang rendah menunjukkan bahwa algoritma dengan cepat menemukan solusi yang stabil, sementara jumlah iterasi yang tinggi dapat menunjukkan bahwa proses clustering membutuhkan waktu lebih lama untuk mencapai hasil yang konvergen.
+
+```{r}
+res.fcm$iter
+```
+
+Untuk menampilkan hasil terbaik dari beberapa percobaan yang dilakukan selama eksekusi algoritma Fuzzy C-Means (FCM) dengan multiple starts. Atribut `res.fcm$best.start` menunjukkan indeks dari percobaan (start) yang menghasilkan solusi terbaik berdasarkan nilai fungsi tujuan (objective function) terendah. 
+
+Selama penggunaan `nstart`, algoritma FCM dijalankan beberapa kali dengan inisialisasi pusat cluster yang berbeda. `res.fcm$best.start` memberikan informasi tentang percobaan yang memberikan hasil terbaik, yang berarti percobaan tersebut memiliki nilai fungsi tujuan yang lebih kecil dibandingkan dengan percobaan lainnya. Ini membantu untuk mengetahui solusi yang paling optimal yang ditemukan oleh algoritma setelah menjalankan beberapa percobaan.
+
+```{r}
+res.fcm$best.start
+```
+
+### Visualisasi Hasil Cluster {-}
+
+Untuk memvisualisasikan hasil clustering yang diperoleh dari algoritma Fuzzy C-Means (FCM) menggunakan fungsi `fviz_cluster()` dari paket `factoextra`. Pertama, hasil clustering FCM yang disimpan dalam objek `res.fcm` diubah menjadi format yang kompatibel dengan visualisasi menggunakan fungsi `ppclust2()`. Hasil clustering kemudian diproses untuk diperlakukan seperti hasil dari algoritma K-Means. Selanjutnya, fungsi `fviz_cluster()` digunakan untuk memplot hasil clustering, dengan parameter tambahan seperti `ellipse.type = "convex"` untuk menambahkan elips konveks yang menggambarkan area setiap cluster, dan `palette = "jco"` untuk memberikan warna berbeda pada setiap cluster. Selain itu, `repel = TRUE` memastikan label titik data tidak saling tumpang tindih, sehingga grafik menjadi lebih mudah dibaca. Visualisasi ini memberikan gambaran yang jelas tentang pemisahan data ke dalam cluster yang berbeda, memudahkan analisis hasil clustering dan memahami struktur data.
+
+```{r warning=FALSE, message=FALSE, fig.cap='Hasil Clustering FCM', out.width='80%', fig.asp=.75, fig.align='center'}
+res.fcm2 <- ppclust2(res.fcm, "kmeans")
+factoextra::fviz_cluster(res.fcm2, data = data, 
+  ellipse.type = "convex",
+  palette = "jco",
+  repel = TRUE)
+```
+
+### Visualisasi Hasil Cluster dengan clusplot {-}
+
+Kode ini digunakan untuk memvisualisasikan hasil clustering Fuzzy C-Means (FCM) menggunakan fungsi `clusplot()` dari paket `cluster`. Pertama, hasil clustering yang disimpan dalam objek `res.fcm` diubah menjadi format yang kompatibel dengan algoritma fuzzy `fanny` menggunakan fungsi `ppclust2()`. Selanjutnya, fungsi `clusplot()` digunakan untuk memplot hasil clustering dalam ruang dua dimensi. Data yang digunakan untuk clustering distandarisasi terlebih dahulu dengan `scale()` untuk memastikan setiap fitur memiliki skala yang seragam. Hasil clustering yang diperoleh kemudian diplot, dengan setiap cluster diberi warna yang berbeda, dan label ditampilkan pada titik data sesuai dengan cluster mereka. Plot ini juga menyertakan garis pemisah antara cluster, sehingga memudahkan pemahaman tentang bagaimana data terkelompok dan sejauh mana pemisahan antara cluster tersebut. Visualisasi ini memberikan gambaran yang jelas tentang struktur data, yang sangat berguna dalam analisis hasil clustering FCM.
+
+```{r warning=FALSE, message=FALSE, fig.cap='Visualisasi Hasil FCM dengan Clusplot', out.width='80%', fig.asp=.75, fig.align='center'}
+res.fcm3 <- ppclust2(res.fcm, "fanny")
+
+cluster::clusplot(scale(data), res.fcm3$cluster,  
+  main = "Cluster plot of Iris data set",
+  color=TRUE, labels = 2, lines = 2, cex=1)
+```

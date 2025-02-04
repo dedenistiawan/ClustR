@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>11 Possibilistic C-Means Clustering | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R</title>
+  <meta name="description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="11 Possibilistic C-Means Clustering | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://github.com/dedenistiawan/ClustR/images/cover.png" />
+  <meta property="og:description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="11 Possibilistic C-Means Clustering | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R" />
+  
+  <meta name="twitter:description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
+  <meta name="twitter:image" content="https://github.com/dedenistiawan/ClustR/images/cover.png" />
+
+<meta name="author" content="Deden Istiawan" />
+
+
+<meta name="date" content="2025-01-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="10.2-eksperimeen-fuzzy-c-means.html"/>
+<link rel="next" href="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.33/datatables.js"></script>
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet" />
+<script src="libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
+<link href="libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="libs/selectize-0.12.0/selectize.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<!-- font families -->
+
+<link href="https://fonts.googleapis.com/css?family=PT+Sans|Pacifico|Source+Sans+Pro" rel="stylesheet">
+
+<script src="js/hideOutput.js"></script>
+
+<!-- Mathjax -->
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/mml-chtml.min.js"></script>
+
+ <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        extensions: ["tex2jax.js", "TeX/AMSmath.js"],
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        jax: ["input/TeX","output/CommonHTML"]
+      });
+      MathJax.Hub.processSectionDelay = 0;
+  </script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110299877-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110299877-1');
+</script>
+
+<!-- open review block -->
+
+<script type="application/json" class="js-hypothesis-config">
+{
+"showHighlights": false
+}
+</script>
+<script async defer src="https://hypothes.is/embed.js"></script>
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #204a87; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="toc.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><center><img src="images/logo.png" alt="logo" width="50%" height="50%"style="margin: 15px 0 0 0"></center></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Kata Pengantar</a></li>
+<li class="chapter" data-level="1" data-path="1-pd.html"><a href="1-pd.html"><i class="fa fa-check"></i><b>1</b> Pendahuluan</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-kolofon.html"><a href="1.1-kolofon.html"><i class="fa fa-check"></i><b>1.1</b> Kolofon</a></li>
+<li class="chapter" data-level="1.2" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> Pengenalan Singkat R and RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#instalasi-r-dan-rstudio"><i class="fa fa-check"></i>Instalasi R dan RStudio</a></li>
+<li class="chapter" data-level="" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#dasar-dasar-r"><i class="fa fa-check"></i>Dasar-Dasar R</a></li>
+<li class="chapter" data-level="" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#struktur-data-pada-r"><i class="fa fa-check"></i>Struktur Data pada R</a></li>
+<li class="chapter" data-level="" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#fungsi-dan-pemrograman-di-r"><i class="fa fa-check"></i>Fungsi dan Pemrograman di R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-pad.html"><a href="2-pad.html"><i class="fa fa-check"></i><b>2</b> Pemrosesan Awal Data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2.1-outlier.html"><a href="2.1-outlier.html"><i class="fa fa-check"></i><b>2.1</b> Outlier</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2.1-outlier.html"><a href="2.1-outlier.html#deteksi-outlier"><i class="fa fa-check"></i><b>2.1.1</b> Deteksi Outlier</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2.2-pengertian-normalisasi-data.html"><a href="2.2-pengertian-normalisasi-data.html"><i class="fa fa-check"></i><b>2.2</b> Pengertian Normalisasi Data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2.2-pengertian-normalisasi-data.html"><a href="2.2-pengertian-normalisasi-data.html#metode-untuk-normalisasi-data"><i class="fa fa-check"></i><b>2.2.1</b> Metode untuk Normalisasi Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2.3-contoh-implementasi-dengan-r.html"><a href="2.3-contoh-implementasi-dengan-r.html"><i class="fa fa-check"></i><b>2.3</b> Contoh Implementasi dengan R</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-simdis.html"><a href="3-simdis.html"><i class="fa fa-check"></i><b>3</b> Ukuran Kemiripan dan Ketidakmiripan Data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3.1-ukuran-kemiripan.html"><a href="3.1-ukuran-kemiripan.html"><i class="fa fa-check"></i><b>3.1</b> Ukuran Kemiripan</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="3.1-ukuran-kemiripan.html"><a href="3.1-ukuran-kemiripan.html#cosine-similarity"><i class="fa fa-check"></i><b>3.1.1</b> <strong>Cosine Similarity</strong></a></li>
+<li class="chapter" data-level="3.1.2" data-path="3.1-ukuran-kemiripan.html"><a href="3.1-ukuran-kemiripan.html#pearson-correlation-coefficient"><i class="fa fa-check"></i><b>3.1.2</b> <strong>Pearson Correlation Coefficient</strong></a></li>
+<li class="chapter" data-level="3.1.3" data-path="3.1-ukuran-kemiripan.html"><a href="3.1-ukuran-kemiripan.html#extended-jaccard-similarity-tanimoto-coefficient"><i class="fa fa-check"></i><b>3.1.3</b> <strong>Extended Jaccard Similarity (Tanimoto Coefficient)</strong></a></li>
+<li class="chapter" data-level="3.1.4" data-path="3.1-ukuran-kemiripan.html"><a href="3.1-ukuran-kemiripan.html#dice-coefficient"><i class="fa fa-check"></i><b>3.1.4</b> <strong>Dice Coefficient</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="3.2-ukuran-ketidakmiripan.html"><a href="3.2-ukuran-ketidakmiripan.html"><i class="fa fa-check"></i><b>3.2</b> Ukuran Ketidakmiripan</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="3.2-ukuran-ketidakmiripan.html"><a href="3.2-ukuran-ketidakmiripan.html#jarak-euclidean"><i class="fa fa-check"></i><b>3.2.1</b> Jarak Euclidean</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3.2-ukuran-ketidakmiripan.html"><a href="3.2-ukuran-ketidakmiripan.html#jarak-minkowski"><i class="fa fa-check"></i><b>3.2.2</b> Jarak Minkowski</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3.2-ukuran-ketidakmiripan.html"><a href="3.2-ukuran-ketidakmiripan.html#pengukuran-jarak-atribut-biner"><i class="fa fa-check"></i><b>3.2.3</b> Pengukuran Jarak Atribut Biner</a></li>
+<li class="chapter" data-level="3.2.4" data-path="3.2-ukuran-ketidakmiripan.html"><a href="3.2-ukuran-ketidakmiripan.html#pengukuran-jarak-atribut-kategorikal"><i class="fa fa-check"></i><b>3.2.4</b> Pengukuran Jarak Atribut Kategorikal</a></li>
+<li class="chapter" data-level="3.2.5" data-path="3.2-ukuran-ketidakmiripan.html"><a href="3.2-ukuran-ketidakmiripan.html#pengukuran-jarak-atribut-campuran"><i class="fa fa-check"></i><b>3.2.5</b> Pengukuran Jarak Atribut Campuran</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>I Analisis Cluster Berbasis Partisi</b></span></li>
+<li class="chapter" data-level="4" data-path="4-km.html"><a href="4-km.html"><i class="fa fa-check"></i><b>4</b> Algoritma K-Means</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4.1-tahapan-algoritma-k-means.html"><a href="4.1-tahapan-algoritma-k-means.html"><i class="fa fa-check"></i><b>4.1</b> Tahapan Algoritma K-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path="4.1-tahapan-algoritma-k-means.html"><a href="4.1-tahapan-algoritma-k-means.html#inisialisasi-centroid"><i class="fa fa-check"></i>1. Inisialisasi Centroid</a></li>
+<li class="chapter" data-level="" data-path="4.1-tahapan-algoritma-k-means.html"><a href="4.1-tahapan-algoritma-k-means.html#penugasan-cluster"><i class="fa fa-check"></i>2. Penugasan Cluster</a></li>
+<li class="chapter" data-level="" data-path="4.1-tahapan-algoritma-k-means.html"><a href="4.1-tahapan-algoritma-k-means.html#perbaharui-centroid"><i class="fa fa-check"></i>3. Perbaharui Centroid</a></li>
+<li class="chapter" data-level="" data-path="4.1-tahapan-algoritma-k-means.html"><a href="4.1-tahapan-algoritma-k-means.html#ulangi-langkah-2-dan-3"><i class="fa fa-check"></i>4. Ulangi Langkah 2 dan 3</a></li>
+<li class="chapter" data-level="" data-path="4.1-tahapan-algoritma-k-means.html"><a href="4.1-tahapan-algoritma-k-means.html#hasil-akhir"><i class="fa fa-check"></i>5. Hasil Akhir</a></li>
+<li class="chapter" data-level="" data-path="4.1-tahapan-algoritma-k-means.html"><a href="4.1-tahapan-algoritma-k-means.html#visualisasi-algoritma-k-means"><i class="fa fa-check"></i>Visualisasi Algoritma K-Means</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html"><i class="fa fa-check"></i><b>4.2</b> Eksperimen Algoritma K-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#deskripsi-data"><i class="fa fa-check"></i>Deskripsi Data</a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#memeriksa-missing-value"><i class="fa fa-check"></i>Memeriksa <em>Missing Value</em></a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#visualisasi-matriks-jarak"><i class="fa fa-check"></i>Visualisasi Matriks jarak</a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#estimasi-jumlah-cluster-optimal"><i class="fa fa-check"></i>Estimasi Jumlah Cluster Optimal</a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#metode-elbow"><i class="fa fa-check"></i>Metode Elbow</a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#metode-silhouette"><i class="fa fa-check"></i>Metode Silhouette</a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#membuat-plot-cluster"><i class="fa fa-check"></i>Membuat Plot Cluster</a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#eksperimen-k-means-clustering"><i class="fa fa-check"></i>Eksperimen K-Means Clustering</a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#visualisasi-hasil-clustering"><i class="fa fa-check"></i>Visualisasi Hasil <em>clustering</em></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-kmed.html"><a href="5-kmed.html"><i class="fa fa-check"></i><b>5</b> Algoritma K-Medoids</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-tahapan-algoritma-k-medoids.html"><a href="5.1-tahapan-algoritma-k-medoids.html"><i class="fa fa-check"></i><b>5.1</b> Tahapan Algoritma K-Medoids</a>
+<ul>
+<li class="chapter" data-level="" data-path="5.1-tahapan-algoritma-k-medoids.html"><a href="5.1-tahapan-algoritma-k-medoids.html#inisialisasi-centroid-1"><i class="fa fa-check"></i>1. Inisialisasi Centroid</a></li>
+<li class="chapter" data-level="" data-path="5.1-tahapan-algoritma-k-medoids.html"><a href="5.1-tahapan-algoritma-k-medoids.html#penugasan-anggota-cluster"><i class="fa fa-check"></i>2. Penugasan Anggota Cluster</a></li>
+<li class="chapter" data-level="" data-path="5.1-tahapan-algoritma-k-medoids.html"><a href="5.1-tahapan-algoritma-k-medoids.html#pembaruan-medoid"><i class="fa fa-check"></i>3. Pembaruan Medoid</a></li>
+<li class="chapter" data-level="" data-path="5.1-tahapan-algoritma-k-medoids.html"><a href="5.1-tahapan-algoritma-k-medoids.html#iterasi"><i class="fa fa-check"></i>4. Iterasi</a></li>
+<li class="chapter" data-level="" data-path="5.1-tahapan-algoritma-k-medoids.html"><a href="5.1-tahapan-algoritma-k-medoids.html#hasil-akhir-1"><i class="fa fa-check"></i>5. Hasil Akhir</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5.2-eksperimen-algoritma-k-medoids.html"><a href="5.2-eksperimen-algoritma-k-medoids.html"><i class="fa fa-check"></i><b>5.2</b> Eksperimen Algoritma K-Medoids</a>
+<ul>
+<li class="chapter" data-level="" data-path="5.2-eksperimen-algoritma-k-medoids.html"><a href="5.2-eksperimen-algoritma-k-medoids.html#data-1"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="5.2-eksperimen-algoritma-k-medoids.html"><a href="5.2-eksperimen-algoritma-k-medoids.html#r-packages-dan-fungsi-yang-dibutuhkan"><i class="fa fa-check"></i>R packages dan fungsi yang dibutuhkan</a></li>
+<li class="chapter" data-level="" data-path="5.2-eksperimen-algoritma-k-medoids.html"><a href="5.2-eksperimen-algoritma-k-medoids.html#estimasi-jumlah-cluster-optimal-1"><i class="fa fa-check"></i>Estimasi Jumlah <em>Cluster</em> Optimal</a></li>
+<li class="chapter" data-level="" data-path="5.2-eksperimen-algoritma-k-medoids.html"><a href="5.2-eksperimen-algoritma-k-medoids.html#eksperimen-k-medoids-clustering"><i class="fa fa-check"></i>Eksperimen K-Medoids Clustering</a></li>
+<li class="chapter" data-level="" data-path="5.2-eksperimen-algoritma-k-medoids.html"><a href="5.2-eksperimen-algoritma-k-medoids.html#visualisasi-k-medoids-clustering"><i class="fa fa-check"></i>Visualisasi K-Medoids Clustering</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-clra.html"><a href="6-clra.html"><i class="fa fa-check"></i><b>6</b> CLARA - Clustering Large Applications</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6.1-tahapan-algoritma-clara.html"><a href="6.1-tahapan-algoritma-clara.html"><i class="fa fa-check"></i><b>6.1</b> Tahapan Algoritma CLARA</a>
+<ul>
+<li class="chapter" data-level="" data-path="6.1-tahapan-algoritma-clara.html"><a href="6.1-tahapan-algoritma-clara.html#inisialisasi"><i class="fa fa-check"></i>1. Inisialisasi</a></li>
+<li class="chapter" data-level="" data-path="6.1-tahapan-algoritma-clara.html"><a href="6.1-tahapan-algoritma-clara.html#pengambilan-sampel-subset-data"><i class="fa fa-check"></i>2. Pengambilan Sampel Subset Data</a></li>
+<li class="chapter" data-level="" data-path="6.1-tahapan-algoritma-clara.html"><a href="6.1-tahapan-algoritma-clara.html#penerapan-algoritma-pam-pada-subset-data"><i class="fa fa-check"></i>3. Penerapan Algoritma PAM pada Subset Data</a></li>
+<li class="chapter" data-level="" data-path="6.1-tahapan-algoritma-clara.html"><a href="6.1-tahapan-algoritma-clara.html#pemilihan-medoid-terbaik"><i class="fa fa-check"></i>4. Pemilihan Medoid Terbaik</a></li>
+<li class="chapter" data-level="" data-path="6.1-tahapan-algoritma-clara.html"><a href="6.1-tahapan-algoritma-clara.html#penugasan-data-ke-cluster"><i class="fa fa-check"></i>5. Penugasan Data ke Cluster</a></li>
+<li class="chapter" data-level="" data-path="6.1-tahapan-algoritma-clara.html"><a href="6.1-tahapan-algoritma-clara.html#evaluasi-kualitas-cluster"><i class="fa fa-check"></i>6. Evaluasi Kualitas Cluster</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6.2-eksperimen-algoritma-clara.html"><a href="6.2-eksperimen-algoritma-clara.html"><i class="fa fa-check"></i><b>6.2</b> Eksperimen Algoritma CLARA</a>
+<ul>
+<li class="chapter" data-level="" data-path="6.2-eksperimen-algoritma-clara.html"><a href="6.2-eksperimen-algoritma-clara.html#memuat-library-yang-diperlukan"><i class="fa fa-check"></i>1. Memuat library yang diperlukan</a></li>
+<li class="chapter" data-level="" data-path="6.2-eksperimen-algoritma-clara.html"><a href="6.2-eksperimen-algoritma-clara.html#membangkitkan-data-acak"><i class="fa fa-check"></i>2. Membangkitkan data acak</a></li>
+<li class="chapter" data-level="" data-path="6.2-eksperimen-algoritma-clara.html"><a href="6.2-eksperimen-algoritma-clara.html#visualisasi-data-acak"><i class="fa fa-check"></i>3. Visualisasi data acak</a></li>
+<li class="chapter" data-level="" data-path="6.2-eksperimen-algoritma-clara.html"><a href="6.2-eksperimen-algoritma-clara.html#mencari-jumlah-cluster-optimal"><i class="fa fa-check"></i>4. Mencari Jumlah Cluster Optimal</a></li>
+<li class="chapter" data-level="" data-path="6.2-eksperimen-algoritma-clara.html"><a href="6.2-eksperimen-algoritma-clara.html#menjalankan-clara"><i class="fa fa-check"></i>5. Menjalankan CLARA</a></li>
+<li class="chapter" data-level="" data-path="6.2-eksperimen-algoritma-clara.html"><a href="6.2-eksperimen-algoritma-clara.html#evaluasi-hasil"><i class="fa fa-check"></i>6. Evaluasi hasil</a></li>
+<li class="chapter" data-level="" data-path="6.2-eksperimen-algoritma-clara.html"><a href="6.2-eksperimen-algoritma-clara.html#visualisasi-hasil-cluster"><i class="fa fa-check"></i>7. Visualisasi Hasil Cluster</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-kmods.html"><a href="7-kmods.html"><i class="fa fa-check"></i><b>7</b> Algoritma K-Modes</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7.1-tahapan-algoritma-k-modes.html"><a href="7.1-tahapan-algoritma-k-modes.html"><i class="fa fa-check"></i><b>7.1</b> Tahapan Algoritma K-Modes</a>
+<ul>
+<li class="chapter" data-level="" data-path="7.1-tahapan-algoritma-k-modes.html"><a href="7.1-tahapan-algoritma-k-modes.html#inisialisasi-1"><i class="fa fa-check"></i>1. Inisialisasi</a></li>
+<li class="chapter" data-level="" data-path="7.1-tahapan-algoritma-k-modes.html"><a href="7.1-tahapan-algoritma-k-modes.html#pengelompokan"><i class="fa fa-check"></i>2. Pengelompokan</a></li>
+<li class="chapter" data-level="" data-path="7.1-tahapan-algoritma-k-modes.html"><a href="7.1-tahapan-algoritma-k-modes.html#penugasan-cluster-1"><i class="fa fa-check"></i>3. Penugasan Cluster</a></li>
+<li class="chapter" data-level="" data-path="7.1-tahapan-algoritma-k-modes.html"><a href="7.1-tahapan-algoritma-k-modes.html#update-centroid"><i class="fa fa-check"></i>4. Update Centroid</a></li>
+<li class="chapter" data-level="" data-path="7.1-tahapan-algoritma-k-modes.html"><a href="7.1-tahapan-algoritma-k-modes.html#kondisi-berhenti"><i class="fa fa-check"></i>5. Kondisi Berhenti</a></li>
+<li class="chapter" data-level="" data-path="7.1-tahapan-algoritma-k-modes.html"><a href="7.1-tahapan-algoritma-k-modes.html#penjelasan-tambahan"><i class="fa fa-check"></i>Penjelasan Tambahan</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7.2-eksperimen-algoritma-k-modes.html"><a href="7.2-eksperimen-algoritma-k-modes.html"><i class="fa fa-check"></i><b>7.2</b> Eksperimen Algoritma K-Modes</a>
+<ul>
+<li class="chapter" data-level="" data-path="7.2-eksperimen-algoritma-k-modes.html"><a href="7.2-eksperimen-algoritma-k-modes.html#memuat-library-yang-diperlukan-1"><i class="fa fa-check"></i>1. Memuat library yang diperlukan</a></li>
+<li class="chapter" data-level="" data-path="7.2-eksperimen-algoritma-k-modes.html"><a href="7.2-eksperimen-algoritma-k-modes.html#persiapan-dataset"><i class="fa fa-check"></i>2. Persiapan Dataset</a></li>
+<li class="chapter" data-level="" data-path="7.2-eksperimen-algoritma-k-modes.html"><a href="7.2-eksperimen-algoritma-k-modes.html#memeriksa-missing-value-1"><i class="fa fa-check"></i>3. Memeriksa Missing value</a></li>
+<li class="chapter" data-level="" data-path="7.2-eksperimen-algoritma-k-modes.html"><a href="7.2-eksperimen-algoritma-k-modes.html#menjalankan-k-modes"><i class="fa fa-check"></i>3. Menjalankan K-Modes</a></li>
+<li class="chapter" data-level="" data-path="7.2-eksperimen-algoritma-k-modes.html"><a href="7.2-eksperimen-algoritma-k-modes.html#menyimpan-hasil-cluster"><i class="fa fa-check"></i>4. Menyimpan Hasil Cluster</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Pendekatan Hirarki</b></span></li>
+<li class="chapter" data-level="8" data-path="8-HC.html"><a href="8-HC.html"><i class="fa fa-check"></i><b>8</b> Metode Cluster Hirarki</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="8.1-tahapan-agglomerative-clustering.html"><a href="8.1-tahapan-agglomerative-clustering.html"><i class="fa fa-check"></i><b>8.1</b> Tahapan Agglomerative Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="8.1-tahapan-agglomerative-clustering.html"><a href="8.1-tahapan-agglomerative-clustering.html#inisialisasi-2"><i class="fa fa-check"></i>1. Inisialisasi</a></li>
+<li class="chapter" data-level="" data-path="8.1-tahapan-agglomerative-clustering.html"><a href="8.1-tahapan-agglomerative-clustering.html#menghitung-jarak"><i class="fa fa-check"></i>2. Menghitung Jarak</a></li>
+<li class="chapter" data-level="" data-path="8.1-tahapan-agglomerative-clustering.html"><a href="8.1-tahapan-agglomerative-clustering.html#menggabungkan-cluster"><i class="fa fa-check"></i>3. Menggabungkan Cluster</a></li>
+<li class="chapter" data-level="" data-path="8.1-tahapan-agglomerative-clustering.html"><a href="8.1-tahapan-agglomerative-clustering.html#memperbarui-jarak"><i class="fa fa-check"></i>4. Memperbarui Jarak</a></li>
+<li class="chapter" data-level="" data-path="8.1-tahapan-agglomerative-clustering.html"><a href="8.1-tahapan-agglomerative-clustering.html#ulangi-proses"><i class="fa fa-check"></i>5. Ulangi Proses</a></li>
+<li class="chapter" data-level="" data-path="8.1-tahapan-agglomerative-clustering.html"><a href="8.1-tahapan-agglomerative-clustering.html#membuat-dendrogram"><i class="fa fa-check"></i>6. Membuat Dendrogram</a></li>
+<li class="chapter" data-level="" data-path="8.1-tahapan-agglomerative-clustering.html"><a href="8.1-tahapan-agglomerative-clustering.html#kesimpulan"><i class="fa fa-check"></i>Kesimpulan</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="8.2-eksperimen-agglomerative-clustering.html"><a href="8.2-eksperimen-agglomerative-clustering.html"><i class="fa fa-check"></i><b>8.2</b> Eksperimen Agglomerative Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="8.2-eksperimen-agglomerative-clustering.html"><a href="8.2-eksperimen-agglomerative-clustering.html#standarisasi-data"><i class="fa fa-check"></i>Standarisasi Data</a></li>
+<li class="chapter" data-level="" data-path="8.2-eksperimen-agglomerative-clustering.html"><a href="8.2-eksperimen-agglomerative-clustering.html#ukuran-similarity-dan-dissimilarity"><i class="fa fa-check"></i>Ukuran Similarity dan Dissimilarity</a></li>
+<li class="chapter" data-level="" data-path="8.2-eksperimen-agglomerative-clustering.html"><a href="8.2-eksperimen-agglomerative-clustering.html#melakukan-pengelompokan-hierarkis"><i class="fa fa-check"></i>Melakukan Pengelompokan Hierarkis</a></li>
+<li class="chapter" data-level="" data-path="8.2-eksperimen-agglomerative-clustering.html"><a href="8.2-eksperimen-agglomerative-clustering.html#visualisasi-dengan-dendrogram"><i class="fa fa-check"></i>Visualisasi dengan Dendrogram</a></li>
+<li class="chapter" data-level="" data-path="8.2-eksperimen-agglomerative-clustering.html"><a href="8.2-eksperimen-agglomerative-clustering.html#visualisasi-dengan-dendrogram-1"><i class="fa fa-check"></i>Visualisasi dengan Dendrogram</a></li>
+<li class="chapter" data-level="" data-path="8.2-eksperimen-agglomerative-clustering.html"><a href="8.2-eksperimen-agglomerative-clustering.html#jumlah-anggota-dalam-setiap-cluster"><i class="fa fa-check"></i>Jumlah Anggota dalam Setiap Cluster</a></li>
+<li class="chapter" data-level="" data-path="8.2-eksperimen-agglomerative-clustering.html"><a href="8.2-eksperimen-agglomerative-clustering.html#visualisasi-dendrogram"><i class="fa fa-check"></i>Visualisasi Dendrogram</a></li>
+<li class="chapter" data-level="" data-path="8.2-eksperimen-agglomerative-clustering.html"><a href="8.2-eksperimen-agglomerative-clustering.html#visualisasi-hasil-clustering-1"><i class="fa fa-check"></i>Visualisasi Hasil Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8.3-perbandingan-dendogram.html"><a href="8.3-perbandingan-dendogram.html"><i class="fa fa-check"></i><b>8.3</b> Perbandingan Dendogram</a></li>
+<li class="chapter" data-level="8.4" data-path="8.4-tahapan-divisive-clustering.html"><a href="8.4-tahapan-divisive-clustering.html"><i class="fa fa-check"></i><b>8.4</b> Tahapan Divisive Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="8.4-tahapan-divisive-clustering.html"><a href="8.4-tahapan-divisive-clustering.html#inisialisasi-3"><i class="fa fa-check"></i>1. Inisialisasi</a></li>
+<li class="chapter" data-level="" data-path="8.4-tahapan-divisive-clustering.html"><a href="8.4-tahapan-divisive-clustering.html#menghitung-dissimilarity"><i class="fa fa-check"></i>2. Menghitung Dissimilarity</a></li>
+<li class="chapter" data-level="" data-path="8.4-tahapan-divisive-clustering.html"><a href="8.4-tahapan-divisive-clustering.html#memilih-cluster-untuk-dibagi"><i class="fa fa-check"></i>3. Memilih Cluster untuk Dibagi</a></li>
+<li class="chapter" data-level="" data-path="8.4-tahapan-divisive-clustering.html"><a href="8.4-tahapan-divisive-clustering.html#membagi-cluster"><i class="fa fa-check"></i>4. Membagi Cluster</a></li>
+<li class="chapter" data-level="" data-path="8.4-tahapan-divisive-clustering.html"><a href="8.4-tahapan-divisive-clustering.html#menghitung-dissimilarity-untuk-sub-cluster"><i class="fa fa-check"></i>5. Menghitung Dissimilarity untuk Sub-Cluster</a></li>
+<li class="chapter" data-level="" data-path="8.4-tahapan-divisive-clustering.html"><a href="8.4-tahapan-divisive-clustering.html#ulangi-proses-1"><i class="fa fa-check"></i>6. Ulangi Proses</a></li>
+<li class="chapter" data-level="" data-path="8.4-tahapan-divisive-clustering.html"><a href="8.4-tahapan-divisive-clustering.html#membuat-dendrogram-1"><i class="fa fa-check"></i>7. Membuat Dendrogram</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="8.5-eksperimen-divisive-clustering.html"><a href="8.5-eksperimen-divisive-clustering.html"><i class="fa fa-check"></i><b>8.5</b> Eksperimen Divisive Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-vizhc.html"><a href="9-vizhc.html"><i class="fa fa-check"></i><b>9</b> Visualisasi Dendogram</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="9.1-proses-pembentukan-dendrogram.html"><a href="9.1-proses-pembentukan-dendrogram.html"><i class="fa fa-check"></i><b>9.1</b> Proses Pembentukan Dendrogram</a></li>
+<li class="chapter" data-level="9.2" data-path="9.2-eksperimen.html"><a href="9.2-eksperimen.html"><i class="fa fa-check"></i><b>9.2</b> Eksperimen</a>
+<ul>
+<li class="chapter" data-level="" data-path="9.2-eksperimen.html"><a href="9.2-eksperimen.html#read-data"><i class="fa fa-check"></i>Read Data</a></li>
+<li class="chapter" data-level="" data-path="9.2-eksperimen.html"><a href="9.2-eksperimen.html#standarisasi-data-1"><i class="fa fa-check"></i>Standarisasi Data</a></li>
+<li class="chapter" data-level="" data-path="9.2-eksperimen.html"><a href="9.2-eksperimen.html#pengelompokan-data"><i class="fa fa-check"></i>Pengelompokan Data</a></li>
+<li class="chapter" data-level="" data-path="9.2-eksperimen.html"><a href="9.2-eksperimen.html#visualisasi-dendogram"><i class="fa fa-check"></i>Visualisasi Dendogram</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Pendekatan Fuzzy</b></span></li>
+<li class="chapter" data-level="10" data-path="10-fcm.html"><a href="10-fcm.html"><i class="fa fa-check"></i><b>10</b> Algoritma Fuzzy C-Means</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="10.1-tahapan-algoritma-fuzzy-c-means.html"><a href="10.1-tahapan-algoritma-fuzzy-c-means.html"><i class="fa fa-check"></i><b>10.1</b> Tahapan Algoritma Fuzzy C-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path="10.1-tahapan-algoritma-fuzzy-c-means.html"><a href="10.1-tahapan-algoritma-fuzzy-c-means.html#inisialisasi-parameter"><i class="fa fa-check"></i>1. Inisialisasi Parameter</a></li>
+<li class="chapter" data-level="" data-path="10.1-tahapan-algoritma-fuzzy-c-means.html"><a href="10.1-tahapan-algoritma-fuzzy-c-means.html#inisialisasi-matriks-keanggotaan"><i class="fa fa-check"></i>2. Inisialisasi Matriks Keanggotaan</a></li>
+<li class="chapter" data-level="" data-path="10.1-tahapan-algoritma-fuzzy-c-means.html"><a href="10.1-tahapan-algoritma-fuzzy-c-means.html#perhitungan-pusat-cluster"><i class="fa fa-check"></i>3. Perhitungan Pusat Cluster</a></li>
+<li class="chapter" data-level="" data-path="10.1-tahapan-algoritma-fuzzy-c-means.html"><a href="10.1-tahapan-algoritma-fuzzy-c-means.html#perbarui-matriks-keanggotaan"><i class="fa fa-check"></i>4. Perbarui Matriks Keanggotaan</a></li>
+<li class="chapter" data-level="" data-path="10.1-tahapan-algoritma-fuzzy-c-means.html"><a href="10.1-tahapan-algoritma-fuzzy-c-means.html#evaluasi-konvergensi"><i class="fa fa-check"></i>5. Evaluasi Konvergensi</a></li>
+<li class="chapter" data-level="" data-path="10.1-tahapan-algoritma-fuzzy-c-means.html"><a href="10.1-tahapan-algoritma-fuzzy-c-means.html#hasil-akhir-2"><i class="fa fa-check"></i>6. Hasil Akhir</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="10.2-eksperimeen-fuzzy-c-means.html"><a href="10.2-eksperimeen-fuzzy-c-means.html"><i class="fa fa-check"></i><b>10.2</b> Eksperimeen Fuzzy C-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path="10.2-eksperimeen-fuzzy-c-means.html"><a href="10.2-eksperimeen-fuzzy-c-means.html#install-dan-load-packagaes"><i class="fa fa-check"></i>Install dan Load Packagaes</a></li>
+<li class="chapter" data-level="" data-path="10.2-eksperimeen-fuzzy-c-means.html"><a href="10.2-eksperimeen-fuzzy-c-means.html#data-2"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="10.2-eksperimeen-fuzzy-c-means.html"><a href="10.2-eksperimeen-fuzzy-c-means.html#hasil-clustering"><i class="fa fa-check"></i>Hasil Clustering</a></li>
+<li class="chapter" data-level="" data-path="10.2-eksperimeen-fuzzy-c-means.html"><a href="10.2-eksperimeen-fuzzy-c-means.html#visualisasi-matrik-keanggotaan"><i class="fa fa-check"></i>Visualisasi Matrik Keanggotaan</a></li>
+<li class="chapter" data-level="" data-path="10.2-eksperimeen-fuzzy-c-means.html"><a href="10.2-eksperimeen-fuzzy-c-means.html#ringkasan-hasil-clustering-fcm"><i class="fa fa-check"></i>Ringkasan Hasil Clustering FCM</a></li>
+<li class="chapter" data-level="" data-path="10.2-eksperimeen-fuzzy-c-means.html"><a href="10.2-eksperimeen-fuzzy-c-means.html#visualisasi-hasil-cluster-1"><i class="fa fa-check"></i>Visualisasi Hasil Cluster</a></li>
+<li class="chapter" data-level="" data-path="10.2-eksperimeen-fuzzy-c-means.html"><a href="10.2-eksperimeen-fuzzy-c-means.html#visualisasi-hasil-cluster-dengan-clusplot"><i class="fa fa-check"></i>Visualisasi Hasil Cluster dengan clusplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="11-pcm.html"><a href="11-pcm.html"><i class="fa fa-check"></i><b>11</b> Possibilistic C-Means Clustering</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><i class="fa fa-check"></i><b>11.1</b> Tahapan Algoritma Possibilistic C-Means Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html#inisialisasi-parameter-1"><i class="fa fa-check"></i>1. Inisialisasi Parameter</a></li>
+<li class="chapter" data-level="" data-path="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html#hitung-jarak"><i class="fa fa-check"></i>2. Hitung Jarak</a></li>
+<li class="chapter" data-level="" data-path="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html#perbarui-matriks-keanggotaan-1"><i class="fa fa-check"></i>3. Perbarui Matriks Keanggotaan</a></li>
+<li class="chapter" data-level="" data-path="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html#hitung-parameter-omega"><i class="fa fa-check"></i>4. Hitung Parameter <span class="math inline">\(\Omega\)</span></a></li>
+<li class="chapter" data-level="" data-path="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html#perbarui-pusat-cluster"><i class="fa fa-check"></i>5. Perbarui Pusat Cluster</a></li>
+<li class="chapter" data-level="" data-path="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html#kondisi-berhenti-1"><i class="fa fa-check"></i>6. Kondisi Berhenti</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="11.2-eksperimen-algoritma-possibilistic-c-means-clustering.html"><a href="11.2-eksperimen-algoritma-possibilistic-c-means-clustering.html"><i class="fa fa-check"></i><b>11.2</b> Eksperimen Algoritma Possibilistic C-Means Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="11.2-eksperimen-algoritma-possibilistic-c-means-clustering.html"><a href="11.2-eksperimen-algoritma-possibilistic-c-means-clustering.html#persiapan-library"><i class="fa fa-check"></i>Persiapan Library</a></li>
+<li class="chapter" data-level="" data-path="11.2-eksperimen-algoritma-possibilistic-c-means-clustering.html"><a href="11.2-eksperimen-algoritma-possibilistic-c-means-clustering.html#dataset"><i class="fa fa-check"></i>Dataset</a></li>
+<li class="chapter" data-level="" data-path="11.2-eksperimen-algoritma-possibilistic-c-means-clustering.html"><a href="11.2-eksperimen-algoritma-possibilistic-c-means-clustering.html#inisialisasi-matriks-prototipe"><i class="fa fa-check"></i>Inisialisasi Matriks Prototipe</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="12-pfcm.html"><a href="12-pfcm.html"><i class="fa fa-check"></i><b>12</b> Possibilistic Fuzzy C-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path="12-pfcm.html"><a href="12-pfcm.html#fungsi-objektif"><i class="fa fa-check"></i>Fungsi Objektif</a></li>
+<li class="chapter" data-level="" data-path="12-pfcm.html"><a href="12-pfcm.html#perhitungan-keanggotaan-dan-typicality"><i class="fa fa-check"></i>Perhitungan Keanggotaan dan Typicality</a></li>
+<li class="chapter" data-level="" data-path="12-pfcm.html"><a href="12-pfcm.html#derajat-typicality"><i class="fa fa-check"></i>Derajat Typicality</a></li>
+<li class="chapter" data-level="" data-path="12-pfcm.html"><a href="12-pfcm.html#pembaruan-pusat-klaster"><i class="fa fa-check"></i>Pembaruan Pusat Klaster</a></li>
+<li class="chapter" data-level="12.1" data-path="12.1-tahapan-algoritma-pfcm.html"><a href="12.1-tahapan-algoritma-pfcm.html"><i class="fa fa-check"></i><b>12.1</b> Tahapan Algoritma PFCM</a>
+<ul>
+<li class="chapter" data-level="" data-path="12.1-tahapan-algoritma-pfcm.html"><a href="12.1-tahapan-algoritma-pfcm.html#inisialisasi-4"><i class="fa fa-check"></i>1. Inisialisasi</a></li>
+<li class="chapter" data-level="" data-path="12.1-tahapan-algoritma-pfcm.html"><a href="12.1-tahapan-algoritma-pfcm.html#hitung-keanggotaan-fuzzy-u_ij"><i class="fa fa-check"></i>2. Hitung Keanggotaan Fuzzy (<span class="math inline">\(u_{ij}\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="12.1-tahapan-algoritma-pfcm.html"><a href="12.1-tahapan-algoritma-pfcm.html#hitung-typicality-t_ij"><i class="fa fa-check"></i>3. Hitung Typicality (<span class="math inline">\(t_{ij}\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="12.1-tahapan-algoritma-pfcm.html"><a href="12.1-tahapan-algoritma-pfcm.html#perbarui-pusat-klaster-vecv_j"><i class="fa fa-check"></i>4. Perbarui Pusat Klaster (<span class="math inline">\(\vec{v}_j\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="12.1-tahapan-algoritma-pfcm.html"><a href="12.1-tahapan-algoritma-pfcm.html#evaluasi-konvergensi-1"><i class="fa fa-check"></i>5. Evaluasi Konvergensi</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="12.2-eksperimen-possibilistic-fuzzy-c-means.html"><a href="12.2-eksperimen-possibilistic-fuzzy-c-means.html"><i class="fa fa-check"></i><b>12.2</b> Eksperimen Possibilistic Fuzzy C-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path="12.2-eksperimen-possibilistic-fuzzy-c-means.html"><a href="12.2-eksperimen-possibilistic-fuzzy-c-means.html#library-yang-dibutuhkan"><i class="fa fa-check"></i>Library yang Dibutuhkan</a></li>
+<li class="chapter" data-level="" data-path="12.2-eksperimen-possibilistic-fuzzy-c-means.html"><a href="12.2-eksperimen-possibilistic-fuzzy-c-means.html#dataset-1"><i class="fa fa-check"></i>Dataset</a></li>
+<li class="chapter" data-level="" data-path="12.2-eksperimen-possibilistic-fuzzy-c-means.html"><a href="12.2-eksperimen-possibilistic-fuzzy-c-means.html#klasterisasi-menggunakan-pfcm"><i class="fa fa-check"></i>Klasterisasi Menggunakan PFCM</a></li>
+<li class="chapter" data-level="" data-path="12.2-eksperimen-possibilistic-fuzzy-c-means.html"><a href="12.2-eksperimen-possibilistic-fuzzy-c-means.html#visualisasi-hasil-klasterisasi"><i class="fa fa-check"></i>Visualisasi Hasil Klasterisasi</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i>Referensi</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div class = rmdreview>
+Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda untuk membuat buku ini lebih baik bagi. Anda dapat memberikan anotasi pada beberapa teks dengan <span style="background-color: #3297FD; color: white">memilihnya menggunakan kursor</span> dan kemudian klik “Beri Anotasi” pada menu pop-up. Anda juga dapat melihat anotasi orang lain: klik tanda panah di sudut kanan atas halaman <i class="fa fa-arrow-circle-right  fa-rotate-315" aria-hidden="true"></i>
+</div>
+<div id="pcm" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">11</span> Possibilistic C-Means Clustering<a href="11-pcm.html#pcm" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<style>
+body{
+text-align: justify}
+</style>
+<p>Algoritma Possibilistic C-Means (PCM), yang diperkenalkan oleh Krishnapuram dan Keller pada tahun 1993, dirancang untuk mengatasi kelemahan Fuzzy C-Means (FCM) dalam menghadapi noise. PCM menghasilkan pengelompokan data yang bersifat possibilistik, di mana nilai keanggotaan mencerminkan derajat kemungkinan bahwa suatu titik data termasuk dalam kluster tertentu, yaitu sejauh mana titik tersebut sesuai dengan prototipe kluster. Tidak seperti FCM, PCM tidak memberlakukan batasan probabilistik pada jumlah keanggotaan suatu objek terhadap seluruh kluster. Namun, parameter (Ω) dalam PCM dihitung berdasarkan hasil pengelompokan fuzzy yang diperoleh dari FCM. Meskipun PCM lebih tahan terhadap noise dibandingkan FCM, algoritma ini sangat bergantung pada inisialisasi awal dan rentan terhadap penurunan kinerja akibat masalah pengelompokan simultan.</p>
+<p>Fungsi objektif pada algoritma Possibilistic C-Means (PCM) dirumuskan sebagai berikut:</p>
+<p><span class="math display">\[
+J_{PCM} = \sum_{i=1}^n \sum_{j=1}^c u_{ij}^m \|x_i - v_j\|^2 + \sum_{j=1}^c \eta_j \sum_{i=1}^n (1 - u_{ij})^m
+\]</span></p>
+<p>Dengan keterangan:<br />
+- <span class="math inline">\(n\)</span>: Jumlah data.<br />
+- <span class="math inline">\(c\)</span>: Jumlah klaster.<br />
+- <span class="math inline">\(x_i\)</span>: Titik data ke-<span class="math inline">\(i\)</span>.<br />
+- <span class="math inline">\(v_j\)</span>: Prototipe (centroid) dari klaster ke-<span class="math inline">\(j\)</span>.<br />
+- <span class="math inline">\(u_{ij}\)</span>: Derajat keanggotaan <span class="math inline">\(x_i\)</span> terhadap klaster <span class="math inline">\(j\)</span>.<br />
+- <span class="math inline">\(m\)</span>: Parameter fuzzy (<span class="math inline">\(m &gt; 1\)</span>).<br />
+- <span class="math inline">\(\eta_j\)</span>: Parameter skala untuk klaster <span class="math inline">\(j\)</span>, yang mengontrol pengaruh keanggotaan possibilistik.</p>
+<p>Bagian pertama dari fungsi objektif meminimalkan jarak antara titik data dan pusat klaster, dengan mempertimbangkan derajat keanggotaan. Bagian kedua mendorong nilai keanggotaan possibilistik dengan memberikan penalti pada derajat keanggotaan yang rendah, sehingga mengurangi sensitivitas terhadap noise.</p>
+<p>Pada fungsi objektif PCM yang telah dijelaskan sebelumnya, komponen pertama bertujuan meminimalkan jarak berbobot antara data dan pusat klaster, sementara komponen kedua mencegah solusi trivial (Timm et al., 2004).</p>
+<p>Krishnapuram dan Keller kemudian mengusulkan fungsi objektif alternatif untuk PCM (Krishnapuram &amp; Keller, 1996), yang dirumuskan sebagai berikut:</p>
+<p><span class="math display">\[
+J_{PCM_2}(\mathbf{X}; \mathbf{V}, \mathbf{T}) = \sum\limits_{i=1}^n t_{ij}^\eta \; d^2(\vec{x}_i, \vec{v}_j) + \sum\limits_{j=1}^k \Omega_j \sum\limits_{i=1}^n \big(t_{ij}^\eta \; \log{t_{ij}^\eta} - t_{ij}^\eta \big)
+\]</span></p>
+<p>Dengan definisi:</p>
+<p><span class="math display">\[
+\vec{\Omega}_j = K \frac{\sum\limits_{i=1}^n u_{ij}^m \; d^2(\vec{x}_i, \vec{v}_j)}{\sum\limits_{i=1}^n u_{ij}^m}
+\]</span></p>
+<p>Keanggotaan dalam PCM bersifat possibilistik, sehingga derajat keanggotaan dapat dianggap sebagai nilai tipikalitas yang merepresentasikan seberapa khas suatu objek data terhadap klaster tertentu, tanpa memperhatikan klaster lainnya. Persamaan pembaruan derajat tipikalitas serupa dengan yang digunakan dalam FCM dan diturunkan dari fungsi objektif PCM, yaitu:</p>
+<p><span class="math display">\[
+t_{ij} = \Bigg[ 1 + \Big(\frac{d^2(\vec{x}_i, \vec{v}_j)}{\Omega_j}\Big)^{1/(m-1)} \Bigg]^{-1} \;\;; \; 1 \leq i \leq n,\; 1 \leq j \leq k
+\]</span></p>
+<p>Sedangkan, persamaan pembaruan prototipe klaster tetap sama seperti pada FCM:</p>
+<p><span class="math display">\[
+\vec{v}_j = \frac{\sum\limits_{i=1}^n t_{ij}^m \vec{x}_i}{\sum\limits_{i=1}^n t_{ij}^m} \;\;; \; 1 \leq j \leq k
+\]</span></p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="10.2-eksperimeen-fuzzy-c-means.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": true,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mca91/ClustR/edit/master/11-ch11.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

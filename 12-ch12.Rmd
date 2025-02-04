@@ -1,0 +1,166 @@
+# Possibilistic Fuzzy C-Means {#pfcm}
+
+```{=html}
+<style>
+body{
+text-align: justify}
+</style>
+```
+
+```{r, child="_setup.Rmd"}
+```
+
+Algoritma Possibilistic Fuzzy C-Means (PFCM) merupakan salah satu metode pengelompokan yang menggabungkan kekuatan dari Fuzzy C-Means (FCM) dengan pendekatan possibilistic. Algoritma ini dirancang untuk menangani ketidakpastian dalam data, terutama ketika data tersebut mengandung noise atau outlier. Dalam konteks ini, PFCM menawarkan pendekatan yang lebih robust dibandingkan dengan FCM, di mana setiap data tidak hanya memiliki derajat keanggotaan dalam cluster tertentu tetapi juga nilai kekhasan yang menunjukkan seberapa khas data tersebut terhadap cluster yang bersangkutan [@Grover2014] [@Suganya2012].
+
+Konsep dasar dari PFCM adalah bahwa setiap titik data memiliki dua parameter: derajat keanggotaan dan derajat kekhasan. Derajat keanggotaan menunjukkan seberapa besar kemungkinan suatu titik data termasuk dalam cluster tertentu, sementara derajat kekhasan menunjukkan seberapa unik atau khas titik data tersebut dibandingkan dengan titik data lainnya dalam cluster. Dengan cara ini, PFCM dapat mengurangi dampak dari outlier yang sering kali mempengaruhi hasil clustering pada algoritma FCM tradisional [@Kusumadewi2006] [@Chaudhuri2015].
+
+PFCM bekerja dengan cara iteratif, di mana pusat cluster diperbarui berdasarkan nilai keanggotaan dan kekhasan dari setiap titik data. Proses ini berlanjut hingga konvergensi tercapai, yaitu ketika perubahan dalam pusat cluster dan nilai keanggotaan menjadi sangat kecil. Dengan demikian, algoritma ini tidak hanya fokus pada pengelompokan data tetapi juga pada pemahaman karakteristik unik dari setiap cluster yang terbentuk [@Bora2014].
+
+Keunggulan utama dari PFCM adalah kemampuannya untuk mengatasi masalah pengelompokan pada dataset yang kompleks dan noisy. Hal ini menjadikannya pilihan yang baik untuk berbagai aplikasi, mulai dari analisis citra hingga pengelompokan teks dan analisis pasar. Penelitian menunjukkan bahwa PFCM dapat memberikan hasil yang lebih akurat dibandingkan dengan FCM dalam situasi di mana terdapat banyak noise dalam data [@Phukon2013].
+
+Secara keseluruhan, algoritma Possibilistic Fuzzy C-Means merupakan inovasi penting dalam bidang clustering yang menawarkan solusi efektif untuk tantangan pengelompokan data yang tidak jelas batasannya. Dengan menggabungkan konsep fuzzy dan possibilistic, PFCM memberikan pendekatan yang lebih kaya dan informatif dalam analisis cluster, sehingga dapat digunakan secara luas dalam berbagai disiplin ilmu dan aplikasi praktis [@Dwi2017].
+
+Algoritma **Possibilistic Fuzzy C-Means (PFCM)** diperkenalkan oleh Pal et al. (2005) sebagai pengembangan dari algoritma Fuzzy Possibilistic C-Means (FPCM). Salah satu kelemahan utama FPCM adalah adanya kendala bahwa jumlah seluruh nilai typicality dari semua data pada satu klaster harus sama dengan satu, yang dapat menyebabkan masalah, terutama pada dataset yang besar. Untuk mengatasi kendala ini, PFCM memodifikasi fungsi objektifnya seperti berikut.
+
+### Fungsi Objektif {.unnumbered}
+
+Fungsi objektif PFCM didefinisikan sebagai:
+
+$$
+J_{PFCM}(\mathbf{X}; \mathbf{V}, \mathbf{U}, \mathbf{T}) = \sum_{j=1}^k \sum_{i=1}^n \left( a \; u_{ij}^m + b \; t_{ij}^\eta \right) d^2(\vec{x}_i, \vec{v}_j) + \sum_{j=1}^k \Omega_j \sum_{i=1}^n (1-t_{ij})^\eta
+$$
+
+Di mana:
+
+-   $a$ dan $b$: Koefisien untuk menentukan tingkat kepentingan relatif antara keanggotaan fuzzy ($u$) dan nilai typicality ($t$) ($a > 0, b > 0$).
+
+-   $m$: Parameter fuzzifier yang mengontrol tingkat kekaburan ($m \geq 1$, biasanya $m = 2$).
+
+-   $\eta$: Eksponen typicality yang mengontrol tingkat typicality ($\eta \geq 1$, biasanya $\eta = 2$).
+
+-   $\Omega_j$: Parameter penalti possibilistik yang mengontrol varian klaster.
+
+### Perhitungan Keanggotaan dan Typicality {.unnumbered}
+
+Derajat keanggotaan ($u_{ij}$) dihitung seperti pada algoritma Fuzzy C-Means (FCM):
+
+$$
+u_{ij} = \left[\sum_{l=1}^k \left(\frac{d^2(\vec{x}_i, \vec{v}_j)}{d^2(\vec{x}_i, \vec{v}_l)}\right)^{\frac{1}{m-1}}\right]^{-1}
+$$
+
+di mana $d^2(\vec{x}_i, \vec{v}_j)$ adalah jarak kuadrat antara data $\vec{x}_i$ dan pusat klaster $\vec{v}_j$.
+
+### Derajat Typicality {.unnumbered}
+
+Derajat typicality ($t_{ij}$) dihitung menggunakan rumus:
+
+$$
+t_{ij} = \left[1 + \left(\frac{b \; d^2(\vec{x}_i, \vec{v}_j)}{\Omega_j}\right)^{\frac{1}{\eta-1}}\right]^{-1}
+$$
+
+### Pembaruan Pusat Klaster {.unnumbered}
+
+Pusat klaster ($\vec{v}_j$) diperbarui menggunakan rumus berikut:
+
+$$
+\vec{v}_j = \frac{\sum_{i=1}^n \left(a \; u_{ij}^m + b \; t_{ij}^\eta \right) \vec{x}_i}{\sum_{i=1}^n \left(a \; u_{ij}^m + b \; t_{ij}^\eta \right)}
+$$
+
+## Tahapan Algoritma PFCM
+
+### 1. Inisialisasi {.unnumbered}
+
+-   Tentukan parameter:
+    -   $k$: jumlah klaster
+    -   $a, b$: koefisien untuk keanggotaan fuzzy dan typicality ($a > 0, b > 0$)
+    -   $m$: fuzzifier ($m \geq 1$, biasanya $m = 2$)
+    -   $\eta$: eksponen typicality ($\eta \geq 1$, biasanya $\eta = 2$)
+-   Inisialisasi pusat klaster awal $\vec{v}_j^{(0)}$ untuk $j = 1, 2, ..., k$.
+-   Inisialisasi derajat keanggotaan fuzzy $u_{ij}^{(0)}$ dan typicality $t_{ij}^{(0)}$.
+
+### 2. Hitung Keanggotaan Fuzzy ($u_{ij}$) {.unnumbered}
+
+Perbarui derajat keanggotaan fuzzy berdasarkan jarak antara data dan pusat klaster:
+
+$$
+u_{ij} = \left[\sum_{l=1}^k \left(\frac{d^2(\vec{x}_i, \vec{v}_j)}{d^2(\vec{x}_i, \vec{v}_l)}\right)^{\frac{1}{m-1}}\right]^{-1}
+$$
+
+di mana: - $d^2(\vec{x}_i, \vec{v}_j)$: jarak kuadrat antara data $\vec{x}_i$ dan pusat klaster $\vec{v}_j$.
+
+### 3. Hitung Typicality ($t_{ij}$) {.unnumbered}
+
+Perbarui derajat typicality untuk setiap data:
+
+$$
+t_{ij} = \left[1 + \left(\frac{b \; d^2(\vec{x}_i, \vec{v}_j)}{\Omega_j}\right)^{\frac{1}{\eta-1}}\right]^{-1}
+$$
+
+di mana $\Omega_j$ adalah penalti possibilistik yang dihitung sebagai:
+
+$$
+\Omega_j = \frac{\sum_{i=1}^n u_{ij}^m d^2(\vec{x}_i, \vec{v}_j)}{\sum_{i=1}^n u_{ij}^m}
+$$
+
+### 4. Perbarui Pusat Klaster ($\vec{v}_j$) {.unnumbered}
+
+Hitung pusat klaster baru berdasarkan kombinasi derajat keanggotaan fuzzy dan typicality:
+
+$$
+\vec{v}_j = \frac{\sum_{i=1}^n \left(a \; u_{ij}^m + b \; t_{ij}^\eta\right) \vec{x}_i}{\sum_{i=1}^n \left(a \; u_{ij}^m + b \; t_{ij}^\eta\right)}
+$$
+
+### 5. Evaluasi Konvergensi {.unnumbered}
+
+Hitung perubahan antara pusat klaster saat ini dan sebelumnya:
+
+$$
+\text{error} = \sum_{j=1}^k \|\vec{v}_j^{(t+1)} - \vec{v}_j^{(t)}\|
+$$
+
+Jika $\text{error}$ lebih kecil dari ambang batas ($\epsilon$), hentikan iterasi. Jika tidak, kembali ke **langkah 2**.
+
+## Eksperimen Possibilistic Fuzzy C-Means
+Pada eksperimen ini, kita akan menerapkan algoritma **Possibilistic Fuzzy C-Means (PFCM)** untuk klasterisasi data menggunakan dataset `iris`. Hasil klasterisasi akan divisualisasikan menggunakan fungsi `fviz_cluster` dari library `factoextra`.
+
+### Library yang Dibutuhkan {-}
+```{r}
+library(ppclust)
+library(factoextra)
+library(cluster)
+```
+
+### Dataset {-}
+Dataset yang digunakan adalah `iris`, terdiri dari 150 data bunga dengan empat fitur: panjang dan lebar kelopak serta sepal.
+
+```{r}
+# Memuat dataset iris
+data(iris)
+iris_data <- iris[, -5] # Hanya menggunakan fitur numerik
+```
+
+### Klasterisasi Menggunakan PFCM {-}
+
+```{r}
+# Jalankan algoritma PFCM
+set.seed(123) # Untuk hasil yang dapat direproduksi
+pfcm_result <- ppclust::pfcm(iris_data, centers = 3, m = 2, eta = 2, a = 1, b = 1)
+
+# Tampilkan ringkasan hasil
+print(pfcm_result$u)
+```
+
+### Visualisasi Hasil Klasterisasi {-}
+Hasil klasterisasi divisualisasikan menggunakan dua fitur pertama (Panjang dan Lebar Sepal).
+
+```{r}
+# Visualisasi klaster
+fviz_cluster(list(data = iris_data, cluster = pfcm_result$cluster),
+             ellipse.type = "convex", 
+             geom = "point",
+             stand = FALSE,
+             ggtheme = theme_minimal(),
+             main = "Hasil Klasterisasi dengan PFCM")
+```
+
+

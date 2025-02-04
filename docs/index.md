@@ -2,7 +2,7 @@
 title: "Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R"
 cover-image: "images/cover.png"
 author: "Deden Istiawan"
-date: "2025-01-25"
+date: "2025-02-04"
 site: bookdown::bookdown_site
 output:
   bookdown::pdf_book:
@@ -77,7 +77,7 @@ text-align: justify}
 Bisnis Muhammadiyah <br> Semarang, Indonesia <br>
 <a href=\"mailto:deden.istiawan@itesa.ac.id?subject=Clustering%20with%20R\">[deden.istiawan\@itesa.ac.id](mailto:deden.istiawan@itesa.ac.id){.email}.</a>
 <br><br>
-Last updated on Saturday, January 25, 2025.
+Last updated on Tuesday, February 04, 2025.
 
 <hr style="background-color:#3C6690;height:2px">
 

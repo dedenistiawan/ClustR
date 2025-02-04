@@ -1,4 +1,4 @@
-# Algoritma K-Modes {#kmods}
+# Algoritma K-Medoids {#kmed}
 
 ```{=html}
 <style>
@@ -10,44 +10,17 @@ text-align: justify}
 ```{r, child="_setup.Rmd"}
 ```
 
-Algoritma K-Modes merupakan salah satu metode dalam analisis clustering
-yang dirancang khusus untuk mengelompokkan data kategorik. Berbeda
-dengan algoritma K-Means yang hanya dapat digunakan untuk data numerik,
-K-Modes mengatasi keterbatasan ini dengan menggunakan modus sebagai
-pusat cluster. Hal ini memungkinkan K-Modes untuk menangani data yang
-memiliki atribut kategorik, seperti jenis kelamin, status perkawinan,
-atau kategori produk, yang sering dijumpai dalam berbagai aplikasi
-analisis data [@handayani2020].
+K-Medoids adalah salah satu metode pengelompokan yang termasuk dalam kategori analisis cluster non-hierarki. Metode ini merupakan varian dari K-Means, yang dirancang untuk mengatasi kelemahan K-Means dalam menghadapi data yang mengandung outlier. Dalam K-Medoids, objek yang mewakili setiap cluster disebut medoid, yang merupakan titik pusat dari cluster tersebut. Berbeda dengan K-Means yang menggunakan rata-rata (centroid) sebagai pusat cluster, K-Medoids lebih robust terhadap outlier karena menggunakan objek yang sebenarnya dari dataset sebagai medoid [@jiawei2006data].
 
-Proses kerja algoritma K-Modes mirip dengan K-Means, di mana algoritma
-ini juga memerlukan penentuan jumlah cluster ($k$) sebelum proses
-clustering dimulai. K-Modes melakukan inisialisasi centroid dengan
-memilih modus dari setiap atribut dalam cluster. Selanjutnya, algoritma
-ini menghitung jarak antara data dan centroid menggunakan metode yang
-disebut "dissimilarity measure," yang mengukur seberapa berbeda dua data
-berdasarkan atribut kategorik [@buulolo2020].
+Proses kerja K-Medoids dimulai dengan menentukan jumlah cluster ($k$) yang diinginkan. Setelah itu, algoritma akan memilih secara acak medoid awal dari dataset. Selanjutnya, setiap objek dalam dataset akan dialokasikan ke cluster terdekat berdasarkan jarak ke medoid. Jarak yang umum digunakan dalam K-Medoids adalah jarak Euclidean. Proses ini diulang hingga tidak ada perubahan dalam pemilihan medoid, yang menunjukkan bahwa algoritma telah konvergen [@setyawati2017analisis].
 
-Salah satu keunggulan K-Modes adalah kemampuannya untuk mengatasi data
-yang mengandung noise atau outlier. Dalam konteks data kategorik,
-outlier dapat mempengaruhi hasil clustering secara signifikan. K-Modes
-menggunakan pendekatan yang lebih robust dengan memfokuskan pada modus,
-sehingga hasil clustering menjadi lebih stabil dan representatif
-[@hardandy2017].
+Salah satu keunggulan K-Medoids adalah kemampuannya untuk memberikan hasil yang lebih stabil dan representatif ketika data mengandung outlier. Hal ini menjadikan K-Medoids pilihan yang lebih baik dibandingkan K-Means dalam situasi di mana data tidak terdistribusi secara normal atau terdapat nilai ekstrim yang dapat mempengaruhi hasil clustering [@vercellis2009sistem]. Dengan demikian, K-Medoids sangat cocok untuk analisis data yang kompleks dan beragam.
 
-Implementasi K-Modes dalam R dapat dilakukan dengan menggunakan paket
-seperti klaR dan cluster, yang menyediakan fungsi-fungsi yang diperlukan
-untuk melakukan clustering. Dengan menggunakan dataset yang sesuai,
-pengguna dapat dengan mudah menerapkan algoritma ini untuk mendapatkan
-insight yang berharga dari data kategorik yang dimiliki
-[@widyakusuma2024].
+Dalam implementasinya, K-Medoids dapat dilakukan dengan menggunakan berbagai perangkat lunak statistik, termasuk `r ttcode("R")`. `r ttcode("R")` menyediakan paket-paket yang memudahkan pengguna untuk melakukan analisis clustering, termasuk K-Medoids. Dengan menggunakan fungsi-fungsi yang tersedia, pengguna dapat dengan mudah melakukan standarisasi data, menentukan jumlah cluster optimal, dan memvisualisasikan hasil clustering [@santoso2012aplikasi].
 
-Dalam bab ini, kita akan membahas lebih dalam mengenai langkah-langkah
-implementasi algoritma K-Modes, termasuk pemilihan jumlah cluster yang
-optimal, serta analisis hasil clustering yang diperoleh. Dengan
-pemahaman yang baik tentang algoritma ini, diharapkan pembaca dapat
-menerapkan K-Modes dalam berbagai konteks analisis data yang relevan.
+Secara keseluruhan, K-Medoids merupakan metode yang efektif untuk analisis cluster, terutama dalam konteks data yang mengandung outlier. Dengan pemahaman yang baik tentang cara kerja dan implementasinya, pengguna dapat memanfaatkan K-Medoids untuk mendapatkan wawasan yang lebih dalam dari data yang dianalisis.
 
-## Tahapan Algoritma K-Modes
+## Tahapan Algoritma K-Medoids
 
 ```{=html}
 <style>
@@ -56,38 +29,38 @@ text-align: justify}
 </style>
 ```
 
-### 1. Inisialisasi {-}
-Tentukan jumlah cluster \( k \). Pilih \( k \) modus dari dataset sebagai centroid awal. Modus adalah nilai yang paling sering muncul dalam setiap atribut kategorik.
+### 1. Inisialisasi Centroid {-}
+Tentukan jumlah cluster \( k \) yang diinginkan. Pilih secara acak \( k \) titik data dari dataset sebagai medoid awal untuk setiap cluster.
 
-### 2. Pengelompokan {-}
-Untuk setiap data point, hitung jarak dissimilarity ke setiap centroid. Dalam K-Modes, jarak dissimilarity dihitung menggunakan rumus berikut:
+### 2. Penugasan Anggota Cluster {-}
+Setiap titik data \( x_i \) dalam dataset dialokasikan ke cluster yang memiliki medoid terdekat. Penugasan dilakukan berdasarkan jarak antara titik data dan medoid menggunakan rumus jarak (misalnya, jarak Euclidean).
+   $$
+   \text{Jarak}(x_i, m_k) = \sqrt{\sum_{j=1}^n (x_{ij} - m_{kj})^2}
+   $$
+   Di mana:
+   \( x_i \) adalah titik data ke-i, \( m_k \) adalah medoid untuk cluster k, \( x_{ij} \) adalah nilai fitur ke-j dari titik data \( x_i \), \( m_{kj} \) adalah nilai fitur ke-j dari medoid \( m_k \), \( n \) adalah jumlah fitur.
 
-\[
-d(x_i, c_j) = \sum_{k=1}^{n} \delta(x_{ik}, c_{jk})
-\]
+Titik data \( x_i \) akan dimasukkan ke dalam cluster \( C_k \) yang memiliki medoid dengan jarak terkecil:
+   $$
+   C_k = \{ x_i \mid \text{Jarak}(x_i, m_k) \leq \text{Jarak}(x_i, m_j) \, \text{untuk semua} \, j \neq k \}
+   $$
 
-di mana: \( d(x_i, c_j) \) adalah jarak dissimilarity antara data point \( x_i \) dan centroid \( c_j \). \( \delta(x_{ik}, c_{jk}) \) adalah fungsi yang mengembalikan 0 jika \( x_{ik} = c_{jk} \) (nilai sama) dan 1 jika \( x_{ik} \neq c_{jk} \) (nilai berbeda). \( n \) adalah jumlah atribut.
+### 3. Pembaruan Medoid {-}
+Setelah anggota cluster ditugaskan, tentukan medoid baru untuk setiap cluster. Medoid baru adalah titik data yang meminimalkan jumlah jarak ke semua titik dalam cluster tersebut.
+   $$
+   m_k = \arg\min_{x_j \in C_k} \sum_{x_i \in C_k} \text{Jarak}(x_i, x_j)
+   $$
+   Di mana: \( m_k \) adalah medoid baru untuk cluster \( C_k \), \( x_j \) adalah kandidat medoid di dalam cluster \( C_k \), \( \text{Jarak}(x_i, x_j) \) adalah jarak antara titik data \( x_i \) dan kandidat medoid \( x_j \).
 
-### 3. Penugasan Cluster {-}
-Setiap data point \( x_i \) ditugaskan ke cluster dengan centroid terdekat (dengan jarak dissimilarity terkecil).
+Medoid baru adalah titik data \( x_j \) yang meminimalkan jumlah total jarak ke titik-titik lainnya dalam cluster \( C_k \).
 
-### 4. Update Centroid {-}
-Setelah semua data point ditugaskan ke cluster, hitung ulang centroid untuk setiap cluster dengan mengambil modus dari setiap atribut dalam cluster tersebut. Modus dapat dihitung dengan:
+### 4. Iterasi {-}
+Langkah 2 dan 3 diulang hingga tidak ada perubahan pada medoid atau hingga perubahan medoid sangat kecil, menandakan konvergensi.
 
-\[
-c_j = \text{modus}(X_j)
-\]
+### 5. Hasil Akhir {-}
+Setelah konvergensi tercapai, algoritma berhenti, dan hasil akhir adalah pembagian dataset ke dalam \( K \) cluster dengan medoid yang mewakili setiap cluster. Titik data yang tergabung dalam cluster \( C_k \) lebih dekat ke medoid \( m_k \) dibandingkan medoid lainnya.
 
-di mana \( X_j \) adalah himpunan data point yang ditugaskan ke cluster \( j \).
-
-### 5. Kondisi Berhenti {-}
-Ulangi langkah 2 hingga 4 sampai tidak ada perubahan dalam penugasan cluster atau sampai jumlah iterasi maksimum tercapai.
-
-### Penjelasan Tambahan {-}
-- **Centroid**: Dalam konteks K-Modes, centroid adalah modus dari atribut-atribut dalam cluster. Ini berbeda dengan K-Means, di mana centroid adalah rata-rata dari atribut numerik.
-- **Iterasi**: Proses ini diulang hingga tidak ada perubahan dalam penugasan cluster, yang menunjukkan bahwa algoritma telah konvergen.
-
-## Eksperimen Algoritma K-Modes
+## Eksperimen Algoritma K-Medoids
 
 ```{=html}
 <style>
@@ -96,48 +69,86 @@ text-align: justify}
 </style>
 ```
 
-### 1. Memuat library yang diperlukan {-}
-Algoritma k-modes adalah salah satu metode clustering yang dirancang khusus untuk menangani data kategorikal. Di `r ttcode("R")`, algoritma ini dapat diimplementasikan dengan menggunakan library `Klar`, yang menyediakan fungsi bawaan untuk k-modes. Selain itu, library `MASS` sering digunakan untuk mendukung manipulasi data atau keperluan lainnya dalam analisis clustering.
+### Data {.unnumbered}
 
-```{r}
-library(klaR)
-library(MASS)
-```
+Dengan menggunakan fungsi `read.csv()` dari `r ttcode("R")`, kami dapat mengimpor data langsung dari URL tersebut ke dalam lingkungan kerja R. Berikut adalah kode yang digunakan untuk membaca data: Package `reader` menyiapkan fungsi [`read_csv()`](https://readr.tidyverse.org/reference/read_delim.html) untuk import data dari file CSV. Pada kasus ini digunakan data [Data 40% Kemiskinan di jawa Tengah](https://github.com/dedenistiawan/Dataset/blob/main/BDT.csv).
 
-### 2. Persiapan Dataset {-}
-Package **readr** menyiapkan fungsi [`read_csv()`](https://readr.tidyverse.org/reference/read_delim.html) untuk import data dari file CSV. Pada kasus ini digunakan data [Daerah Aliran Sungai](https://github.com/dedenistiawan/dataset) (DAS).
-
-```{r Load_data,warning=FALSE}
+```{r Load_data_km,warning=FALSE, tidy=FALSE}
 library (readr)
-urlfile = "https://raw.githubusercontent.com/dedenistiawan/Dataset/main/Dataset%20DAS.csv"
-data<-read_csv(url(urlfile))
+urlfile = "https://bit.ly/3VO3kRE"
+data<-read.csv(url(urlfile), row.names = "Kabupaten")
 ```
 
 ```{r nice-tab-1, tidy=FALSE, echo=FALSE}
 knitr::kable(
-  head(data, 10), caption = 'Data Daerah Aliran Sungai',
+  head(data, 10), caption = 'Basis Data Terpadu Jawa Tengah',
   booktabs = TRUE)
 ```
 
-### 3. Memeriksa Missing value {-}
-Untuk memeriksa keberadaan **missing value** dalam dataset, kita dapat menggunakan fungsi **`is.na()`** yang mengidentifikasi elemen dengan nilai yang hilang (NA). Dalam kasus ini, perintah **`colSums(is.na(data))`** digunakan untuk menghitung jumlah nilai yang hilang pada setiap kolom dalam dataset. Fungsi **`is.na(data)`** menghasilkan matriks logika yang menunjukkan posisi nilai yang hilang, di mana nilai `TRUE` menandakan keberadaan missing value. Selanjutnya, **`colSums()`** menjumlahkan nilai `TRUE` tersebut untuk setiap kolom, sehingga memberikan informasi tentang jumlah nilai yang hilang per kolom. Dengan hasil ini, pengguna dapat dengan mudah mengidentifikasi kolom yang memerlukan penanganan lebih lanjut, seperti imputasi atau penghapusan data.
+### R packages dan fungsi yang dibutuhkan {.unnumbered}
+
+Untuk melakukan analisis cluster dengan metode k-medoids di `r ttcode("R")`, diperlukan beberapa paket dan fungsi utama. Paket yang wajib digunakan adalah **`cluster`**, yang menyediakan fungsi `pam()` (Partitioning Around Medoids) sebagai implementasi utama algoritma k-medoids. Selain itu, paket **`factoextra`** berguna untuk visualisasi hasil clustering dengan fungsi `fviz_cluster()`. Untuk mengevaluasi kualitas clustering, paket **`fpc`** dan **`clusterCrit`** dapat digunakan sebagai opsi tambahan dengan fungsi seperti `cluster.stats()` untuk evaluasi statistik dan `intCriteria()` untuk menghitung indeks validasi clustering. Dalam proses analisis, fungsi `silhouette()` dapat digunakan untuk mengevaluasi kualitas clustering dengan Silhouette Width, sementara `dist()` diperlukan untuk membuat matriks jarak yang digunakan oleh algoritma. Sebagai langkah awal, data biasanya diskalakan menggunakan fungsi seperti `scale()` sebelum diterapkan algoritma k-medoids untuk memastikan hasil yang optimal. Kombinasi paket dan fungsi ini memungkinkan analisis cluster yang efektif, mulai dari pembentukan cluster hingga evaluasi hasil.
 
 ```{r}
-colSums(is.na(data))
+library(cluster)
+library(factoextra)
 ```
 
-### 3. Menjalankan K-Modes {-}
 
-Proses diawali dengan menjalankan fungsi **`kmodes()`**, di mana dataset dibagi ke dalam 3 cluster dengan parameter iterasi maksimum sebesar 10 dan tanpa pembobotan (parameter `weighted = FALSE`). Hasil clustering disimpan dalam variabel **`cluster.results`**, yang mencakup informasi tentang mode dari setiap cluster dan label cluster untuk setiap baris data. Selanjutnya, hasil cluster tersebut ditambahkan sebagai kolom baru ke dataset asli menggunakan fungsi **`cbind()`**, menghasilkan data frame baru yang mencakup informasi label cluster untuk setiap data. Dengan demikian, dataset hasil clustering ini dapat digunakan untuk analisis lebih lanjut, seperti mengidentifikasi pola atau karakteristik di dalam setiap cluster.
+### Estimasi Jumlah *Cluster* Optimal {.unnumbered}
 
-```{r kmodes, eval=FALSE}
-kmodes_result <- kmodes(data , 3, iter.max = 10, weighted = FALSE )
-cluster.output <- cbind(data ,kmodes_result$cluster)
+Untuk menentukan jumlah cluster yang optimal, metode average silhouette dapat digunakan. Konsepnya adalah menjalankan algoritma PAM dengan berbagai jumlah cluster \(k\). Kemudian, rata-rata silhouette dari masing-masing cluster dihitung dan diplot berdasarkan jumlah cluster. Average silhouette digunakan untuk menilai kualitas clustering, di mana nilai yang tinggi menunjukkan clustering yang baik. Jumlah cluster \(k\) yang optimal adalah yang menghasilkan rata-rata silhouette tertinggi dalam rentang nilai \(k\) yang dipertimbangkan.
+
+Fungsi `fviz_nbclust()` dari paket `factoextra` menyediakan cara praktis untuk memperkirakan jumlah cluster yang optimal. Dengan memanfaatkan metode average silhouette, fungsi ini dapat membantu menentukan jumlah cluster yang menghasilkan hasil clustering terbaik. Contoh implementasinya adalah sebagai berikut:
+
+```{r fig.cap='Plot Jumlah Cluster Metode silhouette', out.width='80%', fig.asp=.75, fig.align='center'}
+fviz_nbclust(data, pam, method = "silhouette") +
+  theme_classic()
 ```
 
-### 4. Menyimpan Hasil Cluster {-}
-Fungsi **`write.csv()`** digunakan untuk mengekspor data frame **`cluster.output`**, yang berisi dataset asli beserta label cluster hasil algoritma k-modes, ke file bernama *"kmodes clusters.csv"*. Parameter **`row.names = TRUE`** memastikan bahwa nama baris dari data frame akan disertakan dalam file CSV yang dihasilkan. File ini disimpan di direktori kerja R saat ini dan dapat diakses menggunakan perangkat lunak spreadsheet seperti Microsoft Excel atau diimpor kembali ke R untuk analisis lebih lanjut.
+Hasilnya adalah grafik yang menampilkan nilai rata-rata silhouette untuk setiap jumlah cluster. Jumlah cluster optimal ditentukan oleh nilai silhouette tertinggi, yang menunjukkan pembagian cluster terbaik dalam data.Berdasarkan plot, jumlah cluster yang disarankan adalah 2. Pada langkah berikutnya, kita akan mengelompokkan observasi ke dalam 2 cluster.
 
-```{r save_csv, eval=FALSE}
-write.csv(cluster.output, file = "kmodes clusters.csv", row.names = TRUE)
+### Eksperimen K-Medoids Clustering {.unnumbered}
+
+Berdasarkan plot hasil analisis dengan metode average silhouette, jumlah cluster optimal yang disarankan adalah 2. Oleh karena itu, dalam analisis cluster menggunakan algoritma k-medoids, kita akan menggunakan jumlah cluster \(k = 2\). Langkah ini diharapkan dapat menghasilkan pembagian cluster yang optimal dan berkualitas tinggi sesuai dengan data yang dianalisis. Berikut adalah kode untuk menjalankan algoritma k-medoids dengan \(k = 2\) menggunakan fungsi pam() dan mencetak hasilnya:
+
+```{r}
+## Menjalankan k-medoids clustering dengan k = 2
+pam.res <- pam(data, 2)
 ```
+
+Kode ini akan menampilkan detail hasil clustering, termasuk informasi tentang medoid, anggota cluster, dan ukuran setiap cluster.
+
+```{r}
+# Mencetak hasil clustering
+print(pam.res)
+```
+
+Hasil analisis k-medoids dengan \(k = 2\) menunjukkan bahwa data berhasil dikelompokkan ke dalam dua cluster. Medoid yang terpilih sebagai representasi masing-masing cluster adalah TEGAL untuk Cluster 1 dan SEMARANG untuk Cluster 2, dengan nilai atribut masing-masing ditampilkan dalam tabel. Observasi lainnya dikelompokkan berdasarkan kedekatan mereka dengan medoid, misalnya CILACAP, BANYUMAS, dan PURBALINGGA masuk ke Cluster 1, sementara PURWOREJO, WONOSOBO, dan MAGELANG masuk ke Cluster 2. Secara keseluruhan, clustering ini memberikan pembagian yang optimal dengan dua cluster yang masing-masing diwakili oleh medoid terpilih.
+
+Untuk menambahkan klasifikasi titik (cluster) ke data asli, Anda dapat menggunakan kode berikut. Kode ini akan menggabungkan hasil klasifikasi (cluster) dari analisis k-medoids ke dalam `data` dan menampilkan 3 baris pertama dari data yang telah diperbarui:
+
+```{r}
+# Menambahkan klasifikasi cluster ke data asli
+hasil_cluster <- cbind(data, cluster = pam.res$cluster)
+
+# Menampilkan 3 baris pertama
+head(hasil_cluster, n = 3)
+
+```
+
+Hasil dari kode ini akan menampilkan tiga baris pertama dari `data`, dengan kolom tambahan yang menunjukkan cluster tempat setiap observasi dikelompokkan. Kolom baru cluster berisi angka 1 atau 2 yang mewakili dua cluster yang terbentuk.
+
+### Visualisasi K-Medoids Clustering {.unnumbered}
+
+Untuk memvisualisasikan hasil pengelompokan dengan k-medoids, kita akan menggunakan fungsi **`fviz_cluster()`** dari paket **`factoextra`**. Fungsi ini akan menghasilkan plot sebar titik data yang diwarnai sesuai dengan nomor cluster. Dalam kode ini, palet warna yang digunakan adalah `#00AFBB` untuk cluster pertama dan `#FC4E07` untuk cluster kedua. Elips konsentrasi ditambahkan dengan parameter ellipse.type = "t", yang menunjukkan distribusi data di setiap cluster. Selain itu, untuk menghindari tumpang tindih label, parameter repel = TRUE digunakan, meskipun ini dapat sedikit memperlambat proses visualisasi. Terakhir, tema plot yang klasik diterapkan dengan ggtheme = theme_classic(), memberikan tampilan yang bersih dan sederhana pada grafik.
+
+```{r fig.cap='Visualisasi Cluster K-Medoids', out.width='80%', fig.asp=.75, fig.align='center'}
+fviz_cluster(pam.res,
+  palette = c("#00AFBB", "#FC4E07"), # Palet warna
+  ellipse.type = "t", # Elips konsentrasi
+  repel = TRUE, # Menghindari label bertumpuk (proses ini dapat sedikit lebih lambat)
+  ggtheme = theme_classic() # Tema plot klasik
+)
+```
+

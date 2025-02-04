@@ -1,4 +1,4 @@
-# Visualisasi Dendogram {#vizhc}
+# Algoritma K-Modes {#kmods}
 
 ```{=html}
 <style>
@@ -10,17 +10,44 @@ text-align: justify}
 ```{r, child="_setup.Rmd"}
 ```
 
-Dendrogram merupakan representasi grafis yang menunjukkan bagaimana objek-objek dalam dataset dikelompokkan berdasarkan kemiripan atau jarak antar objek. Dalam dendrogram, setiap objek awalnya dianggap sebagai klaster terpisah. Proses penggabungan klaster dilakukan secara iteratif berdasarkan jarak terdekat hingga semua objek tergabung dalam satu klaster besar.
+Algoritma K-Modes merupakan salah satu metode dalam analisis clustering
+yang dirancang khusus untuk mengelompokkan data kategorik. Berbeda
+dengan algoritma K-Means yang hanya dapat digunakan untuk data numerik,
+K-Modes mengatasi keterbatasan ini dengan menggunakan modus sebagai
+pusat cluster. Hal ini memungkinkan K-Modes untuk menangani data yang
+memiliki atribut kategorik, seperti jenis kelamin, status perkawinan,
+atau kategori produk, yang sering dijumpai dalam berbagai aplikasi
+analisis data [@handayani2020].
 
-## Proses Pembentukan Dendrogram
+Proses kerja algoritma K-Modes mirip dengan K-Means, di mana algoritma
+ini juga memerlukan penentuan jumlah cluster ($k$) sebelum proses
+clustering dimulai. K-Modes melakukan inisialisasi centroid dengan
+memilih modus dari setiap atribut dalam cluster. Selanjutnya, algoritma
+ini menghitung jarak antara data dan centroid menggunakan metode yang
+disebut "dissimilarity measure," yang mengukur seberapa berbeda dua data
+berdasarkan atribut kategorik [@buulolo2020].
 
-1.  Pengukuran Jarak: Langkah pertama adalah mengukur jarak antar objek menggunakan metode tertentu (misalnya, Euclidean distance).
+Salah satu keunggulan K-Modes adalah kemampuannya untuk mengatasi data
+yang mengandung noise atau outlier. Dalam konteks data kategorik,
+outlier dapat mempengaruhi hasil clustering secara signifikan. K-Modes
+menggunakan pendekatan yang lebih robust dengan memfokuskan pada modus,
+sehingga hasil clustering menjadi lebih stabil dan representatif
+[@hardandy2017].
 
-2.  Penggabungan Klaster: Klaster dengan jarak terdekat akan digabungkan menjadi satu klaster baru. Proses ini diulang hingga semua objek tergabung dalam satu klaster.
+Implementasi K-Modes dalam R dapat dilakukan dengan menggunakan paket
+seperti klaR dan cluster, yang menyediakan fungsi-fungsi yang diperlukan
+untuk melakukan clustering. Dengan menggunakan dataset yang sesuai,
+pengguna dapat dengan mudah menerapkan algoritma ini untuk mendapatkan
+insight yang berharga dari data kategorik yang dimiliki
+[@widyakusuma2024].
 
-3.  Pemotongan Dendrogram: Untuk menentukan jumlah klaster yang diinginkan, dendrogram dapat dipotong pada tingkat tertentu. Pemotongan ini membantu dalam mengidentifikasi kelompok-kelompok yang relevan dalam data
+Dalam bab ini, kita akan membahas lebih dalam mengenai langkah-langkah
+implementasi algoritma K-Modes, termasuk pemilihan jumlah cluster yang
+optimal, serta analisis hasil clustering yang diperoleh. Dengan
+pemahaman yang baik tentang algoritma ini, diharapkan pembaca dapat
+menerapkan K-Modes dalam berbagai konteks analisis data yang relevan.
 
-## Eksperimen
+## Tahapan Algoritma K-Modes
 
 ```{=html}
 <style>
@@ -29,132 +56,88 @@ text-align: justify}
 </style>
 ```
 
-### Read Data {.unnumbered}
+### 1. Inisialisasi {-}
+Tentukan jumlah cluster \( k \). Pilih \( k \) modus dari dataset sebagai centroid awal. Modus adalah nilai yang paling sering muncul dalam setiap atribut kategorik.
 
-```{r Load_data_hc,warning=FALSE, tidy=FALSE}
-library (readr)
-urlfile = "https://bit.ly/3VO3kRE"
-data<-read.csv(url(urlfile), row.names = "Kabupaten")
+### 2. Pengelompokan {-}
+Untuk setiap data point, hitung jarak dissimilarity ke setiap centroid. Dalam K-Modes, jarak dissimilarity dihitung menggunakan rumus berikut:
+
+\[
+d(x_i, c_j) = \sum_{k=1}^{n} \delta(x_{ik}, c_{jk})
+\]
+
+di mana: \( d(x_i, c_j) \) adalah jarak dissimilarity antara data point \( x_i \) dan centroid \( c_j \). \( \delta(x_{ik}, c_{jk}) \) adalah fungsi yang mengembalikan 0 jika \( x_{ik} = c_{jk} \) (nilai sama) dan 1 jika \( x_{ik} \neq c_{jk} \) (nilai berbeda). \( n \) adalah jumlah atribut.
+
+### 3. Penugasan Cluster {-}
+Setiap data point \( x_i \) ditugaskan ke cluster dengan centroid terdekat (dengan jarak dissimilarity terkecil).
+
+### 4. Update Centroid {-}
+Setelah semua data point ditugaskan ke cluster, hitung ulang centroid untuk setiap cluster dengan mengambil modus dari setiap atribut dalam cluster tersebut. Modus dapat dihitung dengan:
+
+\[
+c_j = \text{modus}(X_j)
+\]
+
+di mana \( X_j \) adalah himpunan data point yang ditugaskan ke cluster \( j \).
+
+### 5. Kondisi Berhenti {-}
+Ulangi langkah 2 hingga 4 sampai tidak ada perubahan dalam penugasan cluster atau sampai jumlah iterasi maksimum tercapai.
+
+### Penjelasan Tambahan {-}
+- **Centroid**: Dalam konteks K-Modes, centroid adalah modus dari atribut-atribut dalam cluster. Ini berbeda dengan K-Means, di mana centroid adalah rata-rata dari atribut numerik.
+- **Iterasi**: Proses ini diulang hingga tidak ada perubahan dalam penugasan cluster, yang menunjukkan bahwa algoritma telah konvergen.
+
+## Eksperimen Algoritma K-Modes
+
+```{=html}
+<style>
+body{
+text-align: justify}
+</style>
 ```
 
-```{r nice-tab-2, tidy=FALSE, echo=FALSE}
+### 1. Memuat library yang diperlukan {-}
+Algoritma k-modes adalah salah satu metode clustering yang dirancang khusus untuk menangani data kategorikal. Di `r ttcode("R")`, algoritma ini dapat diimplementasikan dengan menggunakan library `Klar`, yang menyediakan fungsi bawaan untuk k-modes. Selain itu, library `MASS` sering digunakan untuk mendukung manipulasi data atau keperluan lainnya dalam analisis clustering.
+
+```{r}
+library(klaR)
+library(MASS)
+```
+
+### 2. Persiapan Dataset {-}
+Package **readr** menyiapkan fungsi [`read_csv()`](https://readr.tidyverse.org/reference/read_delim.html) untuk import data dari file CSV. Pada kasus ini digunakan data [Daerah Aliran Sungai](https://github.com/dedenistiawan/dataset) (DAS).
+
+```{r Load_data,warning=FALSE}
+library (readr)
+urlfile = "https://raw.githubusercontent.com/dedenistiawan/Dataset/main/Dataset%20DAS.csv"
+data<-read_csv(url(urlfile))
+```
+
+```{r nice-tab-1, tidy=FALSE, echo=FALSE}
 knitr::kable(
-  head(data, 10), caption = 'Basis Data Terpadu Jawa Tengah',
+  head(data, 10), caption = 'Data Daerah Aliran Sungai',
   booktabs = TRUE)
 ```
 
-### Standarisasi Data {.unnumbered}
-
-Pertama, kita menghitung jarak antar kabupaten menggunakan fungsi `dist()`. Dalam hal ini, kita menggunakan metode jarak Euclidean. Sebelum menghitung jarak, data dinormalisasi dengan fungsi `scale()`, yang memastikan bahwa setiap variabel memiliki rata-rata 0 dan deviasi standar 1. Normalisasi ini penting untuk menghindari bias yang mungkin disebabkan oleh skala variabel yang berbeda.
-
-```{r}
-data_scale <- dist(scale(data), method = "euclidean")
-```
-
-### Pengelompokan Data {.unnumbered}
-
-Setelah menghitung jarak, langkah selanjutnya adalah melakukan pengelompokan menggunakan metode hirarki dengan fungsi `hclust()`. Dalam hal ini, kita menggunakan metode `Ward.D2`, yang bertujuan untuk meminimalkan varians dalam setiap kluster yang terbentuk. Metode ini sangat efektif dalam menghasilkan kluster yang lebih homogen.
+### 3. Memeriksa Missing value {-}
+Untuk memeriksa keberadaan **missing value** dalam dataset, kita dapat menggunakan fungsi **`is.na()`** yang mengidentifikasi elemen dengan nilai yang hilang (NA). Dalam kasus ini, perintah **`colSums(is.na(data))`** digunakan untuk menghitung jumlah nilai yang hilang pada setiap kolom dalam dataset. Fungsi **`is.na(data)`** menghasilkan matriks logika yang menunjukkan posisi nilai yang hilang, di mana nilai `TRUE` menandakan keberadaan missing value. Selanjutnya, **`colSums()`** menjumlahkan nilai `TRUE` tersebut untuk setiap kolom, sehingga memberikan informasi tentang jumlah nilai yang hilang per kolom. Dengan hasil ini, pengguna dapat dengan mudah mengidentifikasi kolom yang memerlukan penanganan lebih lanjut, seperti imputasi atau penghapusan data.
 
 ```{r}
-hasil_cluster <- hclust(data_scale, method = "ward.D2")
+colSums(is.na(data))
 ```
 
-### Visualisasi Dendogram {.unnumbered}
+### 3. Menjalankan K-Modes {-}
 
-Visualisasi dendogram adalah alat penting dalam analisis kluster hirarki, yang memungkinkan kita untuk memahami struktur dan hubungan antar kelompok dalam data. Dalam konteks ini, kita menggunakan paket R `factoextra` dan `dendextend` untuk menghasilkan dan memodifikasi dendogram dari hasil analisis kluster. Kita dapat menggunakan fungsi **`fviz_dend()`** dari paket **`factoextra`** di R untuk membuat dendrogram dengan mudah, baik menggunakan plot bawaan R atau melalui **`ggplot2`**.
+Proses diawali dengan menjalankan fungsi **`kmodes()`**, di mana dataset dibagi ke dalam 3 cluster dengan parameter iterasi maksimum sebesar 10 dan tanpa pembobotan (parameter `weighted = FALSE`). Hasil clustering disimpan dalam variabel **`cluster.results`**, yang mencakup informasi tentang mode dari setiap cluster dan label cluster untuk setiap baris data. Selanjutnya, hasil cluster tersebut ditambahkan sebagai kolom baru ke dataset asli menggunakan fungsi **`cbind()`**, menghasilkan data frame baru yang mencakup informasi label cluster untuk setiap data. Dengan demikian, dataset hasil clustering ini dapat digunakan untuk analisis lebih lanjut, seperti mengidentifikasi pola atau karakteristik di dalam setiap cluster.
 
-Dalam analisis kluster hirarki, visualisasi dendogram adalah alat yang sangat berguna untuk memahami struktur dan hubungan antar objek dalam dataset. Dalam contoh ini, kita menggunakan fungsi `fviz_dend()` untuk menghasilkan dendogram berdasarkan hasil klustering yang dilakukan dengan metode Ward.D2.
-
-```{r, fig.align='center', fig.cap="Visualisasi Dendogram"}
-library(factoextra)
-fviz_dend(hasil_cluster, cex = 0.5,
-        main = "Dendrogram - ward.D2",
-        xlab = "Objects", ylab = "Distance", sub = "")
+```{r kmodes, eval=FALSE}
+kmodes_result <- kmodes(data , 3, iter.max = 10, weighted = FALSE )
+cluster.output <- cbind(data ,kmodes_result$cluster)
 ```
 
-Untuk membuat visualisasi dendrogram dengan orientasi horizontal.
+### 4. Menyimpan Hasil Cluster {-}
+Fungsi **`write.csv()`** digunakan untuk mengekspor data frame **`cluster.output`**, yang berisi dataset asli beserta label cluster hasil algoritma k-modes, ke file bernama *"kmodes clusters.csv"*. Parameter **`row.names = TRUE`** memastikan bahwa nama baris dari data frame akan disertakan dalam file CSV yang dihasilkan. File ini disimpan di direktori kerja R saat ini dan dapat diakses menggunakan perangkat lunak spreadsheet seperti Microsoft Excel atau diimpor kembali ke R untuk analisis lebih lanjut.
 
-```{r, fig.align='center', fig.cap="Visualisasi Dendogram Horisontal"}
-fviz_dend(hasil_cluster, cex = 0.5, horiz = TRUE)
-```
-
-Pohon dendrogram dapat dipotong pada ketinggian tertentu untuk membagi data menjadi beberapa kelompok. Dalam hal ini, cabang dapat diberi warna sesuai dengan kelompoknya, dan kotak dapat ditambahkan untuk menyoroti setiap kelompok. Kode ini digunakan untuk membuat dendrogram dengan pemotongan menjadi empat kelompok, memberikan warna pada cabang dan label berdasarkan kelompok, serta menambahkan kotak di sekitar setiap kelompok. 
-
-Untuk memberikan warna yang berbeda pada masing-masing kelompok dalam dendrogram, dapat dilakukan dengan menggunakan parameter `k_colors` pada fungsi `fviz_dend` dari paket **factoextra**. Parameter ini memungkinkan pengguna untuk menentukan warna yang akan digunakan untuk setiap klaster. Misalnya, pada kode berikut, dendrogram dipotong menjadi empat kelompok (`k = 4`), dan masing-masing kelompok diberi warna spesifik: biru (#2E9FDF), hijau (#00AFBB), kuning (#E7B800), dan oranye (#FC4E07). Selain itu, parameter `color_labels_by_k = TRUE` memastikan bahwa label pada dendrogram juga diberi warna sesuai dengan kelompoknya, sehingga visualisasi menjadi lebih informatif dan mudah untuk diinterpretasikan.
-
-```{r, fig.align='center', fig.cap="Visualisasi Dendogram 4 Kelompok"}
-fviz_dend(hasil_cluster, 
-          k = 4,
-          cex = 0.5, 
-          k_colors = c("#2E9FDF", "#00AFBB", "#E7B800", "#FC4E07"), 
-          color_labels_by_k = TRUE)
-```
-
-Parameter `k_colors` dapat menggunakan berbagai palet warna, termasuk palet dari paket **RColorBrewer** (contoh: "RdBu", "Blues", "Dark2", "Set2", dan sebagainya) serta palet warna bertema jurnal ilmiah yang tersedia di paket **ggsci** (contoh: "npg", "aaas", "lancet", "jco", "ucscgb", "uchicago", "simpsons", dan "rickandmorty").
-
-```{r, fig.align='center', fig.cap="Visualisasi Dendogram"}
-fviz_dend(hasil_cluster, cex = 0.5, k=4,
-k_colors = "jco")
-```
-
-Kode ini digunakan untuk memvisualisasikan dendrogram hasil analisis klaster hierarkis dengan memotongnya menjadi empat kelompok (`k = 4`). Visualisasi dilakukan secara vertikal (`horiz = FALSE`), dengan ukuran label yang lebih kecil (`cex = 0.4`) untuk meningkatkan keterbacaan. Warna klaster dan batas persegi yang mengelilingi kelompok diatur menggunakan palet "jco" dari paket **ggsci** (`k_colors = "jco"` dan `rect_border = "jco"`). Persegi yang mengelilingi setiap klaster juga diisi dengan warna kelompok masing-masing (`rect_fill = TRUE`). Hasilnya adalah dendrogram yang estetis dan mudah diinterpretasikan, dengan kelompok-kelompok yang ditampilkan secara jelas dan terorganisasi.
-
-```{r, fig.align='center', fig.cap="Visualisasi Dendogram"}
-fviz_dend(hasil_cluster, k=4, cex = 0.4, horiz = FALSE, k_colors = "jco",
-rect = TRUE, rect_border = "jco", rect_fill = TRUE)
-```
-
-Kode ini digunakan untuk memvisualisasikan dendrogram hasil analisis klaster hierarkis dalam bentuk melingkar (`type = "circular"`). Dendrogram dipotong menjadi empat kelompok (`k = 4`), dan setiap klaster diberi warna menggunakan palet "jco" dari paket **ggsci** (`k_colors = "jco"`). Ukuran label pada dendrogram diatur menjadi lebih kecil (`cex = 0.5`) untuk memastikan keterbacaan. Dengan bentuk melingkar, visualisasi ini memberikan tampilan yang estetis dan inovatif untuk analisis klaster, mempermudah identifikasi hubungan antar-objek dalam klaster.
-
-```{r, fig.align='center', fig.cap="Visualisasi Dendogram Bentuk Melingkar"}
-fviz_dend(hasil_cluster, cex = 0.5, k=4,
-k_colors = "jco", type = "circular")
-```
-
-Kode ini digunakan untuk memvisualisasikan dendrogram hasil analisis klaster hierarkis dalam bentuk pohon filogenetik (`type = "phylogenic"`) menggunakan fungsi `fviz_dend` dari paket **factoextra**. Dendrogram dipotong menjadi empat klaster (`k = 4`), dan setiap klaster diberi warna menggunakan palet "jco" dari paket **ggsci** (`k_colors = "jco"`). 
-
-Parameter `repel = TRUE` digunakan untuk mengatur posisi label agar tidak saling bertumpukan, sehingga meningkatkan keterbacaan visualisasi. Paket **igraph** diperlukan untuk mendukung visualisasi pohon filogenetik ini. Hasil akhirnya adalah dendrogram yang menyerupai struktur pohon, cocok untuk menganalisis hubungan hierarkis dengan tampilan yang rapi dan informatif.
-
-```{r, fig.align='center', fig.cap="Visualisasi Dendogram Bentuk Filogenetik"}
-require("igraph")
-fviz_dend(hasil_cluster, k=4, k_colors = "jco",
-type = "phylogenic", repel = TRUE)
-```
-
-Kode ini digunakan untuk memvisualisasikan dendrogram hasil analisis klaster dan mengekstrak data dendrogram untuk pemrosesan lebih lanjut. Pertama, dendrogram divisualisasikan dengan memotongnya menjadi empat kelompok (`k = 4`) dan menggunakan palet warna "jco" untuk setiap klaster. Ukuran label ditentukan sebesar 0.5 (`cex = 0.5`).
-
-Selanjutnya, data dendrogram diekstrak dari objek plot menggunakan `attr(dend_plot, "dendrogram")`. Kemudian, dendrogram dipotong pada ketinggian tertentu (`h = 10`) dengan menggunakan fungsi `cut()`, yang menghasilkan dua cabang utama.
-
-Terakhir, visualisasi dilakukan pada bagian atas dendrogram yang telah dipotong dengan menampilkan hanya cabang-cabang tersebut menggunakan `fviz_dend(dend_cuts$upper)`. Hasilnya adalah dendrogram yang lebih sederhana, menampilkan dua cabang utama berdasarkan pemotongan pada ketinggian tertentu.
-
-```{r}
-dend_plot <- fviz_dend(hasil_cluster, k=4,
-cex = 0.5,
-k_colors = "jco"
-)
-dend_data <- attr(dend_plot, "dendrogram") 
-
-dend_cuts <- cut(dend_data, h=10)
-
-fviz_dend(dend_cuts$upper)
-```
-
-Kode ini digunakan untuk menampilkan dendrogram secara keseluruhan yang telah disiapkan sebelumnya. Dengan menggunakan `print(dend_plot)`, visualisasi dendrogram yang telah dihasilkan oleh fungsi `fviz_dend` akan ditampilkan. Dendrogram ini menunjukkan hasil klasterisasi dengan empat kelompok (`k = 4`) dan diberi warna berdasarkan palet "jco", dengan ukuran label yang diatur menjadi 0.5 (`cex = 0.5`).
-
-```{r, fig.align='center', fig.cap="Visualisasi Dendogram"}
-print(dend_plot)
-```
-
-Kode ini digunakan untuk memvisualisasikan salah satu cabang bawah dari dendrogram yang telah dipotong sebelumnya. Dengan menggunakan `fviz_dend(dend_cuts$lower[[1]], main = "Subtree 1")`, visualisasi akan menampilkan cabang pertama dari bagian bawah dendrogram yang telah dipotong pada ketinggian `h = 10`. Judul "Subtree 1" akan ditambahkan untuk menandai bagian ini, memudahkan interpretasi bagian tertentu dari hasil klasterisasi.
-
-```{r, fig.align='center', fig.cap="Visualisasi Dendogram Subtree 1"}
-# Plot subtree 1
-fviz_dend(dend_cuts$lower[[1]], main = "Subtree 1")
-```
-
-Kode ini digunakan untuk memvisualisasikan cabang kedua dari dendrogram yang telah dipotong sebelumnya. Dengan menggunakan `fviz_dend(dend_cuts$lower[[2]], main = "Subtree 2")`, visualisasi akan menampilkan cabang kedua dari bagian bawah dendrogram yang telah dipotong pada ketinggian `h = 10`. Judul "Subtree 2" akan ditambahkan untuk mempermudah identifikasi bagian ini, sehingga hasil klasterisasi dapat dianalisis dengan lebih detail pada cabang kedua tersebut.
-
-```{r, fig.align='center', fig.cap="Visualisasi Dendogram Subtree 2"}
-# Plot subtree 2
-fviz_dend(dend_cuts$lower[[2]], main = "Subtree 2")
+```{r save_csv, eval=FALSE}
+write.csv(cluster.output, file = "kmodes clusters.csv", row.names = TRUE)
 ```

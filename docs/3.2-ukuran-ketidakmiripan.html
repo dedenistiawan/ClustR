@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.2 Ukuran Ketidakmiripan | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R</title>
+  <meta name="description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.2 Ukuran Ketidakmiripan | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://github.com/dedenistiawan/ClustR/images/cover.png" />
+  <meta property="og:description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.2 Ukuran Ketidakmiripan | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R" />
+  
+  <meta name="twitter:description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
+  <meta name="twitter:image" content="https://github.com/dedenistiawan/ClustR/images/cover.png" />
+
+<meta name="author" content="Deden Istiawan" />
+
+
+<meta name="date" content="2025-01-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="3.1-ukuran-kemiripan.html"/>
+<link rel="next" href="4-km.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- font families -->
+
+<link href="https://fonts.googleapis.com/css?family=PT+Sans|Pacifico|Source+Sans+Pro" rel="stylesheet">
+
+<script src="js/hideOutput.js"></script>
+
+<!-- Mathjax -->
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/mml-chtml.min.js"></script>
+
+ <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        extensions: ["tex2jax.js", "TeX/AMSmath.js"],
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        jax: ["input/TeX","output/CommonHTML"]
+      });
+      MathJax.Hub.processSectionDelay = 0;
+  </script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110299877-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110299877-1');
+</script>
+
+<!-- open review block -->
+
+<script type="application/json" class="js-hypothesis-config">
+{
+"showHighlights": false
+}
+</script>
+<script async defer src="https://hypothes.is/embed.js"></script>
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #204a87; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="toc.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><center><img src="images/logo.png" alt="logo" width="50%" height="50%"style="margin: 15px 0 0 0"></center></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Kata Pengantar</a></li>
+<li class="chapter" data-level="1" data-path="1-pd.html"><a href="1-pd.html"><i class="fa fa-check"></i><b>1</b> Pendahuluan</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-kolofon.html"><a href="1.1-kolofon.html"><i class="fa fa-check"></i><b>1.1</b> Kolofon</a></li>
+<li class="chapter" data-level="1.2" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> Pengenalan Singkat R and RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#instalasi-r-dan-rstudio"><i class="fa fa-check"></i>Instalasi R dan RStudio</a></li>
+<li class="chapter" data-level="" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#dasar-dasar-r"><i class="fa fa-check"></i>Dasar-Dasar R</a></li>
+<li class="chapter" data-level="" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#struktur-data-pada-r"><i class="fa fa-check"></i>Struktur Data pada R</a></li>
+<li class="chapter" data-level="" data-path="1.2-pengenalan-singkat-r-and-rstudio.html"><a href="1.2-pengenalan-singkat-r-and-rstudio.html#fungsi-dan-pemrograman-di-r"><i class="fa fa-check"></i>Fungsi dan Pemrograman di R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-pad.html"><a href="2-pad.html"><i class="fa fa-check"></i><b>2</b> Pemrosesan Awal Data</a></li>
+<li class="chapter" data-level="3" data-path="3-simdis.html"><a href="3-simdis.html"><i class="fa fa-check"></i><b>3</b> Ukuran Kemiripan dan Ketidakmiripan Data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3.1-ukuran-kemiripan.html"><a href="3.1-ukuran-kemiripan.html"><i class="fa fa-check"></i><b>3.1</b> Ukuran Kemiripan</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="3.1-ukuran-kemiripan.html"><a href="3.1-ukuran-kemiripan.html#cosine-similarity"><i class="fa fa-check"></i><b>3.1.1</b> Cosine Similarity</a></li>
+<li class="chapter" data-level="3.1.2" data-path="3.1-ukuran-kemiripan.html"><a href="3.1-ukuran-kemiripan.html#pearson-correlation-coefficient"><i class="fa fa-check"></i><b>3.1.2</b> Pearson Correlation Coefficient</a></li>
+<li class="chapter" data-level="3.1.3" data-path="3.1-ukuran-kemiripan.html"><a href="3.1-ukuran-kemiripan.html#extended-jaccard-similarity-tanimoto-coefficient"><i class="fa fa-check"></i><b>3.1.3</b> Extended Jaccard Similarity (Tanimoto Coefficient)</a></li>
+<li class="chapter" data-level="3.1.4" data-path="3.1-ukuran-kemiripan.html"><a href="3.1-ukuran-kemiripan.html#dice-coefficient"><i class="fa fa-check"></i><b>3.1.4</b> Dice Coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="3.2-ukuran-ketidakmiripan.html"><a href="3.2-ukuran-ketidakmiripan.html"><i class="fa fa-check"></i><b>3.2</b> Ukuran Ketidakmiripan</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="3.2-ukuran-ketidakmiripan.html"><a href="3.2-ukuran-ketidakmiripan.html#jarak-euclidean"><i class="fa fa-check"></i><b>3.2.1</b> Jarak Euclidean</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3.2-ukuran-ketidakmiripan.html"><a href="3.2-ukuran-ketidakmiripan.html#jarak-minkowski"><i class="fa fa-check"></i><b>3.2.2</b> Jarak Minkowski</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3.2-ukuran-ketidakmiripan.html"><a href="3.2-ukuran-ketidakmiripan.html#pengukuran-jarak-atribut-biner"><i class="fa fa-check"></i><b>3.2.3</b> Pengukuran Jarak Atribut Biner</a></li>
+<li class="chapter" data-level="3.2.4" data-path="3.2-ukuran-ketidakmiripan.html"><a href="3.2-ukuran-ketidakmiripan.html#pengukuran-jarak-atribut-kategorikal"><i class="fa fa-check"></i><b>3.2.4</b> Pengukuran Jarak Atribut Kategorikal</a></li>
+<li class="chapter" data-level="3.2.5" data-path="3.2-ukuran-ketidakmiripan.html"><a href="3.2-ukuran-ketidakmiripan.html#pengukuran-jarak-atribut-campuran"><i class="fa fa-check"></i><b>3.2.5</b> Pengukuran Jarak Atribut Campuran</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>I Analisis Cluster Berbasis Partisi</b></span></li>
+<li class="chapter" data-level="4" data-path="4-km.html"><a href="4-km.html"><i class="fa fa-check"></i><b>4</b> Algoritma K-Means</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4.1-tahapan-algoritma-k-means.html"><a href="4.1-tahapan-algoritma-k-means.html"><i class="fa fa-check"></i><b>4.1</b> Tahapan Algoritma K-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path="4.1-tahapan-algoritma-k-means.html"><a href="4.1-tahapan-algoritma-k-means.html#inisialisasi-centroid"><i class="fa fa-check"></i>1. Inisialisasi Centroid</a></li>
+<li class="chapter" data-level="" data-path="4.1-tahapan-algoritma-k-means.html"><a href="4.1-tahapan-algoritma-k-means.html#penugasan-cluster"><i class="fa fa-check"></i>2. Penugasan Cluster</a></li>
+<li class="chapter" data-level="" data-path="4.1-tahapan-algoritma-k-means.html"><a href="4.1-tahapan-algoritma-k-means.html#perbaharui-centroid"><i class="fa fa-check"></i>3. Perbaharui Centroid</a></li>
+<li class="chapter" data-level="" data-path="4.1-tahapan-algoritma-k-means.html"><a href="4.1-tahapan-algoritma-k-means.html#ulangi-langkah-2-dan-3"><i class="fa fa-check"></i>4. Ulangi Langkah 2 dan 3</a></li>
+<li class="chapter" data-level="" data-path="4.1-tahapan-algoritma-k-means.html"><a href="4.1-tahapan-algoritma-k-means.html#hasil-akhir"><i class="fa fa-check"></i>5. Hasil Akhir</a></li>
+<li class="chapter" data-level="" data-path="4.1-tahapan-algoritma-k-means.html"><a href="4.1-tahapan-algoritma-k-means.html#visualisasi-algoritma-k-means"><i class="fa fa-check"></i>Visualisasi Algoritma K-Means</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html"><i class="fa fa-check"></i><b>4.2</b> Eksperimen Algoritma K-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#deskripsi-data"><i class="fa fa-check"></i>Deskripsi Data</a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#memeriksa-missing-value"><i class="fa fa-check"></i>Memeriksa <em>Missing Value</em></a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#visualisasi-matriks-jarak"><i class="fa fa-check"></i>Visualisasi Matriks jarak</a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#estimasi-jumlah-cluster-optimal"><i class="fa fa-check"></i>Estimasi Jumlah Cluster Optimal</a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#metode-elbow"><i class="fa fa-check"></i>Metode Elbow</a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#metode-silhouette"><i class="fa fa-check"></i>Metode Silhouette</a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#membuat-plot-cluster"><i class="fa fa-check"></i>Membuat Plot Cluster</a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#eksperimen-k-means-clustering"><i class="fa fa-check"></i>Eksperimen K-Means Clustering</a></li>
+<li class="chapter" data-level="" data-path="4.2-eksperimen-algoritma-k-means.html"><a href="4.2-eksperimen-algoritma-k-means.html#visualisasi-hasil-clustering"><i class="fa fa-check"></i>Visualisasi Hasil <em>clustering</em></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-kmed.html"><a href="5-kmed.html"><i class="fa fa-check"></i><b>5</b> Algoritma K-Medoids</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-tahapan-algoritma-k-medoids.html"><a href="5.1-tahapan-algoritma-k-medoids.html"><i class="fa fa-check"></i><b>5.1</b> Tahapan Algoritma K-Medoids</a>
+<ul>
+<li class="chapter" data-level="" data-path="5.1-tahapan-algoritma-k-medoids.html"><a href="5.1-tahapan-algoritma-k-medoids.html#inisialisasi-centroid-1"><i class="fa fa-check"></i>1. Inisialisasi Centroid</a></li>
+<li class="chapter" data-level="" data-path="5.1-tahapan-algoritma-k-medoids.html"><a href="5.1-tahapan-algoritma-k-medoids.html#penugasan-anggota-cluster"><i class="fa fa-check"></i>2. Penugasan Anggota Cluster</a></li>
+<li class="chapter" data-level="" data-path="5.1-tahapan-algoritma-k-medoids.html"><a href="5.1-tahapan-algoritma-k-medoids.html#pembaruan-medoid"><i class="fa fa-check"></i>3. Pembaruan Medoid</a></li>
+<li class="chapter" data-level="" data-path="5.1-tahapan-algoritma-k-medoids.html"><a href="5.1-tahapan-algoritma-k-medoids.html#iterasi"><i class="fa fa-check"></i>4. Iterasi</a></li>
+<li class="chapter" data-level="" data-path="5.1-tahapan-algoritma-k-medoids.html"><a href="5.1-tahapan-algoritma-k-medoids.html#hasil-akhir-1"><i class="fa fa-check"></i>5. Hasil Akhir</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5.2-eksperimen-algoritma-k-medoids.html"><a href="5.2-eksperimen-algoritma-k-medoids.html"><i class="fa fa-check"></i><b>5.2</b> Eksperimen Algoritma K-Medoids</a>
+<ul>
+<li class="chapter" data-level="" data-path="5.2-eksperimen-algoritma-k-medoids.html"><a href="5.2-eksperimen-algoritma-k-medoids.html#data-1"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="5.2-eksperimen-algoritma-k-medoids.html"><a href="5.2-eksperimen-algoritma-k-medoids.html#r-packages-dan-fungsi-yang-dibutuhkan"><i class="fa fa-check"></i>R packages dan fungsi yang dibutuhkan</a></li>
+<li class="chapter" data-level="" data-path="5.2-eksperimen-algoritma-k-medoids.html"><a href="5.2-eksperimen-algoritma-k-medoids.html#estimasi-jumlah-cluster-optimal-1"><i class="fa fa-check"></i>Estimasi Jumlah <em>Cluster</em> Optimal</a></li>
+<li class="chapter" data-level="" data-path="5.2-eksperimen-algoritma-k-medoids.html"><a href="5.2-eksperimen-algoritma-k-medoids.html#eksperimen-k-medoids-clustering"><i class="fa fa-check"></i>Eksperimen K-Medoids Clustering</a></li>
+<li class="chapter" data-level="" data-path="5.2-eksperimen-algoritma-k-medoids.html"><a href="5.2-eksperimen-algoritma-k-medoids.html#visualisasi-k-medoids-clustering"><i class="fa fa-check"></i>Visualisasi K-Medoids Clustering</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-clra.html"><a href="6-clra.html"><i class="fa fa-check"></i><b>6</b> CLARA - Clustering Large Applications</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6.1-tahapan-algoritma-clara.html"><a href="6.1-tahapan-algoritma-clara.html"><i class="fa fa-check"></i><b>6.1</b> Tahapan Algoritma CLARA</a>
+<ul>
+<li class="chapter" data-level="" data-path="6.1-tahapan-algoritma-clara.html"><a href="6.1-tahapan-algoritma-clara.html#inisialisasi"><i class="fa fa-check"></i>1. Inisialisasi</a></li>
+<li class="chapter" data-level="" data-path="6.1-tahapan-algoritma-clara.html"><a href="6.1-tahapan-algoritma-clara.html#pengambilan-sampel-subset-data"><i class="fa fa-check"></i>2. Pengambilan Sampel Subset Data</a></li>
+<li class="chapter" data-level="" data-path="6.1-tahapan-algoritma-clara.html"><a href="6.1-tahapan-algoritma-clara.html#penerapan-algoritma-pam-pada-subset-data"><i class="fa fa-check"></i>3. Penerapan Algoritma PAM pada Subset Data</a></li>
+<li class="chapter" data-level="" data-path="6.1-tahapan-algoritma-clara.html"><a href="6.1-tahapan-algoritma-clara.html#pemilihan-medoid-terbaik"><i class="fa fa-check"></i>4. Pemilihan Medoid Terbaik</a></li>
+<li class="chapter" data-level="" data-path="6.1-tahapan-algoritma-clara.html"><a href="6.1-tahapan-algoritma-clara.html#penugasan-data-ke-cluster"><i class="fa fa-check"></i>5. Penugasan Data ke Cluster</a></li>
+<li class="chapter" data-level="" data-path="6.1-tahapan-algoritma-clara.html"><a href="6.1-tahapan-algoritma-clara.html#evaluasi-kualitas-cluster"><i class="fa fa-check"></i>6. Evaluasi Kualitas Cluster</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6.2-eksperimen-algoritma-clara.html"><a href="6.2-eksperimen-algoritma-clara.html"><i class="fa fa-check"></i><b>6.2</b> Eksperimen Algoritma CLARA</a>
+<ul>
+<li class="chapter" data-level="" data-path="6.2-eksperimen-algoritma-clara.html"><a href="6.2-eksperimen-algoritma-clara.html#memuat-library-yang-diperlukan"><i class="fa fa-check"></i>1. Memuat library yang diperlukan</a></li>
+<li class="chapter" data-level="" data-path="6.2-eksperimen-algoritma-clara.html"><a href="6.2-eksperimen-algoritma-clara.html#membangkitkan-data-acak"><i class="fa fa-check"></i>2. Membangkitkan data acak</a></li>
+<li class="chapter" data-level="" data-path="6.2-eksperimen-algoritma-clara.html"><a href="6.2-eksperimen-algoritma-clara.html#visualisasi-data-acak"><i class="fa fa-check"></i>3. Visualisasi data acak</a></li>
+<li class="chapter" data-level="" data-path="6.2-eksperimen-algoritma-clara.html"><a href="6.2-eksperimen-algoritma-clara.html#mencari-jumlah-cluster-optimal"><i class="fa fa-check"></i>4. Mencari Jumlah Cluster Optimal</a></li>
+<li class="chapter" data-level="" data-path="6.2-eksperimen-algoritma-clara.html"><a href="6.2-eksperimen-algoritma-clara.html#menjalankan-clara"><i class="fa fa-check"></i>5. Menjalankan CLARA</a></li>
+<li class="chapter" data-level="" data-path="6.2-eksperimen-algoritma-clara.html"><a href="6.2-eksperimen-algoritma-clara.html#evaluasi-hasil"><i class="fa fa-check"></i>6. Evaluasi hasil</a></li>
+<li class="chapter" data-level="" data-path="6.2-eksperimen-algoritma-clara.html"><a href="6.2-eksperimen-algoritma-clara.html#visualisasi-hasil-cluster"><i class="fa fa-check"></i>7. Visualisasi Hasil Cluster</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-kmods.html"><a href="7-kmods.html"><i class="fa fa-check"></i><b>7</b> Algoritma K-Modes</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7.1-tahapan-algoritma-k-modes.html"><a href="7.1-tahapan-algoritma-k-modes.html"><i class="fa fa-check"></i><b>7.1</b> Tahapan Algoritma K-Modes</a>
+<ul>
+<li class="chapter" data-level="" data-path="7.1-tahapan-algoritma-k-modes.html"><a href="7.1-tahapan-algoritma-k-modes.html#inisialisasi-1"><i class="fa fa-check"></i>1. Inisialisasi</a></li>
+<li class="chapter" data-level="" data-path="7.1-tahapan-algoritma-k-modes.html"><a href="7.1-tahapan-algoritma-k-modes.html#pengelompokan"><i class="fa fa-check"></i>2. Pengelompokan</a></li>
+<li class="chapter" data-level="" data-path="7.1-tahapan-algoritma-k-modes.html"><a href="7.1-tahapan-algoritma-k-modes.html#penugasan-cluster-1"><i class="fa fa-check"></i>3. Penugasan Cluster</a></li>
+<li class="chapter" data-level="" data-path="7.1-tahapan-algoritma-k-modes.html"><a href="7.1-tahapan-algoritma-k-modes.html#update-centroid"><i class="fa fa-check"></i>4. Update Centroid</a></li>
+<li class="chapter" data-level="" data-path="7.1-tahapan-algoritma-k-modes.html"><a href="7.1-tahapan-algoritma-k-modes.html#kondisi-berhenti"><i class="fa fa-check"></i>5. Kondisi Berhenti</a></li>
+<li class="chapter" data-level="" data-path="7.1-tahapan-algoritma-k-modes.html"><a href="7.1-tahapan-algoritma-k-modes.html#penjelasan-tambahan"><i class="fa fa-check"></i>Penjelasan Tambahan</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7.2-eksperimen-algoritma-k-modes.html"><a href="7.2-eksperimen-algoritma-k-modes.html"><i class="fa fa-check"></i><b>7.2</b> Eksperimen Algoritma K-Modes</a>
+<ul>
+<li class="chapter" data-level="" data-path="7.2-eksperimen-algoritma-k-modes.html"><a href="7.2-eksperimen-algoritma-k-modes.html#memuat-library-yang-diperlukan-1"><i class="fa fa-check"></i>1. Memuat library yang diperlukan</a></li>
+<li class="chapter" data-level="" data-path="7.2-eksperimen-algoritma-k-modes.html"><a href="7.2-eksperimen-algoritma-k-modes.html#persiapan-dataset"><i class="fa fa-check"></i>2. Persiapan Dataset</a></li>
+<li class="chapter" data-level="" data-path="7.2-eksperimen-algoritma-k-modes.html"><a href="7.2-eksperimen-algoritma-k-modes.html#memeriksa-missing-value-1"><i class="fa fa-check"></i>3. Memeriksa Missing value</a></li>
+<li class="chapter" data-level="" data-path="7.2-eksperimen-algoritma-k-modes.html"><a href="7.2-eksperimen-algoritma-k-modes.html#menjalankan-k-modes"><i class="fa fa-check"></i>3. Menjalankan K-Modes</a></li>
+<li class="chapter" data-level="" data-path="7.2-eksperimen-algoritma-k-modes.html"><a href="7.2-eksperimen-algoritma-k-modes.html#menyimpan-hasil-cluster"><i class="fa fa-check"></i>4. Menyimpan Hasil Cluster</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Pendekatan Hirarki</b></span></li>
+<li class="chapter" data-level="8" data-path="8-HC.html"><a href="8-HC.html"><i class="fa fa-check"></i><b>8</b> Metode Cluster Hirarki</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="8.1-tahapan-agglomerative-clustering.html"><a href="8.1-tahapan-agglomerative-clustering.html"><i class="fa fa-check"></i><b>8.1</b> Tahapan Agglomerative Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="8.1-tahapan-agglomerative-clustering.html"><a href="8.1-tahapan-agglomerative-clustering.html#inisialisasi-2"><i class="fa fa-check"></i>1. Inisialisasi</a></li>
+<li class="chapter" data-level="" data-path="8.1-tahapan-agglomerative-clustering.html"><a href="8.1-tahapan-agglomerative-clustering.html#menghitung-jarak"><i class="fa fa-check"></i>2. Menghitung Jarak</a></li>
+<li class="chapter" data-level="" data-path="8.1-tahapan-agglomerative-clustering.html"><a href="8.1-tahapan-agglomerative-clustering.html#menggabungkan-cluster"><i class="fa fa-check"></i>3. Menggabungkan Cluster</a></li>
+<li class="chapter" data-level="" data-path="8.1-tahapan-agglomerative-clustering.html"><a href="8.1-tahapan-agglomerative-clustering.html#memperbarui-jarak"><i class="fa fa-check"></i>4. Memperbarui Jarak</a></li>
+<li class="chapter" data-level="" data-path="8.1-tahapan-agglomerative-clustering.html"><a href="8.1-tahapan-agglomerative-clustering.html#ulangi-proses"><i class="fa fa-check"></i>5. Ulangi Proses</a></li>
+<li class="chapter" data-level="" data-path="8.1-tahapan-agglomerative-clustering.html"><a href="8.1-tahapan-agglomerative-clustering.html#membuat-dendrogram"><i class="fa fa-check"></i>6. Membuat Dendrogram</a></li>
+<li class="chapter" data-level="" data-path="8.1-tahapan-agglomerative-clustering.html"><a href="8.1-tahapan-agglomerative-clustering.html#kesimpulan"><i class="fa fa-check"></i>Kesimpulan</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="8.2-eksperimen-agglomerative-clustering.html"><a href="8.2-eksperimen-agglomerative-clustering.html"><i class="fa fa-check"></i><b>8.2</b> Eksperimen Agglomerative Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="8.2-eksperimen-agglomerative-clustering.html"><a href="8.2-eksperimen-agglomerative-clustering.html#standarisasi-data"><i class="fa fa-check"></i>Standarisasi Data</a></li>
+<li class="chapter" data-level="" data-path="8.2-eksperimen-agglomerative-clustering.html"><a href="8.2-eksperimen-agglomerative-clustering.html#ukuran-similarity-dan-dissimilarity"><i class="fa fa-check"></i>Ukuran Similarity dan Dissimilarity</a></li>
+<li class="chapter" data-level="" data-path="8.2-eksperimen-agglomerative-clustering.html"><a href="8.2-eksperimen-agglomerative-clustering.html#melakukan-pengelompokan-hierarkis"><i class="fa fa-check"></i>Melakukan Pengelompokan Hierarkis</a></li>
+<li class="chapter" data-level="" data-path="8.2-eksperimen-agglomerative-clustering.html"><a href="8.2-eksperimen-agglomerative-clustering.html#visualisasi-dengan-dendrogram"><i class="fa fa-check"></i>Visualisasi dengan Dendrogram</a></li>
+<li class="chapter" data-level="" data-path="8.2-eksperimen-agglomerative-clustering.html"><a href="8.2-eksperimen-agglomerative-clustering.html#visualisasi-dengan-dendrogram-1"><i class="fa fa-check"></i>Visualisasi dengan Dendrogram</a></li>
+<li class="chapter" data-level="" data-path="8.2-eksperimen-agglomerative-clustering.html"><a href="8.2-eksperimen-agglomerative-clustering.html#jumlah-anggota-dalam-setiap-cluster"><i class="fa fa-check"></i>Jumlah Anggota dalam Setiap Cluster</a></li>
+<li class="chapter" data-level="" data-path="8.2-eksperimen-agglomerative-clustering.html"><a href="8.2-eksperimen-agglomerative-clustering.html#visualisasi-dendrogram"><i class="fa fa-check"></i>Visualisasi Dendrogram</a></li>
+<li class="chapter" data-level="" data-path="8.2-eksperimen-agglomerative-clustering.html"><a href="8.2-eksperimen-agglomerative-clustering.html#visualisasi-hasil-clustering-1"><i class="fa fa-check"></i>Visualisasi Hasil Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8.3-perbandingan-dendogram.html"><a href="8.3-perbandingan-dendogram.html"><i class="fa fa-check"></i><b>8.3</b> Perbandingan Dendogram</a></li>
+<li class="chapter" data-level="8.4" data-path="8.4-tahapan-divisive-clustering.html"><a href="8.4-tahapan-divisive-clustering.html"><i class="fa fa-check"></i><b>8.4</b> Tahapan Divisive Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="8.4-tahapan-divisive-clustering.html"><a href="8.4-tahapan-divisive-clustering.html#inisialisasi-3"><i class="fa fa-check"></i>1. Inisialisasi</a></li>
+<li class="chapter" data-level="" data-path="8.4-tahapan-divisive-clustering.html"><a href="8.4-tahapan-divisive-clustering.html#menghitung-dissimilarity"><i class="fa fa-check"></i>2. Menghitung Dissimilarity</a></li>
+<li class="chapter" data-level="" data-path="8.4-tahapan-divisive-clustering.html"><a href="8.4-tahapan-divisive-clustering.html#memilih-cluster-untuk-dibagi"><i class="fa fa-check"></i>3. Memilih Cluster untuk Dibagi</a></li>
+<li class="chapter" data-level="" data-path="8.4-tahapan-divisive-clustering.html"><a href="8.4-tahapan-divisive-clustering.html#membagi-cluster"><i class="fa fa-check"></i>4. Membagi Cluster</a></li>
+<li class="chapter" data-level="" data-path="8.4-tahapan-divisive-clustering.html"><a href="8.4-tahapan-divisive-clustering.html#menghitung-dissimilarity-untuk-sub-cluster"><i class="fa fa-check"></i>5. Menghitung Dissimilarity untuk Sub-Cluster</a></li>
+<li class="chapter" data-level="" data-path="8.4-tahapan-divisive-clustering.html"><a href="8.4-tahapan-divisive-clustering.html#ulangi-proses-1"><i class="fa fa-check"></i>6. Ulangi Proses</a></li>
+<li class="chapter" data-level="" data-path="8.4-tahapan-divisive-clustering.html"><a href="8.4-tahapan-divisive-clustering.html#membuat-dendrogram-1"><i class="fa fa-check"></i>7. Membuat Dendrogram</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="8.5-eksperimen-divisive-clustering.html"><a href="8.5-eksperimen-divisive-clustering.html"><i class="fa fa-check"></i><b>8.5</b> Eksperimen Divisive Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-vizhc.html"><a href="9-vizhc.html"><i class="fa fa-check"></i><b>9</b> Visualisasi Dendogram</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="9.1-proses-pembentukan-dendrogram.html"><a href="9.1-proses-pembentukan-dendrogram.html"><i class="fa fa-check"></i><b>9.1</b> Proses Pembentukan Dendrogram</a></li>
+<li class="chapter" data-level="9.2" data-path="9.2-eksperimen.html"><a href="9.2-eksperimen.html"><i class="fa fa-check"></i><b>9.2</b> Eksperimen</a>
+<ul>
+<li class="chapter" data-level="" data-path="9.2-eksperimen.html"><a href="9.2-eksperimen.html#read-data"><i class="fa fa-check"></i>Read Data</a></li>
+<li class="chapter" data-level="" data-path="9.2-eksperimen.html"><a href="9.2-eksperimen.html#standarisasi-data-1"><i class="fa fa-check"></i>Standarisasi Data</a></li>
+<li class="chapter" data-level="" data-path="9.2-eksperimen.html"><a href="9.2-eksperimen.html#pengelompokan-data"><i class="fa fa-check"></i>Pengelompokan Data</a></li>
+<li class="chapter" data-level="" data-path="9.2-eksperimen.html"><a href="9.2-eksperimen.html#visualisasi-dendogram"><i class="fa fa-check"></i>Visualisasi Dendogram</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Pendekatan Fuzzy</b></span></li>
+<li class="chapter" data-level="10" data-path="10-fcm.html"><a href="10-fcm.html"><i class="fa fa-check"></i><b>10</b> Algoritma Fuzzy C-Means</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="10.1-tahapan-algoritma-fuzzy-c-means.html"><a href="10.1-tahapan-algoritma-fuzzy-c-means.html"><i class="fa fa-check"></i><b>10.1</b> Tahapan Algoritma Fuzzy C-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path="10.1-tahapan-algoritma-fuzzy-c-means.html"><a href="10.1-tahapan-algoritma-fuzzy-c-means.html#inisialisasi-parameter"><i class="fa fa-check"></i>1. Inisialisasi Parameter</a></li>
+<li class="chapter" data-level="" data-path="10.1-tahapan-algoritma-fuzzy-c-means.html"><a href="10.1-tahapan-algoritma-fuzzy-c-means.html#inisialisasi-matriks-keanggotaan"><i class="fa fa-check"></i>2. Inisialisasi Matriks Keanggotaan</a></li>
+<li class="chapter" data-level="" data-path="10.1-tahapan-algoritma-fuzzy-c-means.html"><a href="10.1-tahapan-algoritma-fuzzy-c-means.html#perhitungan-pusat-cluster"><i class="fa fa-check"></i>3. Perhitungan Pusat Cluster</a></li>
+<li class="chapter" data-level="" data-path="10.1-tahapan-algoritma-fuzzy-c-means.html"><a href="10.1-tahapan-algoritma-fuzzy-c-means.html#perbarui-matriks-keanggotaan"><i class="fa fa-check"></i>4. Perbarui Matriks Keanggotaan</a></li>
+<li class="chapter" data-level="" data-path="10.1-tahapan-algoritma-fuzzy-c-means.html"><a href="10.1-tahapan-algoritma-fuzzy-c-means.html#evaluasi-konvergensi"><i class="fa fa-check"></i>5. Evaluasi Konvergensi</a></li>
+<li class="chapter" data-level="" data-path="10.1-tahapan-algoritma-fuzzy-c-means.html"><a href="10.1-tahapan-algoritma-fuzzy-c-means.html#hasil-akhir-2"><i class="fa fa-check"></i>6. Hasil Akhir</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="10.2-eksperimeen-fuzzy-c-means.html"><a href="10.2-eksperimeen-fuzzy-c-means.html"><i class="fa fa-check"></i><b>10.2</b> Eksperimeen Fuzzy C-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path="10.2-eksperimeen-fuzzy-c-means.html"><a href="10.2-eksperimeen-fuzzy-c-means.html#install-dan-load-packagaes"><i class="fa fa-check"></i>Install dan Load Packagaes</a></li>
+<li class="chapter" data-level="" data-path="10.2-eksperimeen-fuzzy-c-means.html"><a href="10.2-eksperimeen-fuzzy-c-means.html#data-2"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="10.2-eksperimeen-fuzzy-c-means.html"><a href="10.2-eksperimeen-fuzzy-c-means.html#hasil-clustering"><i class="fa fa-check"></i>Hasil Clustering</a></li>
+<li class="chapter" data-level="" data-path="10.2-eksperimeen-fuzzy-c-means.html"><a href="10.2-eksperimeen-fuzzy-c-means.html#visualisasi-matrik-keanggotaan"><i class="fa fa-check"></i>Visualisasi Matrik Keanggotaan</a></li>
+<li class="chapter" data-level="" data-path="10.2-eksperimeen-fuzzy-c-means.html"><a href="10.2-eksperimeen-fuzzy-c-means.html#ringkasan-hasil-clustering-fcm"><i class="fa fa-check"></i>Ringkasan Hasil Clustering FCM</a></li>
+<li class="chapter" data-level="" data-path="10.2-eksperimeen-fuzzy-c-means.html"><a href="10.2-eksperimeen-fuzzy-c-means.html#visualisasi-hasil-cluster-1"><i class="fa fa-check"></i>Visualisasi Hasil Cluster</a></li>
+<li class="chapter" data-level="" data-path="10.2-eksperimeen-fuzzy-c-means.html"><a href="10.2-eksperimeen-fuzzy-c-means.html#visualisasi-hasil-cluster-dengan-clusplot"><i class="fa fa-check"></i>Visualisasi Hasil Cluster dengan clusplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="11-pcm.html"><a href="11-pcm.html"><i class="fa fa-check"></i><b>11</b> Possibilistic C-Means Clustering</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><i class="fa fa-check"></i><b>11.1</b> Tahapan Algoritma Possibilistic C-Means Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html#inisialisasi-parameter-1"><i class="fa fa-check"></i>1. Inisialisasi Parameter</a></li>
+<li class="chapter" data-level="" data-path="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html#hitung-jarak"><i class="fa fa-check"></i>2. Hitung Jarak</a></li>
+<li class="chapter" data-level="" data-path="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html#perbarui-matriks-keanggotaan-1"><i class="fa fa-check"></i>3. Perbarui Matriks Keanggotaan</a></li>
+<li class="chapter" data-level="" data-path="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html#hitung-parameter-omega"><i class="fa fa-check"></i>4. Hitung Parameter <span class="math inline">\(\Omega\)</span></a></li>
+<li class="chapter" data-level="" data-path="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html#perbarui-pusat-cluster"><i class="fa fa-check"></i>5. Perbarui Pusat Cluster</a></li>
+<li class="chapter" data-level="" data-path="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html"><a href="11.1-tahapan-algoritma-possibilistic-c-means-clustering.html#kondisi-berhenti-1"><i class="fa fa-check"></i>6. Kondisi Berhenti</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="11.2-eksperimen-algoritma-possibilistic-c-means-clustering.html"><a href="11.2-eksperimen-algoritma-possibilistic-c-means-clustering.html"><i class="fa fa-check"></i><b>11.2</b> Eksperimen Algoritma Possibilistic C-Means Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="11.2-eksperimen-algoritma-possibilistic-c-means-clustering.html"><a href="11.2-eksperimen-algoritma-possibilistic-c-means-clustering.html#persiapan-library"><i class="fa fa-check"></i>Persiapan Library</a></li>
+<li class="chapter" data-level="" data-path="11.2-eksperimen-algoritma-possibilistic-c-means-clustering.html"><a href="11.2-eksperimen-algoritma-possibilistic-c-means-clustering.html#dataset"><i class="fa fa-check"></i>Dataset</a></li>
+<li class="chapter" data-level="" data-path="11.2-eksperimen-algoritma-possibilistic-c-means-clustering.html"><a href="11.2-eksperimen-algoritma-possibilistic-c-means-clustering.html#inisialisasi-matriks-prototipe"><i class="fa fa-check"></i>Inisialisasi Matriks Prototipe</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="12-pfcm.html"><a href="12-pfcm.html"><i class="fa fa-check"></i><b>12</b> Possibilistic Fuzzy C-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path="12-pfcm.html"><a href="12-pfcm.html#fungsi-objektif"><i class="fa fa-check"></i>Fungsi Objektif</a></li>
+<li class="chapter" data-level="" data-path="12-pfcm.html"><a href="12-pfcm.html#perhitungan-keanggotaan-dan-typicality"><i class="fa fa-check"></i>Perhitungan Keanggotaan dan Typicality</a></li>
+<li class="chapter" data-level="" data-path="12-pfcm.html"><a href="12-pfcm.html#derajat-typicality"><i class="fa fa-check"></i>Derajat Typicality</a></li>
+<li class="chapter" data-level="" data-path="12-pfcm.html"><a href="12-pfcm.html#pembaruan-pusat-klaster"><i class="fa fa-check"></i>Pembaruan Pusat Klaster</a></li>
+<li class="chapter" data-level="12.1" data-path="12.1-tahapan-algoritma-pfcm.html"><a href="12.1-tahapan-algoritma-pfcm.html"><i class="fa fa-check"></i><b>12.1</b> Tahapan Algoritma PFCM</a>
+<ul>
+<li class="chapter" data-level="" data-path="12.1-tahapan-algoritma-pfcm.html"><a href="12.1-tahapan-algoritma-pfcm.html#inisialisasi-4"><i class="fa fa-check"></i>1. Inisialisasi</a></li>
+<li class="chapter" data-level="" data-path="12.1-tahapan-algoritma-pfcm.html"><a href="12.1-tahapan-algoritma-pfcm.html#hitung-keanggotaan-fuzzy-u_ij"><i class="fa fa-check"></i>2. Hitung Keanggotaan Fuzzy (<span class="math inline">\(u_{ij}\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="12.1-tahapan-algoritma-pfcm.html"><a href="12.1-tahapan-algoritma-pfcm.html#hitung-typicality-t_ij"><i class="fa fa-check"></i>3. Hitung Typicality (<span class="math inline">\(t_{ij}\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="12.1-tahapan-algoritma-pfcm.html"><a href="12.1-tahapan-algoritma-pfcm.html#perbarui-pusat-klaster-vecv_j"><i class="fa fa-check"></i>4. Perbarui Pusat Klaster (<span class="math inline">\(\vec{v}_j\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="12.1-tahapan-algoritma-pfcm.html"><a href="12.1-tahapan-algoritma-pfcm.html#evaluasi-konvergensi-1"><i class="fa fa-check"></i>5. Evaluasi Konvergensi</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="12.2-eksperimen-possibilistic-fuzzy-c-means.html"><a href="12.2-eksperimen-possibilistic-fuzzy-c-means.html"><i class="fa fa-check"></i><b>12.2</b> Eksperimen Possibilistic Fuzzy C-Means</a>
+<ul>
+<li class="chapter" data-level="" data-path="12.2-eksperimen-possibilistic-fuzzy-c-means.html"><a href="12.2-eksperimen-possibilistic-fuzzy-c-means.html#library-yang-dibutuhkan"><i class="fa fa-check"></i>Library yang Dibutuhkan</a></li>
+<li class="chapter" data-level="" data-path="12.2-eksperimen-possibilistic-fuzzy-c-means.html"><a href="12.2-eksperimen-possibilistic-fuzzy-c-means.html#dataset-1"><i class="fa fa-check"></i>Dataset</a></li>
+<li class="chapter" data-level="" data-path="12.2-eksperimen-possibilistic-fuzzy-c-means.html"><a href="12.2-eksperimen-possibilistic-fuzzy-c-means.html#klasterisasi-menggunakan-pfcm"><i class="fa fa-check"></i>Klasterisasi Menggunakan PFCM</a></li>
+<li class="chapter" data-level="" data-path="12.2-eksperimen-possibilistic-fuzzy-c-means.html"><a href="12.2-eksperimen-possibilistic-fuzzy-c-means.html#visualisasi-hasil-klasterisasi"><i class="fa fa-check"></i>Visualisasi Hasil Klasterisasi</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i>Referensi</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div class = rmdreview>
+Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda untuk membuat buku ini lebih baik bagi. Anda dapat memberikan anotasi pada beberapa teks dengan <span style="background-color: #3297FD; color: white">memilihnya menggunakan kursor</span> dan kemudian klik “Beri Anotasi” pada menu pop-up. Anda juga dapat melihat anotasi orang lain: klik tanda panah di sudut kanan atas halaman <i class="fa fa-arrow-circle-right  fa-rotate-315" aria-hidden="true"></i>
+</div>
+<div id="ukuran-ketidakmiripan" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Ukuran Ketidakmiripan<a href="3.2-ukuran-ketidakmiripan.html#ukuran-ketidakmiripan" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<style>
+body{
+text-align: justify}
+</style>
+<div id="jarak-euclidean" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Jarak Euclidean<a href="3.2-ukuran-ketidakmiripan.html#jarak-euclidean" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Jarak Euclidean adalah salah satu ukuran jarak yang paling umum digunakan dalam berbagai metode analisis data, termasuk dalam analisis cluster. Jarak ini mengukur seberapa jauh dua titik berada dalam ruang multidimensi. Secara intuitif, jarak Euclidean adalah “garis lurus” atau “jarak langsung” antara dua titik dalam ruang Euclidean, mirip dengan cara untuk mengukur jarak antara dua lokasi di dunia nyata menggunakan penggaris atau meteran <span class="citation">(<a href="#ref-everitt2011cluster">Everitt et al. 2011</a>)</span>.</p>
+<p>Secara matematis, jika terdapat dua titik <span class="math inline">\(P = (x_1, x_2, \dots, x_n)\)</span> dan <span class="math inline">\(Q = (y_1, y_2, \dots, y_n)\)</span> dalam ruang <span class="math inline">\(n\)</span>-dimensi, maka jarak Euclidean antara kedua titik tersebut dapat dihitung dengan rumus:</p>
+<p><span class="math display">\[
+d(P, Q) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}
+\]</span></p>
+<p>Di mana:</p>
+<ul>
+<li><p><span class="math inline">\(P = (x_1, x_2, \dots, x_n)\)</span> adalah koordinat titik pertama,</p></li>
+<li><p><span class="math inline">\(Q = (y_1, y_2, \dots, y_n)\)</span> adalah koordinat titik kedua,</p></li>
+<li><p><span class="math inline">\(d(P, Q)\)</span> adalah jarak Euclidean antara titik <span class="math inline">\(P\)</span> dan titik <span class="math inline">\(Q\)</span>,</p></li>
+<li><p><span class="math inline">\(n\)</span> adalah jumlah dimensi ruang (jumlah atribut yang digunakan dalam analisis).</p></li>
+</ul>
+<p>Jarak Euclidean merupakan bentuk dari <strong>norma L2</strong> dalam ruang vektor. Norma ini mengukur panjang atau magnitudo dari sebuah vektor dalam ruang Euclidean. Dalam konteks data, kita bisa menganggap setiap titik sebagai vektor dalam ruang fitur, dan jarak Euclidean mengukur panjang vektor perbedaan antara dua titik tersebut.</p>
+<p>Jarak ini juga terkait dengan konsep <strong>teorema Pythagoras</strong>, yang menyatakan bahwa dalam segitiga siku-siku, kuadrat panjang sisi miring (hipotenusa) sama dengan jumlah kuadrat panjang kedua sisi lainnya. Dalam konteks ruang dimensi lebih tinggi, kita memperluas teorema Pythagoras ke banyak dimensi.</p>
+<p>Sebagai contoh, dalam ruang dua dimensi, jarak antara dua titik <span class="math inline">\(P = (x_1, y_1)\)</span> dan <span class="math inline">\(Q = (x_2, y_2)\)</span> adalah:</p>
+<p><span class="math display">\[
+d(P, Q) = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+\]</span></p>
+<p>Dalam ruang tiga dimensi, jarak Euclidean antara titik <span class="math inline">\(P = (x_1, y_1, z_1)\)</span> dan <span class="math inline">\(Q = (x_2, y_2, z_2)\)</span> adalah:</p>
+<p><span class="math display">\[
+d(P, Q) = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}
+\]</span></p>
+<p><strong>Contoh Penerapan Jarak Euclidean dengan R</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="3.2-ukuran-ketidakmiripan.html#cb5-1" tabindex="-1"></a><span class="co"># Menggunakan dataset contoh</span></span>
+<span id="cb5-2"><a href="3.2-ukuran-ketidakmiripan.html#cb5-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-3"><a href="3.2-ukuran-ketidakmiripan.html#cb5-3" tabindex="-1"></a>  <span class="at">X1 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>),</span>
+<span id="cb5-4"><a href="3.2-ukuran-ketidakmiripan.html#cb5-4" tabindex="-1"></a>  <span class="at">X2 =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>)</span>
+<span id="cb5-5"><a href="3.2-ukuran-ketidakmiripan.html#cb5-5" tabindex="-1"></a>)</span>
+<span id="cb5-6"><a href="3.2-ukuran-ketidakmiripan.html#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="3.2-ukuran-ketidakmiripan.html#cb5-7" tabindex="-1"></a><span class="co"># Menghitung jarak Euclidean secara manual antara dua titik pertama</span></span>
+<span id="cb5-8"><a href="3.2-ukuran-ketidakmiripan.html#cb5-8" tabindex="-1"></a>euclidean_distance <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb5-9"><a href="3.2-ukuran-ketidakmiripan.html#cb5-9" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">sum</span>((a <span class="sc">-</span> b)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb5-10"><a href="3.2-ukuran-ketidakmiripan.html#cb5-10" tabindex="-1"></a>}</span>
+<span id="cb5-11"><a href="3.2-ukuran-ketidakmiripan.html#cb5-11" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="3.2-ukuran-ketidakmiripan.html#cb5-12" tabindex="-1"></a>jarak <span class="ot">&lt;-</span> <span class="fu">euclidean_distance</span>(data[<span class="dv">1</span>, ], data[<span class="dv">2</span>, ])</span>
+<span id="cb5-13"><a href="3.2-ukuran-ketidakmiripan.html#cb5-13" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Jarak Euclidean antara titik pertama dan kedua:&quot;</span>, jarak))</span>
+<span id="cb5-14"><a href="3.2-ukuran-ketidakmiripan.html#cb5-14" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Jarak Euclidean antara titik pertama dan kedua: 2.23606797749979&quot;</span></span>
+<span id="cb5-15"><a href="3.2-ukuran-ketidakmiripan.html#cb5-15" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="3.2-ukuran-ketidakmiripan.html#cb5-16" tabindex="-1"></a><span class="co"># Menggunakan fungsi dist bawaan R untuk menghitung jarak antar semua titik</span></span>
+<span id="cb5-17"><a href="3.2-ukuran-ketidakmiripan.html#cb5-17" tabindex="-1"></a>jarak_matrix <span class="ot">&lt;-</span> <span class="fu">dist</span>(data, <span class="at">method =</span> <span class="st">&quot;euclidean&quot;</span>)</span>
+<span id="cb5-18"><a href="3.2-ukuran-ketidakmiripan.html#cb5-18" tabindex="-1"></a><span class="fu">print</span>(jarak_matrix)</span>
+<span id="cb5-19"><a href="3.2-ukuran-ketidakmiripan.html#cb5-19" tabindex="-1"></a><span class="co">#&gt;          1        2        3</span></span>
+<span id="cb5-20"><a href="3.2-ukuran-ketidakmiripan.html#cb5-20" tabindex="-1"></a><span class="co">#&gt; 2 2.236068                  </span></span>
+<span id="cb5-21"><a href="3.2-ukuran-ketidakmiripan.html#cb5-21" tabindex="-1"></a><span class="co">#&gt; 3 4.472136 2.236068         </span></span>
+<span id="cb5-22"><a href="3.2-ukuran-ketidakmiripan.html#cb5-22" tabindex="-1"></a><span class="co">#&gt; 4 7.211103 5.000000 2.828427</span></span></code></pre></div>
+</div>
+<div id="jarak-minkowski" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Jarak Minkowski<a href="3.2-ukuran-ketidakmiripan.html#jarak-minkowski" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Jarak Minkowski adalah generalisasi dari berbagai metrik jarak yang digunakan untuk mengukur perbedaan atau kedekatan antara dua titik dalam ruang berdimensi <span class="math inline">\(n\)</span>. Jarak ini berguna untuk atribut numerik dan mencakup beberapa metrik populer seperti Euclidean dan Manhattan sebagai kasus khususnya.</p>
+<p>Jarak Minkowski antara dua titik <span class="math inline">\(\mathbf{X} = (x_1, x_2, \ldots, x_n)\)</span> dan <span class="math inline">\(\mathbf{Y} = (y_1, y_2, \ldots, y_n)\)</span> dalam ruang berdimensi <span class="math inline">\(n\)</span> didefinisikan sebagai:</p>
+<p><span class="math display">\[
+d(\mathbf{X}, \mathbf{Y}) = \left( \sum_{i=1}^n |x_i - y_i|^p \right)^{\frac{1}{p}}
+\]</span></p>
+<p>dimana:</p>
+<ul>
+<li><p><span class="math inline">\(p\)</span>: parameter yang menentukan jenis metrik jarak,</p></li>
+<li><p><span class="math inline">\(|x_i - y_i|\)</span>: nilai absolut dari perbedaan antara atribut ke-<span class="math inline">\(i\)</span> pada dua titik.</p></li>
+</ul>
+<p>Dengan memilih nilai <span class="math inline">\(p\)</span> yang berbeda, kita mendapatkan metrik jarak berikut:</p>
+<ul>
+<li><p><strong>Jarak Manhattan</strong> (<span class="math inline">\(p = 1\)</span>): <span class="math display">\[
+   d(\mathbf{X}, \mathbf{Y}) = \sum_{i=1}^n |x_i - y_i|
+   \]</span> Jarak ini menghitung jumlah perbedaan absolut antara koordinat titik. Sering digunakan dalam kasus di mana pergerakan hanya memungkinkan secara horizontal dan vertikal, seperti grid kota.</p></li>
+<li><p><strong>Jarak Euclidean</strong> (<span class="math inline">\(p = 2\)</span>): <span class="math display">\[
+   d(\mathbf{X}, \mathbf{Y}) = \sqrt{\sum_{i=1}^n (x_i - y_i)^2}
+   \]</span></p></li>
+</ul>
+<p>Metrik ini adalah jarak terpendek (garis lurus) antara dua titik dalam ruang Euclidean.</p>
+<ul>
+<li><strong>Jarak Chebyshev</strong> (<span class="math inline">\(p \to \infty\)</span>): <span class="math display">\[
+   d(\mathbf{X}, \mathbf{Y}) = \max(|x_i - y_i|)
+   \]</span></li>
+</ul>
+<p>Jarak ini mempertimbangkan perbedaan maksimum di antara semua dimensi.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="3.2-ukuran-ketidakmiripan.html#cb6-1" tabindex="-1"></a><span class="co"># Membuat dataset contoh</span></span>
+<span id="cb6-2"><a href="3.2-ukuran-ketidakmiripan.html#cb6-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb6-3"><a href="3.2-ukuran-ketidakmiripan.html#cb6-3" tabindex="-1"></a>  <span class="at">X1 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>),</span>
+<span id="cb6-4"><a href="3.2-ukuran-ketidakmiripan.html#cb6-4" tabindex="-1"></a>  <span class="at">X2 =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>)</span>
+<span id="cb6-5"><a href="3.2-ukuran-ketidakmiripan.html#cb6-5" tabindex="-1"></a>)</span>
+<span id="cb6-6"><a href="3.2-ukuran-ketidakmiripan.html#cb6-6" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="3.2-ukuran-ketidakmiripan.html#cb6-7" tabindex="-1"></a><span class="co"># Fungsi untuk menghitung jarak Minkowski</span></span>
+<span id="cb6-8"><a href="3.2-ukuran-ketidakmiripan.html#cb6-8" tabindex="-1"></a>minkowski_distance <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b, p) {</span>
+<span id="cb6-9"><a href="3.2-ukuran-ketidakmiripan.html#cb6-9" tabindex="-1"></a>  <span class="fu">sum</span>(<span class="fu">abs</span>(a <span class="sc">-</span> b)<span class="sc">^</span>p)<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>p)</span>
+<span id="cb6-10"><a href="3.2-ukuran-ketidakmiripan.html#cb6-10" tabindex="-1"></a>}</span>
+<span id="cb6-11"><a href="3.2-ukuran-ketidakmiripan.html#cb6-11" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="3.2-ukuran-ketidakmiripan.html#cb6-12" tabindex="-1"></a><span class="co"># Contoh menghitung jarak Minkowski antara titik pertama dan kedua dengan p=3</span></span>
+<span id="cb6-13"><a href="3.2-ukuran-ketidakmiripan.html#cb6-13" tabindex="-1"></a>jarak <span class="ot">&lt;-</span> <span class="fu">minkowski_distance</span>(data[<span class="dv">1</span>, ], data[<span class="dv">2</span>, ], <span class="at">p =</span> <span class="dv">3</span>)</span>
+<span id="cb6-14"><a href="3.2-ukuran-ketidakmiripan.html#cb6-14" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Jarak Minkowski dengan p=3 antara titik pertama dan kedua:&quot;</span>, jarak))</span>
+<span id="cb6-15"><a href="3.2-ukuran-ketidakmiripan.html#cb6-15" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Jarak Minkowski dengan p=3 antara titik pertama dan kedua: 2.0800838230519&quot;</span></span>
+<span id="cb6-16"><a href="3.2-ukuran-ketidakmiripan.html#cb6-16" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="3.2-ukuran-ketidakmiripan.html#cb6-17" tabindex="-1"></a><span class="co"># Menggunakan library proxy untuk menghitung jarak Minkowski antar semua titik</span></span>
+<span id="cb6-18"><a href="3.2-ukuran-ketidakmiripan.html#cb6-18" tabindex="-1"></a><span class="fu">library</span>(proxy)</span>
+<span id="cb6-19"><a href="3.2-ukuran-ketidakmiripan.html#cb6-19" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="3.2-ukuran-ketidakmiripan.html#cb6-20" tabindex="-1"></a><span class="co"># Menghitung jarak Minkowski dengan p=3 untuk semua titik</span></span>
+<span id="cb6-21"><a href="3.2-ukuran-ketidakmiripan.html#cb6-21" tabindex="-1"></a>jarak_matrix <span class="ot">&lt;-</span> <span class="fu">dist</span>(data, <span class="at">method =</span> <span class="st">&quot;Minkowski&quot;</span>, <span class="at">p =</span> <span class="dv">3</span>)</span>
+<span id="cb6-22"><a href="3.2-ukuran-ketidakmiripan.html#cb6-22" tabindex="-1"></a><span class="fu">print</span>(jarak_matrix)</span>
+<span id="cb6-23"><a href="3.2-ukuran-ketidakmiripan.html#cb6-23" tabindex="-1"></a><span class="co">#&gt;          1        2        3</span></span>
+<span id="cb6-24"><a href="3.2-ukuran-ketidakmiripan.html#cb6-24" tabindex="-1"></a><span class="co">#&gt; 2 2.080084                  </span></span>
+<span id="cb6-25"><a href="3.2-ukuran-ketidakmiripan.html#cb6-25" tabindex="-1"></a><span class="co">#&gt; 3 4.160168 2.080084         </span></span>
+<span id="cb6-26"><a href="3.2-ukuran-ketidakmiripan.html#cb6-26" tabindex="-1"></a><span class="co">#&gt; 4 6.542133 4.497941 2.519842</span></span></code></pre></div>
+</div>
+<div id="pengukuran-jarak-atribut-biner" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Pengukuran Jarak Atribut Biner<a href="3.2-ukuran-ketidakmiripan.html#pengukuran-jarak-atribut-biner" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dalam analisis cluster, pengukuran jarak antara objek dengan atribut biner (binary attributes) adalah langkah penting untuk menentukan seberapa mirip atau berbeda dua objek. Atribut biner adalah atribut yang hanya memiliki dua nilai, biasanya 0 dan 1, yang mewakili ketidakhadiran (0) atau kehadiran (1) suatu fitur.</p>
+<p><strong>1. Jarak Jaccard (Jaccard Distance)</strong> Jarak Jaccard digunakan untuk mengukur dissimilarity antara dua objek dengan atribut biner. Rumusnya adalah:</p>
+<p><span class="math display">\[
+d_{Jaccard}(A, B) = 1 - \frac{M_{11}}{M_{01} + M_{10} + M_{11}}
+\]</span></p>
+<p>Keterangan:</p>
+<ul>
+<li><p><span class="math inline">\(M_{11}\)</span>: Jumlah atribut yang bernilai 1 untuk kedua objek.</p></li>
+<li><p><span class="math inline">\(M_{01}\)</span>: Jumlah atribut yang bernilai 0 untuk objek A dan 1 untuk objek B.</p></li>
+<li><p><span class="math inline">\(M_{10}\)</span>: Jumlah atribut yang bernilai 1 untuk objek A dan 0 untuk objek B.</p></li>
+</ul>
+<p><strong>2. Jarak Hamming (Hamming Distance)</strong> Jarak Hamming menghitung jumlah posisi di mana dua objek memiliki nilai yang berbeda. Rumusnya adalah:</p>
+<p><span class="math display">\[
+d_{Hamming}(A, B) = M_{01} + M_{10}
+\]</span></p>
+<p>Keterangan:</p>
+<ul>
+<li><p><span class="math inline">\(M_{01}\)</span>: Jumlah atribut yang bernilai 0 untuk objek A dan 1 untuk objek B.</p></li>
+<li><p><span class="math inline">\(M_{10}\)</span>: Jumlah atribut yang bernilai 1 untuk objek A dan 0 untuk objek B.</p></li>
+</ul>
+<p><strong>Contoh Implementasi dengan R</strong></p>
+<p>Berikut adalah contoh implementasi pengukuran jarak Jaccard dan Hamming menggunakan R:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="3.2-ukuran-ketidakmiripan.html#cb7-1" tabindex="-1"></a><span class="co"># Contoh data biner</span></span>
+<span id="cb7-2"><a href="3.2-ukuran-ketidakmiripan.html#cb7-2" tabindex="-1"></a>objek1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb7-3"><a href="3.2-ukuran-ketidakmiripan.html#cb7-3" tabindex="-1"></a>objek2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb7-4"><a href="3.2-ukuran-ketidakmiripan.html#cb7-4" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="3.2-ukuran-ketidakmiripan.html#cb7-5" tabindex="-1"></a><span class="co"># Fungsi untuk menghitung Jarak Jaccard</span></span>
+<span id="cb7-6"><a href="3.2-ukuran-ketidakmiripan.html#cb7-6" tabindex="-1"></a>jaccard_distance <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb7-7"><a href="3.2-ukuran-ketidakmiripan.html#cb7-7" tabindex="-1"></a>  M11 <span class="ot">&lt;-</span> <span class="fu">sum</span>(a <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> b <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb7-8"><a href="3.2-ukuran-ketidakmiripan.html#cb7-8" tabindex="-1"></a>  M01 <span class="ot">&lt;-</span> <span class="fu">sum</span>(a <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> b <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb7-9"><a href="3.2-ukuran-ketidakmiripan.html#cb7-9" tabindex="-1"></a>  M10 <span class="ot">&lt;-</span> <span class="fu">sum</span>(a <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> b <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb7-10"><a href="3.2-ukuran-ketidakmiripan.html#cb7-10" tabindex="-1"></a>  </span>
+<span id="cb7-11"><a href="3.2-ukuran-ketidakmiripan.html#cb7-11" tabindex="-1"></a>  jarak <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> (M11 <span class="sc">/</span> (M01 <span class="sc">+</span> M10 <span class="sc">+</span> M11))</span>
+<span id="cb7-12"><a href="3.2-ukuran-ketidakmiripan.html#cb7-12" tabindex="-1"></a>  <span class="fu">return</span>(jarak)</span>
+<span id="cb7-13"><a href="3.2-ukuran-ketidakmiripan.html#cb7-13" tabindex="-1"></a>}</span>
+<span id="cb7-14"><a href="3.2-ukuran-ketidakmiripan.html#cb7-14" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="3.2-ukuran-ketidakmiripan.html#cb7-15" tabindex="-1"></a><span class="co"># Fungsi untuk menghitung Jarak Hamming</span></span>
+<span id="cb7-16"><a href="3.2-ukuran-ketidakmiripan.html#cb7-16" tabindex="-1"></a>hamming_distance <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb7-17"><a href="3.2-ukuran-ketidakmiripan.html#cb7-17" tabindex="-1"></a>  jarak <span class="ot">&lt;-</span> <span class="fu">sum</span>(a <span class="sc">!=</span> b)</span>
+<span id="cb7-18"><a href="3.2-ukuran-ketidakmiripan.html#cb7-18" tabindex="-1"></a>  <span class="fu">return</span>(jarak)</span>
+<span id="cb7-19"><a href="3.2-ukuran-ketidakmiripan.html#cb7-19" tabindex="-1"></a>}</span>
+<span id="cb7-20"><a href="3.2-ukuran-ketidakmiripan.html#cb7-20" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="3.2-ukuran-ketidakmiripan.html#cb7-21" tabindex="-1"></a><span class="co"># Menghitung jarak</span></span>
+<span id="cb7-22"><a href="3.2-ukuran-ketidakmiripan.html#cb7-22" tabindex="-1"></a>jarak_jaccard <span class="ot">&lt;-</span> <span class="fu">jaccard_distance</span>(objek1, objek2)</span>
+<span id="cb7-23"><a href="3.2-ukuran-ketidakmiripan.html#cb7-23" tabindex="-1"></a>jarak_hamming <span class="ot">&lt;-</span> <span class="fu">hamming_distance</span>(objek1, objek2)</span>
+<span id="cb7-24"><a href="3.2-ukuran-ketidakmiripan.html#cb7-24" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="3.2-ukuran-ketidakmiripan.html#cb7-25" tabindex="-1"></a><span class="co"># Menampilkan hasil</span></span>
+<span id="cb7-26"><a href="3.2-ukuran-ketidakmiripan.html#cb7-26" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Jarak Jaccard:&quot;</span>, jarak_jaccard, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb7-27"><a href="3.2-ukuran-ketidakmiripan.html#cb7-27" tabindex="-1"></a><span class="co">#&gt; Jarak Jaccard: 0.75</span></span>
+<span id="cb7-28"><a href="3.2-ukuran-ketidakmiripan.html#cb7-28" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Jarak Hamming:&quot;</span>, jarak_hamming, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb7-29"><a href="3.2-ukuran-ketidakmiripan.html#cb7-29" tabindex="-1"></a><span class="co">#&gt; Jarak Hamming: 3</span></span></code></pre></div>
+</div>
+<div id="pengukuran-jarak-atribut-kategorikal" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Pengukuran Jarak Atribut Kategorikal<a href="3.2-ukuran-ketidakmiripan.html#pengukuran-jarak-atribut-kategorikal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Pengukuran jarak untuk atribut kategorikal digunakan untuk mengukur kesamaan atau perbedaan antara dua objek yang memiliki atribut berbentuk kategori. Contoh data kategorikal meliputi warna (merah, biru, hijau) atau tipe kendaraan (mobil, sepeda motor, sepeda). Tidak seperti atribut numerik atau biner, atribut kategorikal memerlukan pendekatan khusus karena tidak ada hubungan matematis langsung antara kategori.</p>
+<p>Misalkan <span class="math inline">\(\mathbf{X} = \{x_1, x_2, \dots, x_n\}\)</span> dan <span class="math inline">\(\mathbf{Y} = \{y_1, y_2, \dots, y_n\}\)</span> adalah dua objek dengan <span class="math inline">\(n\)</span> atribut kategorikal. Beberapa metode jarak yang sering digunakan meliputi:</p>
+<p><strong>1. Simple Matching Coefficient (SMC)</strong> Koefisien Simple Matching mengukur kesamaan antara dua objek berdasarkan jumlah atribut yang cocok, baik sama-sama cocok atau sama-sama tidak cocok.</p>
+<p><span class="math display">\[
+S_{SMC}(\mathbf{X}, \mathbf{Y}) = \frac{m}{n}
+\]</span> di mana <span class="math inline">\(m\)</span> adalah jumlah atribut di mana <span class="math inline">\(x_i = y_i\)</span>, dan <span class="math inline">\(n\)</span> adalah jumlah total atribut.</p>
+<p><span class="math display">\[
+d_{SMC}(\mathbf{X}, \mathbf{Y}) = 1 - S_{SMC}(\mathbf{X}, \mathbf{Y})
+\]</span></p>
+<p><strong>2. Jarak Overlap</strong> Jarak overlap menghitung kesamaan berdasarkan atribut yang cocok saja, tanpa memperhatikan atribut yang tidak cocok.</p>
+<p><span class="math display">\[
+d_{Overlap}(\mathbf{X}, \mathbf{Y}) = 1 - \frac{k}{n}
+\]</span></p>
+<p>di mana <span class="math inline">\(k\)</span> adalah jumlah atribut yang cocok (<span class="math inline">\(x_i = y_i\)</span>).</p>
+<p><strong>3. Goodall Similarity</strong> Metode Goodall menggunakan probabilitas atribut untuk menentukan bobot kesamaan. Kesamaan dihitung berdasarkan probabilitas relatif dari kategori tertentu.</p>
+<p><span class="math display">\[
+S_{Goodall}(\mathbf{X}, \mathbf{Y}) = \frac{1}{n} \sum_{i=1}^n P(x_i)
+\]</span> di mana <span class="math inline">\(P(x_i)\)</span> adalah probabilitas kategori <span class="math inline">\(x_i\)</span> dalam atribut ke-<span class="math inline">\(i\)</span>.</p>
+<p><strong>Implementasi Pengukuran Jarak di R</strong>
+Berikut adalah implementasi beberapa pengukuran jarak untuk atribut kategorikal:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="3.2-ukuran-ketidakmiripan.html#cb8-1" tabindex="-1"></a><span class="co"># Contoh data kategorikal</span></span>
+<span id="cb8-2"><a href="3.2-ukuran-ketidakmiripan.html#cb8-2" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Merah&quot;</span>, <span class="st">&quot;Biru&quot;</span>, <span class="st">&quot;Hijau&quot;</span>, <span class="st">&quot;Kuning&quot;</span>, <span class="st">&quot;Biru&quot;</span>)</span>
+<span id="cb8-3"><a href="3.2-ukuran-ketidakmiripan.html#cb8-3" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Biru&quot;</span>, <span class="st">&quot;Biru&quot;</span>, <span class="st">&quot;Hijau&quot;</span>, <span class="st">&quot;Kuning&quot;</span>, <span class="st">&quot;Merah&quot;</span>)</span>
+<span id="cb8-4"><a href="3.2-ukuran-ketidakmiripan.html#cb8-4" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="3.2-ukuran-ketidakmiripan.html#cb8-5" tabindex="-1"></a><span class="co"># Fungsi untuk menghitung Simple Matching Coefficient (SMC)</span></span>
+<span id="cb8-6"><a href="3.2-ukuran-ketidakmiripan.html#cb8-6" tabindex="-1"></a>simple_matching <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb8-7"><a href="3.2-ukuran-ketidakmiripan.html#cb8-7" tabindex="-1"></a>  m <span class="ot">&lt;-</span> <span class="fu">sum</span>(x <span class="sc">==</span> y) <span class="co"># Jumlah atribut yang cocok</span></span>
+<span id="cb8-8"><a href="3.2-ukuran-ketidakmiripan.html#cb8-8" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)   <span class="co"># Jumlah total atribut</span></span>
+<span id="cb8-9"><a href="3.2-ukuran-ketidakmiripan.html#cb8-9" tabindex="-1"></a>  similarity <span class="ot">&lt;-</span> m <span class="sc">/</span> n</span>
+<span id="cb8-10"><a href="3.2-ukuran-ketidakmiripan.html#cb8-10" tabindex="-1"></a>  distance <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> similarity</span>
+<span id="cb8-11"><a href="3.2-ukuran-ketidakmiripan.html#cb8-11" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">Similarity =</span> similarity, <span class="at">Distance =</span> distance))</span>
+<span id="cb8-12"><a href="3.2-ukuran-ketidakmiripan.html#cb8-12" tabindex="-1"></a>}</span>
+<span id="cb8-13"><a href="3.2-ukuran-ketidakmiripan.html#cb8-13" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="3.2-ukuran-ketidakmiripan.html#cb8-14" tabindex="-1"></a><span class="co"># Fungsi untuk menghitung Jarak Overlap</span></span>
+<span id="cb8-15"><a href="3.2-ukuran-ketidakmiripan.html#cb8-15" tabindex="-1"></a>overlap_distance <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb8-16"><a href="3.2-ukuran-ketidakmiripan.html#cb8-16" tabindex="-1"></a>  k <span class="ot">&lt;-</span> <span class="fu">sum</span>(x <span class="sc">==</span> y) <span class="co"># Jumlah atribut yang cocok</span></span>
+<span id="cb8-17"><a href="3.2-ukuran-ketidakmiripan.html#cb8-17" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)   <span class="co"># Jumlah total atribut</span></span>
+<span id="cb8-18"><a href="3.2-ukuran-ketidakmiripan.html#cb8-18" tabindex="-1"></a>  distance <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> (k <span class="sc">/</span> n)</span>
+<span id="cb8-19"><a href="3.2-ukuran-ketidakmiripan.html#cb8-19" tabindex="-1"></a>  <span class="fu">return</span>(distance)</span>
+<span id="cb8-20"><a href="3.2-ukuran-ketidakmiripan.html#cb8-20" tabindex="-1"></a>}</span>
+<span id="cb8-21"><a href="3.2-ukuran-ketidakmiripan.html#cb8-21" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="3.2-ukuran-ketidakmiripan.html#cb8-22" tabindex="-1"></a><span class="co"># Fungsi untuk menghitung Goodall Similarity</span></span>
+<span id="cb8-23"><a href="3.2-ukuran-ketidakmiripan.html#cb8-23" tabindex="-1"></a>goodall_similarity <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb8-24"><a href="3.2-ukuran-ketidakmiripan.html#cb8-24" tabindex="-1"></a>  categories <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">c</span>(x, y))</span>
+<span id="cb8-25"><a href="3.2-ukuran-ketidakmiripan.html#cb8-25" tabindex="-1"></a>  prob <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">c</span>(x, y)) <span class="sc">/</span> <span class="fu">length</span>(<span class="fu">c</span>(x, y))</span>
+<span id="cb8-26"><a href="3.2-ukuran-ketidakmiripan.html#cb8-26" tabindex="-1"></a>  similarity <span class="ot">&lt;-</span> <span class="fu">sum</span>(prob[x <span class="sc">==</span> y]) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb8-27"><a href="3.2-ukuran-ketidakmiripan.html#cb8-27" tabindex="-1"></a>  <span class="fu">return</span>(similarity)</span>
+<span id="cb8-28"><a href="3.2-ukuran-ketidakmiripan.html#cb8-28" tabindex="-1"></a>}</span>
+<span id="cb8-29"><a href="3.2-ukuran-ketidakmiripan.html#cb8-29" tabindex="-1"></a></span>
+<span id="cb8-30"><a href="3.2-ukuran-ketidakmiripan.html#cb8-30" tabindex="-1"></a><span class="co"># Perhitungan jarak</span></span>
+<span id="cb8-31"><a href="3.2-ukuran-ketidakmiripan.html#cb8-31" tabindex="-1"></a>smc <span class="ot">&lt;-</span> <span class="fu">simple_matching</span>(X, Y)</span>
+<span id="cb8-32"><a href="3.2-ukuran-ketidakmiripan.html#cb8-32" tabindex="-1"></a>overlap <span class="ot">&lt;-</span> <span class="fu">overlap_distance</span>(X, Y)</span>
+<span id="cb8-33"><a href="3.2-ukuran-ketidakmiripan.html#cb8-33" tabindex="-1"></a></span>
+<span id="cb8-34"><a href="3.2-ukuran-ketidakmiripan.html#cb8-34" tabindex="-1"></a><span class="co"># Hasil perhitungan</span></span>
+<span id="cb8-35"><a href="3.2-ukuran-ketidakmiripan.html#cb8-35" tabindex="-1"></a><span class="fu">print</span>(smc)</span>
+<span id="cb8-36"><a href="3.2-ukuran-ketidakmiripan.html#cb8-36" tabindex="-1"></a><span class="co">#&gt; $Similarity</span></span>
+<span id="cb8-37"><a href="3.2-ukuran-ketidakmiripan.html#cb8-37" tabindex="-1"></a><span class="co">#&gt; [1] 0.6</span></span>
+<span id="cb8-38"><a href="3.2-ukuran-ketidakmiripan.html#cb8-38" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-39"><a href="3.2-ukuran-ketidakmiripan.html#cb8-39" tabindex="-1"></a><span class="co">#&gt; $Distance</span></span>
+<span id="cb8-40"><a href="3.2-ukuran-ketidakmiripan.html#cb8-40" tabindex="-1"></a><span class="co">#&gt; [1] 0.4</span></span>
+<span id="cb8-41"><a href="3.2-ukuran-ketidakmiripan.html#cb8-41" tabindex="-1"></a><span class="fu">print</span>(overlap)</span>
+<span id="cb8-42"><a href="3.2-ukuran-ketidakmiripan.html#cb8-42" tabindex="-1"></a><span class="co">#&gt; [1] 0.4</span></span></code></pre></div>
+</div>
+<div id="pengukuran-jarak-atribut-campuran" class="section level3 hasAnchor" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Pengukuran Jarak Atribut Campuran<a href="3.2-ukuran-ketidakmiripan.html#pengukuran-jarak-atribut-campuran" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Data sering kali memiliki atribut campuran, yaitu kombinasi dari atribut numerik, kategorikal, dan biner. Untuk mengukur jarak antara dua objek dalam data jenis ini, diperlukan metrik jarak yang mempertimbangkan perbedaan sifat atribut.</p>
+<p>Misalkan ada dua objek <span class="math inline">\(\mathbf{X}\)</span> dan <span class="math inline">\(\mathbf{Y}\)</span> dengan <span class="math inline">\(n\)</span> atribut. Setiap atribut dapat berupa:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Numerik</strong>: Memiliki nilai kontinu.</p></li>
+<li><p><strong>Kategorikal</strong>: Memiliki nilai diskret tanpa hubungan matematis.</p></li>
+<li><p><strong>Biner</strong>: Memiliki dua nilai, seperti 0 dan 1.</p></li>
+</ol>
+<p>Metode pengukuran jarak untuk data campuran mengkombinasikan jarak antar atribut berdasarkan jenisnya.</p>
+<p><strong>Heterogeneous Euclidean-Overlap Metric (HEOM)</strong></p>
+<p>HEOM adalah salah satu metrik yang menggabungkan jarak Euclidean untuk atribut numerik dan jarak overlap untuk atribut kategorikal.</p>
+<p>Untuk setiap atribut <span class="math inline">\(i\)</span>, jarak dihitung sebagai:</p>
+<p><span class="math display">\[
+    d_i(x_i, y_i) =
+    \begin{cases}
+    \frac{|x_i - y_i|}{r_i}, &amp; \text{jika } x_i, y_i \text{ numerik} \\
+    0, &amp; \text{jika } x_i = y_i \text{ (kategorikal atau biner)} \\
+    1, &amp; \text{jika } x_i \neq y_i \text{ (kategorikal atau biner)}
+    \end{cases}
+\]</span></p>
+<p>di mana:</p>
+<ul>
+<li><p><span class="math inline">\(r_i\)</span> adalah rentang nilai maksimum dan minimum untuk atribut numerik <span class="math inline">\(i\)</span>.</p></li>
+<li><p>Jarak total diberikan oleh:</p></li>
+</ul>
+<p><span class="math display">\[
+  D(\mathbf{X}, \mathbf{Y}) = \sqrt{\sum_{i=1}^n d_i(x_i, y_i)^2}
+\]</span></p>
+<p><strong>Gower’s Distance</strong></p>
+<p>Gower’s distance adalah metrik populer untuk atribut campuran. Untuk setiap atribut <span class="math inline">\(i\)</span>:</p>
+<p><span class="math display">\[
+    s_i(x_i, y_i) =
+    \begin{cases}
+    1 - \frac{|x_i - y_i|}{r_i}, &amp; \text{jika } x_i, y_i \text{ numerik} \\
+    1, &amp; \text{jika } x_i = y_i \text{ (kategorikal atau biner)} \\
+    0, &amp; \text{jika } x_i \neq y_i \text{ (kategorikal atau biner)}
+    \end{cases}
+\]</span></p>
+<p>Koefisien kesamaan total adalah rata-rata:</p>
+<p><span class="math display">\[
+S(\mathbf{X}, \mathbf{Y}) = \frac{\sum_{i=1}^n w_i s_i(x_i, y_i)}{\sum_{i=1}^n w_i}
+\]</span></p>
+<p>di mana:</p>
+<ul>
+<li><p><span class="math inline">\(w_i = 1\)</span> jika <span class="math inline">\(x_i\)</span> dan <span class="math inline">\(y_i\)</span> memiliki nilai yang valid.</p></li>
+<li><p><span class="math inline">\(w_i = 0\)</span> jika salah satu <span class="math inline">\(x_i\)</span> atau <span class="math inline">\(y_i\)</span> adalah nilai yang hilang.</p></li>
+</ul>
+<p>Jarak Gower adalah:
+<span class="math display">\[
+D_G(\mathbf{X}, \mathbf{Y}) = 1 - S(\mathbf{X}, \mathbf{Y})
+\]</span>
+<strong>Contoh Implementasi dengan R</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="3.2-ukuran-ketidakmiripan.html#cb9-1" tabindex="-1"></a><span class="co">#Contoh data campuran</span></span>
+<span id="cb9-2"><a href="3.2-ukuran-ketidakmiripan.html#cb9-2" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb9-3"><a href="3.2-ukuran-ketidakmiripan.html#cb9-3" tabindex="-1"></a>  <span class="at">Numerik =</span> <span class="fu">c</span>(<span class="fl">5.5</span>, <span class="fl">3.2</span>),</span>
+<span id="cb9-4"><a href="3.2-ukuran-ketidakmiripan.html#cb9-4" tabindex="-1"></a>  <span class="at">Kategorikal =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>),</span>
+<span id="cb9-5"><a href="3.2-ukuran-ketidakmiripan.html#cb9-5" tabindex="-1"></a>  <span class="at">Biner =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb9-6"><a href="3.2-ukuran-ketidakmiripan.html#cb9-6" tabindex="-1"></a>)</span>
+<span id="cb9-7"><a href="3.2-ukuran-ketidakmiripan.html#cb9-7" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb9-8"><a href="3.2-ukuran-ketidakmiripan.html#cb9-8" tabindex="-1"></a>  <span class="at">Numerik =</span> <span class="fu">c</span>(<span class="fl">6.3</span>, <span class="fl">3.2</span>),</span>
+<span id="cb9-9"><a href="3.2-ukuran-ketidakmiripan.html#cb9-9" tabindex="-1"></a>  <span class="at">Kategorikal =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;A&quot;</span>),</span>
+<span id="cb9-10"><a href="3.2-ukuran-ketidakmiripan.html#cb9-10" tabindex="-1"></a>  <span class="at">Biner =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb9-11"><a href="3.2-ukuran-ketidakmiripan.html#cb9-11" tabindex="-1"></a>)</span>
+<span id="cb9-12"><a href="3.2-ukuran-ketidakmiripan.html#cb9-12" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="3.2-ukuran-ketidakmiripan.html#cb9-13" tabindex="-1"></a><span class="co">#Fungsi HEOM</span></span>
+<span id="cb9-14"><a href="3.2-ukuran-ketidakmiripan.html#cb9-14" tabindex="-1"></a>heom_distance <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb9-15"><a href="3.2-ukuran-ketidakmiripan.html#cb9-15" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">ncol</span>(x)</span>
+<span id="cb9-16"><a href="3.2-ukuran-ketidakmiripan.html#cb9-16" tabindex="-1"></a>  distance <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n)</span>
+<span id="cb9-17"><a href="3.2-ukuran-ketidakmiripan.html#cb9-17" tabindex="-1"></a>  </span>
+<span id="cb9-18"><a href="3.2-ukuran-ketidakmiripan.html#cb9-18" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb9-19"><a href="3.2-ukuran-ketidakmiripan.html#cb9-19" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.numeric</span>(x[[i]]) <span class="sc">&amp;&amp;</span> <span class="fu">is.numeric</span>(y[[i]])) {</span>
+<span id="cb9-20"><a href="3.2-ukuran-ketidakmiripan.html#cb9-20" tabindex="-1"></a>      r <span class="ot">&lt;-</span> <span class="fu">max</span>(x[[i]], y[[i]]) <span class="sc">-</span> <span class="fu">min</span>(x[[i]], y[[i]])</span>
+<span id="cb9-21"><a href="3.2-ukuran-ketidakmiripan.html#cb9-21" tabindex="-1"></a>      distance[i] <span class="ot">&lt;-</span> <span class="fu">abs</span>(x[[i]] <span class="sc">-</span> y[[i]]) <span class="sc">/</span> r</span>
+<span id="cb9-22"><a href="3.2-ukuran-ketidakmiripan.html#cb9-22" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb9-23"><a href="3.2-ukuran-ketidakmiripan.html#cb9-23" tabindex="-1"></a>      distance[i] <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(x[[i]] <span class="sc">==</span> y[[i]], <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb9-24"><a href="3.2-ukuran-ketidakmiripan.html#cb9-24" tabindex="-1"></a>    }</span>
+<span id="cb9-25"><a href="3.2-ukuran-ketidakmiripan.html#cb9-25" tabindex="-1"></a>  }</span>
+<span id="cb9-26"><a href="3.2-ukuran-ketidakmiripan.html#cb9-26" tabindex="-1"></a>  </span>
+<span id="cb9-27"><a href="3.2-ukuran-ketidakmiripan.html#cb9-27" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sqrt</span>(<span class="fu">sum</span>(distance<span class="sc">^</span><span class="dv">2</span>)))</span>
+<span id="cb9-28"><a href="3.2-ukuran-ketidakmiripan.html#cb9-28" tabindex="-1"></a>}</span>
+<span id="cb9-29"><a href="3.2-ukuran-ketidakmiripan.html#cb9-29" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="3.2-ukuran-ketidakmiripan.html#cb9-30" tabindex="-1"></a><span class="co">#Fungsi Gower&#39;s Distance</span></span>
+<span id="cb9-31"><a href="3.2-ukuran-ketidakmiripan.html#cb9-31" tabindex="-1"></a>gower_distance <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb9-32"><a href="3.2-ukuran-ketidakmiripan.html#cb9-32" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">ncol</span>(x)</span>
+<span id="cb9-33"><a href="3.2-ukuran-ketidakmiripan.html#cb9-33" tabindex="-1"></a>  similarity <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n)</span>
+<span id="cb9-34"><a href="3.2-ukuran-ketidakmiripan.html#cb9-34" tabindex="-1"></a>  weights <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n)</span>
+<span id="cb9-35"><a href="3.2-ukuran-ketidakmiripan.html#cb9-35" tabindex="-1"></a>  </span>
+<span id="cb9-36"><a href="3.2-ukuran-ketidakmiripan.html#cb9-36" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb9-37"><a href="3.2-ukuran-ketidakmiripan.html#cb9-37" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.numeric</span>(x[[i]]) <span class="sc">&amp;&amp;</span> <span class="fu">is.numeric</span>(y[[i]])) {</span>
+<span id="cb9-38"><a href="3.2-ukuran-ketidakmiripan.html#cb9-38" tabindex="-1"></a>      r <span class="ot">&lt;-</span> <span class="fu">max</span>(x[[i]], y[[i]]) <span class="sc">-</span> <span class="fu">min</span>(x[[i]], y[[i]])</span>
+<span id="cb9-39"><a href="3.2-ukuran-ketidakmiripan.html#cb9-39" tabindex="-1"></a>      similarity[i] <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">abs</span>(x[[i]] <span class="sc">-</span> y[[i]]) <span class="sc">/</span> r</span>
+<span id="cb9-40"><a href="3.2-ukuran-ketidakmiripan.html#cb9-40" tabindex="-1"></a>      weights[i] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb9-41"><a href="3.2-ukuran-ketidakmiripan.html#cb9-41" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb9-42"><a href="3.2-ukuran-ketidakmiripan.html#cb9-42" tabindex="-1"></a>      similarity[i] <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(x[[i]] <span class="sc">==</span> y[[i]], <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb9-43"><a href="3.2-ukuran-ketidakmiripan.html#cb9-43" tabindex="-1"></a>      weights[i] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb9-44"><a href="3.2-ukuran-ketidakmiripan.html#cb9-44" tabindex="-1"></a>    }</span>
+<span id="cb9-45"><a href="3.2-ukuran-ketidakmiripan.html#cb9-45" tabindex="-1"></a>  }</span>
+<span id="cb9-46"><a href="3.2-ukuran-ketidakmiripan.html#cb9-46" tabindex="-1"></a>  </span>
+<span id="cb9-47"><a href="3.2-ukuran-ketidakmiripan.html#cb9-47" tabindex="-1"></a>  weighted_similarity <span class="ot">&lt;-</span> <span class="fu">sum</span>(weights <span class="sc">*</span> similarity) <span class="sc">/</span> <span class="fu">sum</span>(weights)</span>
+<span id="cb9-48"><a href="3.2-ukuran-ketidakmiripan.html#cb9-48" tabindex="-1"></a>  <span class="fu">return</span>(<span class="dv">1</span> <span class="sc">-</span> weighted_similarity)</span>
+<span id="cb9-49"><a href="3.2-ukuran-ketidakmiripan.html#cb9-49" tabindex="-1"></a>}</span>
+<span id="cb9-50"><a href="3.2-ukuran-ketidakmiripan.html#cb9-50" tabindex="-1"></a></span>
+<span id="cb9-51"><a href="3.2-ukuran-ketidakmiripan.html#cb9-51" tabindex="-1"></a><span class="co">#Hitung jarak</span></span>
+<span id="cb9-52"><a href="3.2-ukuran-ketidakmiripan.html#cb9-52" tabindex="-1"></a>heom <span class="ot">&lt;-</span> <span class="fu">heom_distance</span>(X, Y)</span>
+<span id="cb9-53"><a href="3.2-ukuran-ketidakmiripan.html#cb9-53" tabindex="-1"></a>gower <span class="ot">&lt;-</span> <span class="fu">gower_distance</span>(X, Y)</span>
+<span id="cb9-54"><a href="3.2-ukuran-ketidakmiripan.html#cb9-54" tabindex="-1"></a></span>
+<span id="cb9-55"><a href="3.2-ukuran-ketidakmiripan.html#cb9-55" tabindex="-1"></a><span class="co">#Hasil perhitungan</span></span>
+<span id="cb9-56"><a href="3.2-ukuran-ketidakmiripan.html#cb9-56" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;HEOM Distance:&quot;</span>, heom, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb9-57"><a href="3.2-ukuran-ketidakmiripan.html#cb9-57" tabindex="-1"></a><span class="co">#&gt; HEOM Distance: 0.2580645</span></span>
+<span id="cb9-58"><a href="3.2-ukuran-ketidakmiripan.html#cb9-58" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Gower&#39;s Distance:&quot;</span>, gower, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb9-59"><a href="3.2-ukuran-ketidakmiripan.html#cb9-59" tabindex="-1"></a><span class="co">#&gt; Gower&#39;s Distance: 0.08602151</span></span></code></pre></div>
+
+</div>
+</div>
+<!-- </div> -->
+
+
+
+<h3>Referensi<a href="References.html#References" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-everitt2011cluster" class="csl-entry">
+Everitt, Brian S., Sabine Landau, M. Leese, and Daniel Stahl. 2011. <em>Cluster Analysis</em>. Wiley.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="3.1-ukuran-kemiripan.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="4-km.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": true,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mca91/ClustR/edit/master/03-ch3.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

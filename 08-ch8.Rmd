@@ -1,6 +1,6 @@
-# (PART) Pendekatan Fuzzy {-}
+# (PART) Pendekatan Hirarki {-}
 
-# Algoritma Fuzzy C-Means {#fcm}
+# Metode Cluster Hirarki {#HC}
 
 ```{=html}
 <style>
@@ -12,19 +12,15 @@ text-align: justify}
 ```{r, child="_setup.Rmd"}
 ```
 
-Algoritma fuzzy c-means (FCM) merupakan salah satu metode clustering yang banyak digunakan dalam analisis data dan pengolahan citra. Berbeda dengan algoritma clustering tradisional seperti k-means, yang mengelompokkan data ke dalam cluster yang jelas dan tegas, FCM memberikan fleksibilitas dengan memungkinkan setiap data untuk memiliki derajat keanggotaan pada lebih dari satu cluster. Hal ini menjadikan FCM sangat berguna dalam situasi di mana batasan antara cluster tidak dapat ditentukan dengan jelas [@bezdek1981pattern].
+Hierarchical clustering adalah salah satu metode analisis klaster yang digunakan untuk mengelompokkan data berdasarkan kemiripan atau jarak antar objek. Berbeda dengan metode klaster lainnya seperti K-Means, hierarchical clustering tidak memerlukan jumlah klaster yang telah ditentukan sebelumnya. Prosesnya dimulai dengan setiap objek dianggap sebagai klaster tersendiri, yang kemudian digabungkan secara bertahap hingga membentuk satu klaster besar atau, sebaliknya, dengan memisahkan satu klaster besar menjadi klaster-klaster kecil. Teknik ini memberikan fleksibilitas dalam mengeksplorasi struktur data tanpa asumsi awal yang ketat [@everitt2011cluster] .
 
-FCM pertama kali diperkenalkan oleh Bezdek pada tahun 1981 dan sejak saat itu telah banyak diterapkan dalam berbagai bidang, termasuk pengolahan citra, pengenalan pola, dan analisis data multidimensi. Metode ini bekerja dengan meminimalkan fungsi objektif yang mengukur kesalahan antara data dan pusat cluster, dengan mempertimbangkan derajat keanggotaan setiap data terhadap cluster yang ada. Proses ini dilakukan secara iteratif hingga konvergensi tercapai, di mana perubahan pusat cluster dan derajat keanggotaan menjadi sangat kecil [@dunn1973fuzzy].
+Hierarchical clustering terdiri dari dua pendekatan utama, yaitu agglomerative dan divisive. Pendekatan agglomerative, yang lebih umum digunakan, memulai dengan setiap objek sebagai klaster individu dan secara iteratif menggabungkan klaster yang paling mirip. Sebaliknya, divisive memulai dengan satu klaster besar yang mencakup semua objek, kemudian secara bertahap membagi klaster menjadi klaster-klaster yang lebih kecil. Kedua pendekatan ini menggunakan matriks jarak untuk mengukur kedekatan antara objek atau klaster, dengan berbagai metrik seperti jarak Euclidean atau korelasi Pearson [@hartigan1979algorithm].
 
-Salah satu keunggulan FCM adalah kemampuannya untuk menangani data yang memiliki noise atau outlier. Dalam banyak aplikasi dunia nyata, data sering kali tidak bersih dan mengandung kesalahan pengukuran. Dengan menggunakan derajat keanggotaan, FCM dapat mengurangi pengaruh data yang tidak representatif terhadap hasil clustering, sehingga menghasilkan model yang lebih robust dan akurat [@pal1995cluster].
+Salah satu keuntungan utama hierarchical clustering adalah kemampuannya untuk menghasilkan dendrogram, yaitu representasi visual yang menunjukkan hubungan hierarkis antara klaster. Dendrogram memungkinkan pengguna untuk memutuskan jumlah klaster yang optimal dengan memotong pohon pada level tertentu. Selain itu, hierarchical clustering juga bermanfaat untuk mengeksplorasi data yang tidak memiliki struktur klaster yang jelas atau memiliki pola yang kompleks [@sokal1958statistical].
 
-Namun, meskipun FCM memiliki banyak kelebihan, algoritma ini juga memiliki beberapa kelemahan. Salah satunya adalah ketergantungan pada pemilihan jumlah cluster yang tepat, yang dapat mempengaruhi hasil akhir. Selain itu, FCM juga dapat menjadi sensitif terhadap inisialisasi pusat cluster, yang dapat menyebabkan hasil yang berbeda pada setiap iterasi [@huang1998extensions]. Oleh karena itu, penelitian lebih lanjut diperlukan untuk mengembangkan metode yang dapat mengatasi masalah ini.
+Namun, hierarchical clustering memiliki beberapa keterbatasan. Metode ini cenderung kurang efisien untuk dataset besar karena kompleksitas komputasinya yang tinggi. Selain itu, keputusan penggabungan atau pemisahan pada tahap awal bersifat permanen, sehingga kesalahan awal dapat memengaruhi hasil akhir. Oleh karena itu, pemilihan metrik jarak dan metode penggabungan menjadi faktor krusial dalam menghasilkan klaster yang relevan dan bermakna [@jain2010].
 
-Dalam konteks perkembangan teknologi dan kebutuhan analisis data yang semakin kompleks, FCM tetap menjadi salah satu metode yang relevan dan banyak digunakan. Penelitian dan pengembangan lebih lanjut dalam algoritma ini diharapkan dapat meningkatkan kinerjanya dan memperluas aplikasinya di berbagai bidang, termasuk kecerdasan buatan dan analisis big data. Dengan demikian, pemahaman yang mendalam tentang FCM dan aplikasinya sangat penting bagi para peneliti dan praktisi di bidang ini.
-
-Klastering dengan algoritma Fuzzy C-Means didasarkan pada teori logika fuzzy yang diperkenalkan oleh Lotfi Zadeh pada tahun 1965 dengan nama himpunan fuzzy (fuzzy set). Fuzzy C-Means Clustering pertama kali diperkenalkan oleh Dun pada (1973) dan diperbaiki oleh Bezdek [@bezdek1981pattern] . Dalam teori fuzzy, keangotaan sebuah data diberikan dengan suatu nilai derajat keanggotaan yang jangkauan nilainya 0 sampai 1. Semakin tinggi nilai derajat keanggotaannya maka semakin tinggi nilai keanggotaan sebuah data dalam suatu kelompok dan semakin kecil nilai derajat keanggotaannya maka semakin rendah nilai keanggotaan sebuah data dalam suatu kelompok.
-
-## Tahapan Algoritma Fuzzy C-Means
+## Tahapan Agglomerative Clustering
 
 ```{=html}
 <style>
@@ -33,34 +29,67 @@ text-align: justify}
 </style>
 ```
 
-### 1. Inisialisasi Parameter {-}  
-Tentukan jumlah cluster (*c*), parameter pembobot (*m*, biasanya \(m > 1\)), toleransi error (\(\epsilon\)), dan maksimum iterasi.
+Agglomerative Clustering adalah salah satu metode dalam hierarchical clustering yang menggunakan pendekatan bottom-up. Metode ini mengelompokkan data dengan cara menggabungkan cluster yang paling dekat satu sama lain hingga semua data tergabung dalam satu cluster atau hingga jumlah cluster yang diinginkan tercapai.
 
-### 2. Inisialisasi Matriks Keanggotaan {-}
-Buat matriks keanggotaan awal (\(U^{(0)}\)) secara acak. Matriks ini memiliki ukuran \(N \times c\), di mana \(N\) adalah jumlah data, dan \(c\) adalah jumlah cluster. Pastikan bahwa \(\sum_{j=1}^c u_{ij} = 1\) untuk setiap data \(i\).
+### 1. Inisialisasi {.unnumbered}
 
-### 3. Perhitungan Pusat Cluster {-}
-Hitung pusat cluster (\(v_k\)) untuk setiap cluster \(k\) menggunakan rumus:
-     $$
-     v_k = \frac{\sum_{i=1}^N u_{ik}^m x_i}{\sum_{i=1}^N u_{ik}^m}
-     $$
-di mana \(u_{ik}\) adalah nilai keanggotaan data \(i\) pada cluster \(k\) dan \(x_i\) adalah data ke-\(i\).
+Setiap objek (data point) dianggap sebagai satu cluster terpisah. Jika ada $n$ objek, maka akan ada $n$ cluster pada awalnya.
 
-### 4. Perbarui Matriks Keanggotaan {-}
-Hitung matriks keanggotaan baru (\(U^{(t+1)}\)) dengan rumus:
-     $$
-     u_{ik} = \frac{1}{\sum_{j=1}^c \left( \frac{\|x_i - v_k\|}{\|x_i - v_j\|} \right)^{\frac{2}{m-1}}}
-     $$
-di mana \(\|x_i - v_k\|\) adalah jarak antara data \(i\) dan pusat cluster \(k\).
+### 2. Menghitung Jarak {.unnumbered}
 
-### 5. Evaluasi Konvergensi {-}
-Hitung perubahan matriks keanggotaan (\(\|U^{(t+1)} - U^{(t)}\|\)).
-Jika perubahan lebih kecil dari toleransi error (\(\epsilon\)) atau iterasi maksimum tercapai, algoritma berhenti. Jika tidak, kembali ke langkah 3.
+Hitung jarak antara semua pasangan cluster. Jarak ini dapat dihitung menggunakan berbagai metrik, seperti Euclidean, Manhattan, atau Cosine. Untuk dua titik $A(x_1, y_1)$ dan $B(x_2, y_2)$, jarak Euclidean dapat dihitung dengan rumus:
 
-### 6. Hasil Akhir {-}
-Pusat cluster (\(v_k\)) dan matriks keanggotaan (\(u_{ik}\)) akhir menunjukkan distribusi data terhadap cluster. Data dapat diklasifikasikan ke cluster dengan keanggotaan tertinggi.
+$$
+d(A, B) = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+$$
 
-## Eksperimeen Fuzzy C-Means
+### 3. Menggabungkan Cluster {.unnumbered}
+
+Temukan dua cluster terdekat (dengan jarak terkecil) dan gabungkan mereka menjadi satu cluster baru. Proses ini mengurangi jumlah cluster sebanyak satu.
+
+### 4. Memperbarui Jarak {.unnumbered}
+
+Setelah penggabungan, perbarui matriks jarak untuk mencerminkan jarak antara cluster baru dan cluster lainnya. Ada beberapa metode untuk memperbarui jarak, termasuk:
+
+-   **Single Linkage**: Jarak minimum antara anggota dua cluster.
+
+    $$
+    d(A, B) = \min \{ d(a, b) \,|\, a \in A, b \in B \}
+    $$
+
+-   **Complete Linkage**: Jarak maksimum antara anggota dua cluster.
+
+    $$
+    d(A, B) = \max \{ d(a, b) \,|\, a \in A, b \in B \}
+    $$
+
+-   **Average Linkage**: Rata-rata jarak antara semua pasangan anggota dari dua cluster.
+
+    $$
+    d(A, B) = \frac{1}{|A| \cdot |B|} \sum_{a \in A} \sum_{b \in B} d(a, b)
+    $$
+
+-   **Ward's Method**: Menghitung jarak berdasarkan peningkatan varians yang dihasilkan dari penggabungan dua cluster.
+
+    $$
+    d(A, B) = \sqrt{\frac{n_A n_B}{n_A + n_B} \cdot d^2(A, B)}
+    $$
+
+    di mana $n_A$ dan $n_B$ adalah jumlah anggota dalam cluster $A$ dan $B$.
+
+### 5. Ulangi Proses {.unnumbered}
+
+Ulangi langkah 3 dan 4 hingga semua objek tergabung dalam satu cluster atau hingga jumlah cluster yang diinginkan tercapai.
+
+### 6. Membuat Dendrogram {.unnumbered}
+
+Setelah semua penggabungan selesai, buat dendrogram untuk memvisualisasikan proses penggabungan cluster. Dendrogram menunjukkan hubungan antar cluster dan dapat digunakan untuk menentukan jumlah cluster yang optimal dengan memotong dendrogram pada ketinggian tertentu.
+
+### Kesimpulan {.unnumbered}
+
+Agglomerative Clustering adalah metode yang efektif untuk mengelompokkan data berdasarkan kesamaan. Dengan mengikuti tahapan di atas, Anda dapat menerapkan teknik ini untuk berbagai aplikasi analisis data. Pastikan untuk memilih metrik jarak dan metode penggabungan yang sesuai dengan karakteristik data Anda untuk mendapatkan hasil yang optimal.
+
+## Eksperimen Agglomerative Clustering
 
 ```{=html}
 <style>
@@ -69,120 +98,243 @@ text-align: justify}
 </style>
 ```
 
-### Install dan Load Packagaes {-}
-
-Untuk memulai eksperimen menggunakan algoritma Fuzzy C-Means (FCM) di `r ttcode("R")`, beberapa library perlu diinstal dan dimuat untuk mendukung proses analisis, visualisasi, dan validasi hasil clustering. Library `ppclust` menyediakan berbagai metode clustering berbasis partisi, termasuk FCM, dan berfungsi untuk mengimplementasikan algoritma serta mengevaluasi hasil clustering. Library `factoextra` digunakan untuk memudahkan visualisasi hasil clustering, seperti menampilkan scatter plot dengan pembagian cluster yang jelas. Selain itu, library `fclust` mendukung berbagai fungsi terkait clustering berbasis fuzzy, termasuk penghitungan indeks validasi untuk menilai kualitas cluster. Terakhir, library `cluster` menawarkan berbagai alat untuk clustering dan validasi, termasuk perbandingan hasil clustering FCM dengan algoritma lain seperti K-Means atau PAM.
-
-```{r eval=FALSE}
-library(ppclust)
-library(factoextra)
-library(fclust)
-library(cluster)
-```
-
-### Data {-}
-Dataset diimpor ke dalam `r ttcode("R")` menggunakan library `readr`, yang dirancang untuk membaca data dengan format seperti CSV secara efisien. Data diakses melalui URL `https://bit.ly/3VO3kRE` dan dimuat menggunakan fungsi `read.csv()`. Parameter `row.names = "Kabupaten"` digunakan untuk menjadikan kolom "Kabupaten" sebagai indeks baris, sehingga setiap baris data dapat diidentifikasi berdasarkan nama kabupaten. Setelah proses ini, dataset disimpan dalam variabel `data` sebagai sebuah *data frame*, yang siap digunakan untuk analisis lebih lanjut, seperti preprocessing, penerapan algoritma clustering, atau visualisasi hasil.
-
-
-```{r Load_data_fcm,warning=FALSE, tidy=FALSE}
+```{r Load_data_hc,warning=FALSE, tidy=FALSE}
 library (readr)
 urlfile = "https://bit.ly/3VO3kRE"
 data<-read.csv(url(urlfile), row.names = "Kabupaten")
 ```
 
-```{r nice-tab-1, tidy=FALSE, echo=FALSE}
+```{r nice-tab-2, tidy=FALSE, echo=FALSE}
 knitr::kable(
   head(data, 10), caption = 'Basis Data Terpadu Jawa Tengah',
   booktabs = TRUE)
 ```
 
-### Hasil Clustering {-}
-Hasil clustering diperoleh dengan menerapkan algoritma Fuzzy C-Means (FCM) menggunakan fungsi `fcm()` dari library `ppclust`. Dataset yang telah dipersiapkan dianalisis untuk menghasilkan tiga pusat cluster dengan parameter `centers=3`. Setelah proses clustering selesai, nilai derajat keanggotaan masing-masing data terhadap setiap cluster disimpan dalam matriks keanggotaan (\(u\)). Matriks ini kemudian dikonversi menjadi format *data frame* menggunakan fungsi `as.data.frame()` agar lebih mudah diakses dan dianalisis. Setiap baris dalam *data frame* merepresentasikan satu data observasi, sementara kolom-kolomnya menunjukkan derajat keanggotaan terhadap masing-masing cluster. Derajat keanggotaan ini mencerminkan probabilitas relatif atau tingkat afiliasi suatu data terhadap cluster tertentu.
-```{r}
-library(ppclust)
-res.fcm <- fcm(data, centers=3)
-as.data.frame(res.fcm$u)
-```
+### Standarisasi Data {.unnumbered}
 
-### Visualisasi Matrik Keanggotaan {-}
-Untuk memvisualisasikan matriks keanggotaan yang dihasilkan oleh algoritma Fuzzy C-Means (FCM) menggunakan fungsi `corrplot()` dari library `corrplot`. Matriks keanggotaan yang terdapat dalam `res.fcm$u` menggambarkan derajat keanggotaan masing-masing data terhadap setiap cluster. Dengan parameter `is.corr = FALSE`, kita memberi tahu fungsi bahwa data yang akan divisualisasikan bukanlah matriks korelasi, melainkan matriks keanggotaan FCM. Visualisasi ini membantu untuk memahami bagaimana data tersebar di antara cluster dan seberapa kuat hubungan data dengan setiap cluster berdasarkan derajat keanggotaannya. Grafik ini dapat memperlihatkan pola atau struktur dalam data yang terkelompok dengan cara yang lebih mudah dipahami.
+Sebelum melakukan analisis clustering, penting untuk menstandarisasi data agar setiap fitur memiliki skala yang sama. Standarisasi membantu menghindari bias yang mungkin muncul akibat perbedaan skala antar fitur, yang dapat mempengaruhi hasil analisis, terutama dalam pengukuran jarak.
 
-```{r warning=FALSE, message=FALSE, fig.cap='Matrik Keagotaan', out.width='80%', fig.asp=.75, fig.align='center'}
-# Visualize using corrplot
-library(corrplot)
-corrplot(res.fcm$u, is.corr = FALSE)
-```
-
-Kode ini digunakan untuk mengakses dan menampilkan pusat cluster pertama (\(v_0\)) yang dihasilkan oleh algoritma Fuzzy C-Means (FCM) yang telah diterapkan pada dataset. Pada objek `res.fcm`, atribut `v0` menyimpan informasi tentang pusat cluster pada iterasi pertama. Nilai ini menunjukkan posisi awal dari setiap cluster sebelum algoritma mulai melakukan iterasi lebih lanjut untuk memperbarui posisi pusat cluster berdasarkan derajat keanggotaan data. Dengan menampilkan `res.fcm$v0`, kita dapat melihat posisi awal cluster dalam ruang fitur data dan mengevaluasi bagaimana posisi tersebut berfungsi dalam pemisahan data pada iterasi selanjutnya.
+Dalam R, kita dapat menggunakan fungsi `scale()` untuk menstandarisasi dataset. Fungsi ini mengubah setiap fitur dalam dataset sehingga memiliki rata-rata 0 dan deviasi standar 1. Proses ini dilakukan dengan cara mengurangi rata-rata dari setiap nilai dan membaginya dengan deviasi standar fitur tersebut.
 
 ```{r}
-res.fcm$v0
+# Standarisasi Data
+df <- scale(data)
 ```
 
-Kode ini digunakan untuk mengakses dan menampilkan pusat cluster yang dihasilkan setelah algoritma Fuzzy C-Means (FCM) selesai dijalankan. Pada objek `res.fcm`, atribut `v` menyimpan informasi tentang posisi pusat cluster yang telah diperbarui setelah iterasi terakhir. Pusat cluster ini merupakan hasil akhir dari proses clustering dan menunjukkan lokasi sentroid (pusat) dari setiap cluster berdasarkan data dan derajat keanggotaan yang telah dihitung. Dengan menampilkan `res.fcm$v`, kita dapat melihat posisi akhir setiap cluster dalam ruang fitur data, yang membantu untuk memahami bagaimana data telah dikelompokkan ke dalam cluster yang berbeda setelah proses clustering selesai.
+```{r nice-tab-1, tidy=FALSE, echo=FALSE}
+knitr::kable(
+  head(df, 10), caption = 'Data Hasil Standarisasi',
+  booktabs = TRUE)
+```
+
+### Ukuran Similarity dan Dissimilarity {.unnumbered}
+
+Dalam analisis clustering, ukuran similarity (kesamaan) dan dissimilarity (ketidaksamaan) sangat penting untuk menentukan seberapa dekat atau jauh objek satu sama lain dalam ruang fitur. Ukuran dissimilarity sering digunakan untuk mengukur jarak antara data point, yang kemudian digunakan dalam algoritma clustering untuk mengelompokkan data berdasarkan kedekatan mereka.
+
+Salah satu langkah awal dalam proses clustering adalah menghitung matriks dissimilarity, yang memberikan informasi tentang jarak antara setiap pasangan objek dalam dataset. Dalam konteks ini, kita menggunakan ukuran jarak Euclidean, yang merupakan salah satu metode paling umum untuk mengukur jarak antara dua titik dalam ruang multidimensi.
 
 ```{r}
-res.fcm$v
+res.dist <- dist(df, method = "euclidean")
 ```
 
-### Ringkasan Hasil Clustering FCM {-}
+Pada kode di atas, kita menggunakan fungsi `dist()` dari R untuk menghitung matriks dissimilarity. Parameter `df` merujuk pada data yang telah distandarisasi, yang berarti bahwa setiap fitur dalam dataset telah dinormalisasi untuk memiliki rata-rata 0 dan deviasi standar 1. Proses standarisasi ini penting untuk memastikan bahwa semua fitur berkontribusi secara seimbang terhadap perhitungan jarak, terutama ketika fitur memiliki skala yang berbeda.
 
-Untuk menampilkan ringkasan dari hasil algoritma Fuzzy C-Means (FCM) yang telah dijalankan, menggunakan fungsi `summary()` pada objek `res.fcm`. Fungsi ini memberikan gambaran umum tentang hasil clustering, termasuk informasi mengenai pusat cluster, derajat keanggotaan, dan konvergensi algoritma. Biasanya, hasil yang ditampilkan mencakup jumlah cluster yang terbentuk, posisi pusat cluster akhir, serta statistik terkait keanggotaan data terhadap cluster. Dengan menggunakan `summary(res.fcm)`, kita dapat memperoleh insight terkait seberapa baik algoritma telah mengelompokkan data dan apakah proses clustering telah konvergen, serta informasi tambahan yang dapat membantu evaluasi kualitas clustering.
+Setelah menghitung matriks dissimilarity menggunakan fungsi `dist()`, kita sering kali ingin melihat representasi matriks tersebut dalam format yang lebih mudah dibaca. Dalam R, kita dapat menggunakan fungsi `as.matrix()` untuk mengonversi objek dissimilarity menjadi matriks biasa. Ini memungkinkan kita untuk melihat nilai-nilai jarak antara objek-objek dalam dataset.
+
+Pada kode di atas, `res.dist` adalah objek dissimilarity yang telah dihitung sebelumnya. Dengan menggunakan `as.matrix(res.dist)`, kita mengonversi objek tersebut menjadi matriks. Kemudian, kita menggunakan indeks `[1:5, 1:5]` untuk menampilkan lima baris dan lima kolom pertama dari matriks dissimilarity.
 
 ```{r}
-summary(res.fcm)
+as.matrix(res.dist)[1:5, 1:5]
 ```
 
-Menjalankan algoritma Fuzzy C-Means (FCM) pada dataset `data` dengan jumlah cluster yang ditentukan sebanyak 3 (`centers=3`) dan parameter `nstart=5`. Parameter `nstart=5` menunjukkan bahwa algoritma FCM akan dijalankan sebanyak 5 kali dengan inisialisasi pusat cluster yang berbeda pada setiap iterasi. Tujuan dari parameter ini adalah untuk meningkatkan kemungkinan menemukan solusi yang lebih baik dengan memulai algoritma dari berbagai kondisi awal, sehingga mengurangi kemungkinan terjebak pada solusi lokal yang tidak optimal. Setelah proses ini, hasil clustering akan disimpan dalam objek `res.fcm`, yang dapat digunakan untuk mengevaluasi pusat cluster, derajat keanggotaan, dan validitas clustering.
+### Melakukan Pengelompokan Hierarkis {.unnumbered}
+
+Setelah menghitung matriks dissimilarity, langkah selanjutnya dalam analisis clustering adalah menerapkan algoritma pengelompokan hierarkis. Dalam R, kita dapat menggunakan fungsi `hclust()` untuk melakukan ini. Salah satu metode yang umum digunakan dalam pengelompokan hierarkis adalah metode Ward, yang bertujuan untuk meminimalkan varians dalam setiap cluster yang terbentuk.
 
 ```{r}
-res.fcm <- fcm(data, centers=3, nstart=5)
+res.hc <- hclust(d =res.dist, method = "ward.D2")
 ```
 
-Untuk menampilkan nilai objektif (fungsi tujuan) dari hasil terbaik yang ditemukan selama eksperimen Fuzzy C-Means (FCM). Nilai ini dapat diakses melalui `res.fcm$func.val`, yang memberikan informasi tentang nilai minimum dari fungsi tujuan (objective function) pada iterasi terakhir setelah algoritma selesai dijalankan.
+Pada kode di atas, `res.dist` adalah matriks dissimilarity yang telah dihitung sebelumnya. Parameter `method = "ward.D2"` menunjukkan bahwa kita menggunakan metode Ward untuk menggabungkan cluster. Metode Ward bekerja dengan cara menggabungkan dua cluster yang menghasilkan peningkatan terkecil dalam total varians dalam cluster yang baru terbentuk. Ini membantu dalam menghasilkan cluster yang lebih homogen.
 
-Fungsi tujuan dalam FCM biasanya mengukur sejauh mana data sesuai dengan pusat cluster yang telah dihitung, dengan mempertimbangkan derajat keanggotaan data terhadap setiap cluster. Semakin rendah nilai fungsi tujuan, semakin baik hasil clustering yang dihasilkan, karena itu menunjukkan pemisahan yang lebih baik antara cluster dan data. Dengan menampilkan `res.fcm$func.val`, kita dapat mengevaluasi kualitas solusi terbaik yang ditemukan, yang sering digunakan sebagai indikator untuk memvalidasi hasil clustering yang diperoleh dengan multiple starts.
+Hasil dari fungsi `hclust()` adalah objek yang berisi informasi tentang struktur pengelompokan hierarkis. Objek ini dapat digunakan untuk membuat dendrogram, yang merupakan representasi visual dari proses penggabungan cluster. Dendrogram ini membantu dalam menentukan jumlah cluster yang optimal dengan memotong dendrogram pada ketinggian tertentu.
+
+### Visualisasi dengan Dendrogram {.unnumbered}
+
+Setelah melakukan pengelompokan hierarkis menggunakan metode Ward, langkah selanjutnya adalah memvisualisasikan hasil clustering untuk memahami struktur dan hubungan antar cluster. Salah satu cara yang efektif untuk melakukan ini adalah dengan menggunakan dendrogram, yang menunjukkan bagaimana objek-objek dalam dataset digabungkan menjadi cluster.
+
+Library `factoextra` menyediakan fungsi yang memudahkan visualisasi hasil analisis multivariat, termasuk dendrogram untuk pengelompokan hierarkis. Berikut adalah kode untuk memvisualisasikan dendrogram dari hasil pengelompokan hierarkis yang telah dilakukan:
+
+```{r warning=FALSE, message=FALSE, fig.cap='Visualisasi Dendogram', out.width='80%', fig.asp=.75, fig.align='center'}
+library("factoextra")
+library(ggplot2)
+fviz_dend(res.hc, cex = 0.5)
+```
+
+Pada kode di atas, kita pertama-tama memuat library `factoextra` dan `ggplot`2. Fungsi `fviz_dend()` digunakan untuk membuat dendrogram dari objek hasil pengelompokan hierarkis `res.hc`. Parameter `cex = 0.5` digunakan untuk mengatur ukuran label pada dendrogram, sehingga label lebih mudah dibaca.
+
+### Visualisasi dengan Dendrogram {.unnumbered}
+
+Setelah memvisualisasikan dendrogram dari hasil pengelompokan hierarkis, langkah selanjutnya adalah menentukan jumlah cluster yang diinginkan dan memotong dendrogram untuk membentuk kelompok-kelompok tersebut. Dalam contoh ini, kita akan memotong dendrogram menjadi dua kelompok.
+
+Fungsi `cutree()` digunakan untuk memotong dendrogram dan mengelompokkan objek-objek ke dalam jumlah cluster yang ditentukan. Berikut adalah kode untuk memotong dendrogram menjadi dua kelompok:
 
 ```{r}
-res.fcm$func.val
+grp <- cutree(res.hc, k =2)
+head(grp, n =2)
 ```
 
-Untuk menampilkan jumlah iterasi yang dibutuhkan oleh algoritma Fuzzy C-Means (FCM) untuk mencapai konvergensi. Atribut `res.fcm$iter` menyimpan informasi tentang jumlah iterasi yang dilakukan selama proses clustering hingga algoritma mencapai kondisi konvergen, yaitu saat perubahan posisi pusat cluster atau matriks keanggotaan menjadi sangat kecil atau mencapai batas iterasi maksimum.
+Pada kode di atas, `res.hc` adalah objek hasil pengelompokan hierarkis yang telah kita buat sebelumnya. Parameter `k = 2` menunjukkan bahwa kita ingin memotong dendrogram menjadi dua kelompok. Hasil dari fungsi `cutree()` disimpan dalam variabel `grp`, yang berisi penugasan kelompok untuk setiap objek dalam dataset.
 
-Menampilkan `res.fcm$iter` memberikan wawasan tentang seberapa cepat atau lambat algoritma FCM mencapai konvergensi dalam eksperimen yang dijalankan. Jumlah iterasi yang rendah menunjukkan bahwa algoritma dengan cepat menemukan solusi yang stabil, sementara jumlah iterasi yang tinggi dapat menunjukkan bahwa proses clustering membutuhkan waktu lebih lama untuk mencapai hasil yang konvergen.
+### Jumlah Anggota dalam Setiap Cluster {.unnumbered}
+
+Setelah memotong dendrogram dan mengelompokkan objek-objek ke dalam cluster, langkah selanjutnya adalah menghitung jumlah anggota dalam setiap cluster. Dalam contoh ini, kita akan menggunakan fungsi table() untuk menghitung jumlah anggota dalam setiap cluster.
+
+Fungsi `table()` digunakan untuk menghitung frekuensi atau jumlah anggota dalam setiap kategori atau cluster. Berikut adalah kode untuk menghitung jumlah anggota dalam setiap cluster:
 
 ```{r}
-res.fcm$iter
+table(grp)
 ```
 
-Untuk menampilkan hasil terbaik dari beberapa percobaan yang dilakukan selama eksekusi algoritma Fuzzy C-Means (FCM) dengan multiple starts. Atribut `res.fcm$best.start` menunjukkan indeks dari percobaan (start) yang menghasilkan solusi terbaik berdasarkan nilai fungsi tujuan (objective function) terendah. 
+### Visualisasi Dendrogram {.unnumbered}
 
-Selama penggunaan `nstart`, algoritma FCM dijalankan beberapa kali dengan inisialisasi pusat cluster yang berbeda. `res.fcm$best.start` memberikan informasi tentang percobaan yang memberikan hasil terbaik, yang berarti percobaan tersebut memiliki nilai fungsi tujuan yang lebih kecil dibandingkan dengan percobaan lainnya. Ini membantu untuk mengetahui solusi yang paling optimal yang ditemukan oleh algoritma setelah menjalankan beberapa percobaan.
+Setelah memotong dendrogram untuk membentuk kelompok, kita dapat memvisualisasikan hasil pengelompokan dengan menandai setiap kelompok menggunakan warna yang berbeda. Ini membantu dalam memahami struktur cluster dan memudahkan interpretasi hasil.
+
+```{r warning=FALSE, message=FALSE, fig.cap='Visualisasi Dendogram', out.width='80%', fig.asp=.75, fig.align='center'}
+fviz_dend(res.hc, k =2, 
+          cex = 0.5, 
+          k_colors = c("#E7B800", "#FC4E07"),
+          color_labels_by_k = TRUE, 
+          rect = TRUE 
+          )
+```
+
+Pada kode di atas, kita menggunakan fungsi `fviz_dend()` untuk membuat dendrogram dari objek hasil pengelompokan hierarkis res.hc. Parameter yang digunakan adalah sebagai berikut: `k = 2` Menunjukkan bahwa kita ingin memotong dendrogram menjadi dua kelompok. `cex = 0.5` Mengatur ukuran label pada dendrogram agar lebih mudah dibaca. `k_colors = c("#E7B800", "#FC4E07")` Menentukan warna yang akan digunakan untuk masing-masing kelompok. Dalam hal ini, kelompok pertama akan berwarna kuning (#E7B800) dan kelompok kedua berwarna oranye (#FC4E07).`color_labels_by_k = TRUE` Mengatur agar label pada dendrogram diwarnai sesuai dengan kelompok yang ditentukan. `rect = TRUE` Menambahkan kotak di sekitar kelompok untuk menyoroti batasan antar cluster.
+
+### Visualisasi Hasil Clustering {.unnumbered}
+
+Setelah melakukan pengelompokan data dan mendapatkan penugasan kelompok untuk setiap objek, langkah selanjutnya adalah memvisualisasikan hasil clustering. Visualisasi ini membantu kita memahami distribusi objek dalam setiap cluster dan bagaimana cluster tersebut terpisah satu sama lain.
+
+Pada kode di bwah, kita menggunakan fungsi `fviz_cluster()` untuk membuat visualisasi clustering. Parameter yang digunakan adalah sebagai berikut:
+
+-   **`list(data = df, cluster = grp):`** Menyediakan data yang telah distandarisasi (df) dan penugasan kelompok (grp) yang dihasilkan dari pemotongan dendrogram.
+
+-   **`palette = c("#E7B800", "#FC4E07")`**: Menentukan warna yang akan digunakan untuk masing-masing cluster. Dalam hal ini, cluster pertama akan berwarna kuning (#E7B800) dan cluster kedua berwarna oranye (#FC4E07).
+
+-   **`ellipse.type = "convex"`**: Menambahkan elips konsentrasi di sekitar setiap cluster, yang memberikan gambaran visual tentang sebaran objek dalam cluster.
+
+-   **`repel = TRUE`**: Menghindari tumpang tindih label pada plot, meskipun ini dapat memperlambat proses rendering.
+
+-   **`show.clust.cent = FALSE`**: Menentukan untuk tidak menampilkan pusat cluster pada visualisasi.
+
+-   **`ggtheme = theme_minimal()`**: Menggunakan tema minimal untuk plot, yang memberikan tampilan yang bersih dan profesional.
+
+```{r warning=FALSE, message=FALSE, fig.cap='Visualisasi Hasil CLustering', out.width='80%', fig.asp=.75, fig.align='center'}
+fviz_cluster(list(data = df, cluster = grp),
+palette = c("#E7B800", "#FC4E07"),
+ellipse.type = "convex",
+repel = TRUE, 
+show.clust.cent = FALSE, ggtheme = theme_minimal())
+```
+
+## Perbandingan Dendogram
+
+Dalam analisis klaster hierarkis, dendrogram adalah representasi grafis yang menunjukkan bagaimana objek dikelompokkan secara hierarkis berdasarkan kemiripan atau jarak mereka. Namun, hasil klastering dapat sangat dipengaruhi oleh metode yang digunakan untuk menghitung jarak antar objek maupun cara menggabungkan klaster. Oleh karena itu, membandingkan dendrogram yang dihasilkan oleh berbagai metode menjadi langkah penting untuk mengevaluasi konsistensi dan validitas struktur klaster.
+
+Membandingkan dua dendrogram melibatkan analisis kesamaan struktur yang dihasilkan oleh metode klastering yang berbeda. Hal ini dapat membantu mengidentifikasi pola yang stabil dalam data serta mendeteksi perbedaan yang muncul akibat perubahan algoritma, metrik jarak, atau parameter lainnya. Dengan memahami perbedaan ini, peneliti dapat memilih metode klastering yang paling sesuai dengan tujuan analisis dan karakteristik dataset.
+
+Pendekatan untuk membandingkan dendrogram mencakup visualisasi seperti tanglegram, yang menunjukkan kesamaan dan perbedaan hubungan antar klaster, serta metrik kuantitatif seperti korelasi kophenetik. Analisis semacam ini memberikan wawasan yang mendalam tentang bagaimana data dikelompokkan, sekaligus memastikan bahwa hasil klastering relevan dan dapat diandalkan.
 
 ```{r}
-res.fcm$best.start
+# Memuat pustaka dendextend
+library(dendextend)
+
+# Menghitung matriks jarak dengan metode Euclidean
+res.dist <- dist(df, method = "euclidean")
+
+# Melakukan hierarchical clustering dengan dua metode berbeda
+hc1 <- hclust(res.dist, method = "average")  # Average linkage
+hc2 <- hclust(res.dist, method = "ward.D2")  # Ward's method
+
+# Mengubah hasil clustering menjadi objek dendrogram
+dend1 <- as.dendrogram(hc1)
+dend2 <- as.dendrogram(hc2)
+
+# Membuat daftar untuk menyimpan dendrogram
+dend_list <- dendlist(dend1, dend2)
 ```
 
-### Visualisasi Hasil Cluster {-}
+Kode berikut digunakan untuk membuat tanglegram sederhana, yaitu representasi visual untuk membandingkan dua dendrogram:
 
-Untuk memvisualisasikan hasil clustering yang diperoleh dari algoritma Fuzzy C-Means (FCM) menggunakan fungsi `fviz_cluster()` dari paket `factoextra`. Pertama, hasil clustering FCM yang disimpan dalam objek `res.fcm` diubah menjadi format yang kompatibel dengan visualisasi menggunakan fungsi `ppclust2()`. Hasil clustering kemudian diproses untuk diperlakukan seperti hasil dari algoritma K-Means. Selanjutnya, fungsi `fviz_cluster()` digunakan untuk memplot hasil clustering, dengan parameter tambahan seperti `ellipse.type = "convex"` untuk menambahkan elips konveks yang menggambarkan area setiap cluster, dan `palette = "jco"` untuk memberikan warna berbeda pada setiap cluster. Selain itu, `repel = TRUE` memastikan label titik data tidak saling tumpang tindih, sehingga grafik menjadi lebih mudah dibaca. Visualisasi ini memberikan gambaran yang jelas tentang pemisahan data ke dalam cluster yang berbeda, memudahkan analisis hasil clustering dan memahami struktur data.
-
-```{r warning=FALSE, message=FALSE, fig.cap='Hasil Clustering FCM', out.width='80%', fig.asp=.75, fig.align='center'}
-res.fcm2 <- ppclust2(res.fcm, "kmeans")
-factoextra::fviz_cluster(res.fcm2, data = data, 
-  ellipse.type = "convex",
-  palette = "jco",
-  repel = TRUE)
+```{r warning=FALSE, message=FALSE, fig.cap='Perbandingan dua Dendogram', out.width='80%', fig.asp=.75, fig.align='center'}
+tanglegram(dend1, dend2)
 ```
 
-### Visualisasi Hasil Cluster dengan clusplot {-}
+Kode berikut digunakan untuk membuat tanglegram dengan penyesuaian tertentu untuk menyoroti cabang yang sama (common branches) antara dua dendrogram:
 
-Kode ini digunakan untuk memvisualisasikan hasil clustering Fuzzy C-Means (FCM) menggunakan fungsi `clusplot()` dari paket `cluster`. Pertama, hasil clustering yang disimpan dalam objek `res.fcm` diubah menjadi format yang kompatibel dengan algoritma fuzzy `fanny` menggunakan fungsi `ppclust2()`. Selanjutnya, fungsi `clusplot()` digunakan untuk memplot hasil clustering dalam ruang dua dimensi. Data yang digunakan untuk clustering distandarisasi terlebih dahulu dengan `scale()` untuk memastikan setiap fitur memiliki skala yang seragam. Hasil clustering yang diperoleh kemudian diplot, dengan setiap cluster diberi warna yang berbeda, dan label ditampilkan pada titik data sesuai dengan cluster mereka. Plot ini juga menyertakan garis pemisah antara cluster, sehingga memudahkan pemahaman tentang bagaimana data terkelompok dan sejauh mana pemisahan antara cluster tersebut. Visualisasi ini memberikan gambaran yang jelas tentang struktur data, yang sangat berguna dalam analisis hasil clustering FCM.
+```{r warning=FALSE, message=FALSE, fig.cap='Perbandingan dua Dendogram', out.width='80%', fig.asp=.75, fig.align='center'}
+tanglegram(dend1, dend2,
+           highlight_distinct_edges = FALSE, # Nonaktifkan garis putus-putus
+           common_subtrees_color_lines = FALSE, # Nonaktifkan pewarnaan garis
+           common_subtrees_color_branches = TRUE, # Warnai cabang yang sama
+           main = paste("Entanglement =", round(entanglement(dend_list), 2))
+)
+```
 
-```{r warning=FALSE, message=FALSE, fig.cap='Visualisasi Hasil FCM dengan Clusplot', out.width='80%', fig.asp=.75, fig.align='center'}
-res.fcm3 <- ppclust2(res.fcm, "fanny")
+## Tahapan Divisive Clustering
 
-cluster::clusplot(scale(data), res.fcm3$cluster,  
-  main = "Cluster plot of Iris data set",
-  color=TRUE, labels = 2, lines = 2, cex=1)
+Divisive Clustering adalah metode pengelompokan hierarkis yang menggunakan pendekatan top-down. Metode ini dimulai dengan satu cluster besar yang mencakup semua objek dan secara bertahap membaginya menjadi sub-cluster. Dalam dokumen ini, kita akan menjelaskan tahapan-tahapan dalam Divisive Clustering beserta rumus yang relevan.
+
+```{=html}
+<style>
+body{
+text-align: justify}
+</style>
+```
+
+### 1. Inisialisasi {-}
+Mulai dengan satu cluster yang mencakup semua objek dalam dataset. Jika ada \( n \) objek, maka pada awalnya hanya ada satu cluster besar.
+
+### 2. Menghitung Dissimilarity {-}
+Hitung matriks dissimilarity untuk semua objek dalam cluster. Dissimilarity dapat dihitung menggunakan berbagai metrik, seperti jarak Euclidean. Untuk dua titik \( A(x_1, y_1) \) dan \( B(x_2, y_2) \), jarak Euclidean dapat dihitung dengan rumus:
+
+\[
+d(A, B) = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+\]
+
+### 3. Memilih Cluster untuk Dibagi {-}
+Pilih cluster yang akan dibagi. Biasanya, cluster yang memiliki varians terbesar atau yang paling heterogen dipilih untuk dibagi.
+
+### 4. Membagi Cluster {-}
+Bagi cluster yang dipilih menjadi dua sub-cluster. Ada beberapa metode untuk membagi cluster, termasuk: **K-Means**: Menggunakan algoritma K-Means untuk membagi cluster menjadi dua sub-cluster berdasarkan jarak. **PCA (Principal Component Analysis)**: Menggunakan PCA untuk mengidentifikasi arah varians terbesar dan membagi objek berdasarkan komponen utama.
+
+### 5. Menghitung Dissimilarity untuk Sub-Cluster {-}
+Setelah membagi cluster, hitung kembali matriks dissimilarity untuk sub-cluster yang baru terbentuk.
+
+### 6. Ulangi Proses {-}
+Ulangi langkah 3 hingga 5 hingga semua objek tergabung dalam cluster terpisah atau hingga jumlah cluster yang diinginkan tercapai.
+
+### 7. Membuat Dendrogram {-}
+Setelah semua pembagian selesai, buat dendrogram untuk memvisualisasikan proses pembagian cluster. Dendrogram ini menunjukkan bagaimana objek-objek dikelompokkan dan dapat digunakan untuk menentukan jumlah cluster yang optimal.
+
+## Eksperimen Divisive Clustering
+
+Berikut adalah contoh kode untuk melakukan Divisive Analysis Clustering (DIANA) menggunakan fungsi `diana()` dari paket `cluster` di R.
+
+```{r}
+library(cluster)
+res.diana <- diana(x = data, 
+                   stand = TRUE, 
+                   metric = "euclidean")
+```
+
+Visualisasi dendrogram menggunakan fungsi `fviz_dend` dari paket `factoextra`
+
+```{r warning=FALSE, message=FALSE, fig.cap='Visualisasi Dendogram', out.width='80%', fig.asp=.75, fig.align='center'}
+fviz_dend(res.diana, k =2, 
+          cex = 0.5, 
+          k_colors = c("#E7B800", "#FC4E07"),
+          color_labels_by_k = TRUE, 
+          rect = TRUE 
+          )
 ```
