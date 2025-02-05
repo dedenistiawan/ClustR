@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Pemrosesan Awal Data | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R</title>
+  <title>2.1 Data Cleaning dan Data Reduction | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R</title>
   <meta name="description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Pemrosesan Awal Data | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R" />
+  <meta property="og:title" content="2.1 Data Cleaning dan Data Reduction | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://github.com/dedenistiawan/ClustR/images/cover.png" />
   <meta property="og:description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Pemrosesan Awal Data | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R" />
+  <meta name="twitter:title" content="2.1 Data Cleaning dan Data Reduction | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R" />
   
   <meta name="twitter:description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
   <meta name="twitter:image" content="https://github.com/dedenistiawan/ClustR/images/cover.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="1.2-pengenalan-singkat-r-and-rstudio.html"/>
-<link rel="next" href="2.1-data-cleaning-dan-data-reduction.html"/>
+<link rel="prev" href="2-pad.html"/>
+<link rel="next" href="2.2-data-transformation-dan-data-discretization.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -386,37 +386,26 @@
 <div class = rmdreview>
 Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda untuk membuat buku ini lebih baik bagi. Anda dapat memberikan anotasi pada beberapa teks dengan <span style="background-color: #3297FD; color: white">memilihnya menggunakan kursor</span> dan kemudian klik “Beri Anotasi” pada menu pop-up. Anda juga dapat melihat anotasi orang lain: klik tanda panah di sudut kanan atas halaman <i class="fa fa-arrow-circle-right  fa-rotate-315" aria-hidden="true"></i>
 </div>
-<div id="pad" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">2</span> Pemrosesan Awal Data<a href="2-pad.html#pad" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<style>
-body{
-text-align: justify}
-</style>
-<p>Dalam <strong>data mining</strong> dan <strong>analisis klaster</strong>, pemrosesan data awal merupakan tahap yang paling penting dan sering kali paling memakan waktu. Berdasarkan pengalaman praktis dan berbagai studi, sekitar <strong>80% dari keseluruhan waktu analisis</strong> dihabiskan untuk tahap ini, sementara hanya <strong>20% sisanya</strong> digunakan untuk penerapan algoritma dan interpretasi hasil. Hal ini terjadi karena data mentah sering kali tidak siap langsung digunakan dalam analisis dan memerlukan berbagai tahapan pembersihan, transformasi, dan reduksi sebelum bisa diolah dengan algoritma klasterisasi.</p>
-<p><strong>Mengapa Pemrosesan Data Awal Memakan Waktu Lama?</strong></p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Data Cleaning (Pembersihan Data)</strong><br />
-Data yang dikumpulkan sering kali mengandung <strong>kesalahan, nilai yang hilang, duplikasi, dan inkonsistensi format</strong>. Proses pembersihan data mencakup penanganan <strong>missing values</strong>, deteksi <strong>outlier</strong>, serta standarisasi format data agar seragam. Setiap langkah ini memerlukan analisis mendalam untuk memastikan data yang digunakan benar-benar berkualitas.</p></li>
-<li><p><strong>Data Integration (Integrasi Data)</strong><br />
-Sering kali, data berasal dari berbagai sumber, seperti <strong>database yang berbeda, API, atau file CSV yang terpisah</strong>. Integrasi data memerlukan waktu untuk menggabungkan sumber data yang berbeda dan menangani potensi <strong>redundansi atau ketidaksesuaian antar variabel</strong>.</p></li>
-<li><p><strong>Data Transformation (Transformasi Data)</strong><br />
-Data mentah harus diubah agar sesuai dengan algoritma yang digunakan. Contoh transformasi yang umum dilakukan adalah <strong>normalisasi atau standarisasi</strong> untuk memastikan bahwa semua variabel berada dalam skala yang sama. Selain itu, variabel kategorikal mungkin perlu dikonversi menjadi bentuk numerik melalui <strong>one-hot encoding</strong>.</p></li>
-<li><p><strong>Data Reduction (Reduksi Data)</strong><br />
-Jika dataset memiliki terlalu banyak variabel atau dimensi, perlu dilakukan reduksi menggunakan metode seperti <strong>Principal Component Analysis (PCA)</strong> atau <strong>feature selection</strong>. Reduksi ini penting untuk meningkatkan efisiensi analisis dan mengurangi noise yang dapat mengganggu hasil klasterisasi.</p></li>
-<li><p><strong>Data Discretization (Diskretisasi Data)</strong><br />
-Beberapa algoritma klaster lebih efektif jika data dalam bentuk kategori daripada numerik. Oleh karena itu, diskretisasi data sering kali diperlukan, baik melalui metode <strong>equal-width binning, equal-frequency binning</strong>, atau menggunakan pendekatan berbasis <strong>pohon keputusan</strong>.</p></li>
-</ol>
-<p><strong>80% Waktu untuk Pemrosesan Data: Realitas dalam Analisis Data Mining</strong></p>
-<p>Dalam praktiknya, penerapan algoritma klaster seperti <strong>K-Means, Hierarchical Clustering, atau DBSCAN</strong> relatif cepat dibandingkan dengan tahap pemrosesan data. Hal ini karena algoritma klaster bekerja optimal hanya jika data telah bersih dan siap digunakan. Jika pemrosesan data tidak dilakukan dengan baik, hasil klaster bisa menjadi <strong>tidak akurat, sulit diinterpretasikan, atau bahkan tidak dapat digunakan</strong> dalam pengambilan keputusan.</p>
-<p>Oleh karena itu, dalam buku ini akan dibahas secara mendalam berbagai teknik <strong>pemrosesan data awal menggunakan R</strong>, termasuk paket dan fungsi yang dapat mempercepat proses ini, seperti <strong>tidyverse, dplyr, tidyr, caret, dan FactoMineR</strong>. Dengan pemahaman yang baik tentang tahap pemrosesan data, pembaca dapat meningkatkan efisiensi analisis klaster dan mendapatkan hasil yang lebih bermakna.</p>
+<div id="data-cleaning-dan-data-reduction" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Data Cleaning dan Data Reduction<a href="2.1-data-cleaning-dan-data-reduction.html#data-cleaning-dan-data-reduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Data yang tidak bersih, tidak lengkap, atau memiliki skala yang tidak seragam dapat menghasilkan klaster yang tidak akurat dan sulit diinterpretasikan. Oleh karena itu, tahap ini berperan penting dalam memastikan kualitas data sebelum analisis lebih lanjut dilakukan. Dalam analisis klaster, data menjadi bahan utama yang akan digunakan untuk membentuk kelompok-kelompok berdasarkan kemiripan antar data. Jika data yang digunakan memiliki banyak noise atau kesalahan, hasil klasterisasi dapat menjadi tidak valid atau bahkan menyesatkan. Oleh karena itu, pemrosesan data awal bertujuan untuk meningkatkan kualitas data agar analisis dapat dilakukan dengan lebih optimal.</p>
+<p>Dalam analisis klaster, pemrosesan data awal adalah tahap yang sangat krusial untuk memastikan bahwa data yang digunakan memiliki kualitas yang baik dan dapat menghasilkan hasil klaster yang valid. Dua aspek utama dalam pemrosesan data awal adalah <strong>data cleaning</strong> dan <strong>data reduction</strong>. Data cleaning bertujuan untuk menangani ketidakkonsistenan dalam data, sedangkan data reduction membantu mengurangi dimensi data tanpa kehilangan informasi yang signifikan. Kedua proses ini diperlukan agar analisis klaster dapat dilakukan dengan lebih efisien dan menghasilkan kelompok yang lebih bermakna.</p>
+<p><strong>Data cleaning</strong> adalah proses membersihkan data dari kesalahan, duplikasi, nilai yang hilang, atau inkonsistensi lainnya. Data yang kotor dapat menyebabkan bias dalam analisis klaster, sehingga langkah ini harus dilakukan dengan cermat. Kesalahan umum dalam data meliputi entri yang salah, format yang tidak konsisten, atau data yang tidak lengkap. Dalam R, berbagai fungsi seperti <code>na.omit()</code>, <code>tidyverse::drop_na()</code>, dan <code>dplyr::mutate()</code> dapat digunakan untuk membersihkan data dengan menghapus atau mengganti nilai yang hilang dengan pendekatan yang sesuai.</p>
+<p>Selain menangani nilai yang hilang, <strong>data cleaning</strong> juga mencakup normalisasi data untuk memastikan skala variabel yang seragam. Variabel dengan skala yang sangat berbeda dapat mendistorsi hasil klaster karena algoritma klaster berbasis jarak, seperti K-Means, sangat bergantung pada skala data. Teknik normalisasi seperti <strong>min-max scaling</strong> atau <strong>z-score standardization</strong> sering diterapkan menggunakan fungsi <code>scale()</code> dalam R. Dengan normalisasi, setiap variabel memiliki skala yang sebanding, sehingga proses klasterisasi lebih akurat.</p>
+<p>Langkah berikutnya dalam data cleaning adalah menangani <strong>outlier</strong>, yaitu data yang memiliki nilai ekstrem yang tidak sesuai dengan pola umum. Outlier dapat mengganggu hasil klaster dengan menarik centroid ke arah yang tidak seharusnya. Identifikasi outlier dapat dilakukan dengan metode visual seperti boxplot (<code>ggplot2::geom_boxplot()</code>) atau menggunakan metode statistik seperti <strong>IQR (Interquartile Range)</strong>. Jika outlier ditemukan, opsi penanganannya meliputi penghapusan, transformasi, atau imputasi nilai berdasarkan distribusi data.</p>
+<p>Setelah data dibersihkan, langkah selanjutnya dalam pemrosesan data awal adalah <strong>data reduction</strong>. Data reduction bertujuan untuk mengurangi dimensi data dengan tetap mempertahankan informasi yang paling relevan. Pengurangan dimensi ini sangat penting dalam analisis klaster karena terlalu banyak variabel dapat meningkatkan kompleksitas perhitungan dan menyebabkan fenomena <strong>curse of dimensionality</strong>, di mana data menjadi terlalu tersebar dan sulit untuk dikelompokkan secara efektif.</p>
+<p>Salah satu metode umum dalam <strong>data reduction</strong> adalah <strong>Principal Component Analysis (PCA)</strong>, yang mengubah variabel asli menjadi sekumpulan variabel baru yang disebut <strong>principal components</strong>. PCA membantu merangkum informasi utama dalam beberapa komponen pertama, sehingga dimensi data dapat dikurangi tanpa kehilangan terlalu banyak informasi. Dalam R, PCA dapat dilakukan menggunakan fungsi <code>prcomp()</code> dari paket <code>stats</code> atau <code>PCA()</code> dari paket <code>FactoMineR</code>. Hasil PCA dapat divisualisasikan dengan <code>factoextra::fviz_pca_var()</code> untuk memahami kontribusi setiap variabel terhadap komponen utama.</p>
+<p>Selain PCA, metode lain dalam <strong>data reduction</strong> adalah <strong>feature selection</strong>, di mana hanya variabel yang memiliki pengaruh signifikan yang dipertahankan untuk analisis klaster. Metode ini dapat dilakukan secara manual berdasarkan pemahaman domain, atau secara otomatis menggunakan teknik statistik seperti <strong>Variance Thresholding</strong>, <strong>Correlation Analysis</strong>, atau metode berbasis <strong>Random Forest</strong> dengan fungsi <code>randomForest::importance()</code>. Dengan memilih fitur yang relevan, analisis klaster dapat berjalan lebih cepat dan hasil yang diperoleh lebih interpretable.</p>
+<p>Teknik lain dalam data reduction adalah <strong>sampling</strong>, yang bertujuan untuk mengurangi jumlah observasi sambil mempertahankan pola utama dalam data. Teknik ini berguna ketika data yang tersedia sangat besar dan tidak mungkin dianalisis secara langsung. Sampling dapat dilakukan secara acak (<code>sample()</code> dalam R) atau dengan mempertahankan proporsi karakteristik utama menggunakan metode <strong>stratified sampling</strong> (<code>dplyr::group_by()</code> dan <code>sample_n()</code>). Dengan teknik ini, analisis klaster dapat dilakukan lebih cepat tanpa kehilangan informasi utama dalam data.</p>
+<p>Dengan menerapkan <strong>data cleaning</strong> dan <strong>data reduction</strong>, dataset yang digunakan dalam analisis klaster akan menjadi lebih bersih, terstruktur, dan lebih mudah untuk diproses oleh algoritma klasterisasi. Kedua langkah ini memastikan bahwa hasil klaster yang diperoleh lebih akurat dan dapat diinterpretasikan dengan lebih baik. Tanpa pemrosesan data awal yang tepat, hasil klaster dapat menjadi tidak valid atau sulit untuk digunakan dalam pengambilan keputusan. Oleh karena itu, pemahaman dan penerapan teknik ini dalam R sangat penting bagi siapa saja yang ingin melakukan analisis klaster yang berkualitas.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="1.2-pengenalan-singkat-r-and-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="2.1-data-cleaning-dan-data-reduction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="2-pad.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2.2-data-transformation-dan-data-discretization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

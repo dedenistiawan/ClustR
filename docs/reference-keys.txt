@@ -69,3 +69,6 @@ fig:unnamed-chunk-15
 fig:unnamed-chunk-4
 fig:unnamed-chunk-9
 fig:unnamed-chunk-13
+data-cleaning-dan-data-reduction
+data-transformation-dan-data-discretization
+dataset

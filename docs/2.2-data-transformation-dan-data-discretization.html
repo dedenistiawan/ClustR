@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Pemrosesan Awal Data | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R</title>
+  <title>2.2 Data Transformation dan Data Discretization | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R</title>
   <meta name="description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Pemrosesan Awal Data | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R" />
+  <meta property="og:title" content="2.2 Data Transformation dan Data Discretization | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://github.com/dedenistiawan/ClustR/images/cover.png" />
   <meta property="og:description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Pemrosesan Awal Data | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R" />
+  <meta name="twitter:title" content="2.2 Data Transformation dan Data Discretization | Analisis Cluster: Teori, Algoritma, dan Implementasi dengan R" />
   
   <meta name="twitter:description" content="Buku tentang analisis cluster dengan R adalah buku yang membahas tentang teknik analisis data yang digunakan untuk mengelompokkan objek atau data ke dalam kelompok-kelompok yang serupa. Buku ini biasanya membahas tentang konsep dasar analisis cluster." />
   <meta name="twitter:image" content="https://github.com/dedenistiawan/ClustR/images/cover.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="1.2-pengenalan-singkat-r-and-rstudio.html"/>
-<link rel="next" href="2.1-data-cleaning-dan-data-reduction.html"/>
+<link rel="prev" href="2.1-data-cleaning-dan-data-reduction.html"/>
+<link rel="next" href="2.3-dataset.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -386,37 +386,25 @@
 <div class = rmdreview>
 Buku ini sedang dalam tahap <b>tinjauan terbuka</b>. Kami ingin umpan balik Anda untuk membuat buku ini lebih baik bagi. Anda dapat memberikan anotasi pada beberapa teks dengan <span style="background-color: #3297FD; color: white">memilihnya menggunakan kursor</span> dan kemudian klik “Beri Anotasi” pada menu pop-up. Anda juga dapat melihat anotasi orang lain: klik tanda panah di sudut kanan atas halaman <i class="fa fa-arrow-circle-right  fa-rotate-315" aria-hidden="true"></i>
 </div>
-<div id="pad" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">2</span> Pemrosesan Awal Data<a href="2-pad.html#pad" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<style>
-body{
-text-align: justify}
-</style>
-<p>Dalam <strong>data mining</strong> dan <strong>analisis klaster</strong>, pemrosesan data awal merupakan tahap yang paling penting dan sering kali paling memakan waktu. Berdasarkan pengalaman praktis dan berbagai studi, sekitar <strong>80% dari keseluruhan waktu analisis</strong> dihabiskan untuk tahap ini, sementara hanya <strong>20% sisanya</strong> digunakan untuk penerapan algoritma dan interpretasi hasil. Hal ini terjadi karena data mentah sering kali tidak siap langsung digunakan dalam analisis dan memerlukan berbagai tahapan pembersihan, transformasi, dan reduksi sebelum bisa diolah dengan algoritma klasterisasi.</p>
-<p><strong>Mengapa Pemrosesan Data Awal Memakan Waktu Lama?</strong></p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Data Cleaning (Pembersihan Data)</strong><br />
-Data yang dikumpulkan sering kali mengandung <strong>kesalahan, nilai yang hilang, duplikasi, dan inkonsistensi format</strong>. Proses pembersihan data mencakup penanganan <strong>missing values</strong>, deteksi <strong>outlier</strong>, serta standarisasi format data agar seragam. Setiap langkah ini memerlukan analisis mendalam untuk memastikan data yang digunakan benar-benar berkualitas.</p></li>
-<li><p><strong>Data Integration (Integrasi Data)</strong><br />
-Sering kali, data berasal dari berbagai sumber, seperti <strong>database yang berbeda, API, atau file CSV yang terpisah</strong>. Integrasi data memerlukan waktu untuk menggabungkan sumber data yang berbeda dan menangani potensi <strong>redundansi atau ketidaksesuaian antar variabel</strong>.</p></li>
-<li><p><strong>Data Transformation (Transformasi Data)</strong><br />
-Data mentah harus diubah agar sesuai dengan algoritma yang digunakan. Contoh transformasi yang umum dilakukan adalah <strong>normalisasi atau standarisasi</strong> untuk memastikan bahwa semua variabel berada dalam skala yang sama. Selain itu, variabel kategorikal mungkin perlu dikonversi menjadi bentuk numerik melalui <strong>one-hot encoding</strong>.</p></li>
-<li><p><strong>Data Reduction (Reduksi Data)</strong><br />
-Jika dataset memiliki terlalu banyak variabel atau dimensi, perlu dilakukan reduksi menggunakan metode seperti <strong>Principal Component Analysis (PCA)</strong> atau <strong>feature selection</strong>. Reduksi ini penting untuk meningkatkan efisiensi analisis dan mengurangi noise yang dapat mengganggu hasil klasterisasi.</p></li>
-<li><p><strong>Data Discretization (Diskretisasi Data)</strong><br />
-Beberapa algoritma klaster lebih efektif jika data dalam bentuk kategori daripada numerik. Oleh karena itu, diskretisasi data sering kali diperlukan, baik melalui metode <strong>equal-width binning, equal-frequency binning</strong>, atau menggunakan pendekatan berbasis <strong>pohon keputusan</strong>.</p></li>
-</ol>
-<p><strong>80% Waktu untuk Pemrosesan Data: Realitas dalam Analisis Data Mining</strong></p>
-<p>Dalam praktiknya, penerapan algoritma klaster seperti <strong>K-Means, Hierarchical Clustering, atau DBSCAN</strong> relatif cepat dibandingkan dengan tahap pemrosesan data. Hal ini karena algoritma klaster bekerja optimal hanya jika data telah bersih dan siap digunakan. Jika pemrosesan data tidak dilakukan dengan baik, hasil klaster bisa menjadi <strong>tidak akurat, sulit diinterpretasikan, atau bahkan tidak dapat digunakan</strong> dalam pengambilan keputusan.</p>
-<p>Oleh karena itu, dalam buku ini akan dibahas secara mendalam berbagai teknik <strong>pemrosesan data awal menggunakan R</strong>, termasuk paket dan fungsi yang dapat mempercepat proses ini, seperti <strong>tidyverse, dplyr, tidyr, caret, dan FactoMineR</strong>. Dengan pemahaman yang baik tentang tahap pemrosesan data, pembaca dapat meningkatkan efisiensi analisis klaster dan mendapatkan hasil yang lebih bermakna.</p>
+<div id="data-transformation-dan-data-discretization" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Data Transformation dan Data Discretization<a href="2.2-data-transformation-dan-data-discretization.html#data-transformation-dan-data-discretization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Dalam analisis klaster, pemrosesan data awal sangat penting untuk memastikan bahwa data siap digunakan dalam proses pengelompokan. Dua langkah utama dalam tahap ini adalah <strong>data transformation</strong> dan <strong>data discretization</strong>. <strong>Data transformation</strong> bertujuan untuk mengubah struktur atau distribusi data agar lebih sesuai dengan algoritma klaster, sementara <strong>data discretization</strong> mengonversi data numerik menjadi kategori untuk analisis yang lebih sederhana dan interpretasi yang lebih mudah. Kedua teknik ini berperan penting dalam meningkatkan kualitas klasterisasi dan menghindari bias akibat skala atau distribusi data yang tidak sesuai.</p>
+<p><strong>Data transformation</strong> adalah proses mengubah format atau skala data agar lebih sesuai dengan algoritma klasterisasi. Salah satu bentuk transformasi yang umum adalah <strong>normalisasi</strong>, yaitu proses menyamakan skala variabel sehingga tidak ada satu variabel yang mendominasi perhitungan jarak dalam algoritma berbasis jarak seperti <strong>K-Means</strong> atau <strong>Hierarchical Clustering</strong>. Normalisasi dapat dilakukan dengan metode <strong>Min-Max Scaling</strong> dan <strong>Z-score Standardization</strong>. Dalam R, normalisasi dapat diterapkan menggunakan fungsi <code>scale()</code> untuk standardisasi atau menggunakan paket seperti <code>caret::preProcess()</code> untuk berbagai metode transformasi.</p>
+<p>Selain normalisasi, <strong>transformasi logaritmik</strong> sering digunakan untuk mengatasi distribusi data yang sangat miring (skewed). Data yang memiliki distribusi skewed dapat memengaruhi hasil klaster karena jarak antarobservasi menjadi tidak proporsional. Dengan menerapkan transformasi logaritmik (<code>log()</code> dalam R) atau transformasi Box-Cox (<code>MASS::boxcox()</code>), distribusi data dapat diperbaiki sehingga algoritma klaster dapat bekerja dengan lebih baik. Teknik ini sangat berguna dalam menangani variabel dengan rentang nilai yang luas atau data yang mengikuti distribusi Pareto.</p>
+<p>Bentuk lain dari <strong>data transformation</strong> adalah <strong>one-hot encoding</strong>, yang digunakan untuk mengubah variabel kategorikal menjadi bentuk numerik yang dapat digunakan dalam algoritma klasterisasi. Sebagian besar algoritma klaster memerlukan data dalam bentuk numerik, sehingga variabel kategorikal harus dikonversi terlebih dahulu. Dalam R, one-hot encoding dapat dilakukan menggunakan fungsi <code>dummyVars()</code> dari paket <code>caret</code> atau dengan menggunakan <code>model.matrix()</code>. Teknik ini memastikan bahwa informasi dalam variabel kategorikal tetap dapat digunakan dalam analisis klaster.</p>
+<p>Sementara itu, <strong>data discretization</strong> bertujuan untuk mengonversi data numerik menjadi kategori atau interval yang lebih mudah dianalisis. Teknik ini sering digunakan ketika data numerik terlalu rinci atau ketika analisis klaster ingin dilakukan berdasarkan kategori tertentu. Discretization dapat membantu dalam interpretasi hasil klaster dan mengurangi noise dalam data. Salah satu metode yang umum digunakan adalah <strong>equal-width binning</strong>, di mana rentang nilai dibagi menjadi beberapa interval dengan lebar yang sama menggunakan fungsi <code>cut()</code> dalam R.</p>
+<p>Selain equal-width binning, metode <strong>equal-frequency binning</strong> juga sering digunakan, di mana setiap bin berisi jumlah observasi yang hampir sama. Teknik ini berguna ketika distribusi data tidak merata, sehingga setiap kelompok memiliki jumlah data yang seimbang. Dalam R, equal-frequency binning dapat dilakukan menggunakan <code>quantile()</code> untuk menentukan batas interval berdasarkan persentil data. Dengan metode ini, distribusi kategori yang dihasilkan lebih proporsional dibandingkan dengan equal-width binning.</p>
+<p>Pendekatan lain dalam data discretization adalah <strong>k-means discretization</strong>, yang menggunakan algoritma K-Means untuk menemukan batas interval berdasarkan pola data. Teknik ini lebih adaptif dibandingkan equal-width atau equal-frequency binning karena mempertimbangkan distribusi alami data. Dalam R, metode ini dapat diterapkan dengan menjalankan K-Means (<code>kmeans()</code>) pada satu variabel dan menggunakan hasil klaster sebagai kategori baru. Teknik ini sangat berguna dalam data dengan distribusi kompleks yang tidak dapat ditangani dengan binning sederhana.</p>
+<p>Selain metode berbasis interval, <strong>decision tree-based discretization</strong> juga menjadi alternatif yang efektif. Teknik ini menggunakan algoritma pohon keputusan seperti <strong>CART</strong> atau <strong>C4.5</strong> untuk menentukan batasan kategori berdasarkan aturan pemisahan yang optimal. Dalam R, pendekatan ini dapat dilakukan menggunakan paket <code>rpart</code> untuk membangun pohon keputusan dan kemudian mengekstrak batas kategorinya. Metode ini sering digunakan dalam aplikasi machine learning yang menggabungkan analisis klaster dengan model prediktif.</p>
+<p>Dengan menerapkan <strong>data transformation</strong> dan <strong>data discretization</strong>, analisis klaster dapat dilakukan dengan lebih optimal, baik dalam aspek perhitungan maupun interpretasi hasil. Data transformation memastikan bahwa skala dan distribusi data tidak menghambat proses klasterisasi, sementara data discretization membantu dalam mengelompokkan data ke dalam kategori yang lebih mudah dianalisis. Oleh karena itu, pemahaman mendalam tentang kedua teknik ini sangat penting bagi siapa saja yang ingin melakukan analisis klaster yang lebih akurat dan interpretable menggunakan R.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="1.2-pengenalan-singkat-r-and-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="2.1-data-cleaning-dan-data-reduction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="2.1-data-cleaning-dan-data-reduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2.3-dataset.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
