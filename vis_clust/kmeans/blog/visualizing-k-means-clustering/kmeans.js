@@ -2,9 +2,9 @@
 
 function choose_init_method(callback) {
   var choices = [
-    { name: "saya pilih sendiri", choice: "user", txtpos_x: -13.2 },
-    { name: "acak", choice: "random", txtpos_x: -3.2 },
-    { name: "titik terjauh", choice: "farthest", txtpos_x: 6.2 },
+    { name: "Pilih Sendiri", choice: "user", txtpos_x: -13.2 },
+    { name: "Secara Acak", choice: "random", txtpos_x: -3.2 },
+    { name: "Titik Terjauh", choice: "farthest", txtpos_x: 6.2 },
   ];
 
   var title = { text: "Pilih Penentuan Centroid Awal", x: -14, y: 9 };

@@ -148,7 +148,7 @@ function choose_data(callback) {
     { name: "Example A", choice: dbscan_nonunique, txtpos_x: -3.2 },
   ];
 
-  var title = { text: "What kind of data would you like?", x: -14, y: 9 };
+  var title = { text: "Jenis data apa yang inginkan?", x: -14, y: 9 };
 
   display_choice(choices, title, callback);
 }

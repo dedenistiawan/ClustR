@@ -72,3 +72,9 @@ fig:unnamed-chunk-13
 data-cleaning-dan-data-reduction
 data-transformation-dan-data-discretization
 dataset
+tab:nice-tab-1
+fig:unnamed-chunk-3
+fig:unnamed-chunk-8
+tab:nice-tab-2
+fig:unnamed-chunk-12
+fig:unnamed-chunk-11
